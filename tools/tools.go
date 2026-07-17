@@ -10,6 +10,9 @@ import (
 	_ "github.com/hashicorp/terraform-plugin-docs/cmd/tfplugindocs"
 )
 
+// Generate Go code from Hostinger OpenAPI specification
+//go:generate go tool oapi-codegen -config ./config.yaml https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json
+
 // Generate copyright headers
 //go:generate go run github.com/hashicorp/copywrite headers -d .. --config ../.copywrite.hcl
 
@@ -19,4 +22,4 @@ import (
 //go:generate terraform fmt -recursive ../examples/
 
 // Generate documentation.
-//go:generate go run github.com/hashicorp/terraform-plugin-docs/cmd/tfplugindocs generate --provider-dir .. -provider-name scaffolding
+//go:generate go run github.com/hashicorp/terraform-plugin-docs/cmd/tfplugindocs generate --provider-dir .. -provider-name hostinger

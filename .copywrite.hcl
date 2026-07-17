@@ -20,5 +20,7 @@ project {
 
     # GoReleaser tooling configuration
     ".goreleaser.yml",
+
+    ".idea/**",
   ]
 }
