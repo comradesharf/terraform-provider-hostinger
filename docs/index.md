@@ -12,8 +12,8 @@ description: |-
 ## Example Usage
 
 ```terraform
-provider "scaffolding" {
-  # example configuration here
+# Initialize hostinger
+provider "hostinger" {
 }
 ```
 
@@ -22,4 +22,4 @@ provider "scaffolding" {
 
 ### Optional
 
-- `endpoint` (String) Example provider attribute
+- `api_token` (String, Sensitive) The API token used to authenticate with the Hostinger API.

@@ -1,3 +1,3 @@
-provider "scaffolding" {
-  # example configuration here
+# Initialize hostinger
+provider "hostinger" {
 }

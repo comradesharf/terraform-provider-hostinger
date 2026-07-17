@@ -22,6 +22,9 @@ const (
 	ApiTokenScopes apiTokenContextKey = "apiToken.Scopes"
 )
 
+// ServerUrlProductionAPIServer defines the Server URL for Production API Server
+const ServerUrlProductionAPIServer = "https://developers.hostinger.com"
+
 // Defines values for AgencyHostingV1SetupsCreateSetupRequestType.
 const (
 	AgencyHostingV1SetupsCreateSetupRequestTypeHorizons   AgencyHostingV1SetupsCreateSetupRequestType = "horizons"

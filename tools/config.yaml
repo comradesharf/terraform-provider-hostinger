@@ -8,3 +8,4 @@ output: ../internal/client/client.gen.go
 generate:
   models: true
   client: true
+  server-urls: true
