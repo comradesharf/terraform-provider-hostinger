@@ -12,96 +12,150 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
-	"github.com/hashicorp/terraform-plugin-log/tflog"
 )
 
 // Ensure provider defined types fully satisfy framework interfaces.
-var _ datasource.DataSource = &billingCatalogsDataSource{}
+var _ datasource.DataSource = &BillingCatalogsDataSource{}
 
 func NewBillingCatalogsDataSource() datasource.DataSource {
-	return &billingCatalogsDataSource{}
+	return &BillingCatalogsDataSource{}
 }
 
-// billingCatalogsDataSource defines the data source implementation.
-type billingCatalogsDataSource struct {
+// BillingCatalogsDataSource defines the data source implementation.
+type BillingCatalogsDataSource struct {
 	client *client.ClientWithResponses
+}
+
+type BillingCatalogsModel struct {
+	ID       types.String `tfsdk:"id"`
+	Category types.String `tfsdk:"category"`
+	Name     types.String `tfsdk:"name"`
+	//Metadata types.Map    `tfsdk:"metadata"`
 }
 
 // billingCatalogsDataSourceModel describes the data source data model.
 type billingCatalogsDataSourceModel struct {
-	ConfigurableAttribute types.String `tfsdk:"configurable_attribute"`
-	ID                    types.String `tfsdk:"id"`
+	BillingCatalogs []BillingCatalogsModel `tfsdk:"billing_catalogs"`
 }
 
-func (d *billingCatalogsDataSource) Metadata(ctx context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
+func (d *BillingCatalogsDataSource) Metadata(ctx context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_billing_catalogs"
 }
 
-func (d *billingCatalogsDataSource) Schema(ctx context.Context, req datasource.SchemaRequest, resp *datasource.SchemaResponse) {
+func (d *BillingCatalogsDataSource) Schema(ctx context.Context, req datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
-		MarkdownDescription: "",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				MarkdownDescription: "",
-				Computed:            true,
+			"billing_catalogs": schema.ListNestedAttribute{
+				Computed: true,
+				NestedObject: schema.NestedAttributeObject{
+					Attributes: map[string]schema.Attribute{
+						"id": schema.StringAttribute{
+							MarkdownDescription: "Catalog item ID",
+							Computed:            true,
+						},
+						"category": schema.StringAttribute{
+							Computed: true,
+						},
+						"name": schema.StringAttribute{
+							Computed: true,
+						},
+						//"metadata": schema.MapAttribute{
+						//	ElementType: types.StringType,
+						//	Computed:    true,
+						//},
+						//"prices": schema.ListNestedAttribute{
+						//	NestedObject: schema.NestedAttributeObject{
+						//		Attributes: map[string]schema.Attribute{
+						//			"currency": schema.StringAttribute{
+						//				Computed: true,
+						//			},
+						//			"first_period_price": schema.NumberAttribute{
+						//				Computed: true,
+						//			},
+						//			"id": schema.StringAttribute{
+						//				Computed: true,
+						//			},
+						//			"name": schema.StringAttribute{
+						//				Computed: true,
+						//			},
+						//			"period": schema.NumberAttribute{
+						//				Computed: true,
+						//			},
+						//			"period_unit": schema.StringAttribute{
+						//				Computed: true,
+						//			},
+						//			"price": schema.NumberAttribute{
+						//				Computed: true,
+						//			},
+						//		},
+						//	},
+						//	Computed: true,
+						//},
+					},
+				},
 			},
 		},
 	}
 }
 
-func (d *billingCatalogsDataSource) Configure(ctx context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
+func (d *BillingCatalogsDataSource) Configure(ctx context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
 	if req.ProviderData == nil {
 		return
 	}
 
 	c, ok := req.ProviderData.(*client.ClientWithResponses)
-
 	if !ok {
 		resp.Diagnostics.AddError(
 			"Unexpected Data Source Configure Type",
-			fmt.Sprintf("Expected *http.Client, got: %T. Please report this issue to the provider developers.", req.ProviderData),
+			fmt.Sprintf("Expected *client.ClientWithResponses, got: %T. Please report this issue to the provider developers.", req.ProviderData),
 		)
-
 		return
 	}
 
 	d.client = c
 }
 
-func (d *billingCatalogsDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var data billingCatalogsDataSourceModel
-	diags := req.Config.Get(ctx, &data)
-	resp.Diagnostics.Append(diags...)
-	if resp.Diagnostics.HasError() {
-		return
-	}
-
+func (d *BillingCatalogsDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
 	var params client.BillingGetCatalogItemListV1Params
-
 	response, err := d.client.BillingGetCatalogItemListV1WithResponse(ctx, &params)
 	if err != nil {
+		resp.Diagnostics.AddError(
+			"Unable to Read Billing Catalogs",
+			fmt.Sprintf("Got error: %s", err),
+		)
 		return
 	}
-	if response.StatusCode() == http.StatusOK {
+	if response.StatusCode() != http.StatusOK {
+		resp.Diagnostics.AddError(
+			"Unable to Read Billing Catalogs",
+			fmt.Sprintf("Unexpected status code: %d", response.StatusCode()),
+		)
+		return
+	}
+	if response.JSON200 == nil {
+		resp.Diagnostics.AddError(
+			"Unable to Read Billing Catalogs",
+			"Response body is nil",
+		)
 		return
 	}
 
-	// If applicable, this is a great opportunity to initialize any necessary
-	// provider client data and make a call using it.
-	// httpResp, err := d.client.Do(httpReq)
-	// if err != nil {
-	//     resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to read example, got error: %s", err))
-	//     return
-	// }
+	var data billingCatalogsDataSourceModel
+	for _, item := range *response.JSON200 {
+		var d BillingCatalogsModel
+		d.ID = types.StringPointerValue(item.Id)
+		d.Category = types.StringPointerValue(item.Category)
+		d.Name = types.StringPointerValue(item.Name)
+		//
+		//metadata := make(map[string]attr.Value, len(*item.Metadata))
+		//for key, value := range *item.Metadata {
+		//	metadata[key] = types.StringValue(value.(string))
+		//}
+		//
+		//d.Metadata = types.MapValueMust(types.StringType, metadata)
+		data.BillingCatalogs = append(data.BillingCatalogs, d)
+	}
 
-	// For the purposes of this example code, hardcoding a response value to
-	// save into the Terraform state.
-	data.ID = types.StringValue("example-id")
-
-	// Write logs using the tflog package
-	// Documentation: https://terraform.io/plugin/log
-	tflog.Trace(ctx, "read a data source")
-
-	// Save data into Terraform state
-	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
+	diags := resp.State.Set(ctx, &data)
+	resp.Diagnostics.Append(diags...)
 }
