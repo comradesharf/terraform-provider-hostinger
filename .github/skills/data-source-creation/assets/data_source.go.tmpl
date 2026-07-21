@@ -1,0 +1,149 @@
+// Copyright IBM Corp. 2021, 2025
+// SPDX-License-Identifier: MPL-2.0
+
+package provider
+
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/comradesharf/terraform-provider-hostinger/internal/client"
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
+	"github.com/hashicorp/terraform-plugin-framework/types"
+	"github.com/hashicorp/terraform-plugin-log/tflog"
+)
+
+// Ensure provider defined types fully satisfy framework interfaces.
+var (
+	_ datasource.DataSource              = &DataSource{{PascalName}}{}
+	_ datasource.DataSourceWithConfigure = &DataSource{{PascalName}}{}
+)
+
+func NewDataSource{{PascalName}}() datasource.DataSource {
+	return &DataSource{{PascalName}}{}
+}
+
+// DataSource{{PascalName}} defines the data source implementation.
+type DataSource{{PascalName}} struct {
+	client *client.ClientWithResponses
+}
+
+// {{PascalName}}ItemModel maps a single item from the API response.
+type {{PascalName}}ItemModel struct {
+	ID   types.String `tfsdk:"id"`
+	Name types.String `tfsdk:"name"`
+	// TODO: add additional fields matching the API response struct
+}
+
+// DataSource{{PascalName}}Model describes the data source data model.
+type DataSource{{PascalName}}Model struct {
+	// TODO: add Optional filter fields (from Params struct)
+	// Example:
+	// Name types.String `tfsdk:"name"`
+
+	// Computed list result
+	{{PascalName}} []{{PascalName}}ItemModel `tfsdk:"{{snake_name}}"`
+}
+
+func (d *DataSource{{PascalName}}) Metadata(ctx context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
+	resp.TypeName = req.ProviderTypeName + "_{{snake_name}}"
+}
+
+func (d *DataSource{{PascalName}}) Schema(ctx context.Context, req datasource.SchemaRequest, resp *datasource.SchemaResponse) {
+	resp.Schema = schema.Schema{
+		Attributes: map[string]schema.Attribute{
+			// TODO: Optional filter attributes (from Params struct)
+			// Example:
+			// "name": schema.StringAttribute{
+			// 	Optional: true,
+			// },
+
+			// Computed list of results
+			"{{snake_name}}": schema.ListNestedAttribute{
+				Computed: true,
+				NestedObject: schema.NestedAttributeObject{
+					Attributes: map[string]schema.Attribute{
+						"id": schema.StringAttribute{
+							Computed: true,
+						},
+						"name": schema.StringAttribute{
+							Computed: true,
+						},
+						// TODO: add additional computed attributes
+					},
+				},
+			},
+		},
+	}
+}
+
+func (d *DataSource{{PascalName}}) Configure(ctx context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
+	if req.ProviderData == nil {
+		return
+	}
+
+	c, ok := req.ProviderData.(*client.ClientWithResponses)
+	if !ok {
+		resp.Diagnostics.AddError(
+			"Unexpected Data Source Configure Type",
+			fmt.Sprintf("Expected *client.ClientWithResponses, got: %T. Please report this issue to the provider developers.", req.ProviderData),
+		)
+		return
+	}
+
+	d.client = c
+}
+
+func (d *DataSource{{PascalName}}) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	var data DataSource{{PascalName}}Model
+	resp.Diagnostics.Append(resp.State.Get(ctx, &data)...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	// TODO: build params from optional filter fields
+	// Example:
+	// var params client.{{ClientMethodName}}Params
+	// if !data.Name.IsNull() && data.Name.ValueString() != "" {
+	// 	params.Name = data.Name.ValueStringPointer()
+	// 	ctx = tflog.SetField(ctx, "name", data.Name.ValueString())
+	// }
+	_ = tflog.SetField // remove this line once tflog is used above
+
+	// TODO: replace {{ClientMethodWithResponse}} with the actual method name
+	response, err := d.client.{{ClientMethodWithResponse}}(ctx /*, &params */)
+	if err != nil {
+		resp.Diagnostics.AddError(
+			"Unable to Read {{PascalName}}",
+			fmt.Sprintf("Got error: %s", err),
+		)
+		return
+	}
+	if response.StatusCode() != http.StatusOK {
+		resp.Diagnostics.AddError(
+			"Unable to Read {{PascalName}}",
+			fmt.Sprintf("Unexpected status code: %d", response.StatusCode()),
+		)
+		return
+	}
+	if response.JSON200 == nil {
+		resp.Diagnostics.AddError(
+			"Unable to Read {{PascalName}}",
+			"Response body is nil",
+		)
+		return
+	}
+
+	for _, item := range *response.JSON200 {
+		var m {{PascalName}}ItemModel
+		m.ID = types.StringPointerValue(item.Id)
+		m.Name = types.StringPointerValue(item.Name)
+		// TODO: map additional fields
+
+		data.{{PascalName}} = append(data.{{PascalName}}, m)
+	}
+
+	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
+}

@@ -1,0 +1,52 @@
+// Copyright IBM Corp. 2021, 2025
+// SPDX-License-Identifier: MPL-2.0
+
+package provider
+
+import (
+	"testing"
+
+	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
+	"github.com/hashicorp/terraform-plugin-testing/knownvalue"
+	"github.com/hashicorp/terraform-plugin-testing/statecheck"
+	"github.com/hashicorp/terraform-plugin-testing/tfjsonpath"
+)
+
+func TestAccDataSource{{PascalName}}(t *testing.T) {
+	resource.Test(t, resource.TestCase{
+		PreCheck:                 func() { testAccPreCheck(t) },
+		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
+		Steps: []resource.TestStep{
+			{
+				Config: testAcc{{PascalName}}Config,
+				ConfigStateChecks: []statecheck.StateCheck{
+					// TODO: add filter field assertions (Optional attributes)
+					// Example:
+					// statecheck.ExpectKnownValue(
+					// 	"data.hostinger_{{snake_name}}.test",
+					// 	tfjsonpath.New("name"),
+					// 	knownvalue.StringExact("expected-name"),
+					// ),
+
+					// TODO: assert first item in result list
+					statecheck.ExpectKnownValue(
+						"data.hostinger_{{snake_name}}.test",
+						tfjsonpath.New("{{snake_name}}").AtSliceIndex(0),
+						knownvalue.ObjectExact(map[string]knownvalue.Check{
+							"id":   knownvalue.StringExact("expected-id"),
+							"name": knownvalue.StringExact("expected-name"),
+							// TODO: add remaining field assertions
+						}),
+					),
+				},
+			},
+		},
+	})
+}
+
+const testAcc{{PascalName}}Config = `
+data "hostinger_{{snake_name}}" "test" {
+  # TODO: add filter attributes
+  # name = "expected-name"
+}
+`
