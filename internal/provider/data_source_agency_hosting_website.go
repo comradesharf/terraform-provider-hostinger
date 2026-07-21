@@ -138,9 +138,11 @@ func (d *DataSourceAgencyHostingWebsite) Read(ctx context.Context, req datasourc
 
 	item := response.JSON200
 
+	// Direct pointer value assignments.
 	data.UID = types.StringPointerValue(item.Uid)
 	data.Flavor = types.StringPointerValue(item.Flavor)
 
+	// Conditional assignments.
 	if item.State != nil {
 		data.Status = types.StringValue(string(*item.State))
 	} else {

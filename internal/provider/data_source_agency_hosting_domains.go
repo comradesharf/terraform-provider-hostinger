@@ -153,7 +153,8 @@ func (d *DataSourceAgencyHostingDomains) Read(ctx context.Context, req datasourc
 			break
 		}
 
-		for _, item := range *response.JSON200.Data {
+		items := *response.JSON200.Data
+		for _, item := range items {
 			var m AgencyHostingDomainsItemModel
 			m.Domain = types.StringPointerValue(item.Fqdn)
 			m.WebsiteUID = types.StringPointerValue(item.WebsiteUid)
@@ -165,14 +166,11 @@ func (d *DataSourceAgencyHostingDomains) Read(ctx context.Context, req datasourc
 			data.Domains = append(data.Domains, m)
 		}
 
-		// Check if there are more pages.
-		if response.JSON200.Meta == nil || response.JSON200.Meta.CurrentPage == nil || response.JSON200.Meta.Total == nil || response.JSON200.Meta.PerPage == nil {
+		// Stop if this page returned fewer items than a full page, indicating the last page.
+		if response.JSON200.Meta == nil || response.JSON200.Meta.PerPage == nil {
 			break
 		}
-		currentPage := *response.JSON200.Meta.CurrentPage
-		total := *response.JSON200.Meta.Total
-		perPage := *response.JSON200.Meta.PerPage
-		if perPage <= 0 || currentPage*perPage >= total {
+		if len(items) < *response.JSON200.Meta.PerPage {
 			break
 		}
 		page++
