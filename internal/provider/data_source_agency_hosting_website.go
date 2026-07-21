@@ -156,6 +156,7 @@ func (d *DataSourceAgencyHostingWebsite) Read(ctx context.Context, req datasourc
 	}
 
 	// Extract domain from the first entry in the Domains collection.
+	// The first domain in the collection is treated as the primary domain for the website.
 	if item.Domains != nil && len(*item.Domains) > 0 {
 		data.Domain = types.StringPointerValue((*item.Domains)[0].Fqdn)
 	} else {

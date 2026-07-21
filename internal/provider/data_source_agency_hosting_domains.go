@@ -167,6 +167,7 @@ func (d *DataSourceAgencyHostingDomains) Read(ctx context.Context, req datasourc
 		}
 
 		// Stop if this page returned fewer items than a full page, indicating the last page.
+		// A nil Meta or nil PerPage from the API is also treated as the last page.
 		if response.JSON200.Meta == nil || response.JSON200.Meta.PerPage == nil {
 			break
 		}
