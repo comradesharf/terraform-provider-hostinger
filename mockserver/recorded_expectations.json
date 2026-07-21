@@ -1,0 +1,5566 @@
+[ {
+  "httpRequest" : {
+    "operationId" : "agency-hosting_deleteAgencyPlanWebsiteV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "website_uid" : "zpwlGlp19",
+      "status" : "deleted",
+      "message" : "Website scheduled for deletion",
+      "deleted_at" : "2024-05-29T05:49:49Z",
+      "is_cleanup_scheduled" : true
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:agency-hosting_deleteAgencyPlanWebsiteV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "agency-hosting_listRunningAgencyPlanWebsiteProcessesV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : [ {
+      "id" : "0193b6d4-fabb-70e0-8ea4-cfe060a45898",
+      "type" : "backup_generation",
+      "status" : "running"
+    } ]
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:agency-hosting_listRunningAgencyPlanWebsiteProcessesV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "billing_getCatalogItemListV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : [ {
+      "id" : "hostingercom-vps-kvm2",
+      "name" : "KVM 2",
+      "category" : "VPS",
+      "metadata" : {
+        "field" : "value"
+      },
+      "prices" : [ {
+        "id" : "hostingercom-vps-kvm2-usd-1m",
+        "name" : "KVM 2 (billed every month)",
+        "currency" : "USD",
+        "price" : 1799,
+        "first_period_price" : 899,
+        "period" : 1,
+        "period_unit" : "day"
+      } ]
+    } ]
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:billing_getCatalogItemListV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "billing_setDefaultPaymentMethodV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:billing_setDefaultPaymentMethodV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "billing_deletePaymentMethodV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:billing_deletePaymentMethodV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "billing_getPaymentMethodListV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : [ {
+      "id" : 6523,
+      "name" : "Credit Card",
+      "identifier" : "1234*****6464",
+      "payment_method" : "card",
+      "is_default" : true,
+      "is_expired" : false,
+      "is_suspended" : false,
+      "created_at" : "2025-02-27T11:54:22Z",
+      "expires_at" : "2025-03-27T11:54:22Z"
+    } ]
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:billing_getPaymentMethodListV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "billing_getSubscriptionListV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : [ {
+      "id" : "Azz36nUfKX1S1MSF",
+      "name" : "KVM 1",
+      "status" : "active",
+      "billing_period" : 1,
+      "billing_period_unit" : "day",
+      "currency_code" : "USD",
+      "total_price" : 1799,
+      "renewal_price" : 1799,
+      "is_auto_renewed" : true,
+      "created_at" : "2025-02-27T11:54:22Z",
+      "expires_at" : "2025-03-27T11:54:22Z",
+      "next_billing_at" : "2025-02-28T11:54:22Z"
+    } ]
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:billing_getSubscriptionListV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "billing_disableAutoRenewalV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : "Azz36nUfKX1S1MSF",
+      "name" : "KVM 1",
+      "status" : "active",
+      "billing_period" : 1,
+      "billing_period_unit" : "day",
+      "currency_code" : "USD",
+      "total_price" : 1799,
+      "renewal_price" : 1799,
+      "is_auto_renewed" : true,
+      "created_at" : "2025-02-27T11:54:22Z",
+      "expires_at" : "2025-03-27T11:54:22Z",
+      "next_billing_at" : "2025-02-28T11:54:22Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:billing_disableAutoRenewalV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "billing_enableAutoRenewalV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : "Azz36nUfKX1S1MSF",
+      "name" : "KVM 1",
+      "status" : "active",
+      "billing_period" : 1,
+      "billing_period_unit" : "day",
+      "currency_code" : "USD",
+      "total_price" : 1799,
+      "renewal_price" : 1799,
+      "is_auto_renewed" : true,
+      "created_at" : "2025-02-27T11:54:22Z",
+      "expires_at" : "2025-03-27T11:54:22Z",
+      "next_billing_at" : "2025-02-28T11:54:22Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:billing_enableAutoRenewalV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "DNS_getDNSSnapshotV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 5341,
+      "reason" : "Zone records update request",
+      "snapshot" : [ {
+        "name" : "www",
+        "records" : [ {
+          "content" : "mydomain.tld.",
+          "is_disabled" : false
+        } ],
+        "ttl" : 14400,
+        "type" : "A"
+      } ],
+      "created_at" : "2025-02-27T11:54:22Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:DNS_getDNSSnapshotV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "DNS_getDNSSnapshotListV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : [ {
+      "id" : 5341,
+      "reason" : "Zone records update request",
+      "created_at" : "2025-02-27T11:54:22Z"
+    } ]
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:DNS_getDNSSnapshotListV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "DNS_restoreDNSSnapshotV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:DNS_restoreDNSSnapshotV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "DNS_getDNSRecordsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : [ {
+      "name" : "www",
+      "records" : [ {
+        "content" : "mydomain.tld.",
+        "is_disabled" : false
+      } ],
+      "ttl" : 14400,
+      "type" : "A"
+    } ]
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:DNS_getDNSRecordsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "DNS_updateDNSRecordsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:DNS_updateDNSRecordsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "DNS_deleteDNSRecordsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:DNS_deleteDNSRecordsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "DNS_resetDNSRecordsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:DNS_resetDNSRecordsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "DNS_validateDNSRecordsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:DNS_validateDNSRecordsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "v2_getDomainVerificationsDIRECT",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "data" : {
+        "PENDING" : {
+          "pixel.tld" : {
+            "NAMESERVERS" : {
+              "records" : [ "ns1.nameserver.com", "ns2.nameserver.com" ],
+              "last_verification_attempt" : "2025-08-05 13:15:00",
+              "next_verification_attempt" : "2025-08-05 14:30:00",
+              "verification_expiration" : "2025-08-12 13:15:00"
+            },
+            "TXT" : {
+              "records" : [ "txt-verification-hash" ],
+              "last_verification_attempt" : "2025-08-05 14:45:00",
+              "next_verification_attempt" : "2025-08-05 15:00:00",
+              "verification_expiration" : "2025-08-12 14:45:00"
+            }
+          }
+        },
+        "VERIFIED" : {
+          "byte.tld" : {
+            "TXT" : {
+              "records" : [ "other-txt-verification-hash" ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:v2_getDomainVerificationsDIRECT",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "domains_checkDomainAvailabilityV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : [ {
+      "domain" : "mydomain.tld",
+      "is_available" : true,
+      "is_alternative" : false,
+      "restriction" : "qui modi dolorem"
+    } ]
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:domains_checkDomainAvailabilityV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "domains_getDomainForwardingV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "domain" : "mydomain.tld",
+      "redirect_type" : "301",
+      "redirect_url" : "https://forward.to.my.url",
+      "created_at" : "2025-02-27T11:54:22Z",
+      "updated_at" : "2025-03-27T11:54:22Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:domains_getDomainForwardingV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "domains_deleteDomainForwardingV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:domains_deleteDomainForwardingV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "domains_createDomainForwardingV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "domain" : "mydomain.tld",
+      "redirect_type" : "301",
+      "redirect_url" : "https://forward.to.my.url",
+      "created_at" : "2025-02-27T11:54:22Z",
+      "updated_at" : "2025-03-27T11:54:22Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:domains_createDomainForwardingV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "domains_enableDomainLockV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:domains_enableDomainLockV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "domains_disableDomainLockV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:domains_disableDomainLockV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "domains_getDomainDetailsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "domain" : "mydomain.tld",
+      "status" : "active",
+      "message" : "qui modi dolorem",
+      "is_privacy_protection_allowed" : true,
+      "is_privacy_protected" : false,
+      "is_lockable" : true,
+      "is_locked" : true,
+      "name_servers" : {
+        "ns1" : "ns1.example.tld",
+        "ns2" : "ns2.example.tld"
+      },
+      "child_name_servers" : {
+        "ns1.example.tld" : [ "258.231.55.321", "258.231.55.322" ]
+      },
+      "domain_contacts" : {
+        "admin_id" : 114698,
+        "owner_id" : 614698,
+        "billing_id" : 154698,
+        "tech_id" : 524248
+      },
+      "created_at" : "2025-02-27T11:54:22Z",
+      "updated_at" : "2025-02-27T11:54:22Z",
+      "60_days_lock_expires_at" : "2025-04-27T11:54:22Z",
+      "registered_at" : "2025-02-27T12:54:22Z",
+      "expires_at" : "2025-03-27T11:54:22Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:domains_getDomainDetailsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "domains_getDomainListV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : [ {
+      "id" : 13632,
+      "domain" : "mydomain.tld",
+      "type" : "domain",
+      "status" : "active",
+      "created_at" : "2025-02-27T11:54:22Z",
+      "expires_at" : "2025-03-27T11:54:22Z"
+    } ]
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:domains_getDomainListV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "domains_purchaseNewDomainV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 2957086,
+      "subscription_id" : "Azz353Uhl1xC54pR0",
+      "status" : "completed",
+      "currency" : "USD",
+      "subtotal" : 899,
+      "total" : 1088,
+      "billing_address" : {
+        "first_name" : "John",
+        "last_name" : "Doe",
+        "company" : "qui modi dolorem",
+        "address_1" : "rem itaque totam",
+        "address_2" : "hic labore distincti",
+        "city" : "quam reiciendis pers",
+        "state" : "optio exercitationem",
+        "zip" : "dolor adipisci",
+        "country" : "NL",
+        "phone" : "est vel",
+        "email" : "john@doe.tld"
+      },
+      "created_at" : "2025-02-27T11:54:22Z",
+      "updated_at" : "2025-03-27T11:54:22Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:domains_purchaseNewDomainV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "domains_enablePrivacyProtectionV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:domains_enablePrivacyProtectionV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "domains_disablePrivacyProtectionV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:domains_disablePrivacyProtectionV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "domains_getDomainRenewalInformationV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "domain" : "mydomain.tld",
+      "status" : "Active",
+      "expires_at" : "2020-04-21T20:30:25Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:domains_getDomainRenewalInformationV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "domains_updateDomainNameserversV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:domains_updateDomainNameserversV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "domains_getWHOISProfileV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 746263,
+      "tld" : "com",
+      "country" : "NL",
+      "entity_type" : "individual",
+      "whois_details" : {
+        "first_name" : "John",
+        "last_name" : "Doe",
+        "email" : "john@doe.tld"
+      },
+      "created_at" : "2025-02-27T11:54:22Z",
+      "updated_at" : "2025-03-19T11:54:22Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:domains_getWHOISProfileV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "domains_deleteWHOISProfileV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:domains_deleteWHOISProfileV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "domains_getWHOISProfileListV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : [ {
+      "id" : 746263,
+      "tld" : "com",
+      "country" : "NL",
+      "entity_type" : "individual",
+      "whois_details" : {
+        "first_name" : "John",
+        "last_name" : "Doe",
+        "email" : "john@doe.tld"
+      },
+      "created_at" : "2025-02-27T11:54:22Z",
+      "updated_at" : "2025-03-19T11:54:22Z"
+    } ]
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:domains_getWHOISProfileListV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "domains_createWHOISProfileV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 746263,
+      "tld" : "com",
+      "country" : "NL",
+      "entity_type" : "individual",
+      "whois_details" : {
+        "first_name" : "John",
+        "last_name" : "Doe",
+        "email" : "john@doe.tld"
+      },
+      "created_at" : "2025-02-27T11:54:22Z",
+      "updated_at" : "2025-03-19T11:54:22Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:domains_createWHOISProfileV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "domains_getWHOISProfileUsageV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : [ "mydomain1.tld", "mydomain2.tld" ]
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:domains_getWHOISProfileUsageV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "ecommerce_getCustomStorefrontSetupInstructionsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "instructions" : "# Connect your custom storefront\n\nUse the Ecommerce API to sync your store."
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:ecommerce_getCustomStorefrontSetupInstructionsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "ecommerce_enableManualPaymentMethodV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 201,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "payment_method" : {
+        "id" : "spp_01J8Z5F8W9K8M4A7B3C2D1E0FG",
+        "provider_id" : "manual",
+        "is_enabled" : true,
+        "title" : "Cash on delivery"
+      },
+      "admin_url" : "https://admin.example.com/store_01.../store-settings/payment-management"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:ecommerce_enableManualPaymentMethodV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "ecommerce_createDigitalProductV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 201,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "product" : {
+        "id" : "prod_01J8Z5F8W9K8M4A7B3C2D1E0FG",
+        "title" : "My Product",
+        "type" : "physical",
+        "status" : "published",
+        "price" : 1000,
+        "currency_code" : "usd"
+      },
+      "admin_url" : "https://admin.example.com/store_01.../products/edit?product=prod_01..."
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:ecommerce_createDigitalProductV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "ecommerce_createPhysicalProductV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 201,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "product" : {
+        "id" : "prod_01J8Z5F8W9K8M4A7B3C2D1E0FG",
+        "title" : "My Product",
+        "type" : "physical",
+        "status" : "published",
+        "price" : 1000,
+        "currency_code" : "usd"
+      },
+      "admin_url" : "https://admin.example.com/store_01.../products/edit?product=prod_01..."
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:ecommerce_createPhysicalProductV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "ecommerce_listSalesChannelsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "sales_channels" : [ {
+        "id" : "scha_01J8Z5F8W9K8M4A7B3C2D1E0FG",
+        "type" : "custom",
+        "is_primary" : false,
+        "is_active" : true,
+        "external_id" : "qui modi dolorem",
+        "name" : "Vintagio Onepager",
+        "domain" : "https://www.bestshirt.vintagio.com"
+      } ]
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:ecommerce_listSalesChannelsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "ecommerce_createCustomSalesChannelV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 201,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "sales_channel" : {
+        "id" : "scha_01J8Z5F8W9K8M4A7B3C2D1E0FG",
+        "type" : "custom",
+        "is_primary" : false,
+        "is_active" : true,
+        "external_id" : "qui modi dolorem",
+        "name" : "Vintagio Onepager",
+        "domain" : "https://www.bestshirt.vintagio.com"
+      }
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:ecommerce_createCustomSalesChannelV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "ecommerce_updateSalesChannelV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "sales_channel" : {
+        "id" : "scha_01J8Z5F8W9K8M4A7B3C2D1E0FG",
+        "type" : "custom",
+        "is_primary" : false,
+        "is_active" : true,
+        "external_id" : "qui modi dolorem",
+        "name" : "Vintagio Onepager",
+        "domain" : "https://www.bestshirt.vintagio.com"
+      }
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:ecommerce_updateSalesChannelV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "ecommerce_setStoreShippingV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "shipping_option" : {
+        "id" : "so_01J8Z5F8W9K8M4A7B3C2D1E0FG",
+        "amount" : 500,
+        "currency_code" : "usd"
+      },
+      "admin_url" : "https://admin.example.com/store_01.../store-settings/shipping"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:ecommerce_setStoreShippingV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "ecommerce_deleteStoreV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : "store_01J8Z5F8W9K8M4A7B3C2D1E0FG",
+      "is_deleted" : true
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:ecommerce_deleteStoreV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "ecommerce_getStoresV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "data" : [ {
+        "id" : "store_01J8Z5F8W9K8M4A7B3C2D1E0FG",
+        "name" : "My Store",
+        "created_at" : "2026-01-21T07:35:04Z",
+        "updated_at" : "2026-01-21T07:35:04Z",
+        "version" : "v2_standalone",
+        "company_name" : "My Company"
+      } ],
+      "meta" : {
+        "current_page" : 1,
+        "per_page" : 15,
+        "total" : 1
+      }
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:ecommerce_getStoresV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "ecommerce_createStoreV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 201,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "store" : {
+        "id" : "store_01J8Z5F8W9K8M4A7B3C2D1E0FG",
+        "name" : "My Store",
+        "company_name" : "My Company",
+        "h_panel_id" : "1234567",
+        "created_at" : "2026-01-21T07:35:04Z",
+        "default_currency_code" : "usd"
+      },
+      "sales_channel" : {
+        "id" : "scha_01J8Z5F8W9K8M4A7B3C2D1E0FG",
+        "type" : "custom",
+        "external_id" : "qui modi dolorem"
+      }
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:ecommerce_createStoreV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "ecommerce_getStoreMetadataV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "metadata" : {
+        "has_payment_methods" : true,
+        "has_shipping" : true,
+        "default_currency_code" : "eur",
+        "default_currency" : {
+          "code" : "eur",
+          "symbol" : "€",
+          "symbol_native" : "€",
+          "name" : "Euro",
+          "name_plural" : "Euros",
+          "decimal_digits" : 2,
+          "rounding" : 0,
+          "template" : "€$1",
+          "min_amount" : 50
+        }
+      }
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:ecommerce_getStoreMetadataV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "horizons_createWebsiteV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "website_url" : "https://horizons.hostinger.com/123e4567-e89b-12d3-a456-426614174000?location=chatgpt",
+      "website_id" : "123e4567-e89b-12d3-a456-426614174000"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:horizons_createWebsiteV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "horizons_getWebsiteV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "website_url" : "https://horizons.hostinger.com/123e4567-e89b-12d3-a456-426614174000?location=chatgpt"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:horizons_getWebsiteV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_clearWebsiteCacheV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_clearWebsiteCacheV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_toggleCachelessModeV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_toggleCachelessModeV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_toggleWebsiteCacheV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_toggleWebsiteCacheV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_listAccountCronJobsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : [ {
+      "uid" : "cron_abc123",
+      "username" : "u123456789",
+      "time" : "0 2 * * *",
+      "command" : "php /home/u123456789/cleanup.php"
+    } ]
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_listAccountCronJobsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_createAccountCronJobV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "uid" : "cron_abc123",
+      "username" : "u123456789",
+      "time" : "0 2 * * *",
+      "command" : "php /home/u123456789/cleanup.php"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_createAccountCronJobV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_deleteAccountCronJobV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_deleteAccountCronJobV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_getCronJobOutputV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : { }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_getCronJobOutputV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_changeDatabasePasswordV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_changeDatabasePasswordV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_listAccountDatabasesV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "data" : [ {
+        "name" : "u123456789_test_db",
+        "user" : "u123456789_admin",
+        "domain" : "example.com",
+        "permissions" : {
+          "Alter" : 1,
+          "Drop" : 0
+        },
+        "created_at" : "2024-05-29T05:49:49Z",
+        "updated_at" : "2024-05-29T05:49:49Z",
+        "disk_usage_mb" : 32,
+        "max_size_mb" : 3072
+      } ],
+      "meta" : {
+        "current_page" : 1,
+        "per_page" : 15,
+        "total" : 1
+      }
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_listAccountDatabasesV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_createAccountDatabaseV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_createAccountDatabaseV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_deleteAccountDatabaseV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_deleteAccountDatabaseV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_createAccountDatabaseRemoteConnectionV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_createAccountDatabaseRemoteConnectionV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_deleteAccountDatabaseRemoteConnectionV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_deleteAccountDatabaseRemoteConnectionV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_listAccountDatabaseRemoteConnectionsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : [ {
+      "database_name" : "u123456789_shop",
+      "database_user" : "u123456789_admin",
+      "ip" : "192.0.2.10"
+    } ]
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_listAccountDatabaseRemoteConnectionsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_repairDatabaseV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_repairDatabaseV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_getPhpMyAdminLinkV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "link" : "https://auth-db123.hostinger.com/signon.php?sid=abc123"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_getPhpMyAdminLinkV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_listAvailableDatacentersV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : [ {
+      "title" : "Europe (UK)",
+      "code" : "uk-fast",
+      "coordinates" : {
+        "latitude" : 51.5074,
+        "longitude" : 0.1278
+      }
+    } ]
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_listAvailableDatacentersV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_generateAFreeSubdomainV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "domain" : "palegreen-fox-548498.hostingersite.com"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_generateAFreeSubdomainV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_listWebsiteParkedDomainsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : [ {
+      "username" : "u123456789",
+      "domain" : "parked-domain.com",
+      "parent_domain" : "example.com",
+      "root_directory" : "/home/u123456789/domains/example.com/public_html",
+      "type" : "domain"
+    } ]
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_listWebsiteParkedDomainsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_createWebsiteParkedDomainV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_createWebsiteParkedDomainV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_deleteWebsiteParkedDomainV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_deleteWebsiteParkedDomainV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_listWebsiteSubdomainsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : [ {
+      "username" : "u123456789",
+      "domain" : "blog.example.com",
+      "parent_domain" : "example.com",
+      "root_directory" : "/home/u123456789/domains/blog.example.com/public_html",
+      "subdomain" : "blog"
+    } ]
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_listWebsiteSubdomainsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_createWebsiteSubdomainV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_createWebsiteSubdomainV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_deleteWebsiteSubdomainV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_deleteWebsiteSubdomainV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_verifyDomainOwnershipV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "domain" : "example.com",
+      "is_accessible" : false,
+      "txt_to_verify" : "example.com=example-verification-code"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_verifyDomainOwnershipV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_listNodeJSBuildsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "data" : [ {
+        "uuid" : "69f07fe2-197a-4fb3-9dae-606f965ad13d",
+        "state" : "pending",
+        "options" : {
+          "node_version" : 24,
+          "app_type" : "vite",
+          "root_directory" : "src",
+          "output_directory" : "dist",
+          "build_script" : "build",
+          "entry_file" : "server.js",
+          "package_manager" : "npm",
+          "source_type" : "archive",
+          "source_options" : {
+            "archive_path" : "archive.zip"
+          }
+        },
+        "created_at" : "2024-05-29T05:49:49.067239Z",
+        "updated_at" : "2024-05-29T05:49:49.067239Z"
+      } ],
+      "meta" : {
+        "current_page" : 1,
+        "per_page" : 15,
+        "total" : 1
+      }
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_listNodeJSBuildsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_createNodeJSBuildFromArchiveV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "uuid" : "69f07fe2-197a-4fb3-9dae-606f965ad13d",
+      "state" : "pending",
+      "options" : {
+        "node_version" : 24,
+        "app_type" : "vite",
+        "root_directory" : "src",
+        "output_directory" : "dist",
+        "build_script" : "build",
+        "entry_file" : "server.js",
+        "package_manager" : "npm",
+        "source_type" : "archive",
+        "source_options" : {
+          "archive_path" : "archive.zip"
+        }
+      },
+      "created_at" : "2024-05-29T05:49:49.067239Z",
+      "updated_at" : "2024-05-29T05:49:49.067239Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_createNodeJSBuildFromArchiveV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_getNodeJSBuildLogsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "logs" : "added 10 packages, and audited 11 packages in 8s\n\n3 packages are looking for funding\n  run `npm fund` for details",
+      "lines" : 3
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_getNodeJSBuildLogsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_restartNode.jsApplicationV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_restartNode.jsApplicationV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_listNode.jsVulnerabilitiesV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : [ {
+      "package_name" : "lodash",
+      "installed_version" : "4.17.0",
+      "is_direct" : true,
+      "is_patchable" : true,
+      "fix_version" : "4.17.21",
+      "vulnerability_id" : "GHSA-jf85-cpcp-j695",
+      "severity" : "high",
+      "title" : "Prototype Pollution in lodash",
+      "description" : "Versions of lodash prior to 4.17.11 are vulnerable to prototype pollution.",
+      "cvss_score" : 9.8,
+      "cve" : "CVE-2019-10744",
+      "cwe" : "CWE-1321",
+      "url" : "https://github.com/advisories/GHSA-jf85-cpcp-j695",
+      "published_at" : "2019-07-26T00:00Z",
+      "is_patching_in_progress" : false
+    } ]
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_listNode.jsVulnerabilitiesV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_patchNode.jsVulnerabilitiesV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 201,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "pr_url" : "https://github.com/owner/repo/pull/42",
+      "pr_number" : 42,
+      "head_branch" : "fix/patch-vulnerabilities-a1b2c3d4",
+      "patched_vulnerability_ids" : [ "GHSA-jf85-cpcp-j695" ]
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_patchNode.jsVulnerabilitiesV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_listOrdersV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "data" : [ {
+        "id" : 12345,
+        "client_id" : 67890,
+        "subscription_id" : "sub_abc123",
+        "created_at" : "2023-10-08T12:00Z",
+        "plan" : {
+          "name" : "hostinger_business"
+        },
+        "status" : "active"
+      } ],
+      "meta" : {
+        "current_page" : 1,
+        "per_page" : 15,
+        "total" : 1
+      }
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_listOrdersV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_resetPHPExtensionsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_resetPHPExtensionsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_getPHPDetailsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "php_version" : "8.1",
+      "php_version_full" : "8.1.27",
+      "php_versions" : {
+        "supported" : {
+          "8.1" : "PHP 8.1"
+        },
+        "unsupported" : {
+          "5.2" : "PHP 5.2"
+        }
+      },
+      "options" : {
+        "additionalProp1" : {
+          "type" : "bool",
+          "value" : "On",
+          "comment" : "Allows PHP file functions to retrieve data from remote locations",
+          "default" : "On",
+          "range" : "8M-512M",
+          "max" : "512M"
+        },
+        "additionalProp2" : {
+          "type" : "bool",
+          "value" : "On",
+          "comment" : "Allows PHP file functions to retrieve data from remote locations",
+          "default" : "On",
+          "range" : "8M-512M",
+          "max" : "512M"
+        },
+        "additionalProp3" : {
+          "type" : "bool",
+          "value" : "On",
+          "comment" : "Allows PHP file functions to retrieve data from remote locations",
+          "default" : "On",
+          "range" : "8M-512M",
+          "max" : "512M"
+        }
+      },
+      "extensions" : {
+        "yaml" : {
+          "state" : "enabled",
+          "description" : ""
+        }
+      },
+      "conflicting_extensions" : [ [ "apc", "opcache" ] ]
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_getPHPDetailsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_getPHPInfoV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "info" : "<html>...</html>"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_getPHPInfoV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_updatePHPExtensionsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_updatePHPExtensionsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_updatePHPOptionsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_updatePHPOptionsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_updatePHPVersionV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_updatePHPVersionV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_listWebsitesV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "data" : [ {
+        "domain" : "example.com",
+        "vhost_type" : "main",
+        "is_enabled" : true,
+        "username" : "cl_user123",
+        "client_id" : 67890,
+        "order_id" : 12345,
+        "created_at" : "2024-01-15T10:30Z",
+        "root_directory" : "/home/u123456798/domains/example.com/public_html",
+        "parent_domain" : "parent.com"
+      } ],
+      "meta" : {
+        "current_page" : 1,
+        "per_page" : 15,
+        "total" : 1
+      }
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_listWebsitesV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_createWebsiteV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_createWebsiteV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_deleteWebsiteV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_deleteWebsiteV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "reach_deleteAContactV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:reach_deleteAContactV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "reach_listContactGroupsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : [ {
+      "uuid" : "550e8400-e29b-41d4-a716-446655440000",
+      "title" : "Newsletter Subscribers"
+    } ]
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:reach_listContactGroupsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "reach_listContactsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "data" : [ {
+        "uuid" : "550e8400-e29b-41d4-a716-446655440000",
+        "name" : "John",
+        "surname" : "Doe",
+        "email" : "john.doe@example.com",
+        "subscription_status" : "subscribed",
+        "subscribed_at" : "2023-01-01T00:00:00Z",
+        "source" : "sync",
+        "note" : "VIP customer"
+      } ],
+      "meta" : {
+        "current_page" : 1,
+        "per_page" : 15,
+        "total" : 1
+      }
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:reach_listContactsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "reach_createANewContactV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:reach_createANewContactV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "reach_listSegmentsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : [ {
+      "uuid" : "550e8400-e29b-41d4-a716-446655440000",
+      "name" : "Newsletter Subscribers",
+      "created_at" : "2025-02-27T11:54:22Z",
+      "updated_at" : "2025-02-27T11:54:22Z"
+    } ]
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:reach_listSegmentsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "reach_createANewContactSegmentV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "uuid" : "550e8400-e29b-41d4-a716-446655440000",
+      "name" : "Segment name",
+      "query" : {
+        "conditions" : [ {
+          "attribute" : "email",
+          "operator" : "contains",
+          "value" : "example.com"
+        } ],
+        "logic" : "and"
+      },
+      "created_at" : "2025-02-27T11:54:22Z",
+      "updated_at" : "2025-02-27T11:54:22Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:reach_createANewContactSegmentV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "reach_listProfileSegmentContactsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "data" : [ {
+        "uuid" : "550e8400-e29b-41d4-a716-446655440000",
+        "name" : "John",
+        "surname" : "Doe",
+        "email" : "john.doe@example.com",
+        "subscription_status" : "subscribed",
+        "subscribed_at" : "2023-01-01T00:00:00Z",
+        "source" : "sync",
+        "note" : "VIP customer"
+      } ],
+      "meta" : {
+        "current_page" : 1,
+        "per_page" : 15,
+        "total" : 1
+      }
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:reach_listProfileSegmentContactsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "reach_listSegmentContactsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "data" : [ {
+        "uuid" : "550e8400-e29b-41d4-a716-446655440000",
+        "name" : "John",
+        "surname" : "Doe",
+        "email" : "john.doe@example.com",
+        "subscription_status" : "subscribed",
+        "subscribed_at" : "2023-01-01T00:00:00Z",
+        "source" : "sync",
+        "note" : "VIP customer"
+      } ],
+      "meta" : {
+        "current_page" : 1,
+        "per_page" : 15,
+        "total" : 1
+      }
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:reach_listSegmentContactsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "reach_getSegmentDetailsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "uuid" : "550e8400-e29b-41d4-a716-446655440000",
+      "name" : "Segment name",
+      "query" : {
+        "conditions" : [ {
+          "attribute" : "email",
+          "operator" : "contains",
+          "value" : "example.com"
+        } ],
+        "logic" : "and"
+      },
+      "created_at" : "2025-02-27T11:54:22Z",
+      "updated_at" : "2025-02-27T11:54:22Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:reach_getSegmentDetailsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "reach_createNewContactsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:reach_createNewContactsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "reach_getProfileDomainDNSStatusV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "domain" : "example.com",
+      "mx" : {
+        "actual" : [ {
+          "type" : "MX",
+          "value" : "mx1.example.com"
+        } ],
+        "suggested" : [ {
+          "name" : "@",
+          "type" : "MX",
+          "value" : "mx1.example.com"
+        } ],
+        "is_valid" : true
+      },
+      "spf" : {
+        "actual" : [ {
+          "type" : "MX",
+          "value" : "mx1.example.com"
+        } ],
+        "suggested" : [ {
+          "name" : "@",
+          "type" : "MX",
+          "value" : "mx1.example.com"
+        } ],
+        "is_valid" : true
+      },
+      "dkim" : {
+        "actual" : [ {
+          "type" : "MX",
+          "value" : "mx1.example.com"
+        } ],
+        "suggested" : [ {
+          "name" : "@",
+          "type" : "MX",
+          "value" : "mx1.example.com"
+        } ],
+        "is_valid" : true
+      },
+      "dmarc" : {
+        "actual" : [ {
+          "type" : "MX",
+          "value" : "mx1.example.com"
+        } ],
+        "suggested" : [ {
+          "name" : "@",
+          "type" : "MX",
+          "value" : "mx1.example.com"
+        } ],
+        "is_valid" : true
+      }
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:reach_getProfileDomainDNSStatusV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "reach_listProfilesV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : [ {
+      "limits" : {
+        "ai_messages_limit" : 10,
+        "subscribers_limit" : 500,
+        "emails_monthly_limit" : 3500,
+        "ai_messages_additional" : 1096
+      },
+      "is_trial" : false,
+      "expires_at" : "2027-10-21T05:38:23Z",
+      "resource_id" : 44340307,
+      "status" : "active",
+      "profiles" : [ {
+        "uuid" : "550e8400-e29b-41d4-a716-446655440000",
+        "domain" : "example.com",
+        "created_at" : "2026-01-21T07:35:04Z",
+        "updated_at" : "2026-01-21T07:35:04Z"
+      } ]
+    } ]
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:reach_listProfilesV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_getDataCenterListV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : [ {
+      "id" : 29,
+      "name" : "phx",
+      "location" : "us",
+      "city" : "Phoenix",
+      "continent" : "North America"
+    } ]
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_getDataCenterListV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_getProjectContainersV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : [ {
+      "id" : "bbd4c89e850d",
+      "name" : "nginx",
+      "image" : "nginx:latest",
+      "command" : "/docker-entrypoint.sh nginx -g daemon off;",
+      "status" : "Up 4 hours",
+      "state" : "running",
+      "health" : "healthy",
+      "ports" : [ {
+        "type" : "published",
+        "protocol" : "tcp",
+        "host_ip" : "0.0.0.0",
+        "host_port" : 8080,
+        "container_port" : 80,
+        "host_port_start" : 260,
+        "host_port_end" : 488,
+        "container_port_start" : 503,
+        "container_port_end" : 38
+      } ],
+      "stats" : {
+        "cpu_percentage" : 15.4,
+        "memory_percentage" : 0.4,
+        "memory_used" : 66532148,
+        "memory_total" : 1.6771847E+10,
+        "net_in" : 2110000,
+        "net_out" : 30100
+      }
+    } ]
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_getProjectContainersV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_getProjectContentsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "content" : "services:\n    my-app:\n        image: nginx\n        ports:\n            - \"80:80\"\n    my-db:\n        image: mysql",
+      "environment" : "VARIABLE1=value1\nVARIABLE2=value2"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_getProjectContentsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_deleteProjectV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 8123712,
+      "name" : "action_name",
+      "state" : "success",
+      "created_at" : "2025-02-27T11:54Z",
+      "updated_at" : "2025-02-27T11:58Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_deleteProjectV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_getProjectListV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : [ {
+      "name" : "my-project",
+      "status" : "running(2)",
+      "state" : "running",
+      "path" : "/docker/my-project/docker-compose.yaml",
+      "containers" : [ {
+        "id" : "bbd4c89e850d",
+        "name" : "nginx",
+        "image" : "nginx:latest",
+        "command" : "/docker-entrypoint.sh nginx -g daemon off;",
+        "status" : "Up 4 hours",
+        "state" : "running",
+        "health" : "healthy",
+        "ports" : [ {
+          "type" : "published",
+          "protocol" : "tcp",
+          "host_ip" : "0.0.0.0",
+          "host_port" : 8080,
+          "container_port" : 80,
+          "host_port_start" : 260,
+          "host_port_end" : 488,
+          "container_port_start" : 503,
+          "container_port_end" : 38
+        } ],
+        "stats" : {
+          "cpu_percentage" : 15.4,
+          "memory_percentage" : 0.4,
+          "memory_used" : 66532148,
+          "memory_total" : 1.6771847E+10,
+          "net_in" : 2110000,
+          "net_out" : 30100
+        }
+      } ]
+    } ]
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_getProjectListV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_createNewProjectV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 8123712,
+      "name" : "action_name",
+      "state" : "success",
+      "created_at" : "2025-02-27T11:54Z",
+      "updated_at" : "2025-02-27T11:58Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_createNewProjectV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_getProjectLogsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : [ {
+      "service" : "web",
+      "entries" : [ {
+        "timestamp" : "2024-01-15T10:30:45.123456Z",
+        "line" : "127.0.0.1 - - [15/Jan/2024:10:30:45 +0000] \"GET / HTTP/1.1\" 200 612"
+      } ]
+    } ]
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_getProjectLogsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_restartProjectV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 8123712,
+      "name" : "action_name",
+      "state" : "success",
+      "created_at" : "2025-02-27T11:54Z",
+      "updated_at" : "2025-02-27T11:58Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_restartProjectV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_startProjectV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 8123712,
+      "name" : "action_name",
+      "state" : "success",
+      "created_at" : "2025-02-27T11:54Z",
+      "updated_at" : "2025-02-27T11:58Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_startProjectV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_stopProjectV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 8123712,
+      "name" : "action_name",
+      "state" : "success",
+      "created_at" : "2025-02-27T11:54Z",
+      "updated_at" : "2025-02-27T11:58Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_stopProjectV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_updateProjectV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 8123712,
+      "name" : "action_name",
+      "state" : "success",
+      "created_at" : "2025-02-27T11:54Z",
+      "updated_at" : "2025-02-27T11:58Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_updateProjectV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_activateFirewallV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 8123712,
+      "name" : "action_name",
+      "state" : "success",
+      "created_at" : "2025-02-27T11:54Z",
+      "updated_at" : "2025-02-27T11:58Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_activateFirewallV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_deactivateFirewallV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 8123712,
+      "name" : "action_name",
+      "state" : "success",
+      "created_at" : "2025-02-27T11:54Z",
+      "updated_at" : "2025-02-27T11:58Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_deactivateFirewallV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_getFirewallDetailsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 65224,
+      "name" : "HTTP and SSH only",
+      "is_synced" : false,
+      "rules" : [ {
+        "id" : 24541,
+        "action" : "accept",
+        "protocol" : "TCP",
+        "port" : "1024:2048",
+        "source" : "any",
+        "source_detail" : "any"
+      } ],
+      "created_at" : "2021-09-01T12:00Z",
+      "updated_at" : "2021-09-01T12:00Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_getFirewallDetailsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_deleteFirewallV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_deleteFirewallV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_getFirewallListV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "data" : [ {
+        "id" : 65224,
+        "name" : "HTTP and SSH only",
+        "is_synced" : false,
+        "rules" : [ {
+          "id" : 24541,
+          "action" : "accept",
+          "protocol" : "TCP",
+          "port" : "1024:2048",
+          "source" : "any",
+          "source_detail" : "any"
+        } ],
+        "created_at" : "2021-09-01T12:00Z",
+        "updated_at" : "2021-09-01T12:00Z"
+      } ],
+      "meta" : {
+        "current_page" : 1,
+        "per_page" : 15,
+        "total" : 1
+      }
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_getFirewallListV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_createNewFirewallV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 65224,
+      "name" : "HTTP and SSH only",
+      "is_synced" : false,
+      "rules" : [ {
+        "id" : 24541,
+        "action" : "accept",
+        "protocol" : "TCP",
+        "port" : "1024:2048",
+        "source" : "any",
+        "source_detail" : "any"
+      } ],
+      "created_at" : "2021-09-01T12:00Z",
+      "updated_at" : "2021-09-01T12:00Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_createNewFirewallV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_updateFirewallRuleV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 24541,
+      "action" : "accept",
+      "protocol" : "TCP",
+      "port" : "1024:2048",
+      "source" : "any",
+      "source_detail" : "any"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_updateFirewallRuleV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_deleteFirewallRuleV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_deleteFirewallRuleV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_createFirewallRuleV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 24541,
+      "action" : "accept",
+      "protocol" : "TCP",
+      "port" : "1024:2048",
+      "source" : "any",
+      "source_detail" : "any"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_createFirewallRuleV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_syncFirewallV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 8123712,
+      "name" : "action_name",
+      "state" : "success",
+      "created_at" : "2025-02-27T11:54Z",
+      "updated_at" : "2025-02-27T11:58Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_syncFirewallV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_getPostInstallScriptV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 325,
+      "name" : "My Setup Script",
+      "content" : "#!/bin/bash\\napt-get update\\napt-get install -y nginx",
+      "created_at" : "2025-02-27T11:54:22Z",
+      "updated_at" : "2025-03-19T11:54:22Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_getPostInstallScriptV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_updatePostInstallScriptV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 325,
+      "name" : "My Setup Script",
+      "content" : "#!/bin/bash\\napt-get update\\napt-get install -y nginx",
+      "created_at" : "2025-02-27T11:54:22Z",
+      "updated_at" : "2025-03-19T11:54:22Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_updatePostInstallScriptV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_deletePostInstallScriptV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_deletePostInstallScriptV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_getPostInstallScriptsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "data" : [ {
+        "id" : 325,
+        "name" : "My Setup Script",
+        "content" : "#!/bin/bash\\napt-get update\\napt-get install -y nginx",
+        "created_at" : "2025-02-27T11:54:22Z",
+        "updated_at" : "2025-03-19T11:54:22Z"
+      } ],
+      "meta" : {
+        "current_page" : 1,
+        "per_page" : 15,
+        "total" : 1
+      }
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_getPostInstallScriptsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_createPostInstallScriptV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 325,
+      "name" : "My Setup Script",
+      "content" : "#!/bin/bash\\napt-get update\\napt-get install -y nginx",
+      "created_at" : "2025-02-27T11:54:22Z",
+      "updated_at" : "2025-03-19T11:54:22Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_createPostInstallScriptV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_attachPublicKeyV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 8123712,
+      "name" : "action_name",
+      "state" : "success",
+      "created_at" : "2025-02-27T11:54Z",
+      "updated_at" : "2025-02-27T11:58Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_attachPublicKeyV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_deletePublicKeyV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_deletePublicKeyV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_getPublicKeysV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "data" : [ {
+        "id" : 325,
+        "name" : "My public key",
+        "key" : "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD..."
+      } ],
+      "meta" : {
+        "current_page" : 1,
+        "per_page" : 15,
+        "total" : 1
+      }
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_getPublicKeysV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_createPublicKeyV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 325,
+      "name" : "My public key",
+      "key" : "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD..."
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_createPublicKeyV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_getTemplateDetailsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 6523,
+      "name" : "Ubuntu 20.04 LTS",
+      "description" : "Ubuntu 20.04 LTS",
+      "documentation" : "https://docs.ubuntu.com"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_getTemplateDetailsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_getTemplatesV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : [ {
+      "id" : 6523,
+      "name" : "Ubuntu 20.04 LTS",
+      "description" : "Ubuntu 20.04 LTS",
+      "documentation" : "https://docs.ubuntu.com"
+    } ]
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_getTemplatesV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_getActionDetailsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 8123712,
+      "name" : "action_name",
+      "state" : "success",
+      "created_at" : "2025-02-27T11:54Z",
+      "updated_at" : "2025-02-27T11:58Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_getActionDetailsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_getActionsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "data" : [ {
+        "id" : 8123712,
+        "name" : "action_name",
+        "state" : "success",
+        "created_at" : "2025-02-27T11:54Z",
+        "updated_at" : "2025-02-27T11:58Z"
+      } ],
+      "meta" : {
+        "current_page" : 1,
+        "per_page" : 15,
+        "total" : 1
+      }
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_getActionsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_getAttachedPublicKeysV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "data" : [ {
+        "id" : 325,
+        "name" : "My public key",
+        "key" : "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD..."
+      } ],
+      "meta" : {
+        "current_page" : 1,
+        "per_page" : 15,
+        "total" : 1
+      }
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_getAttachedPublicKeysV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_getBackupsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "data" : [ {
+        "id" : 325,
+        "size" : 15240192,
+        "restore_time" : 3600,
+        "location" : "nl-srv-nodebackups",
+        "created_at" : "2025-02-27T11:54:22Z"
+      } ],
+      "meta" : {
+        "current_page" : 1,
+        "per_page" : 15,
+        "total" : 1
+      }
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_getBackupsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_restoreBackupV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 8123712,
+      "name" : "action_name",
+      "state" : "success",
+      "created_at" : "2025-02-27T11:54Z",
+      "updated_at" : "2025-02-27T11:58Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_restoreBackupV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_setHostnameV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 8123712,
+      "name" : "action_name",
+      "state" : "success",
+      "created_at" : "2025-02-27T11:54Z",
+      "updated_at" : "2025-02-27T11:58Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_setHostnameV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_resetHostnameV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 8123712,
+      "name" : "action_name",
+      "state" : "success",
+      "created_at" : "2025-02-27T11:54Z",
+      "updated_at" : "2025-02-27T11:58Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_resetHostnameV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_getVirtualMachineDetailsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 17923,
+      "firewall_group_id" : 260,
+      "subscription_id" : "Azz353Uhl1xC54pR0",
+      "data_center_id" : 521,
+      "plan" : "KVM 4",
+      "hostname" : "srv17923.hstgr.cloud",
+      "state" : "running",
+      "actions_lock" : "unlocked",
+      "cpus" : 4,
+      "memory" : 8192,
+      "disk" : 51200,
+      "bandwidth" : 1073741824,
+      "ns1" : "1.1.1.1",
+      "ns2" : "8.8.8.8",
+      "ipv4" : [ {
+        "id" : 52347,
+        "address" : "213.331.273.15",
+        "ptr" : "something.domain.tld"
+      } ],
+      "ipv6" : [ {
+        "id" : 52347,
+        "address" : "213.331.273.15",
+        "ptr" : "something.domain.tld"
+      } ],
+      "template" : {
+        "id" : 6523,
+        "name" : "Ubuntu 20.04 LTS",
+        "description" : "Ubuntu 20.04 LTS",
+        "documentation" : "https://docs.ubuntu.com"
+      },
+      "created_at" : "2024-09-05T07:25:36Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_getVirtualMachineDetailsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_getVirtualMachinesV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : [ {
+      "id" : 17923,
+      "firewall_group_id" : 260,
+      "subscription_id" : "Azz353Uhl1xC54pR0",
+      "data_center_id" : 521,
+      "plan" : "KVM 4",
+      "hostname" : "srv17923.hstgr.cloud",
+      "state" : "running",
+      "actions_lock" : "unlocked",
+      "cpus" : 4,
+      "memory" : 8192,
+      "disk" : 51200,
+      "bandwidth" : 1073741824,
+      "ns1" : "1.1.1.1",
+      "ns2" : "8.8.8.8",
+      "ipv4" : [ {
+        "id" : 52347,
+        "address" : "213.331.273.15",
+        "ptr" : "something.domain.tld"
+      } ],
+      "ipv6" : [ {
+        "id" : 52347,
+        "address" : "213.331.273.15",
+        "ptr" : "something.domain.tld"
+      } ],
+      "template" : {
+        "id" : 6523,
+        "name" : "Ubuntu 20.04 LTS",
+        "description" : "Ubuntu 20.04 LTS",
+        "documentation" : "https://docs.ubuntu.com"
+      },
+      "created_at" : "2024-09-05T07:25:36Z"
+    } ]
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_getVirtualMachinesV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_purchaseNewVirtualMachineV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "order" : {
+        "id" : 2957086,
+        "subscription_id" : "Azz353Uhl1xC54pR0",
+        "status" : "completed",
+        "currency" : "USD",
+        "subtotal" : 899,
+        "total" : 1088,
+        "billing_address" : {
+          "first_name" : "John",
+          "last_name" : "Doe",
+          "company" : "qui modi dolorem",
+          "address_1" : "rem itaque totam",
+          "address_2" : "hic labore distincti",
+          "city" : "quam reiciendis pers",
+          "state" : "optio exercitationem",
+          "zip" : "dolor adipisci",
+          "country" : "NL",
+          "phone" : "est vel",
+          "email" : "john@doe.tld"
+        },
+        "created_at" : "2025-02-27T11:54:22Z",
+        "updated_at" : "2025-03-27T11:54:22Z"
+      },
+      "virtual_machine" : {
+        "id" : 17923,
+        "firewall_group_id" : 723,
+        "subscription_id" : "Azz353Uhl1xC54pR0",
+        "data_center_id" : 521,
+        "plan" : "KVM 4",
+        "hostname" : "srv17923.hstgr.cloud",
+        "state" : "running",
+        "actions_lock" : "unlocked",
+        "cpus" : 4,
+        "memory" : 8192,
+        "disk" : 51200,
+        "bandwidth" : 1073741824,
+        "ns1" : "1.1.1.1",
+        "ns2" : "8.8.8.8",
+        "ipv4" : [ {
+          "id" : 52347,
+          "address" : "213.331.273.15",
+          "ptr" : "something.domain.tld"
+        } ],
+        "ipv6" : [ {
+          "id" : 52347,
+          "address" : "213.331.273.15",
+          "ptr" : "something.domain.tld"
+        } ],
+        "template" : {
+          "id" : 6523,
+          "name" : "Ubuntu 20.04 LTS",
+          "description" : "Ubuntu 20.04 LTS",
+          "documentation" : "https://docs.ubuntu.com"
+        },
+        "created_at" : "2024-09-05T07:25:36Z"
+      }
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_purchaseNewVirtualMachineV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_getScanMetricsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "records" : 1,
+      "malicious" : 2,
+      "compromised" : 3,
+      "scanned_files" : 193218,
+      "scan_started_at" : "2025-02-27T11:54:22Z",
+      "scan_ended_at" : "2025-03-27T11:54:22Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_getScanMetricsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_installMonarxV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 8123712,
+      "name" : "action_name",
+      "state" : "success",
+      "created_at" : "2025-02-27T11:54Z",
+      "updated_at" : "2025-02-27T11:58Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_installMonarxV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_uninstallMonarxV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 8123712,
+      "name" : "action_name",
+      "state" : "success",
+      "created_at" : "2025-02-27T11:54Z",
+      "updated_at" : "2025-02-27T11:58Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_uninstallMonarxV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_getMetricsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "cpu_usage" : {
+        "unit" : "%",
+        "usage" : {
+          "1742269632" : 1.45
+        }
+      },
+      "ram_usage" : {
+        "unit" : "bytes",
+        "usage" : {
+          "1742269632" : 554176512
+        }
+      },
+      "disk_space" : {
+        "unit" : "bytes",
+        "usage" : {
+          "1742269632" : 2620018688
+        }
+      },
+      "outgoing_traffic" : {
+        "unit" : "bytes",
+        "usage" : {
+          "1742269632" : 784800
+        }
+      },
+      "incoming_traffic" : {
+        "unit" : "bytes",
+        "usage" : {
+          "1742269632" : 8978400
+        }
+      },
+      "uptime" : {
+        "unit" : "milliseconds",
+        "usage" : {
+          "1742269632" : 455248
+        }
+      }
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_getMetricsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_setNameserversV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 8123712,
+      "name" : "action_name",
+      "state" : "success",
+      "created_at" : "2025-02-27T11:54Z",
+      "updated_at" : "2025-02-27T11:58Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_setNameserversV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_createPTRRecordV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 8123712,
+      "name" : "action_name",
+      "state" : "success",
+      "created_at" : "2025-02-27T11:54Z",
+      "updated_at" : "2025-02-27T11:58Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_createPTRRecordV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_deletePTRRecordV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 8123712,
+      "name" : "action_name",
+      "state" : "success",
+      "created_at" : "2025-02-27T11:54Z",
+      "updated_at" : "2025-02-27T11:58Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_deletePTRRecordV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_setPanelPasswordV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 8123712,
+      "name" : "action_name",
+      "state" : "success",
+      "created_at" : "2025-02-27T11:54Z",
+      "updated_at" : "2025-02-27T11:58Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_setPanelPasswordV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_startRecoveryModeV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 8123712,
+      "name" : "action_name",
+      "state" : "success",
+      "created_at" : "2025-02-27T11:54Z",
+      "updated_at" : "2025-02-27T11:58Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_startRecoveryModeV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_stopRecoveryModeV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 8123712,
+      "name" : "action_name",
+      "state" : "success",
+      "created_at" : "2025-02-27T11:54Z",
+      "updated_at" : "2025-02-27T11:58Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_stopRecoveryModeV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_recreateVirtualMachineV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 8123712,
+      "name" : "action_name",
+      "state" : "success",
+      "created_at" : "2025-02-27T11:54Z",
+      "updated_at" : "2025-02-27T11:58Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_recreateVirtualMachineV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_restartVirtualMachineV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 8123712,
+      "name" : "action_name",
+      "state" : "success",
+      "created_at" : "2025-02-27T11:54Z",
+      "updated_at" : "2025-02-27T11:58Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_restartVirtualMachineV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_setRootPasswordV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 8123712,
+      "name" : "action_name",
+      "state" : "success",
+      "created_at" : "2025-02-27T11:54Z",
+      "updated_at" : "2025-02-27T11:58Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_setRootPasswordV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_setupPurchasedVirtualMachineV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 17923,
+      "firewall_group_id" : 260,
+      "subscription_id" : "Azz353Uhl1xC54pR0",
+      "data_center_id" : 521,
+      "plan" : "KVM 4",
+      "hostname" : "srv17923.hstgr.cloud",
+      "state" : "running",
+      "actions_lock" : "unlocked",
+      "cpus" : 4,
+      "memory" : 8192,
+      "disk" : 51200,
+      "bandwidth" : 1073741824,
+      "ns1" : "1.1.1.1",
+      "ns2" : "8.8.8.8",
+      "ipv4" : [ {
+        "id" : 52347,
+        "address" : "213.331.273.15",
+        "ptr" : "something.domain.tld"
+      } ],
+      "ipv6" : [ {
+        "id" : 52347,
+        "address" : "213.331.273.15",
+        "ptr" : "something.domain.tld"
+      } ],
+      "template" : {
+        "id" : 6523,
+        "name" : "Ubuntu 20.04 LTS",
+        "description" : "Ubuntu 20.04 LTS",
+        "documentation" : "https://docs.ubuntu.com"
+      },
+      "created_at" : "2024-09-05T07:25:36Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_setupPurchasedVirtualMachineV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_getSnapshotV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 325,
+      "restore_time" : 1800,
+      "created_at" : "2025-02-27T11:54:22Z",
+      "expires_at" : "2025-03-19T11:54:22Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_getSnapshotV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_createSnapshotV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 8123712,
+      "name" : "action_name",
+      "state" : "success",
+      "created_at" : "2025-02-27T11:54Z",
+      "updated_at" : "2025-02-27T11:58Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_createSnapshotV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_deleteSnapshotV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 8123712,
+      "name" : "action_name",
+      "state" : "success",
+      "created_at" : "2025-02-27T11:54Z",
+      "updated_at" : "2025-02-27T11:58Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_deleteSnapshotV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_restoreSnapshotV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 8123712,
+      "name" : "action_name",
+      "state" : "success",
+      "created_at" : "2025-02-27T11:54Z",
+      "updated_at" : "2025-02-27T11:58Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_restoreSnapshotV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_startVirtualMachineV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 8123712,
+      "name" : "action_name",
+      "state" : "success",
+      "created_at" : "2025-02-27T11:54Z",
+      "updated_at" : "2025-02-27T11:58Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_startVirtualMachineV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "VPS_stopVirtualMachineV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "id" : 8123712,
+      "name" : "action_name",
+      "state" : "success",
+      "created_at" : "2025-02-27T11:54Z",
+      "updated_at" : "2025-02-27T11:58Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:VPS_stopVirtualMachineV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_showAIOptionStatusV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "is_llmstxt_enabled" : true,
+      "is_web2agent_enabled" : false
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_showAIOptionStatusV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_setAIOptionStatusV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_setAIOptionStatusV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_checkIfWordPressInstallationsAreValidV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : [ {
+      "software_id" : "123",
+      "is_valid" : true
+    } ]
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_checkIfWordPressInstallationsAreValidV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_deleteWordPressInstallationV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_deleteWordPressInstallationV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_detectWordPressInstallationsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_detectWordPressInstallationsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_installWordPressV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_installWordPressV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_listWordPressInstallationsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : [ {
+      "id" : "123",
+      "username" : "u123456789",
+      "domain" : "example.com",
+      "site_title" : "My site",
+      "url" : "https://example.com",
+      "directory" : "public_html",
+      "language" : "en_US",
+      "login" : "admin",
+      "email" : "owner@example.com",
+      "is_valid" : true,
+      "validation_error" : "Invalid domain",
+      "created_at" : "2022-01-01T00:00Z"
+    } ]
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_listWordPressInstallationsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_listAvailableWordPressCoreUpdatesV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : [ {
+      "version" : "6.5.2",
+      "type" : "minor",
+      "url" : "https://wordpress.org/wordpress-6.5.2.zip"
+    } ]
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_listAvailableWordPressCoreUpdatesV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_getInstallationJWTTokenV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "token" : "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9",
+      "expires_in" : 3600,
+      "expires_at" : "2024-06-05T12:08Z",
+      "mcp_url" : "https://example.com/wp-json/hostinger/mcp"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_getInstallationJWTTokenV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_showWordPressCoreVersionV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "version" : "6.5.2",
+      "vulnerabilities" : [ {
+        "title" : "Cross-Site Scripting (XSS)",
+        "description" : "A stored XSS vulnerability affecting older versions.",
+        "affected_in" : "4.7.0",
+        "fixed_in" : "4.7.1",
+        "direct_url" : "https://www.wordfence.com/threat-intel/vulnerabilities/id/example"
+      } ]
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_showWordPressCoreVersionV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_updateWordPressCoreV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_updateWordPressCoreV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_purgeLiteSpeedCacheV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_purgeLiteSpeedCacheV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_showLiteSpeedCacheStatusV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "is_installed" : true,
+      "is_active" : true
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_showLiteSpeedCacheStatusV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_createLoginLinksV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "login" : "https://example.com/create_autologin_qs1s121s.php",
+      "fallback" : "https://xyz.hostingersite.com/create_autologin_qs1s121s.php",
+      "default" : "https://example.com/wp-admin/"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_createLoginLinksV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_showMaintenanceStatusV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "status" : "enabled"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_showMaintenanceStatusV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_toggleMaintenanceModeV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_toggleMaintenanceModeV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_showMemcachedObjectCacheStatusV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "status" : "active"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_showMemcachedObjectCacheStatusV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_toggleMemcachedObjectCacheV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_toggleMemcachedObjectCacheV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_activateWordPressPluginV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_activateWordPressPluginV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_deactivateWordPressPluginV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_deactivateWordPressPluginV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_installWordPressPluginsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_installWordPressPluginsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_listAvailableWordPressPluginsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : [ {
+      "slug" : "akismet",
+      "title" : "Akismet Anti-Spam",
+      "description" : "Protect your site from spam.",
+      "onboarding_description_slug" : "akismet_onboarding_description",
+      "recommended_description_slug" : "akismet_recommended_description",
+      "link" : "https://wordpress.org/plugins/akismet/",
+      "version" : "5.3",
+      "required_wordpress_version" : "5.8",
+      "required_php_version" : "7.2",
+      "is_plan_upgrade_needed" : false
+    } ]
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_listAvailableWordPressPluginsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_listInstalledWordPressPluginsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : [ {
+      "name" : "akismet",
+      "title" : "Akismet Anti-Spam",
+      "version" : "5.3",
+      "status" : "active",
+      "update" : "none",
+      "vulnerabilities" : [ {
+        "title" : "Cross-Site Scripting (XSS)",
+        "description" : "A stored XSS vulnerability affecting older versions.",
+        "affected_in" : "4.7.0",
+        "fixed_in" : "4.7.1",
+        "direct_url" : "https://www.wordfence.com/threat-intel/vulnerabilities/id/example"
+      } ]
+    } ]
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_listInstalledWordPressPluginsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_searchWordPressPluginsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : [ {
+      "slug" : "akismet",
+      "title" : "Akismet Anti-Spam",
+      "icons" : {
+        "1x" : "https://ps.w.org/akismet/assets/icon-128x128.png",
+        "2x" : "https://ps.w.org/akismet/assets/icon-256x256.png"
+      },
+      "description" : "Used by millions, Akismet is quite possibly the best way to protect your site from spam."
+    } ]
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_searchWordPressPluginsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_listSuggestedWordPressPluginsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : [ {
+      "website_type" : "blog",
+      "plugins" : [ {
+        "slug" : "akismet",
+        "title" : "Akismet Anti-Spam",
+        "description" : "Protect your site from spam.",
+        "onboarding_description_slug" : "akismet_onboarding_description",
+        "recommended_description_slug" : "akismet_recommended_description",
+        "link" : "https://wordpress.org/plugins/akismet/",
+        "version" : "5.3",
+        "required_wordpress_version" : "5.8",
+        "required_php_version" : "7.2",
+        "is_preselected" : true,
+        "is_plan_upgrade_needed" : false
+      } ]
+    } ]
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_listSuggestedWordPressPluginsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_checkIfWooCommerceIsInstalledV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "is_installed" : true
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_checkIfWooCommerceIsInstalledV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_uninstallWordPressPluginsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_uninstallWordPressPluginsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_updateHostingerWordPressPluginV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_updateHostingerWordPressPluginV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_updateWordPressPluginsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_updateWordPressPluginsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_activateWordPressThemeV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_activateWordPressThemeV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_installWordPressThemeV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_installWordPressThemeV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_listInstalledWordPressThemesV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : [ {
+      "name" : "twentytwentyone",
+      "title" : "Twenty Twenty-One",
+      "version" : "2.2",
+      "status" : "active",
+      "update" : "none",
+      "vulnerabilities" : [ {
+        "title" : "Cross-Site Scripting (XSS)",
+        "description" : "A stored XSS vulnerability affecting older versions.",
+        "affected_in" : "4.7.0",
+        "fixed_in" : "4.7.1",
+        "direct_url" : "https://www.wordfence.com/threat-intel/vulnerabilities/id/example"
+      } ]
+    } ]
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_listInstalledWordPressThemesV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_listWordPressThemesV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : [ {
+      "slug" : "twentytwentyone",
+      "title" : "Twenty Twenty-One",
+      "url" : "https://wordpress.org/themes/twentytwentyone/",
+      "featured_image_url" : "https://ts.w.org/wp-content/themes/twentytwentyone/screenshot.png",
+      "full_image_url" : "https://ts.w.org/wp-content/themes/twentytwentyone/screenshot.png",
+      "description" : "A blank canvas for your ideas.",
+      "logo_url" : "https://ts.w.org/wp-content/themes/twentytwentyone/logo.png",
+      "is_plan_upgrade_needed" : false
+    } ]
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_listWordPressThemesV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_uninstallWordPressThemesV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_uninstallWordPressThemesV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "hosting_updateWordPressThemesV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:hosting_updateWordPressThemesV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+} ]

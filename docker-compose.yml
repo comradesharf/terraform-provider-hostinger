@@ -9,4 +9,11 @@ services:
     environment:
       MOCKSERVER_LOG_LEVEL: INFO
       MOCKSERVER_SERVER_PORT: 1234
-      MOCKSERVER_INITIALIZATION_OPENAPI_PATH: https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json
+      MOCKSERVER_GENERATE_REALISTIC_EXAMPLE_VALUES: true
+      MOCKSERVER_MAX_EXPECTATIONS: 200
+      MOCKSERVER_PERSIST_EXPECTATIONS: true
+      MOCKSERVER_PERSISTED_EXPECTATIONS_PATH: /tmp/mockserver/recorded_expectations.json
+      MOCKSERVER_INITIALIZATION_JSON_PATH: /tmp/mockserver/recorded_expectations.json
+    volumes:
+      - ./mockserver:/tmp/mockserver
+
