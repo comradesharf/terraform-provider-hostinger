@@ -53,31 +53,40 @@ func (d *DataSourceReachContacts) Metadata(ctx context.Context, req datasource.M
 
 func (d *DataSourceReachContacts) Schema(ctx context.Context, req datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
+		MarkdownDescription: "Lists email marketing contacts from the Hostinger Reach API.",
 		Attributes: map[string]schema.Attribute{
 			"search": schema.StringAttribute{
-				Optional: true,
+				Optional:            true,
+				MarkdownDescription: "Filter contacts client-side by matching the given string against each contact's email or name (case-insensitive substring match).",
 			},
 			"contacts": schema.ListNestedAttribute{
-				Computed: true,
+				Computed:            true,
+				MarkdownDescription: "The list of email marketing contacts.",
 				NestedObject: schema.NestedAttributeObject{
 					Attributes: map[string]schema.Attribute{
 						"uuid": schema.StringAttribute{
-							Computed: true,
+							Computed:            true,
+							MarkdownDescription: "Unique identifier of the contact.",
 						},
 						"email": schema.StringAttribute{
-							Computed: true,
+							Computed:            true,
+							MarkdownDescription: "Email address of the contact.",
 						},
 						"name": schema.StringAttribute{
-							Computed: true,
+							Computed:            true,
+							MarkdownDescription: "First name of the contact.",
 						},
 						"surname": schema.StringAttribute{
-							Computed: true,
+							Computed:            true,
+							MarkdownDescription: "Last name (surname) of the contact.",
 						},
 						"subscription_status": schema.StringAttribute{
-							Computed: true,
+							Computed:            true,
+							MarkdownDescription: "Subscription status of the contact. Possible values: `subscribed`, `unsubscribed`.",
 						},
 						"subscribed_at": schema.StringAttribute{
-							Computed: true,
+							Computed:            true,
+							MarkdownDescription: "RFC3339 timestamp of when the contact subscribed.",
 						},
 					},
 				},

@@ -48,22 +48,28 @@ func (d *DataSourceReachSegments) Metadata(ctx context.Context, req datasource.M
 
 func (d *DataSourceReachSegments) Schema(ctx context.Context, req datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
+		MarkdownDescription: "Lists contact segments from the Hostinger Reach API.",
 		Attributes: map[string]schema.Attribute{
 			"segments": schema.ListNestedAttribute{
-				Computed: true,
+				Computed:            true,
+				MarkdownDescription: "The list of contact segments.",
 				NestedObject: schema.NestedAttributeObject{
 					Attributes: map[string]schema.Attribute{
 						"uuid": schema.StringAttribute{
-							Computed: true,
+							Computed:            true,
+							MarkdownDescription: "Unique identifier of the segment.",
 						},
 						"name": schema.StringAttribute{
-							Computed: true,
+							Computed:            true,
+							MarkdownDescription: "Name of the segment.",
 						},
 						"created_at": schema.StringAttribute{
-							Computed: true,
+							Computed:            true,
+							MarkdownDescription: "RFC3339 timestamp of when the segment was created.",
 						},
 						"updated_at": schema.StringAttribute{
-							Computed: true,
+							Computed:            true,
+							MarkdownDescription: "RFC3339 timestamp of when the segment was last updated.",
 						},
 					},
 				},
