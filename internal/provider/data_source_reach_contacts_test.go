@@ -24,13 +24,25 @@ func TestAccDataSourceReachContacts(t *testing.T) {
 						"data.hostinger_reach_contacts.test",
 						tfjsonpath.New("contacts").AtSliceIndex(0),
 						knownvalue.ObjectExact(map[string]knownvalue.Check{
-							"uuid":                knownvalue.NotNull(),
-							"email":               knownvalue.NotNull(),
-							"name":                knownvalue.NotNull(),
-							"surname":             knownvalue.NotNull(),
-							"subscription_status": knownvalue.NotNull(),
-							"subscribed_at":       knownvalue.NotNull(),
+							"uuid":                knownvalue.StringExact("550e8400-e29b-41d4-a716-446655440000"),
+							"email":               knownvalue.StringExact("john.doe@example.com"),
+							"name":                knownvalue.StringExact("John"),
+							"surname":             knownvalue.StringExact("Doe"),
+							"subscription_status": knownvalue.StringExact("subscribed"),
+							"subscribed_at":       knownvalue.StringExact("2023-01-01T00:00:00Z"),
+							"source":              knownvalue.StringExact("sync"),
+							"note":                knownvalue.StringExact("VIP customer"),
 						}),
+					),
+					statecheck.ExpectKnownValue(
+						"data.hostinger_reach_contacts.test",
+						tfjsonpath.New("group_uuid"),
+						knownvalue.StringExact("550e8400-e29b-41d4-a716-446655440000"),
+					),
+					statecheck.ExpectKnownValue(
+						"data.hostinger_reach_contacts.test",
+						tfjsonpath.New("subscription_status"),
+						knownvalue.StringExact("subscribed"),
 					),
 				},
 			},
@@ -40,5 +52,7 @@ func TestAccDataSourceReachContacts(t *testing.T) {
 
 const testAccReachContactsConfig = `
 data "hostinger_reach_contacts" "test" {
+	group_uuid = "550e8400-e29b-41d4-a716-446655440000"
+	subscription_status = "subscribed"
 }
 `

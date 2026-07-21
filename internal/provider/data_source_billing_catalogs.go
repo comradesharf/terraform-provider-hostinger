@@ -193,7 +193,9 @@ func (d *DataSourceBillingCatalogs) Read(ctx context.Context, req datasource.Rea
 		if item.Metadata != nil {
 			metadataMap := make(map[string]attr.Value, len(*item.Metadata))
 			for k, v := range *item.Metadata {
-				metadataMap[k] = types.StringValue(v.(string))
+				if s, ok := v.(string); ok {
+					metadataMap[k] = types.StringValue(s)
+				}
 			}
 			d.Metadata = types.MapValueMust(types.StringType, metadataMap)
 		} else {

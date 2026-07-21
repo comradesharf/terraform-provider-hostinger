@@ -7,6 +7,7 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"time"
 
 	"github.com/comradesharf/terraform-provider-hostinger/internal/client"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -130,12 +131,12 @@ func (d *DataSourceReachSegments) Read(ctx context.Context, req datasource.ReadR
 		m.Uuid = types.StringPointerValue(item.Uuid)
 		m.Name = types.StringPointerValue(item.Name)
 		if item.CreatedAt != nil {
-			m.CreatedAt = types.StringValue(item.CreatedAt.Format("2006-01-02T15:04:05Z07:00"))
+			m.CreatedAt = types.StringValue(item.CreatedAt.Format(time.RFC3339))
 		} else {
 			m.CreatedAt = types.StringNull()
 		}
 		if item.UpdatedAt != nil {
-			m.UpdatedAt = types.StringValue(item.UpdatedAt.Format("2006-01-02T15:04:05Z07:00"))
+			m.UpdatedAt = types.StringValue(item.UpdatedAt.Format(time.RFC3339))
 		} else {
 			m.UpdatedAt = types.StringNull()
 		}
