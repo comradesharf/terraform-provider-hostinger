@@ -19,7 +19,10 @@ import (
 )
 
 // Ensure provider defined types fully satisfy framework interfaces.
-var _ datasource.DataSource = &DataSourceBillingCatalogs{}
+var (
+	_ datasource.DataSource              = &DataSourceBillingCatalogs{}
+	_ datasource.DataSourceWithConfigure = &DataSourceBillingCatalogs{}
+)
 
 func NewDataSourceBillingCatalogs() datasource.DataSource {
 	return &DataSourceBillingCatalogs{}
