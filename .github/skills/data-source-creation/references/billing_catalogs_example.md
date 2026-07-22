@@ -75,6 +75,27 @@ type DataSourceBillingCatalogsModel struct {
 },
 ```
 
+### Rejecting unknown filter values in Read
+```go
+if data.Name.IsUnknown() {
+    resp.Diagnostics.AddError(
+        "Unknown Name",
+        "The 'name' attribute cannot be unknown.",
+    )
+}
+
+if data.Category.IsUnknown() {
+    resp.Diagnostics.AddError(
+        "Unknown Category",
+        "The 'category' attribute cannot be unknown.",
+    )
+}
+
+if resp.Diagnostics.HasError() {
+    return
+}
+```
+
 ### Nested list attribute
 ```go
 "prices": schema.ListNestedAttribute{

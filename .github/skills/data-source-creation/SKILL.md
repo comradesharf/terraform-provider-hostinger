@@ -40,7 +40,7 @@ Key rules:
 - `Metadata`: set `resp.TypeName = req.ProviderTypeName + "_<name>"`
 - `Configure`: extract `*client.ClientWithResponses` from `req.ProviderData`
 - `Schema`: filter params → `Optional`, response fields → `Computed`
-- `Read`: call the `WithResponse` method, check `StatusCode() != http.StatusOK`, map `JSON200` fields to model structs
+- `Read`: reject unknown optional filter values before the API call, call the `WithResponse` method, check `StatusCode() != http.StatusOK`, map `JSON200` fields to model structs
 - Use `types.StringPointerValue`, `types.Int32Value`, `types.MapValueMust`, etc. for type conversions
 - Use `tflog.SetField` to attach filter values to context before the API call
 

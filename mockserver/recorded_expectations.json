@@ -5563,4 +5563,428 @@
   "times" : {
     "unlimited" : true
   }
+}, {
+  "httpRequest" : {
+    "operationId" : "agency-hosting_listAvailableDatacentersForAnAgencyPlanOrderV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : [ {
+      "title" : "Europe (Netherlands)",
+      "code" : "ukfast",
+      "country" : "uk",
+      "coordinates" : {
+        "latitude" : 51.5074,
+        "longitude" : 0.1278
+      },
+      "pinger_url" : "https://my-website.com/ping.php"
+    } ]
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:agency-hosting_listAvailableDatacentersForAnAgencyPlanOrderV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "agency-hosting_changeAgencyPlanWebsiteDomainV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:agency-hosting_changeAgencyPlanWebsiteDomainV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "agency-hosting_linkDomainToAgencyPlanWebsiteV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:agency-hosting_linkDomainToAgencyPlanWebsiteV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "agency-hosting_listAgencyPlanDomainsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "data" : [ {
+        "fqdn" : "example.com",
+        "website_uid" : "zpwlGlp19",
+        "created_at" : "2024-05-29T05:49:49Z"
+      } ],
+      "meta" : {
+        "current_page" : 1,
+        "per_page" : 15,
+        "total" : 1
+      }
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:agency-hosting_listAgencyPlanDomainsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "agency-hosting_unlinkDomainFromAgencyPlanWebsiteV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:agency-hosting_unlinkDomainFromAgencyPlanWebsiteV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "agency-hosting_importAgencyPlanWebsiteFromArchiveV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:agency-hosting_importAgencyPlanWebsiteFromArchiveV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "agency-hosting_provisionANewAgencyPlanWebsiteV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "setup_uuid" : "0193b6d4-fabb-70e0-8ea4-cfe060a45898"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:agency-hosting_provisionANewAgencyPlanWebsiteV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "agency-hosting_getAgencyPlanWebsiteSetupStatusV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "website_uid" : "zpwlGlp19",
+      "status" : "running"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:agency-hosting_getAgencyPlanWebsiteSetupStatusV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "agency-hosting_buildAgencyPlanWebsiteNodeJSAssetsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:agency-hosting_buildAgencyPlanWebsiteNodeJSAssetsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "agency-hosting_clearAgencyPlanWebsiteCacheV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:agency-hosting_clearAgencyPlanWebsiteCacheV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "agency-hosting_listAgencyPlanWebsiteCronJobsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "data" : [ {
+        "uuid" : "01931d6f-68f5-7b72-8d9e-09c6e1e6aa0e",
+        "time" : "*/30 * * * *",
+        "command" : "php artisan schedule:run",
+        "created_at" : "2024-10-28T12:00Z"
+      } ],
+      "meta" : {
+        "current_page" : 1,
+        "per_page" : 15,
+        "total" : 1
+      }
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:agency-hosting_listAgencyPlanWebsiteCronJobsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "agency-hosting_createAgencyPlanWebsiteCronJobV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "uuid" : "01931d6f-68f5-7b72-8d9e-09c6e1e6aa0e",
+      "time" : "*/30 * * * *",
+      "command" : "php artisan schedule:run",
+      "created_at" : "2024-10-28T12:00Z"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:agency-hosting_createAgencyPlanWebsiteCronJobV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "agency-hosting_deleteAgencyPlanWebsiteCronJobV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "message" : "Request accepted"
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:agency-hosting_deleteAgencyPlanWebsiteCronJobV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
+}, {
+  "httpRequest" : {
+    "operationId" : "agency-hosting_getAgencyPlanWebsiteDetailsV1",
+    "specUrlOrPayload" : "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "headers" : {
+      "content-type" : [ "application/json" ]
+    },
+    "body" : {
+      "uid" : "zpwlGlp19",
+      "ipv4" : "192.161.10.1",
+      "flavor" : "wp-6.2.0",
+      "type" : "node-static",
+      "description" : "Very awesome website",
+      "state" : "active",
+      "created_at" : "2024-05-29T05:49:49Z",
+      "domains" : [ {
+        "fqdn" : "test.com",
+        "parent_fqdn" : "test.com",
+        "ipv6" : "2001:db8::1",
+        "created_at" : "2024-05-29T05:49:49Z",
+        "nameservers" : [ "a.dns-parking.com", "b.dns-parking.com" ],
+        "ssl_cert" : {
+          "names" : [ "test.com", "www.test.com" ],
+          "expires_at" : "2024-05-29T05:49:49Z",
+          "created_at" : "2024-05-29T05:49:49Z"
+        },
+        "custom_ssl_cert" : {
+          "is_expired" : false,
+          "expires_at" : "2024-05-29T05:49:49Z",
+          "created_at" : "2024-05-29T05:49:49Z"
+        }
+      } ],
+      "preview_domain" : {
+        "fqdn" : "plum-bee-184082.hostingersite.com",
+        "created_at" : "2024-05-29T05:49:49Z"
+      },
+      "settings" : {
+        "php" : {
+          "version" : "8.3",
+          "workers" : 4
+        }
+      },
+      "wordpress" : {
+        "domain" : "test.com",
+        "title" : "My Blog",
+        "language" : "en_US",
+        "is_config_locked" : true,
+        "created_at" : "2024-05-29T05:49:49Z"
+      },
+      "remote_access" : {
+        "mode" : "ssh_and_sftp",
+        "ssh" : {
+          "username" : "u123456789_abcDeFg",
+          "host" : "192.161.10.1",
+          "port" : 65002,
+          "is_enabled" : true,
+          "is_password_enabled" : true
+        },
+        "sftp" : {
+          "username" : "u123456789_abcDeFg",
+          "host" : "192.161.10.1",
+          "port" : 65002,
+          "is_enabled" : true
+        }
+      },
+      "server" : {
+        "hostname" : "us-west-1.hstgr.io",
+        "country_code" : "us"
+      },
+      "order" : {
+        "id" : 123456,
+        "status" : "active",
+        "created_at" : "2024-05-29T05:49:49Z",
+        "plan" : {
+          "name" : "Hosting Single",
+          "parameters" : {
+            "disk_quota_bytes" : 21474836480,
+            "inode_quota" : 10000,
+            "cpu_cores" : 2,
+            "memory_quota_bytes" : 1073741824,
+            "disk_iops_quota" : 100000,
+            "process_quota" : 10000,
+            "website_quota" : 10,
+            "max_databases_per_website" : 5,
+            "is_cdn_available" : true
+          }
+        }
+      },
+      "user" : {
+        "username" : "u123456789",
+        "state" : "active"
+      },
+      "staging_root" : {
+        "uid" : "zpwlGlp19"
+      }
+    }
+  },
+  "id" : "openapi:hostinger_api_155edbb6d356a0f8:agency-hosting_getAgencyPlanWebsiteDetailsV1",
+  "priority" : 0,
+  "timeToLive" : {
+    "unlimited" : true
+  },
+  "times" : {
+    "unlimited" : true
+  }
 } ]

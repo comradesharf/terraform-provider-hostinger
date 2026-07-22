@@ -103,14 +103,22 @@ func (d *DataSource{{PascalName}}) Read(ctx context.Context, req datasource.Read
 		return
 	}
 
-	// TODO: build params from optional filter fields
+	// TODO: validate optional filter fields for unknown values and build params
 	// Example:
+	// if data.Name.IsUnknown() {
+	// 	resp.Diagnostics.AddError(
+	// 		"Unknown Name",
+	// 		"The 'name' attribute cannot be unknown.",
+	// 	)
+	// }
+	// if resp.Diagnostics.HasError() {
+	// 	return
+	// }
 	// var params client.{{ClientMethodName}}Params
 	// if !data.Name.IsNull() && data.Name.ValueString() != "" {
 	// 	params.Name = data.Name.ValueStringPointer()
 	// 	ctx = tflog.SetField(ctx, "name", data.Name.ValueString())
 	// }
-	_ = tflog.SetField // remove this line once tflog is used above
 
 	// TODO: replace {{ClientMethodWithResponse}} with the actual method name
 	response, err := d.client.{{ClientMethodWithResponse}}(ctx /*, &params */)

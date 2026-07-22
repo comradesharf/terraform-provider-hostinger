@@ -33,7 +33,7 @@ type DataSourceAgencyHostingDomains struct {
 
 // AgencyHostingDomainsItemModel maps a single domain from the API response.
 type AgencyHostingDomainsItemModel struct {
-	Domain     types.String `tfsdk:"domain"`
+	Domain     types.String `tfsdk:"fqdn"`
 	WebsiteUID types.String `tfsdk:"website_uid"`
 	CreatedAt  types.String `tfsdk:"created_at"`
 }
@@ -62,7 +62,7 @@ func (d *DataSourceAgencyHostingDomains) Schema(ctx context.Context, req datasou
 				MarkdownDescription: "The list of domains linked to Agency Plan websites.",
 				NestedObject: schema.NestedAttributeObject{
 					Attributes: map[string]schema.Attribute{
-						"domain": schema.StringAttribute{
+						"fqdn": schema.StringAttribute{
 							Computed:            true,
 							MarkdownDescription: "Fully qualified domain name.",
 						},
@@ -105,26 +105,33 @@ func (d *DataSourceAgencyHostingDomains) Read(ctx context.Context, req datasourc
 		return
 	}
 
-	params := client.AgencyHostingListAgencyPlanDomainsV1Params{}
-
-	if !data.WebsiteUIDs.IsNull() && !data.WebsiteUIDs.IsUnknown() {
-		var uids []string
-		resp.Diagnostics.Append(data.WebsiteUIDs.ElementsAs(ctx, &uids, false)...)
-		if resp.Diagnostics.HasError() {
-			return
-		}
-		if len(uids) > 0 {
-			websiteUuids := client.WebsiteUuids(uids)
-			params.WebsiteUuids = &websiteUuids
-			ctx = tflog.SetField(ctx, "website_uids", uids)
-		}
+	if data.WebsiteUIDs.IsUnknown() {
+		resp.Diagnostics.AddError(
+			"Unknown Website UIDs",
+			"The 'website_uids' attribute cannot be unknown.",
+		)
 	}
 
-	// Iterate all pages.
-	page := 1
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	params := client.AgencyHostingListAgencyPlanDomainsV1Params{}
+
+	if !data.WebsiteUIDs.IsNull() {
+		resp.Diagnostics.Append(
+			data.WebsiteUIDs.ElementsAs(ctx, &params.WebsiteUuids, false)...,
+		)
+		ctx = tflog.SetField(ctx, "website_uids", &params.WebsiteUuids)
+	}
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	page := 0
 	for {
-		p := client.Page(page)
-		params.Page = &p
+		params.Page = &page
 
 		response, err := d.client.AgencyHostingListAgencyPlanDomainsV1WithResponse(ctx, &params)
 		if err != nil {
@@ -149,12 +156,12 @@ func (d *DataSourceAgencyHostingDomains) Read(ctx context.Context, req datasourc
 			return
 		}
 
-		if response.JSON200.Data == nil || len(*response.JSON200.Data) == 0 {
+		domains := response.JSON200.Data
+		if domains == nil || len(*domains) == 0 {
 			break
 		}
 
-		items := *response.JSON200.Data
-		for _, item := range items {
+		for _, item := range *domains {
 			var m AgencyHostingDomainsItemModel
 			m.Domain = types.StringPointerValue(item.Fqdn)
 			m.WebsiteUID = types.StringPointerValue(item.WebsiteUid)
@@ -166,12 +173,12 @@ func (d *DataSourceAgencyHostingDomains) Read(ctx context.Context, req datasourc
 			data.Domains = append(data.Domains, m)
 		}
 
-		// Stop if this page returned fewer items than a full page, indicating the last page.
-		// A nil Meta or nil PerPage from the API is also treated as the last page.
-		if response.JSON200.Meta == nil || response.JSON200.Meta.PerPage == nil {
+		meta := response.JSON200.Meta
+		if meta == nil || meta.CurrentPage == nil || meta.PerPage == nil || meta.Total == nil {
 			break
 		}
-		if len(items) < *response.JSON200.Meta.PerPage {
+		fetched := (*meta.CurrentPage) * (*meta.PerPage)
+		if fetched >= *meta.Total {
 			break
 		}
 		page++

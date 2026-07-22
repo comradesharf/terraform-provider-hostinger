@@ -139,32 +139,39 @@ func (d *DataSourceReachContacts) Read(ctx context.Context, req datasource.ReadR
 		return
 	}
 
-	var groupUuid string
+	if data.GroupUuid.IsUnknown() {
+		resp.Diagnostics.AddError(
+			"Unknown Group UUID",
+			"The 'group_uuid' attribute cannot be unknown.",
+		)
+	}
+
+	if data.SubscriptionStatus.IsUnknown() {
+		resp.Diagnostics.AddError(
+			"Unknown Subscription Status",
+			"The 'subscription_status' attribute cannot be unknown.",
+		)
+	}
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	params := client.ReachListContactsV1Params{}
+
 	if !data.GroupUuid.IsNull() && data.GroupUuid.ValueString() != "" {
-		groupUuid = data.GroupUuid.ValueString()
-		ctx = tflog.SetField(ctx, "group_uuid", groupUuid)
+		params.GroupUuid = data.GroupUuid.ValueStringPointer()
+		ctx = tflog.SetField(ctx, "group_uuid", &params.GroupUuid)
 	}
 
-	var subscriptionStatus client.ReachListContactsV1ParamsSubscriptionStatus
 	if !data.SubscriptionStatus.IsNull() && data.SubscriptionStatus.ValueString() != "" {
-		subscriptionStatus = (client.ReachListContactsV1ParamsSubscriptionStatus)(data.SubscriptionStatus.ValueString())
-		ctx = tflog.SetField(ctx, "subscription_status", subscriptionStatus)
+		params.SubscriptionStatus = (*client.ReachListContactsV1ParamsSubscriptionStatus)(data.SubscriptionStatus.ValueStringPointer())
+		ctx = tflog.SetField(ctx, "subscription_status", &params.SubscriptionStatus)
 	}
 
-	page := 1
+	page := 0
 	for {
-		p := page
-		params := client.ReachListContactsV1Params{
-			Page: &p,
-		}
-
-		if groupUuid != "" {
-			params.GroupUuid = &groupUuid
-		}
-
-		if subscriptionStatus != "" {
-			params.SubscriptionStatus = &subscriptionStatus
-		}
+		params.Page = &page
 
 		response, err := d.client.ReachListContactsV1WithResponse(ctx, &params)
 		if err != nil {

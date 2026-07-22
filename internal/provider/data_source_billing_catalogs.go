@@ -151,14 +151,34 @@ func (d *DataSourceBillingCatalogs) Read(ctx context.Context, req datasource.Rea
 		return
 	}
 
-	var params client.BillingGetCatalogItemListV1Params
+	if data.Name.IsUnknown() {
+		resp.Diagnostics.AddError(
+			"Unknown Name",
+			"The 'name' attribute cannot be unknown",
+		)
+	}
+
+	if data.Category.IsUnknown() {
+		resp.Diagnostics.AddError(
+			"Unknown Category",
+			"The 'category' attribute cannot be unknown",
+		)
+	}
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	params := client.BillingGetCatalogItemListV1Params{}
+
 	if !data.Name.IsNull() && data.Name.ValueString() != "" {
 		params.Name = data.Name.ValueStringPointer()
-		ctx = tflog.SetField(ctx, "name", data.Name.ValueString())
+		ctx = tflog.SetField(ctx, "name", &params.Name)
 	}
+
 	if !data.Category.IsNull() && data.Category.ValueString() != "" {
 		params.Category = (*client.BillingGetCatalogItemListV1ParamsCategory)(data.Category.ValueStringPointer())
-		ctx = tflog.SetField(ctx, "category", data.Category.ValueString())
+		ctx = tflog.SetField(ctx, "category", &params.Category)
 	}
 
 	response, err := d.client.BillingGetCatalogItemListV1WithResponse(ctx, &params)
