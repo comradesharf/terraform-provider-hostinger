@@ -42,6 +42,8 @@ Key rules:
 - `Schema`: filter params → `Optional`, response fields → `Computed`
 - `Read`: reject unknown optional filter values before the API call, call the `WithResponse` method, check `StatusCode() != http.StatusOK`, map `JSON200` fields to model structs
 - Use `types.StringPointerValue`, `types.Int32Value`, `types.MapValueMust`, etc. for type conversions
+- Use `timetypes.RFC3339` for datetime model fields, `schema.StringAttribute{CustomType: timetypes.RFC3339Type{}}` in schema, and `timetypes.NewRFC3339TimePointerValue(...)` when mapping API response values
+- Use `terraform-plugin-framework-nettypes` custom types for network values (for example `iptypes.IPv4Address` / `iptypes.IPv6Address`), set matching schema `CustomType`, and map with constructors like `iptypes.NewIPv4AddressPointerValue(...)`
 - Use `tflog.SetField` to attach filter values to context before the API call
 
 ### 3. Register in the provider

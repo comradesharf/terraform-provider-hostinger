@@ -14,6 +14,23 @@ Reference for mapping Go client types to `terraform-plugin-framework` schema typ
 | `*bool` | `schema.BoolAttribute` | `types.Bool` | `types.BoolPointerValue(v)` |
 | custom string type `T` | `schema.StringAttribute` | `types.String` | `types.StringPointerValue((*string)(v))` |
 
+## Datetime and network custom types
+
+| API/Go type | Schema attribute | Model field | Conversion |
+|-------------|------------------|-------------|------------|
+| `*time.Time` / RFC3339 datetime pointer | `schema.StringAttribute{CustomType: timetypes.RFC3339Type{}}` | `timetypes.RFC3339` | `timetypes.NewRFC3339TimePointerValue(v)` |
+| `*string` IPv4 | `schema.StringAttribute{CustomType: iptypes.IPv4AddressType{}}` | `iptypes.IPv4Address` | `iptypes.NewIPv4AddressPointerValue(v)` |
+| `*string` IPv6 | `schema.StringAttribute{CustomType: iptypes.IPv6AddressType{}}` | `iptypes.IPv6Address` | `iptypes.NewIPv6AddressPointerValue(v)` |
+
+Imports:
+
+```go
+import (
+    "github.com/hashicorp/terraform-plugin-framework-nettypes/iptypes"
+    "github.com/hashicorp/terraform-plugin-framework-timetypes/timetypes"
+)
+```
+
 ## Collection types
 
 | Go type | Schema attribute | Model field | Notes |

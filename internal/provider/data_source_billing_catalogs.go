@@ -222,12 +222,12 @@ func (d *DataSourceBillingCatalogs) Read(ctx context.Context, req datasource.Rea
 			for _, price := range *item.Prices {
 				var p BillingCatalogsPricesModel
 				p.Currency = types.StringPointerValue(price.Currency)
-				p.FirstPeriodPrice = types.Int32Value(int32(*price.FirstPeriodPrice))
+				p.FirstPeriodPrice = int32Value(price.FirstPeriodPrice)
 				p.ID = types.StringPointerValue(price.Id)
 				p.Name = types.StringPointerValue(price.Name)
-				p.Period = types.Int32Value(int32(*price.Period))
+				p.Period = int32Value(price.Period)
 				p.PeriodUnit = types.StringPointerValue((*string)(price.PeriodUnit))
-				p.Price = types.Int32Value(int32(*price.Price))
+				p.Price = int32Value(price.Price)
 
 				d.Prices = append(d.Prices, p)
 			}

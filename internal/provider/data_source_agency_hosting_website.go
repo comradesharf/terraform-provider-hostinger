@@ -579,9 +579,12 @@ func (d *DataSourceAgencyHostingWebsite) Read(ctx context.Context, req datasourc
 					var s AgencyHostingWebsiteSSLCertModelItem
 					s.CreatedAt = timetypes.NewRFC3339TimePointerValue(v.CreatedAt)
 					s.ExpiresAt = timetypes.NewRFC3339TimePointerValue(v.ExpiresAt)
-					s.Names = make([]types.String, len(*v.Names))
-					for j, name := range *v.Names {
-						s.Names[j] = types.StringValue(name)
+
+					if v.Names != nil {
+						s.Names = make([]types.String, len(*v.Names))
+						for j, name := range *v.Names {
+							s.Names[j] = types.StringValue(name)
+						}
 					}
 					d.SSLCert = &s
 				}
@@ -618,11 +621,7 @@ func (d *DataSourceAgencyHostingWebsite) Read(ctx context.Context, req datasourc
 		if err == nil {
 			var p AgencyHostingWebsiteSettingsPHPModelItem
 			p.Version = types.StringPointerValue(v.Version)
-			if v.Workers != nil {
-				p.Workers = types.Int32Value(int32(*v.Workers))
-			} else {
-				p.Workers = types.Int32Null()
-			}
+			p.Workers = int32Value(v.Workers)
 			d.PHP = p
 		}
 		data.Settings = &d
@@ -649,13 +648,7 @@ func (d *DataSourceAgencyHostingWebsite) Read(ctx context.Context, req datasourc
 			var ssh AgencyHostingWebsiteRemoteAccessSSHModelItem
 			ssh.Username = types.StringPointerValue(item.RemoteAccess.Ssh.Username)
 			ssh.Host = types.StringPointerValue(item.RemoteAccess.Ssh.Host)
-
-			if item.RemoteAccess.Ssh.Port != nil {
-				ssh.Port = types.Int32Value(int32(*item.RemoteAccess.Ssh.Port))
-			} else {
-				ssh.Port = types.Int32Null()
-			}
-
+			ssh.Port = int32Value(item.RemoteAccess.Ssh.Port)
 			ssh.IsEnabled = types.BoolPointerValue(item.RemoteAccess.Ssh.IsEnabled)
 			ssh.IsPasswordEnabled = types.BoolPointerValue(item.RemoteAccess.Ssh.IsPasswordEnabled)
 
@@ -666,13 +659,7 @@ func (d *DataSourceAgencyHostingWebsite) Read(ctx context.Context, req datasourc
 			var sftp AgencyHostingWebsiteRemoteAccessSFTPModelItem
 			sftp.Username = types.StringPointerValue(item.RemoteAccess.Sftp.Username)
 			sftp.Host = types.StringPointerValue(item.RemoteAccess.Sftp.Host)
-
-			if item.RemoteAccess.Sftp.Port != nil {
-				sftp.Port = types.Int32Value(int32(*item.RemoteAccess.Sftp.Port))
-			} else {
-				sftp.Port = types.Int32Null()
-			}
-
+			sftp.Port = int32Value(item.RemoteAccess.Sftp.Port)
 			sftp.IsEnabled = types.BoolPointerValue(item.RemoteAccess.Sftp.IsEnabled)
 
 			d.SFTP = sftp
@@ -688,11 +675,7 @@ func (d *DataSourceAgencyHostingWebsite) Read(ctx context.Context, req datasourc
 
 		if item.Order != nil {
 			var o AgencyHostingWebsiteOrderModelItem
-			if item.Order.Plan != nil {
-				o.ID = types.Int64Value(int64(*item.Order.Id))
-			} else {
-				o.ID = types.Int64Null()
-			}
+			o.ID = int64Value(item.Order.Id)
 			o.Status = types.StringPointerValue(item.Order.Status)
 			o.CreatedAt = timetypes.NewRFC3339TimePointerValue(item.Order.CreatedAt)
 
@@ -702,59 +685,15 @@ func (d *DataSourceAgencyHostingWebsite) Read(ctx context.Context, req datasourc
 
 				if item.Order.Plan.Parameters != nil {
 					var pp AgencyHostingWebsiteOrderPlanParametersModelItem
-					if item.Order.Plan.Parameters.DiskQuotaBytes == nil {
-						pp.DiskQuotaBytes = types.Int64Null()
-					} else {
-						pp.DiskQuotaBytes = types.Int64Value(int64(*item.Order.Plan.Parameters.DiskQuotaBytes))
-					}
-
-					if item.Order.Plan.Parameters.InodeQuota == nil {
-						pp.InodeQuota = types.Int64Null()
-					} else {
-						pp.InodeQuota = types.Int64Value(int64(*item.Order.Plan.Parameters.InodeQuota))
-					}
-
-					if item.Order.Plan.Parameters.CpuCores == nil {
-						pp.CPUCores = types.Int32Null()
-					} else {
-						pp.CPUCores = types.Int32Value(int32(*item.Order.Plan.Parameters.CpuCores))
-					}
-
-					if item.Order.Plan.Parameters.MemoryQuotaBytes == nil {
-						pp.MemoryQuotaBytes = types.Int64Null()
-					} else {
-						pp.MemoryQuotaBytes = types.Int64Value(int64(*item.Order.Plan.Parameters.MemoryQuotaBytes))
-					}
-
-					if item.Order.Plan.Parameters.DiskIopsQuota == nil {
-						pp.DiskIOPSQuota = types.Int64Null()
-					} else {
-						pp.DiskIOPSQuota = types.Int64Value(int64(*item.Order.Plan.Parameters.DiskIopsQuota))
-					}
-
-					if item.Order.Plan.Parameters.ProcessQuota == nil {
-						pp.ProcessQuota = types.Int32Null()
-					} else {
-						pp.ProcessQuota = types.Int32Value(int32(*item.Order.Plan.Parameters.ProcessQuota))
-					}
-
-					if item.Order.Plan.Parameters.WebsiteQuota == nil {
-						pp.WebsiteQuota = types.Int32Null()
-					} else {
-						pp.WebsiteQuota = types.Int32Value(int32(*item.Order.Plan.Parameters.WebsiteQuota))
-					}
-
-					if item.Order.Plan.Parameters.MaxDatabasesPerWebsite == nil {
-						pp.MaxDatabasesPerWebsite = types.Int32Null()
-					} else {
-						pp.MaxDatabasesPerWebsite = types.Int32Value(int32(*item.Order.Plan.Parameters.MaxDatabasesPerWebsite))
-					}
-
-					if item.Order.Plan.Parameters.IsCdnAvailable == nil {
-						pp.IsCDNAvailable = types.BoolNull()
-					} else {
-						pp.IsCDNAvailable = types.BoolValue(*item.Order.Plan.Parameters.IsCdnAvailable)
-					}
+					pp.DiskQuotaBytes = int64Value(item.Order.Plan.Parameters.DiskQuotaBytes)
+					pp.InodeQuota = int64Value(item.Order.Plan.Parameters.InodeQuota)
+					pp.CPUCores = int32Value(item.Order.Plan.Parameters.CpuCores)
+					pp.MemoryQuotaBytes = int64Value(item.Order.Plan.Parameters.MemoryQuotaBytes)
+					pp.DiskIOPSQuota = int64Value(item.Order.Plan.Parameters.DiskIopsQuota)
+					pp.ProcessQuota = int32Value(item.Order.Plan.Parameters.ProcessQuota)
+					pp.WebsiteQuota = int32Value(item.Order.Plan.Parameters.WebsiteQuota)
+					pp.MaxDatabasesPerWebsite = int32Value(item.Order.Plan.Parameters.MaxDatabasesPerWebsite)
+					pp.IsCDNAvailable = types.BoolPointerValue(item.Order.Plan.Parameters.IsCdnAvailable)
 
 					p.Parameters = pp
 				}
