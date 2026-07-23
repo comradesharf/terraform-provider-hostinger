@@ -172,7 +172,7 @@ func (d *DataSourceBillingCatalogs) Read(ctx context.Context, req datasource.Rea
 
 	if !data.Name.IsNull() && data.Name.ValueString() != "" {
 		params.Name = data.Name.ValueStringPointer()
-		ctx = tflog.SetField(ctx, "name", &params.Name)
+		ctx = tflog.SetField(ctx, "name", *params.Name)
 	}
 
 	if !data.Category.IsNull() && data.Category.ValueString() != "" {

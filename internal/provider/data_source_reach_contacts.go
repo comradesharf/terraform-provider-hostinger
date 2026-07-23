@@ -162,7 +162,7 @@ func (d *DataSourceReachContacts) Read(ctx context.Context, req datasource.ReadR
 
 	if !data.GroupUuid.IsNull() && data.GroupUuid.ValueString() != "" {
 		params.GroupUuid = data.GroupUuid.ValueStringPointer()
-		ctx = tflog.SetField(ctx, "group_uuid", &params.GroupUuid)
+		ctx = tflog.SetField(ctx, "group_uuid", *params.GroupUuid)
 	}
 
 	if !data.SubscriptionStatus.IsNull() && data.SubscriptionStatus.ValueString() != "" {
@@ -170,7 +170,7 @@ func (d *DataSourceReachContacts) Read(ctx context.Context, req datasource.ReadR
 		ctx = tflog.SetField(ctx, "subscription_status", &params.SubscriptionStatus)
 	}
 
-	page := 0
+	page := 1
 	for {
 		params.Page = &page
 
