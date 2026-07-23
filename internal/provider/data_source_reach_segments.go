@@ -7,9 +7,9 @@ import (
 	"context"
 	"fmt"
 	"net/http"
-	"time"
 
 	"github.com/comradesharf/terraform-provider-hostinger/internal/client"
+	"github.com/hashicorp/terraform-plugin-framework-timetypes/timetypes"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
@@ -32,10 +32,10 @@ type DataSourceReachSegments struct {
 
 // ReachSegmentsItemModel maps a single segment from the API response.
 type ReachSegmentsItemModel struct {
-	Uuid      types.String `tfsdk:"uuid"`
-	Name      types.String `tfsdk:"name"`
-	CreatedAt types.String `tfsdk:"created_at"`
-	UpdatedAt types.String `tfsdk:"updated_at"`
+	Uuid      types.String      `tfsdk:"uuid"`
+	Name      types.String      `tfsdk:"name"`
+	CreatedAt timetypes.RFC3339 `tfsdk:"created_at"`
+	UpdatedAt timetypes.RFC3339 `tfsdk:"updated_at"`
 }
 
 // DataSourceReachSegmentsModel describes the data source data model.
@@ -67,10 +67,12 @@ func (d *DataSourceReachSegments) Schema(ctx context.Context, req datasource.Sch
 						"created_at": schema.StringAttribute{
 							Computed:            true,
 							MarkdownDescription: "RFC3339 timestamp of when the segment was created.",
+							CustomType:          timetypes.RFC3339Type{},
 						},
 						"updated_at": schema.StringAttribute{
 							Computed:            true,
 							MarkdownDescription: "RFC3339 timestamp of when the segment was last updated.",
+							CustomType:          timetypes.RFC3339Type{},
 						},
 					},
 				},
@@ -130,16 +132,8 @@ func (d *DataSourceReachSegments) Read(ctx context.Context, req datasource.ReadR
 		var m ReachSegmentsItemModel
 		m.Uuid = types.StringPointerValue(item.Uuid)
 		m.Name = types.StringPointerValue(item.Name)
-		if item.CreatedAt != nil {
-			m.CreatedAt = types.StringValue(item.CreatedAt.Format(time.RFC3339))
-		} else {
-			m.CreatedAt = types.StringNull()
-		}
-		if item.UpdatedAt != nil {
-			m.UpdatedAt = types.StringValue(item.UpdatedAt.Format(time.RFC3339))
-		} else {
-			m.UpdatedAt = types.StringNull()
-		}
+		m.CreatedAt = timetypes.NewRFC3339TimePointerValue(item.CreatedAt)
+		m.UpdatedAt = timetypes.NewRFC3339TimePointerValue(item.UpdatedAt)
 
 		data.Segments = append(data.Segments, m)
 	}

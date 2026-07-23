@@ -18,7 +18,7 @@ func TestAccDataSourceReachSegments(t *testing.T) {
 		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
 		Steps: []resource.TestStep{
 			{
-				Config: testAccReachSegmentsConfig,
+				Config: testAccDataSourceReachSegmentsConfig,
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
 						"data.hostinger_reach_segments.test",
@@ -36,7 +36,7 @@ func TestAccDataSourceReachSegments(t *testing.T) {
 	})
 }
 
-const testAccReachSegmentsConfig = `
+const testAccDataSourceReachSegmentsConfig = `
 data "hostinger_reach_segments" "test" {
 }
 `

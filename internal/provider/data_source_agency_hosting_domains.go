@@ -7,9 +7,9 @@ import (
 	"context"
 	"fmt"
 	"net/http"
-	"time"
 
 	"github.com/comradesharf/terraform-provider-hostinger/internal/client"
+	"github.com/hashicorp/terraform-plugin-framework-timetypes/timetypes"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
@@ -33,14 +33,14 @@ type DataSourceAgencyHostingDomains struct {
 
 // AgencyHostingDomainsItemModel maps a single domain from the API response.
 type AgencyHostingDomainsItemModel struct {
-	Domain     types.String `tfsdk:"fqdn"`
-	WebsiteUID types.String `tfsdk:"website_uid"`
-	CreatedAt  types.String `tfsdk:"created_at"`
+	FQDN       types.String      `tfsdk:"fqdn"`
+	WebsiteUID types.String      `tfsdk:"website_uid"`
+	CreatedAt  timetypes.RFC3339 `tfsdk:"created_at"`
 }
 
 // DataSourceAgencyHostingDomainsModel describes the data source data model.
 type DataSourceAgencyHostingDomainsModel struct {
-	WebsiteUIDs types.List                      `tfsdk:"website_uids"`
+	WebsiteUIDs []types.String                  `tfsdk:"website_uids"`
 	Domains     []AgencyHostingDomainsItemModel `tfsdk:"domains"`
 }
 
@@ -73,6 +73,7 @@ func (d *DataSourceAgencyHostingDomains) Schema(ctx context.Context, req datasou
 						"created_at": schema.StringAttribute{
 							Computed:            true,
 							MarkdownDescription: "RFC3339 timestamp of when the domain was created.",
+							CustomType:          timetypes.RFC3339Type{},
 						},
 					},
 				},
@@ -105,23 +106,14 @@ func (d *DataSourceAgencyHostingDomains) Read(ctx context.Context, req datasourc
 		return
 	}
 
-	if data.WebsiteUIDs.IsUnknown() {
-		resp.Diagnostics.AddError(
-			"Unknown Website UIDs",
-			"The 'website_uids' attribute cannot be unknown.",
-		)
-	}
-
-	if resp.Diagnostics.HasError() {
-		return
-	}
-
 	params := client.AgencyHostingListAgencyPlanDomainsV1Params{}
 
-	if !data.WebsiteUIDs.IsNull() {
-		resp.Diagnostics.Append(
-			data.WebsiteUIDs.ElementsAs(ctx, &params.WebsiteUuids, false)...,
-		)
+	if len(data.WebsiteUIDs) > 0 {
+		uids := make([]client.WebsiteUid, len(data.WebsiteUIDs))
+		for i, uid := range data.WebsiteUIDs {
+			uids[i] = uid.ValueString()
+		}
+		params.WebsiteUuids = &uids
 		ctx = tflog.SetField(ctx, "website_uids", &params.WebsiteUuids)
 	}
 
@@ -163,13 +155,10 @@ func (d *DataSourceAgencyHostingDomains) Read(ctx context.Context, req datasourc
 
 		for _, item := range *domains {
 			var m AgencyHostingDomainsItemModel
-			m.Domain = types.StringPointerValue(item.Fqdn)
+			m.FQDN = types.StringPointerValue(item.Fqdn)
 			m.WebsiteUID = types.StringPointerValue(item.WebsiteUid)
-			if item.CreatedAt != nil {
-				m.CreatedAt = types.StringValue(item.CreatedAt.Format(time.RFC3339))
-			} else {
-				m.CreatedAt = types.StringNull()
-			}
+			m.CreatedAt = timetypes.NewRFC3339TimePointerValue(item.CreatedAt)
+
 			data.Domains = append(data.Domains, m)
 		}
 

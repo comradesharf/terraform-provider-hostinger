@@ -18,7 +18,7 @@ func TestAccDataSourceBillingCatalogs(t *testing.T) {
 		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
 		Steps: []resource.TestStep{
 			{
-				Config: testAccExampleDataSourceConfig,
+				Config: testAccDataSourceBillingCatalogsConfig,
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
 						"data.hostinger_billing_catalogs.test",
@@ -59,7 +59,7 @@ func TestAccDataSourceBillingCatalogs(t *testing.T) {
 	})
 }
 
-const testAccExampleDataSourceConfig = `
+const testAccDataSourceBillingCatalogsConfig = `
 data "hostinger_billing_catalogs" "test" {
 	name = "KVM 2"
 	category = "VPS"

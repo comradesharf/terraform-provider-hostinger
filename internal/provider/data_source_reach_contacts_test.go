@@ -18,7 +18,7 @@ func TestAccDataSourceReachContacts(t *testing.T) {
 		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
 		Steps: []resource.TestStep{
 			{
-				Config: testAccReachContactsConfig,
+				Config: testAccDataSourceReachContactsConfig,
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
 						"data.hostinger_reach_contacts.test",
@@ -50,7 +50,7 @@ func TestAccDataSourceReachContacts(t *testing.T) {
 	})
 }
 
-const testAccReachContactsConfig = `
+const testAccDataSourceReachContactsConfig = `
 data "hostinger_reach_contacts" "test" {
 	group_uuid = "550e8400-e29b-41d4-a716-446655440000"
 	subscription_status = "subscribed"

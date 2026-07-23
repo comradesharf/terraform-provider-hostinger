@@ -7,9 +7,9 @@ import (
 	"context"
 	"fmt"
 	"net/http"
-	"time"
 
 	"github.com/comradesharf/terraform-provider-hostinger/internal/client"
+	"github.com/hashicorp/terraform-plugin-framework-timetypes/timetypes"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -35,14 +35,14 @@ type DataSourceReachContacts struct {
 
 // ReachContactsItemModel maps a single contact from the API response.
 type ReachContactsItemModel struct {
-	Uuid               types.String `tfsdk:"uuid"`
-	Email              types.String `tfsdk:"email"`
-	Name               types.String `tfsdk:"name"`
-	Surname            types.String `tfsdk:"surname"`
-	SubscriptionStatus types.String `tfsdk:"subscription_status"`
-	SubscribedAt       types.String `tfsdk:"subscribed_at"`
-	Source             types.String `tfsdk:"source"`
-	Note               types.String `tfsdk:"note"`
+	Uuid               types.String      `tfsdk:"uuid"`
+	Email              types.String      `tfsdk:"email"`
+	Name               types.String      `tfsdk:"name"`
+	Surname            types.String      `tfsdk:"surname"`
+	SubscriptionStatus types.String      `tfsdk:"subscription_status"`
+	SubscribedAt       timetypes.RFC3339 `tfsdk:"subscribed_at"`
+	Source             types.String      `tfsdk:"source"`
+	Note               types.String      `tfsdk:"note"`
 }
 
 // DataSourceReachContactsModel describes the data source data model.
@@ -99,6 +99,7 @@ func (d *DataSourceReachContacts) Schema(ctx context.Context, req datasource.Sch
 						"subscribed_at": schema.StringAttribute{
 							Computed:            true,
 							MarkdownDescription: "RFC3339 timestamp of when the contact subscribed.",
+							CustomType:          timetypes.RFC3339Type{},
 						},
 						"source": schema.StringAttribute{
 							Computed:            true,
@@ -210,12 +211,7 @@ func (d *DataSourceReachContacts) Read(ctx context.Context, req datasource.ReadR
 			m.SubscriptionStatus = types.StringPointerValue((*string)(item.SubscriptionStatus))
 			m.Source = types.StringPointerValue((*string)(item.Source))
 			m.Note = types.StringPointerValue(item.Note)
-
-			if item.SubscribedAt != nil {
-				m.SubscribedAt = types.StringValue(item.SubscribedAt.Format(time.RFC3339))
-			} else {
-				m.SubscribedAt = types.StringNull()
-			}
+			m.SubscribedAt = timetypes.NewRFC3339TimePointerValue(item.SubscribedAt)
 
 			data.Contacts = append(data.Contacts, m)
 		}
