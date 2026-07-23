@@ -152,6 +152,8 @@ func (p *hostingerProvider) DataSources(ctx context.Context) []func() datasource
 		NewDataSourceBillingCatalogs,
 		NewDataSourceReachContacts,
 		NewDataSourceReachSegments,
+		NewDataSourceAgencyHostingWebsite,
+		NewDataSourceAgencyHostingDomains,
 	}
 }
 

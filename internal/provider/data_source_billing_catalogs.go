@@ -10,7 +10,6 @@ import (
 
 	"github.com/comradesharf/terraform-provider-hostinger/internal/client"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
-	"github.com/hashicorp/terraform-plugin-framework/attr"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
@@ -47,7 +46,7 @@ type BillingCatalogsModel struct {
 	ID       types.String                 `tfsdk:"id"`
 	Category types.String                 `tfsdk:"category"`
 	Name     types.String                 `tfsdk:"name"`
-	Metadata types.Map                    `tfsdk:"metadata"`
+	Metadata map[string]types.String      `tfsdk:"metadata"`
 	Prices   []BillingCatalogsPricesModel `tfsdk:"prices"`
 }
 
@@ -151,14 +150,34 @@ func (d *DataSourceBillingCatalogs) Read(ctx context.Context, req datasource.Rea
 		return
 	}
 
-	var params client.BillingGetCatalogItemListV1Params
+	if data.Name.IsUnknown() {
+		resp.Diagnostics.AddError(
+			"Unknown Name",
+			"The 'name' attribute cannot be unknown",
+		)
+	}
+
+	if data.Category.IsUnknown() {
+		resp.Diagnostics.AddError(
+			"Unknown Category",
+			"The 'category' attribute cannot be unknown",
+		)
+	}
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	params := client.BillingGetCatalogItemListV1Params{}
+
 	if !data.Name.IsNull() && data.Name.ValueString() != "" {
 		params.Name = data.Name.ValueStringPointer()
-		ctx = tflog.SetField(ctx, "name", data.Name.ValueString())
+		ctx = tflog.SetField(ctx, "name", *params.Name)
 	}
+
 	if !data.Category.IsNull() && data.Category.ValueString() != "" {
 		params.Category = (*client.BillingGetCatalogItemListV1ParamsCategory)(data.Category.ValueStringPointer())
-		ctx = tflog.SetField(ctx, "category", data.Category.ValueString())
+		ctx = tflog.SetField(ctx, "category", &params.Category)
 	}
 
 	response, err := d.client.BillingGetCatalogItemListV1WithResponse(ctx, &params)
@@ -190,16 +209,13 @@ func (d *DataSourceBillingCatalogs) Read(ctx context.Context, req datasource.Rea
 		d.Category = types.StringPointerValue(item.Category)
 		d.Name = types.StringPointerValue(item.Name)
 
+		d.Metadata = make(map[string]types.String, len(*item.Metadata))
 		if item.Metadata != nil {
-			metadataMap := make(map[string]attr.Value, len(*item.Metadata))
 			for k, v := range *item.Metadata {
 				if s, ok := v.(string); ok {
-					metadataMap[k] = types.StringValue(s)
+					d.Metadata[k] = types.StringValue(s)
 				}
 			}
-			d.Metadata = types.MapValueMust(types.StringType, metadataMap)
-		} else {
-			d.Metadata = types.MapNull(types.StringType)
 		}
 
 		if item.Prices != nil {
