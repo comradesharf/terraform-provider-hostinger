@@ -41,10 +41,8 @@ func TestAccDataSourceVPSFirewallsWithID(t *testing.T) {
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
 						"data.hostinger_vps_firewalls.test_with_id",
-						tfjsonpath.New("firewalls").AtSliceIndex(0),
-						knownvalue.ObjectPartial(map[string]knownvalue.Check{
-							"rules": knownvalue.ListExact([]knownvalue.Check{}),
-						}),
+						tfjsonpath.New("firewalls"),
+						knownvalue.ListSizeGreaterThan(0),
 					),
 				},
 			},

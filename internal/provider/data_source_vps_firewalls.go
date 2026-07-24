@@ -42,10 +42,10 @@ type VPSFirewallRuleModel struct {
 
 // VPSFirewallModel maps a single firewall from the API response.
 type VPSFirewallModel struct {
-	ID        types.Int64       `tfsdk:"id"`
-	Name      types.String      `tfsdk:"name"`
-	IsSynced  types.Bool        `tfsdk:"is_synced"`
-	CreatedAt timetypes.RFC3339 `tfsdk:"created_at"`
+	ID        types.Int64            `tfsdk:"id"`
+	Name      types.String           `tfsdk:"name"`
+	IsSynced  types.Bool             `tfsdk:"is_synced"`
+	CreatedAt timetypes.RFC3339      `tfsdk:"created_at"`
 	Rules     []VPSFirewallRuleModel `tfsdk:"rules"`
 }
 
@@ -63,43 +63,55 @@ func (d *DataSourceVPSFirewalls) Schema(ctx context.Context, req datasource.Sche
 	resp.Schema = schema.Schema{
 		Attributes: map[string]schema.Attribute{
 			"firewall_id": schema.Int64Attribute{
-				Optional: true,
+				Optional:            true,
+				MarkdownDescription: "When set, fetches the single firewall with its rules. When omitted, lists all firewalls without rules.",
 			},
 			"firewalls": schema.ListNestedAttribute{
-				Computed: true,
+				Computed:            true,
+				MarkdownDescription: "List of firewall groups.",
 				NestedObject: schema.NestedAttributeObject{
 					Attributes: map[string]schema.Attribute{
 						"id": schema.Int64Attribute{
-							Computed: true,
+							Computed:            true,
+							MarkdownDescription: "Firewall ID.",
 						},
 						"name": schema.StringAttribute{
-							Computed: true,
+							Computed:            true,
+							MarkdownDescription: "Firewall name.",
 						},
 						"is_synced": schema.BoolAttribute{
-							Computed: true,
+							Computed:            true,
+							MarkdownDescription: "Whether the firewall is synced with the VPS.",
 						},
 						"created_at": schema.StringAttribute{
-							Computed:   true,
-							CustomType: timetypes.RFC3339Type{},
+							Computed:            true,
+							CustomType:          timetypes.RFC3339Type{},
+							MarkdownDescription: "Timestamp when the firewall was created (RFC3339).",
 						},
 						"rules": schema.ListNestedAttribute{
-							Computed: true,
+							Computed:            true,
+							MarkdownDescription: "Firewall rules. Populated only when `firewall_id` is set.",
 							NestedObject: schema.NestedAttributeObject{
 								Attributes: map[string]schema.Attribute{
 									"id": schema.Int64Attribute{
-										Computed: true,
+										Computed:            true,
+										MarkdownDescription: "Firewall rule ID.",
 									},
 									"protocol": schema.StringAttribute{
-										Computed: true,
+										Computed:            true,
+										MarkdownDescription: "Firewall rule protocol (e.g. TCP, UDP, ICMP).",
 									},
 									"port": schema.StringAttribute{
-										Computed: true,
+										Computed:            true,
+										MarkdownDescription: "Destination port or port range.",
 									},
 									"source": schema.StringAttribute{
-										Computed: true,
+										Computed:            true,
+										MarkdownDescription: "Source of the rule. Can be `any` or `custom`.",
 									},
 									"action": schema.StringAttribute{
-										Computed: true,
+										Computed:            true,
+										MarkdownDescription: "Firewall rule action. Can be `accept` or `drop`.",
 									},
 								},
 							},
