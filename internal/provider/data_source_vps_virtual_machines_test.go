@@ -23,8 +23,8 @@ func TestAccDataSourceVPSVirtualMachines(t *testing.T) {
 					statecheck.ExpectKnownValue(
 						"data.hostinger_vps_virtual_machines.test",
 						tfjsonpath.New("virtual_machines"),
-						knownvalue.ListPartial(map[int]knownvalue.Check{
-							0: knownvalue.ObjectPartial(map[string]knownvalue.Check{
+						knownvalue.ListExact([]knownvalue.Check{
+							knownvalue.ObjectExact(map[string]knownvalue.Check{
 								"id":                knownvalue.Int64Exact(17923),
 								"firewall_group_id": knownvalue.Int64Exact(260),
 								"subscription_id":   knownvalue.StringExact("Azz353Uhl1xC54pR0"),

@@ -457,6 +457,24 @@ func (e DomainsV1ForwardingStoreRequestRedirectType) Valid() bool {
 	}
 }
 
+// Defines values for DomainsV1ForwardingUpdateRequestRedirectType.
+const (
+	N301 DomainsV1ForwardingUpdateRequestRedirectType = "301"
+	N302 DomainsV1ForwardingUpdateRequestRedirectType = "302"
+)
+
+// Valid indicates whether the value is a known member of the DomainsV1ForwardingUpdateRequestRedirectType enum.
+func (e DomainsV1ForwardingUpdateRequestRedirectType) Valid() bool {
+	switch e {
+	case N301:
+		return true
+	case N302:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for DomainsV1WHOISProfileResourceEntityType.
 const (
 	DomainsV1WHOISProfileResourceEntityTypeIndividual   DomainsV1WHOISProfileResourceEntityType = "individual"
@@ -934,6 +952,312 @@ func (e HostingV1WebsitesWebsiteResourceVhostType) Valid() bool {
 	}
 }
 
+// Defines values for MailV1ApiTokensApiTokenCreatedResourceType.
+const (
+	MailV1ApiTokensApiTokenCreatedResourceTypeApiToken MailV1ApiTokensApiTokenCreatedResourceType = "api_token"
+	MailV1ApiTokensApiTokenCreatedResourceTypeOauth    MailV1ApiTokensApiTokenCreatedResourceType = "oauth"
+)
+
+// Valid indicates whether the value is a known member of the MailV1ApiTokensApiTokenCreatedResourceType enum.
+func (e MailV1ApiTokensApiTokenCreatedResourceType) Valid() bool {
+	switch e {
+	case MailV1ApiTokensApiTokenCreatedResourceTypeApiToken:
+		return true
+	case MailV1ApiTokensApiTokenCreatedResourceTypeOauth:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MailV1ApiTokensApiTokenResourceType.
+const (
+	MailV1ApiTokensApiTokenResourceTypeApiToken MailV1ApiTokensApiTokenResourceType = "api_token"
+	MailV1ApiTokensApiTokenResourceTypeOauth    MailV1ApiTokensApiTokenResourceType = "oauth"
+)
+
+// Valid indicates whether the value is a known member of the MailV1ApiTokensApiTokenResourceType enum.
+func (e MailV1ApiTokensApiTokenResourceType) Valid() bool {
+	switch e {
+	case MailV1ApiTokensApiTokenResourceTypeApiToken:
+		return true
+	case MailV1ApiTokensApiTokenResourceTypeOauth:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MailV1LogsActionActionLogResourceResponseStatus.
+const (
+	Fail MailV1LogsActionActionLogResourceResponseStatus = "Fail"
+	OK   MailV1LogsActionActionLogResourceResponseStatus = "OK"
+)
+
+// Valid indicates whether the value is a known member of the MailV1LogsActionActionLogResourceResponseStatus enum.
+func (e MailV1LogsActionActionLogResourceResponseStatus) Valid() bool {
+	switch e {
+	case Fail:
+		return true
+	case OK:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MailV1LogsMailboxActionsMailboxActionLogResourceEvent.
+const (
+	MailV1LogsMailboxActionsMailboxActionLogResourceEventMailboxCreate  MailV1LogsMailboxActionsMailboxActionLogResourceEvent = "MailboxCreate"
+	MailV1LogsMailboxActionsMailboxActionLogResourceEventMailboxDelete  MailV1LogsMailboxActionsMailboxActionLogResourceEvent = "MailboxDelete"
+	MailV1LogsMailboxActionsMailboxActionLogResourceEventMailboxRename  MailV1LogsMailboxActionsMailboxActionLogResourceEvent = "MailboxRename"
+	MailV1LogsMailboxActionsMailboxActionLogResourceEventMessageAppend  MailV1LogsMailboxActionsMailboxActionLogResourceEvent = "MessageAppend"
+	MailV1LogsMailboxActionsMailboxActionLogResourceEventMessageExpunge MailV1LogsMailboxActionsMailboxActionLogResourceEvent = "MessageExpunge"
+	MailV1LogsMailboxActionsMailboxActionLogResourceEventMessageNew     MailV1LogsMailboxActionsMailboxActionLogResourceEvent = "MessageNew"
+	MailV1LogsMailboxActionsMailboxActionLogResourceEventMessageRead    MailV1LogsMailboxActionsMailboxActionLogResourceEvent = "MessageRead"
+)
+
+// Valid indicates whether the value is a known member of the MailV1LogsMailboxActionsMailboxActionLogResourceEvent enum.
+func (e MailV1LogsMailboxActionsMailboxActionLogResourceEvent) Valid() bool {
+	switch e {
+	case MailV1LogsMailboxActionsMailboxActionLogResourceEventMailboxCreate:
+		return true
+	case MailV1LogsMailboxActionsMailboxActionLogResourceEventMailboxDelete:
+		return true
+	case MailV1LogsMailboxActionsMailboxActionLogResourceEventMailboxRename:
+		return true
+	case MailV1LogsMailboxActionsMailboxActionLogResourceEventMessageAppend:
+		return true
+	case MailV1LogsMailboxActionsMailboxActionLogResourceEventMessageExpunge:
+		return true
+	case MailV1LogsMailboxActionsMailboxActionLogResourceEventMessageNew:
+		return true
+	case MailV1LogsMailboxActionsMailboxActionLogResourceEventMessageRead:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MailV1MailboxesMailboxResourceStatus.
+const (
+	MailV1MailboxesMailboxResourceStatusActive    MailV1MailboxesMailboxResourceStatus = "active"
+	MailV1MailboxesMailboxResourceStatusSuspended MailV1MailboxesMailboxResourceStatus = "suspended"
+)
+
+// Valid indicates whether the value is a known member of the MailV1MailboxesMailboxResourceStatus enum.
+func (e MailV1MailboxesMailboxResourceStatus) Valid() bool {
+	switch e {
+	case MailV1MailboxesMailboxResourceStatusActive:
+		return true
+	case MailV1MailboxesMailboxResourceStatusSuspended:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MailV1OrdersOrderResourceStatus.
+const (
+	MailV1OrdersOrderResourceStatusActive       MailV1OrdersOrderResourceStatus = "active"
+	MailV1OrdersOrderResourceStatusPendingSetup MailV1OrdersOrderResourceStatus = "pending_setup"
+	MailV1OrdersOrderResourceStatusSuspended    MailV1OrdersOrderResourceStatus = "suspended"
+)
+
+// Valid indicates whether the value is a known member of the MailV1OrdersOrderResourceStatus enum.
+func (e MailV1OrdersOrderResourceStatus) Valid() bool {
+	switch e {
+	case MailV1OrdersOrderResourceStatusActive:
+		return true
+	case MailV1OrdersOrderResourceStatusPendingSetup:
+		return true
+	case MailV1OrdersOrderResourceStatusSuspended:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MailV1SchemaCreateWebhookRequestSchemaEvents.
+const (
+	MailV1SchemaCreateWebhookRequestSchemaEventsMessageReceived MailV1SchemaCreateWebhookRequestSchemaEvents = "message.received"
+)
+
+// Valid indicates whether the value is a known member of the MailV1SchemaCreateWebhookRequestSchemaEvents enum.
+func (e MailV1SchemaCreateWebhookRequestSchemaEvents) Valid() bool {
+	switch e {
+	case MailV1SchemaCreateWebhookRequestSchemaEventsMessageReceived:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MailV1SchemaCreateWebhookRequestSchemaStatus.
+const (
+	MailV1SchemaCreateWebhookRequestSchemaStatusActive   MailV1SchemaCreateWebhookRequestSchemaStatus = "active"
+	MailV1SchemaCreateWebhookRequestSchemaStatusDisabled MailV1SchemaCreateWebhookRequestSchemaStatus = "disabled"
+	MailV1SchemaCreateWebhookRequestSchemaStatusPaused   MailV1SchemaCreateWebhookRequestSchemaStatus = "paused"
+)
+
+// Valid indicates whether the value is a known member of the MailV1SchemaCreateWebhookRequestSchemaStatus enum.
+func (e MailV1SchemaCreateWebhookRequestSchemaStatus) Valid() bool {
+	switch e {
+	case MailV1SchemaCreateWebhookRequestSchemaStatusActive:
+		return true
+	case MailV1SchemaCreateWebhookRequestSchemaStatusDisabled:
+		return true
+	case MailV1SchemaCreateWebhookRequestSchemaStatusPaused:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MailV1SchemaUpdateWebhookRequestSchemaEvents.
+const (
+	MailV1SchemaUpdateWebhookRequestSchemaEventsMessageReceived MailV1SchemaUpdateWebhookRequestSchemaEvents = "message.received"
+)
+
+// Valid indicates whether the value is a known member of the MailV1SchemaUpdateWebhookRequestSchemaEvents enum.
+func (e MailV1SchemaUpdateWebhookRequestSchemaEvents) Valid() bool {
+	switch e {
+	case MailV1SchemaUpdateWebhookRequestSchemaEventsMessageReceived:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MailV1SchemaUpdateWebhookRequestSchemaStatus.
+const (
+	MailV1SchemaUpdateWebhookRequestSchemaStatusActive   MailV1SchemaUpdateWebhookRequestSchemaStatus = "active"
+	MailV1SchemaUpdateWebhookRequestSchemaStatusDisabled MailV1SchemaUpdateWebhookRequestSchemaStatus = "disabled"
+	MailV1SchemaUpdateWebhookRequestSchemaStatusPaused   MailV1SchemaUpdateWebhookRequestSchemaStatus = "paused"
+)
+
+// Valid indicates whether the value is a known member of the MailV1SchemaUpdateWebhookRequestSchemaStatus enum.
+func (e MailV1SchemaUpdateWebhookRequestSchemaStatus) Valid() bool {
+	switch e {
+	case MailV1SchemaUpdateWebhookRequestSchemaStatusActive:
+		return true
+	case MailV1SchemaUpdateWebhookRequestSchemaStatusDisabled:
+		return true
+	case MailV1SchemaUpdateWebhookRequestSchemaStatusPaused:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MailV1WebhooksWebhookCreatedResourceEvents.
+const (
+	MailV1WebhooksWebhookCreatedResourceEventsMessageReceived MailV1WebhooksWebhookCreatedResourceEvents = "message.received"
+)
+
+// Valid indicates whether the value is a known member of the MailV1WebhooksWebhookCreatedResourceEvents enum.
+func (e MailV1WebhooksWebhookCreatedResourceEvents) Valid() bool {
+	switch e {
+	case MailV1WebhooksWebhookCreatedResourceEventsMessageReceived:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MailV1WebhooksWebhookCreatedResourceStatus.
+const (
+	MailV1WebhooksWebhookCreatedResourceStatusActive   MailV1WebhooksWebhookCreatedResourceStatus = "active"
+	MailV1WebhooksWebhookCreatedResourceStatusDisabled MailV1WebhooksWebhookCreatedResourceStatus = "disabled"
+	MailV1WebhooksWebhookCreatedResourceStatusPaused   MailV1WebhooksWebhookCreatedResourceStatus = "paused"
+)
+
+// Valid indicates whether the value is a known member of the MailV1WebhooksWebhookCreatedResourceStatus enum.
+func (e MailV1WebhooksWebhookCreatedResourceStatus) Valid() bool {
+	switch e {
+	case MailV1WebhooksWebhookCreatedResourceStatusActive:
+		return true
+	case MailV1WebhooksWebhookCreatedResourceStatusDisabled:
+		return true
+	case MailV1WebhooksWebhookCreatedResourceStatusPaused:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MailV1WebhooksWebhookResourceEvents.
+const (
+	MailV1WebhooksWebhookResourceEventsMessageReceived MailV1WebhooksWebhookResourceEvents = "message.received"
+)
+
+// Valid indicates whether the value is a known member of the MailV1WebhooksWebhookResourceEvents enum.
+func (e MailV1WebhooksWebhookResourceEvents) Valid() bool {
+	switch e {
+	case MailV1WebhooksWebhookResourceEventsMessageReceived:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MailV1WebhooksWebhookResourceStatus.
+const (
+	MailV1WebhooksWebhookResourceStatusActive   MailV1WebhooksWebhookResourceStatus = "active"
+	MailV1WebhooksWebhookResourceStatusDisabled MailV1WebhooksWebhookResourceStatus = "disabled"
+	MailV1WebhooksWebhookResourceStatusPaused   MailV1WebhooksWebhookResourceStatus = "paused"
+)
+
+// Valid indicates whether the value is a known member of the MailV1WebhooksWebhookResourceStatus enum.
+func (e MailV1WebhooksWebhookResourceStatus) Valid() bool {
+	switch e {
+	case MailV1WebhooksWebhookResourceStatusActive:
+		return true
+	case MailV1WebhooksWebhookResourceStatusDisabled:
+		return true
+	case MailV1WebhooksWebhookResourceStatusPaused:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MailV1WebhooksWebhookSecretResourceEvents.
+const (
+	MessageReceived MailV1WebhooksWebhookSecretResourceEvents = "message.received"
+)
+
+// Valid indicates whether the value is a known member of the MailV1WebhooksWebhookSecretResourceEvents enum.
+func (e MailV1WebhooksWebhookSecretResourceEvents) Valid() bool {
+	switch e {
+	case MessageReceived:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MailV1WebhooksWebhookSecretResourceStatus.
+const (
+	MailV1WebhooksWebhookSecretResourceStatusActive   MailV1WebhooksWebhookSecretResourceStatus = "active"
+	MailV1WebhooksWebhookSecretResourceStatusDisabled MailV1WebhooksWebhookSecretResourceStatus = "disabled"
+	MailV1WebhooksWebhookSecretResourceStatusPaused   MailV1WebhooksWebhookSecretResourceStatus = "paused"
+)
+
+// Valid indicates whether the value is a known member of the MailV1WebhooksWebhookSecretResourceStatus enum.
+func (e MailV1WebhooksWebhookSecretResourceStatus) Valid() bool {
+	switch e {
+	case MailV1WebhooksWebhookSecretResourceStatusActive:
+		return true
+	case MailV1WebhooksWebhookSecretResourceStatusDisabled:
+		return true
+	case MailV1WebhooksWebhookSecretResourceStatusPaused:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for ReachV1ContactsContactResourceSource.
 const (
 	ReachV1ContactsContactResourceSourceImport ReachV1ContactsContactResourceSource = "import"
@@ -1257,22 +1581,22 @@ func (e VPSV1DockerManagerContainerPortResourceType) Valid() bool {
 
 // Defines values for VPSV1DockerManagerContainerResourceHealth.
 const (
-	VPSV1DockerManagerContainerResourceHealthEmpty     VPSV1DockerManagerContainerResourceHealth = ""
-	VPSV1DockerManagerContainerResourceHealthHealthy   VPSV1DockerManagerContainerResourceHealth = "healthy"
-	VPSV1DockerManagerContainerResourceHealthStarting  VPSV1DockerManagerContainerResourceHealth = "starting"
-	VPSV1DockerManagerContainerResourceHealthUnhealthy VPSV1DockerManagerContainerResourceHealth = "unhealthy"
+	Empty     VPSV1DockerManagerContainerResourceHealth = ""
+	Healthy   VPSV1DockerManagerContainerResourceHealth = "healthy"
+	Starting  VPSV1DockerManagerContainerResourceHealth = "starting"
+	Unhealthy VPSV1DockerManagerContainerResourceHealth = "unhealthy"
 )
 
 // Valid indicates whether the value is a known member of the VPSV1DockerManagerContainerResourceHealth enum.
 func (e VPSV1DockerManagerContainerResourceHealth) Valid() bool {
 	switch e {
-	case VPSV1DockerManagerContainerResourceHealthEmpty:
+	case Empty:
 		return true
-	case VPSV1DockerManagerContainerResourceHealthHealthy:
+	case Healthy:
 		return true
-	case VPSV1DockerManagerContainerResourceHealthStarting:
+	case Starting:
 		return true
-	case VPSV1DockerManagerContainerResourceHealthUnhealthy:
+	case Unhealthy:
 		return true
 	default:
 		return false
@@ -1614,16 +1938,16 @@ func (e WordPressV1InstallationsUpdateResourceType) Valid() bool {
 
 // Defines values for WordPressV1MaintenanceMaintenanceStatusResourceStatus.
 const (
-	Disabled WordPressV1MaintenanceMaintenanceStatusResourceStatus = "disabled"
-	Enabled  WordPressV1MaintenanceMaintenanceStatusResourceStatus = "enabled"
+	WordPressV1MaintenanceMaintenanceStatusResourceStatusDisabled WordPressV1MaintenanceMaintenanceStatusResourceStatus = "disabled"
+	WordPressV1MaintenanceMaintenanceStatusResourceStatusEnabled  WordPressV1MaintenanceMaintenanceStatusResourceStatus = "enabled"
 )
 
 // Valid indicates whether the value is a known member of the WordPressV1MaintenanceMaintenanceStatusResourceStatus enum.
 func (e WordPressV1MaintenanceMaintenanceStatusResourceStatus) Valid() bool {
 	switch e {
-	case Disabled:
+	case WordPressV1MaintenanceMaintenanceStatusResourceStatusDisabled:
 		return true
-	case Enabled:
+	case WordPressV1MaintenanceMaintenanceStatusResourceStatusEnabled:
 		return true
 	default:
 		return false
@@ -1792,6 +2116,162 @@ func (e Category) Valid() bool {
 	}
 }
 
+// Defines values for MailAccessLogProtocol.
+const (
+	MailAccessLogProtocolImap MailAccessLogProtocol = "imap"
+	MailAccessLogProtocolPop3 MailAccessLogProtocol = "pop3"
+	MailAccessLogProtocolSmtp MailAccessLogProtocol = "smtp"
+)
+
+// Valid indicates whether the value is a known member of the MailAccessLogProtocol enum.
+func (e MailAccessLogProtocol) Valid() bool {
+	switch e {
+	case MailAccessLogProtocolImap:
+		return true
+	case MailAccessLogProtocolPop3:
+		return true
+	case MailAccessLogProtocolSmtp:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MailLogStatus.
+const (
+	MailLogStatusFailed     MailLogStatus = "Failed"
+	MailLogStatusSuccessful MailLogStatus = "Successful"
+)
+
+// Valid indicates whether the value is a known member of the MailLogStatus enum.
+func (e MailLogStatus) Valid() bool {
+	switch e {
+	case MailLogStatusFailed:
+		return true
+	case MailLogStatusSuccessful:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MailMailboxActionEvent.
+const (
+	MailMailboxActionEventMailboxCreate  MailMailboxActionEvent = "MailboxCreate"
+	MailMailboxActionEventMailboxDelete  MailMailboxActionEvent = "MailboxDelete"
+	MailMailboxActionEventMailboxRename  MailMailboxActionEvent = "MailboxRename"
+	MailMailboxActionEventMessageAppend  MailMailboxActionEvent = "MessageAppend"
+	MailMailboxActionEventMessageExpunge MailMailboxActionEvent = "MessageExpunge"
+	MailMailboxActionEventMessageNew     MailMailboxActionEvent = "MessageNew"
+	MailMailboxActionEventMessageRead    MailMailboxActionEvent = "MessageRead"
+)
+
+// Valid indicates whether the value is a known member of the MailMailboxActionEvent enum.
+func (e MailMailboxActionEvent) Valid() bool {
+	switch e {
+	case MailMailboxActionEventMailboxCreate:
+		return true
+	case MailMailboxActionEventMailboxDelete:
+		return true
+	case MailMailboxActionEventMailboxRename:
+		return true
+	case MailMailboxActionEventMessageAppend:
+		return true
+	case MailMailboxActionEventMessageExpunge:
+		return true
+	case MailMailboxActionEventMessageNew:
+		return true
+	case MailMailboxActionEventMessageRead:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MailMailboxSort.
+const (
+	MailMailboxSortAddress      MailMailboxSort = "address"
+	MailMailboxSortMinusAddress MailMailboxSort = "-address"
+)
+
+// Valid indicates whether the value is a known member of the MailMailboxSort enum.
+func (e MailMailboxSort) Valid() bool {
+	switch e {
+	case MailMailboxSortAddress:
+		return true
+	case MailMailboxSortMinusAddress:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MailOrderSort.
+const (
+	MailOrderSortCreatedAt      MailOrderSort = "created_at"
+	MailOrderSortExpiresAt      MailOrderSort = "expires_at"
+	MailOrderSortMinusCreatedAt MailOrderSort = "-created_at"
+	MailOrderSortMinusExpiresAt MailOrderSort = "-expires_at"
+)
+
+// Valid indicates whether the value is a known member of the MailOrderSort enum.
+func (e MailOrderSort) Valid() bool {
+	switch e {
+	case MailOrderSortCreatedAt:
+		return true
+	case MailOrderSortExpiresAt:
+		return true
+	case MailOrderSortMinusCreatedAt:
+		return true
+	case MailOrderSortMinusExpiresAt:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MailOrderStatus.
+const (
+	MailOrderStatusActive       MailOrderStatus = "active"
+	MailOrderStatusPendingSetup MailOrderStatus = "pending_setup"
+	MailOrderStatusSuspended    MailOrderStatus = "suspended"
+)
+
+// Valid indicates whether the value is a known member of the MailOrderStatus enum.
+func (e MailOrderStatus) Valid() bool {
+	switch e {
+	case MailOrderStatusActive:
+		return true
+	case MailOrderStatusPendingSetup:
+		return true
+	case MailOrderStatusSuspended:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MailWebhookStatus.
+const (
+	MailWebhookStatusActive   MailWebhookStatus = "active"
+	MailWebhookStatusDisabled MailWebhookStatus = "disabled"
+	MailWebhookStatusPaused   MailWebhookStatus = "paused"
+)
+
+// Valid indicates whether the value is a known member of the MailWebhookStatus enum.
+func (e MailWebhookStatus) Valid() bool {
+	switch e {
+	case MailWebhookStatusActive:
+		return true
+	case MailWebhookStatusDisabled:
+		return true
+	case MailWebhookStatusPaused:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for SubscriptionStatus.
 const (
 	SubscriptionStatusSubscribed   SubscriptionStatus = "subscribed"
@@ -1830,22 +2310,22 @@ func (e BillingGetCatalogItemListV1ParamsCategory) Valid() bool {
 
 // Defines values for HostingListNodeJSBuildsV1ParamsStates.
 const (
-	Completed HostingListNodeJSBuildsV1ParamsStates = "completed"
-	Failed    HostingListNodeJSBuildsV1ParamsStates = "failed"
-	Pending   HostingListNodeJSBuildsV1ParamsStates = "pending"
-	Running   HostingListNodeJSBuildsV1ParamsStates = "running"
+	HostingListNodeJSBuildsV1ParamsStatesCompleted HostingListNodeJSBuildsV1ParamsStates = "completed"
+	HostingListNodeJSBuildsV1ParamsStatesFailed    HostingListNodeJSBuildsV1ParamsStates = "failed"
+	HostingListNodeJSBuildsV1ParamsStatesPending   HostingListNodeJSBuildsV1ParamsStates = "pending"
+	HostingListNodeJSBuildsV1ParamsStatesRunning   HostingListNodeJSBuildsV1ParamsStates = "running"
 )
 
 // Valid indicates whether the value is a known member of the HostingListNodeJSBuildsV1ParamsStates enum.
 func (e HostingListNodeJSBuildsV1ParamsStates) Valid() bool {
 	switch e {
-	case Completed:
+	case HostingListNodeJSBuildsV1ParamsStatesCompleted:
 		return true
-	case Failed:
+	case HostingListNodeJSBuildsV1ParamsStatesFailed:
 		return true
-	case Pending:
+	case HostingListNodeJSBuildsV1ParamsStatesPending:
 		return true
-	case Running:
+	case HostingListNodeJSBuildsV1ParamsStatesRunning:
 		return true
 	default:
 		return false
@@ -1951,6 +2431,216 @@ func (e HostingListWordPressInstallationsV1ParamsOwnership) Valid() bool {
 	case Managed:
 		return true
 	case Owned:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MailListOrdersV1ParamsStatus.
+const (
+	MailListOrdersV1ParamsStatusActive       MailListOrdersV1ParamsStatus = "active"
+	MailListOrdersV1ParamsStatusPendingSetup MailListOrdersV1ParamsStatus = "pending_setup"
+	MailListOrdersV1ParamsStatusSuspended    MailListOrdersV1ParamsStatus = "suspended"
+)
+
+// Valid indicates whether the value is a known member of the MailListOrdersV1ParamsStatus enum.
+func (e MailListOrdersV1ParamsStatus) Valid() bool {
+	switch e {
+	case MailListOrdersV1ParamsStatusActive:
+		return true
+	case MailListOrdersV1ParamsStatusPendingSetup:
+		return true
+	case MailListOrdersV1ParamsStatusSuspended:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MailListOrdersV1ParamsSort.
+const (
+	MailListOrdersV1ParamsSortCreatedAt      MailListOrdersV1ParamsSort = "created_at"
+	MailListOrdersV1ParamsSortExpiresAt      MailListOrdersV1ParamsSort = "expires_at"
+	MailListOrdersV1ParamsSortMinusCreatedAt MailListOrdersV1ParamsSort = "-created_at"
+	MailListOrdersV1ParamsSortMinusExpiresAt MailListOrdersV1ParamsSort = "-expires_at"
+)
+
+// Valid indicates whether the value is a known member of the MailListOrdersV1ParamsSort enum.
+func (e MailListOrdersV1ParamsSort) Valid() bool {
+	switch e {
+	case MailListOrdersV1ParamsSortCreatedAt:
+		return true
+	case MailListOrdersV1ParamsSortExpiresAt:
+		return true
+	case MailListOrdersV1ParamsSortMinusCreatedAt:
+		return true
+	case MailListOrdersV1ParamsSortMinusExpiresAt:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MailListAccessLogsV1ParamsStatus.
+const (
+	MailListAccessLogsV1ParamsStatusFailed     MailListAccessLogsV1ParamsStatus = "Failed"
+	MailListAccessLogsV1ParamsStatusSuccessful MailListAccessLogsV1ParamsStatus = "Successful"
+)
+
+// Valid indicates whether the value is a known member of the MailListAccessLogsV1ParamsStatus enum.
+func (e MailListAccessLogsV1ParamsStatus) Valid() bool {
+	switch e {
+	case MailListAccessLogsV1ParamsStatusFailed:
+		return true
+	case MailListAccessLogsV1ParamsStatusSuccessful:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MailListAccessLogsV1ParamsProtocol.
+const (
+	MailListAccessLogsV1ParamsProtocolImap MailListAccessLogsV1ParamsProtocol = "imap"
+	MailListAccessLogsV1ParamsProtocolPop3 MailListAccessLogsV1ParamsProtocol = "pop3"
+	MailListAccessLogsV1ParamsProtocolSmtp MailListAccessLogsV1ParamsProtocol = "smtp"
+)
+
+// Valid indicates whether the value is a known member of the MailListAccessLogsV1ParamsProtocol enum.
+func (e MailListAccessLogsV1ParamsProtocol) Valid() bool {
+	switch e {
+	case MailListAccessLogsV1ParamsProtocolImap:
+		return true
+	case MailListAccessLogsV1ParamsProtocolPop3:
+		return true
+	case MailListAccessLogsV1ParamsProtocolSmtp:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MailListActionLogsV1ParamsStatus.
+const (
+	MailListActionLogsV1ParamsStatusFailed     MailListActionLogsV1ParamsStatus = "Failed"
+	MailListActionLogsV1ParamsStatusSuccessful MailListActionLogsV1ParamsStatus = "Successful"
+)
+
+// Valid indicates whether the value is a known member of the MailListActionLogsV1ParamsStatus enum.
+func (e MailListActionLogsV1ParamsStatus) Valid() bool {
+	switch e {
+	case MailListActionLogsV1ParamsStatusFailed:
+		return true
+	case MailListActionLogsV1ParamsStatusSuccessful:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MailListInboundLogsV1ParamsStatus.
+const (
+	MailListInboundLogsV1ParamsStatusFailed     MailListInboundLogsV1ParamsStatus = "Failed"
+	MailListInboundLogsV1ParamsStatusSuccessful MailListInboundLogsV1ParamsStatus = "Successful"
+)
+
+// Valid indicates whether the value is a known member of the MailListInboundLogsV1ParamsStatus enum.
+func (e MailListInboundLogsV1ParamsStatus) Valid() bool {
+	switch e {
+	case MailListInboundLogsV1ParamsStatusFailed:
+		return true
+	case MailListInboundLogsV1ParamsStatusSuccessful:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MailListMailboxActionLogsV1ParamsEvent.
+const (
+	MailboxCreate  MailListMailboxActionLogsV1ParamsEvent = "MailboxCreate"
+	MailboxDelete  MailListMailboxActionLogsV1ParamsEvent = "MailboxDelete"
+	MailboxRename  MailListMailboxActionLogsV1ParamsEvent = "MailboxRename"
+	MessageAppend  MailListMailboxActionLogsV1ParamsEvent = "MessageAppend"
+	MessageExpunge MailListMailboxActionLogsV1ParamsEvent = "MessageExpunge"
+	MessageNew     MailListMailboxActionLogsV1ParamsEvent = "MessageNew"
+	MessageRead    MailListMailboxActionLogsV1ParamsEvent = "MessageRead"
+)
+
+// Valid indicates whether the value is a known member of the MailListMailboxActionLogsV1ParamsEvent enum.
+func (e MailListMailboxActionLogsV1ParamsEvent) Valid() bool {
+	switch e {
+	case MailboxCreate:
+		return true
+	case MailboxDelete:
+		return true
+	case MailboxRename:
+		return true
+	case MessageAppend:
+		return true
+	case MessageExpunge:
+		return true
+	case MessageNew:
+		return true
+	case MessageRead:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MailListOutboundLogsV1ParamsStatus.
+const (
+	MailListOutboundLogsV1ParamsStatusFailed     MailListOutboundLogsV1ParamsStatus = "Failed"
+	MailListOutboundLogsV1ParamsStatusSuccessful MailListOutboundLogsV1ParamsStatus = "Successful"
+)
+
+// Valid indicates whether the value is a known member of the MailListOutboundLogsV1ParamsStatus enum.
+func (e MailListOutboundLogsV1ParamsStatus) Valid() bool {
+	switch e {
+	case MailListOutboundLogsV1ParamsStatusFailed:
+		return true
+	case MailListOutboundLogsV1ParamsStatusSuccessful:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MailListMailboxesV1ParamsSort.
+const (
+	MailListMailboxesV1ParamsSortAddress      MailListMailboxesV1ParamsSort = "address"
+	MailListMailboxesV1ParamsSortMinusAddress MailListMailboxesV1ParamsSort = "-address"
+)
+
+// Valid indicates whether the value is a known member of the MailListMailboxesV1ParamsSort enum.
+func (e MailListMailboxesV1ParamsSort) Valid() bool {
+	switch e {
+	case MailListMailboxesV1ParamsSortAddress:
+		return true
+	case MailListMailboxesV1ParamsSortMinusAddress:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MailListWebhooksV1ParamsStatus.
+const (
+	Active   MailListWebhooksV1ParamsStatus = "active"
+	Disabled MailListWebhooksV1ParamsStatus = "disabled"
+	Paused   MailListWebhooksV1ParamsStatus = "paused"
+)
+
+// Valid indicates whether the value is a known member of the MailListWebhooksV1ParamsStatus enum.
+func (e MailListWebhooksV1ParamsStatus) Valid() bool {
+	switch e {
+	case Active:
+		return true
+	case Disabled:
+		return true
+	case Paused:
 		return true
 	default:
 		return false
@@ -2144,6 +2834,57 @@ type AgencyHostingV1WebsitesCustomSslCertResource struct {
 
 	// IsExpired Is the SSL certificate expired
 	IsExpired *bool `json:"is_expired,omitempty"`
+}
+
+// AgencyHostingV1WebsitesDatabasesCreateDatabaseRequest defines model for AgencyHosting.V1.Websites.Databases.CreateDatabaseRequest.
+type AgencyHostingV1WebsitesDatabasesCreateDatabaseRequest struct {
+	// DatabaseName Database name to create (alphanumeric characters).
+	DatabaseName string `json:"database_name"`
+
+	// DatabaseUser Database username to create alongside the database (alphanumeric characters).
+	DatabaseUser string `json:"database_user"`
+
+	// Password Password for the database user (requires mixed case, letters, and numbers).
+	Password string `json:"password"`
+}
+
+// AgencyHostingV1WebsitesDatabasesDatabaseCollection Array of [`AgencyHosting.V1.Websites.Databases.DatabaseResource`](#model/agencyhostingv1websitesdatabasesdatabaseresource)
+type AgencyHostingV1WebsitesDatabasesDatabaseCollection = []AgencyHostingV1WebsitesDatabasesDatabaseResource
+
+// AgencyHostingV1WebsitesDatabasesDatabaseResource defines model for AgencyHosting.V1.Websites.Databases.DatabaseResource.
+type AgencyHostingV1WebsitesDatabasesDatabaseResource struct {
+	// CreatedAt Database creation date in ISO 8601 format.
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+
+	// Name Database name.
+	Name *string `json:"name,omitempty"`
+
+	// Users Non-system users that can access the database.
+	Users *[]AgencyHostingV1WebsitesDatabasesDatabaseUserResource `json:"users,omitempty"`
+}
+
+// AgencyHostingV1WebsitesDatabasesDatabaseUserResource defines model for AgencyHosting.V1.Websites.Databases.DatabaseUserResource.
+type AgencyHostingV1WebsitesDatabasesDatabaseUserResource struct {
+	// CreatedAt Database user creation date in ISO 8601 format.
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+
+	// Host Database host the user is allowed to connect from.
+	Host *string `json:"host,omitempty"`
+
+	// Name Database username.
+	Name *string `json:"name,omitempty"`
+}
+
+// AgencyHostingV1WebsitesDatabasesUsersCreateDatabaseUserRequest defines model for AgencyHosting.V1.Websites.Databases.Users.CreateDatabaseUserRequest.
+type AgencyHostingV1WebsitesDatabasesUsersCreateDatabaseUserRequest struct {
+	// DatabaseUser Database username to create (alphanumeric and underscores).
+	DatabaseUser string `json:"database_user"`
+
+	// Host Host the user connects from (IPv4, IPv6, % wildcard, or localhost). Defaults to localhost.
+	Host *string `json:"host,omitempty"`
+
+	// Password Password for the database user (requires mixed case, letters, and numbers).
+	Password string `json:"password"`
 }
 
 // AgencyHostingV1WebsitesSslCertResource defines model for AgencyHosting.V1.Websites.SslCertResource.
@@ -2432,6 +3173,36 @@ type AgencyHostingV1WebsitesWordPressInstallResource struct {
 	Title *string `json:"title,omitempty"`
 }
 
+// AgencyHostingV1WordPressChangeVersionRequest defines model for AgencyHosting.V1.WordPress.ChangeVersionRequest.
+type AgencyHostingV1WordPressChangeVersionRequest struct {
+	// Version Target WordPress core version to install. Must be one of the available versions.
+	Version string `json:"version"`
+}
+
+// AgencyHostingV1WordPressSettingsResource defines model for AgencyHosting.V1.WordPress.SettingsResource.
+type AgencyHostingV1WordPressSettingsResource struct {
+	// CoreVersion Currently installed WordPress core version, or null when it cannot be determined.
+	CoreVersion *string `json:"core_version,omitempty"`
+
+	// IsLiteSpeedCacheEnabled Whether the LiteSpeed Cache plugin is active.
+	IsLiteSpeedCacheEnabled *bool `json:"is_lite_speed_cache_enabled,omitempty"`
+
+	// IsMaintenanceModeEnabled Whether WordPress maintenance mode is currently enabled.
+	IsMaintenanceModeEnabled *bool `json:"is_maintenance_mode_enabled,omitempty"`
+
+	// IsObjectCacheEnabled Whether LiteSpeed object cache is enabled.
+	IsObjectCacheEnabled *bool `json:"is_object_cache_enabled,omitempty"`
+}
+
+// AgencyHostingV1WordPressVersionCollection Array of [`AgencyHosting.V1.WordPress.VersionResource`](#model/agencyhostingv1wordpressversionresource)
+type AgencyHostingV1WordPressVersionCollection = []AgencyHostingV1WordPressVersionResource
+
+// AgencyHostingV1WordPressVersionResource defines model for AgencyHosting.V1.WordPress.VersionResource.
+type AgencyHostingV1WordPressVersionResource struct {
+	// Version WordPress core version.
+	Version *string `json:"version,omitempty"`
+}
+
 // BillingV1CatalogCatalogItemCollection Array of [`Billing.V1.Catalog.CatalogItemResource`](#model/billingv1catalogcatalogitemresource)
 type BillingV1CatalogCatalogItemCollection = []BillingV1CatalogCatalogItemResource
 
@@ -2523,6 +3294,24 @@ type BillingV1OrderOrderResource struct {
 
 // BillingV1OrderOrderResourceStatus defines model for BillingV1OrderOrderResource.Status.
 type BillingV1OrderOrderResourceStatus string
+
+// BillingV1OrderPurchaseRequest defines model for Billing.V1.Order.PurchaseRequest.
+type BillingV1OrderPurchaseRequest struct {
+	// Coupons Discount coupon codes
+	Coupons *[]interface{} `json:"coupons,omitempty"`
+
+	// Items Catalog price items to purchase
+	Items []struct {
+		// ItemId Catalog price item ID
+		ItemId string `json:"item_id"`
+
+		// Quantity Quantity to purchase
+		Quantity *int `json:"quantity,omitempty"`
+	} `json:"items"`
+
+	// PaymentMethodId Payment method ID, default will be used if not provided
+	PaymentMethodId *int `json:"payment_method_id,omitempty"`
+}
 
 // BillingV1OrderVirtualMachineOrderResource defines model for Billing.V1.Order.VirtualMachineOrderResource.
 type BillingV1OrderVirtualMachineOrderResource struct {
@@ -2892,6 +3681,24 @@ type DomainsV1ForwardingStoreRequest struct {
 // DomainsV1ForwardingStoreRequestRedirectType Redirect type
 type DomainsV1ForwardingStoreRequestRedirectType string
 
+// DomainsV1ForwardingUpdateRequest defines model for Domains.V1.Forwarding.UpdateRequest.
+type DomainsV1ForwardingUpdateRequest struct {
+	// RedirectType Redirect type
+	RedirectType DomainsV1ForwardingUpdateRequestRedirectType `json:"redirect_type"`
+
+	// RedirectUrl URL to forward domain to
+	RedirectUrl string `json:"redirect_url"`
+}
+
+// DomainsV1ForwardingUpdateRequestRedirectType Redirect type
+type DomainsV1ForwardingUpdateRequestRedirectType string
+
+// DomainsV1PortfolioAuthCodeAuthCodeResource defines model for Domains.V1.Portfolio.AuthCode.AuthCodeResource.
+type DomainsV1PortfolioAuthCodeAuthCodeResource struct {
+	// AuthCode Domain authorization code used to transfer the domain to another registrar.
+	AuthCode *string `json:"auth_code,omitempty"`
+}
+
 // DomainsV1PortfolioPurchaseRequest defines model for Domains.V1.Portfolio.PurchaseRequest.
 type DomainsV1PortfolioPurchaseRequest struct {
 	// AdditionalDetails Additional registration data, possible values depends on TLD
@@ -2950,6 +3757,24 @@ type DomainsV1PortfolioUpdateNameserversRequest struct {
 
 	// Ns4 Fourth name server
 	Ns4 *string `json:"ns4,omitempty"`
+}
+
+// DomainsV1TransferTransferCollection Array of [`Domains.V1.Transfer.TransferResource`](#model/domainsv1transfertransferresource)
+type DomainsV1TransferTransferCollection = []DomainsV1TransferTransferResource
+
+// DomainsV1TransferTransferResource defines model for Domains.V1.Transfer.TransferResource.
+type DomainsV1TransferTransferResource struct {
+	// CompletedAt When the transfer completed
+	CompletedAt *time.Time `json:"completed_at,omitempty"`
+
+	// Domain Domain name
+	Domain *string `json:"domain,omitempty"`
+
+	// InitiatedAt When the transfer was initiated
+	InitiatedAt *time.Time `json:"initiated_at,omitempty"`
+
+	// Status Transfer status
+	Status *string `json:"status,omitempty"`
 }
 
 // DomainsV1WHOISProfileCollection Array of [`Domains.V1.WHOIS.ProfileResource`](#model/domainsv1whoisprofileresource)
@@ -3981,6 +4806,581 @@ type HostingV1WebsitesWebsiteResource struct {
 
 // HostingV1WebsitesWebsiteResourceVhostType Virtual host type
 type HostingV1WebsitesWebsiteResourceVhostType string
+
+// MailV1ApiTokensApiTokenCollection Array of [`Mail.V1.ApiTokens.ApiTokenResource`](#model/mailv1apitokensapitokenresource)
+type MailV1ApiTokensApiTokenCollection = []MailV1ApiTokensApiTokenResource
+
+// MailV1ApiTokensApiTokenCreatedResource defines model for Mail.V1.ApiTokens.ApiTokenCreatedResource.
+type MailV1ApiTokensApiTokenCreatedResource struct {
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+
+	// Id Unique API token identifier
+	Id *string `json:"id,omitempty"`
+
+	// Name Human-readable label for this token
+	Name  *string                               `json:"name,omitempty"`
+	Scope *MailV1ApiTokensApiTokenScopeResource `json:"scope,omitempty"`
+
+	// Token Plaintext API token, returned only in this response. Grants access to the [Hostinger Email API](https://api.mail.hostinger.com/) for mailbox provisioning and management.
+	Token *string                                     `json:"token,omitempty"`
+	Type  *MailV1ApiTokensApiTokenCreatedResourceType `json:"type,omitempty"`
+}
+
+// MailV1ApiTokensApiTokenCreatedResourceType defines model for MailV1ApiTokensApiTokenCreatedResource.Type.
+type MailV1ApiTokensApiTokenCreatedResourceType string
+
+// MailV1ApiTokensApiTokenMailboxResource defines model for Mail.V1.ApiTokens.ApiTokenMailboxResource.
+type MailV1ApiTokensApiTokenMailboxResource struct {
+	Address *string `json:"address,omitempty"`
+
+	// Id Mailbox resource ID
+	Id *string `json:"id,omitempty"`
+}
+
+// MailV1ApiTokensApiTokenResource defines model for Mail.V1.ApiTokens.ApiTokenResource.
+type MailV1ApiTokensApiTokenResource struct {
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+
+	// Id Unique API token identifier
+	Id *string `json:"id,omitempty"`
+
+	// LastUsedAt Last successful authentication using this token
+	LastUsedAt *time.Time `json:"last_used_at,omitempty"`
+
+	// Name Human-readable label for this token
+	Name *string `json:"name,omitempty"`
+
+	// OrderId Resource ID of the owning mail order
+	OrderId *string                               `json:"order_id,omitempty"`
+	Scope   *MailV1ApiTokensApiTokenScopeResource `json:"scope,omitempty"`
+	Type    *MailV1ApiTokensApiTokenResourceType  `json:"type,omitempty"`
+}
+
+// MailV1ApiTokensApiTokenResourceType defines model for MailV1ApiTokensApiTokenResource.Type.
+type MailV1ApiTokensApiTokenResourceType string
+
+// MailV1ApiTokensApiTokenScopeResource defines model for Mail.V1.ApiTokens.ApiTokenScopeResource.
+type MailV1ApiTokensApiTokenScopeResource struct {
+	// HasAllMailboxes Whether the token covers all current and future mailboxes of the order
+	HasAllMailboxes *bool `json:"has_all_mailboxes,omitempty"`
+
+	// Mailboxes Mailboxes this token grants access to. Empty when `has_all_mailboxes` is true.
+	Mailboxes *[]MailV1ApiTokensApiTokenMailboxResource `json:"mailboxes,omitempty"`
+}
+
+// MailV1LogsAccessAccessLogCollection Array of [`Mail.V1.Logs.Access.AccessLogResource`](#model/mailv1logsaccessaccesslogresource)
+type MailV1LogsAccessAccessLogCollection = []MailV1LogsAccessAccessLogResource
+
+// MailV1LogsAccessAccessLogResource defines model for Mail.V1.Logs.Access.AccessLogResource.
+type MailV1LogsAccessAccessLogResource struct {
+	Account      *string `json:"account,omitempty"`
+	AppName      *string `json:"app_name,omitempty"`
+	Deleted      *int    `json:"deleted,omitempty"`
+	Domain       *string `json:"domain,omitempty"`
+	Expunged     *int    `json:"expunged,omitempty"`
+	HasDeletions *bool   `json:"has_deletions,omitempty"`
+
+	// In Bytes received
+	In *int `json:"in,omitempty"`
+
+	// IsImportant True when the session deleted, expunged or trashed messages
+	IsImportant *bool      `json:"is_important,omitempty"`
+	LoginTime   *time.Time `json:"login_time,omitempty"`
+	LogoutTime  *time.Time `json:"logout_time,omitempty"`
+
+	// Out Bytes sent
+	Out       *int       `json:"out,omitempty"`
+	Protocol  *string    `json:"protocol,omitempty"`
+	RemoteIp  *string    `json:"remote_ip,omitempty"`
+	Result    *string    `json:"result,omitempty"`
+	Session   *string    `json:"session,omitempty"`
+	Status    *string    `json:"status,omitempty"`
+	Timestamp *time.Time `json:"timestamp,omitempty"`
+	Trashed   *int       `json:"trashed,omitempty"`
+}
+
+// MailV1LogsActionActionLogCollection Array of [`Mail.V1.Logs.Action.ActionLogResource`](#model/mailv1logsactionactionlogresource)
+type MailV1LogsActionActionLogCollection = []MailV1LogsActionActionLogResource
+
+// MailV1LogsActionActionLogResource defines model for Mail.V1.Logs.Action.ActionLogResource.
+type MailV1LogsActionActionLogResource struct {
+	Action        *string    `json:"action,omitempty"`
+	ActionContext *string    `json:"action_context,omitempty"`
+	CreatedAt     *time.Time `json:"created_at,omitempty"`
+
+	// Extra Arbitrary contextual payload
+	Extra *map[string]interface{} `json:"extra,omitempty"`
+
+	// IpAddress Only populated for user-role logs
+	IpAddress      *string                                          `json:"ip_address,omitempty"`
+	ResponseStatus *MailV1LogsActionActionLogResourceResponseStatus `json:"response_status,omitempty"`
+	Role           *string                                          `json:"role,omitempty"`
+}
+
+// MailV1LogsActionActionLogResourceResponseStatus defines model for MailV1LogsActionActionLogResource.ResponseStatus.
+type MailV1LogsActionActionLogResourceResponseStatus string
+
+// MailV1LogsCommonDeliveryLogCollection Array of [`Mail.V1.Logs.Common.DeliveryLogResource`](#model/mailv1logscommondeliverylogresource)
+type MailV1LogsCommonDeliveryLogCollection = []MailV1LogsCommonDeliveryLogResource
+
+// MailV1LogsCommonDeliveryLogRelayEventResource defines model for Mail.V1.Logs.Common.DeliveryLogRelayEventResource.
+type MailV1LogsCommonDeliveryLogRelayEventResource struct {
+	AddressTo *string    `json:"address_to,omitempty"`
+	Delay     *string    `json:"delay,omitempty"`
+	Dsn       *string    `json:"dsn,omitempty"`
+	Relay     *string    `json:"relay,omitempty"`
+	Response  *string    `json:"response,omitempty"`
+	Status    *string    `json:"status,omitempty"`
+	Time      *time.Time `json:"time,omitempty"`
+}
+
+// MailV1LogsCommonDeliveryLogResource defines model for Mail.V1.Logs.Common.DeliveryLogResource.
+type MailV1LogsCommonDeliveryLogResource struct {
+	Account     *string                                          `json:"account,omitempty"`
+	ClientIp    *string                                          `json:"client_ip,omitempty"`
+	From        *string                                          `json:"from,omitempty"`
+	IsSpam      *bool                                            `json:"is_spam,omitempty"`
+	Nrcpt       *string                                          `json:"nrcpt,omitempty"`
+	Rcpt        *string                                          `json:"rcpt,omitempty"`
+	Rcpts       *string                                          `json:"rcpts,omitempty"`
+	RelayEvents *[]MailV1LogsCommonDeliveryLogRelayEventResource `json:"relay_events,omitempty"`
+	Status      *string                                          `json:"status,omitempty"`
+	Timestamp   *time.Time                                       `json:"timestamp,omitempty"`
+}
+
+// MailV1LogsMailboxActionsMailboxActionLogCollection Array of [`Mail.V1.Logs.MailboxActions.MailboxActionLogResource`](#model/mailv1logsmailboxactionsmailboxactionlogresource)
+type MailV1LogsMailboxActionsMailboxActionLogCollection = []MailV1LogsMailboxActionsMailboxActionLogResource
+
+// MailV1LogsMailboxActionsMailboxActionLogResource defines model for Mail.V1.Logs.MailboxActions.MailboxActionLogResource.
+type MailV1LogsMailboxActionsMailboxActionLogResource struct {
+	Event    *MailV1LogsMailboxActionsMailboxActionLogResourceEvent `json:"event,omitempty"`
+	Folder   *string                                                `json:"folder,omitempty"`
+	Hostname *string                                                `json:"hostname,omitempty"`
+
+	// Mailbox Mailbox email address
+	Mailbox *string `json:"mailbox,omitempty"`
+
+	// Time Unix timestamp of the event
+	Time      *int       `json:"time,omitempty"`
+	Timestamp *time.Time `json:"timestamp,omitempty"`
+}
+
+// MailV1LogsMailboxActionsMailboxActionLogResourceEvent defines model for MailV1LogsMailboxActionsMailboxActionLogResource.Event.
+type MailV1LogsMailboxActionsMailboxActionLogResourceEvent string
+
+// MailV1MailboxesMailboxCollection Array of [`Mail.V1.Mailboxes.MailboxResource`](#model/mailv1mailboxesmailboxresource)
+type MailV1MailboxesMailboxCollection = []MailV1MailboxesMailboxResource
+
+// MailV1MailboxesMailboxCountsResource defines model for Mail.V1.Mailboxes.MailboxCountsResource.
+type MailV1MailboxesMailboxCountsResource struct {
+	// Aliases Number of attached aliases
+	Aliases *int `json:"aliases,omitempty"`
+
+	// Autoreplies Number of attached auto-replies
+	Autoreplies *int `json:"autoreplies,omitempty"`
+
+	// Forwarders Number of attached forwarders
+	Forwarders *int `json:"forwarders,omitempty"`
+}
+
+// MailV1MailboxesMailboxProtocolsResource defines model for Mail.V1.Mailboxes.MailboxProtocolsResource.
+type MailV1MailboxesMailboxProtocolsResource struct {
+	IsImapEnabled    *bool `json:"is_imap_enabled,omitempty"`
+	IsPop3Enabled    *bool `json:"is_pop3_enabled,omitempty"`
+	IsSmtpInEnabled  *bool `json:"is_smtp_in_enabled,omitempty"`
+	IsSmtpOutEnabled *bool `json:"is_smtp_out_enabled,omitempty"`
+}
+
+// MailV1MailboxesMailboxResource defines model for Mail.V1.Mailboxes.MailboxResource.
+type MailV1MailboxesMailboxResource struct {
+	// Address Email address of the mailbox
+	Address   *string                               `json:"address,omitempty"`
+	Counts    *MailV1MailboxesMailboxCountsResource `json:"counts,omitempty"`
+	CreatedAt *time.Time                            `json:"created_at,omitempty"`
+
+	// Id Mailbox resource ID
+	Id *string `json:"id,omitempty"`
+
+	// IsCatchall Whether the mailbox is the catch-all destination for its domain
+	IsCatchall *bool                                    `json:"is_catchall,omitempty"`
+	Protocols  *MailV1MailboxesMailboxProtocolsResource `json:"protocols,omitempty"`
+
+	// Status Mailbox status
+	Status *MailV1MailboxesMailboxResourceStatus `json:"status,omitempty"`
+
+	// StatusReason Reason the mailbox was suspended
+	StatusReason *string    `json:"status_reason,omitempty"`
+	UpdatedAt    *time.Time `json:"updated_at,omitempty"`
+
+	// Usage Periodically synced usage numbers (may lag behind live values)
+	Usage *MailV1MailboxesMailboxUsageResource `json:"usage,omitempty"`
+}
+
+// MailV1MailboxesMailboxResourceStatus Mailbox status
+type MailV1MailboxesMailboxResourceStatus string
+
+// MailV1MailboxesMailboxUsageResource Periodically synced usage numbers (may lag behind live values)
+type MailV1MailboxesMailboxUsageResource struct {
+	MessagesQuota *int `json:"messages_quota,omitempty"`
+	MessagesUsed  *int `json:"messages_used,omitempty"`
+
+	// StorageQuota Storage quota in kilobytes
+	StorageQuota *int `json:"storage_quota,omitempty"`
+
+	// StorageUsed Storage used in kilobytes
+	StorageUsed *int `json:"storage_used,omitempty"`
+
+	// SyncedAt When the usage numbers were last synced; null if never synced
+	SyncedAt *time.Time `json:"synced_at,omitempty"`
+}
+
+// MailV1OrdersOrderCollection Array of [`Mail.V1.Orders.OrderResource`](#model/mailv1ordersorderresource)
+type MailV1OrdersOrderCollection = []MailV1OrdersOrderResource
+
+// MailV1OrdersOrderDomainResource defines model for Mail.V1.Orders.OrderDomainResource.
+type MailV1OrdersOrderDomainResource struct {
+	// Id Domain resource ID
+	Id *string `json:"id,omitempty"`
+
+	// Name Domain name
+	Name *string `json:"name,omitempty"`
+}
+
+// MailV1OrdersOrderPlanResource defines model for Mail.V1.Orders.OrderPlanResource.
+type MailV1OrdersOrderPlanResource struct {
+	// Name Plan name
+	Name *string `json:"name,omitempty"`
+
+	// Title Plan title
+	Title *string `json:"title,omitempty"`
+}
+
+// MailV1OrdersOrderResource defines model for Mail.V1.Orders.OrderResource.
+type MailV1OrdersOrderResource struct {
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+
+	// Domain Domain the order is attached to
+	Domain    *MailV1OrdersOrderResource_Domain `json:"domain,omitempty"`
+	ExpiresAt *time.Time                        `json:"expires_at,omitempty"`
+
+	// HasPendingUpgrade Whether an upgrade is currently pending for the order
+	HasPendingUpgrade *bool `json:"has_pending_upgrade,omitempty"`
+
+	// Id Order resource ID
+	Id *string `json:"id,omitempty"`
+
+	// IsTrial Whether the order is currently in a trial period
+	IsTrial *bool `json:"is_trial,omitempty"`
+
+	// Plan Plan the order was purchased with
+	Plan *MailV1OrdersOrderResource_Plan `json:"plan,omitempty"`
+
+	// Seats Number of mailbox seats purchased with the order
+	Seats *int `json:"seats,omitempty"`
+
+	// Status Order status
+	Status *MailV1OrdersOrderResourceStatus `json:"status,omitempty"`
+}
+
+// MailV1OrdersOrderResource_Domain Domain the order is attached to
+type MailV1OrdersOrderResource_Domain struct {
+	union json.RawMessage
+}
+
+// MailV1OrdersOrderResource_Plan Plan the order was purchased with
+type MailV1OrdersOrderResource_Plan struct {
+	union json.RawMessage
+}
+
+// MailV1OrdersOrderResourceStatus Order status
+type MailV1OrdersOrderResourceStatus string
+
+// MailV1OrdersPlanDomainResource defines model for Mail.V1.Orders.PlanDomainResource.
+type MailV1OrdersPlanDomainResource struct {
+	// AliasQuota Maximum number of aliases per domain
+	AliasQuota *int `json:"alias_quota,omitempty"`
+
+	// ForwarderQuota Maximum number of forwarders per domain
+	ForwarderQuota *int `json:"forwarder_quota,omitempty"`
+
+	// IsCatchallEnabled Whether catch-all mailboxes are available
+	IsCatchallEnabled *bool `json:"is_catchall_enabled,omitempty"`
+
+	// IsImapEnabled Whether IMAP access is available
+	IsImapEnabled *bool `json:"is_imap_enabled,omitempty"`
+
+	// IsPop3Enabled Whether POP3 access is available
+	IsPop3Enabled *bool `json:"is_pop3_enabled,omitempty"`
+
+	// MailboxQuota Maximum number of mailboxes per domain
+	MailboxQuota *int `json:"mailbox_quota,omitempty"`
+}
+
+// MailV1OrdersPlanMailboxResource defines model for Mail.V1.Orders.PlanMailboxResource.
+type MailV1OrdersPlanMailboxResource struct {
+	// AliasQuota Maximum number of aliases per mailbox
+	AliasQuota *int `json:"alias_quota,omitempty"`
+
+	// ForwarderQuota Maximum number of forwarders per mailbox
+	ForwarderQuota *int `json:"forwarder_quota,omitempty"`
+
+	// MaxOutboundAttachmentSize Maximum outbound attachment size in bytes
+	MaxOutboundAttachmentSize *int `json:"max_outbound_attachment_size,omitempty"`
+
+	// MaxOutboundMessageSize Maximum outbound message size in bytes
+	MaxOutboundMessageSize *int `json:"max_outbound_message_size,omitempty"`
+
+	// MaxOutboundRecipientLimit Maximum number of recipients per outbound message
+	MaxOutboundRecipientLimit *int `json:"max_outbound_recipient_limit,omitempty"`
+
+	// MessagesQuota Maximum number of stored messages per mailbox
+	MessagesQuota *int `json:"messages_quota,omitempty"`
+
+	// RateLimitInbound Inbound message rate limit as `messages/seconds`
+	RateLimitInbound *string `json:"rate_limit_inbound,omitempty"`
+
+	// RateLimitOutbound Outbound message rate limit as `messages/seconds`
+	RateLimitOutbound *string `json:"rate_limit_outbound,omitempty"`
+
+	// StorageQuota Storage quota per mailbox in megabytes
+	StorageQuota *int `json:"storage_quota,omitempty"`
+}
+
+// MailV1OrdersPlanResource defines model for Mail.V1.Orders.PlanResource.
+type MailV1OrdersPlanResource struct {
+	Domain  *MailV1OrdersPlanDomainResource  `json:"domain,omitempty"`
+	Mailbox *MailV1OrdersPlanMailboxResource `json:"mailbox,omitempty"`
+
+	// Name Machine name of the plan
+	Name *string `json:"name,omitempty"`
+
+	// Title Human-readable plan title
+	Title *string `json:"title,omitempty"`
+}
+
+// MailV1SchemaChangeMailboxPasswordRequestSchema defines model for Mail.V1.Schema.ChangeMailboxPasswordRequestSchema.
+type MailV1SchemaChangeMailboxPasswordRequestSchema struct {
+	// Password New mailbox password. Minimum 8 characters with uppercase, lowercase, number and special character; must not be a commonly used password.
+	Password string `json:"password"`
+}
+
+// MailV1SchemaCreateApiTokenRequestSchema defines model for Mail.V1.Schema.CreateApiTokenRequestSchema.
+type MailV1SchemaCreateApiTokenRequestSchema struct {
+	// Name Human-readable label for this token
+	Name string `json:"name"`
+
+	// Scope Mailbox scope this token can access
+	Scope struct {
+		// HasAllMailboxes Grant access to all current and future mailboxes of the order
+		HasAllMailboxes bool `json:"has_all_mailboxes"`
+
+		// MailboxIds Required when `has_all_mailboxes` is false. Mailbox resource IDs of this order.
+		MailboxIds *[]string `json:"mailbox_ids,omitempty"`
+	} `json:"scope"`
+}
+
+// MailV1SchemaCreateMailboxRequestSchema defines model for Mail.V1.Schema.CreateMailboxRequestSchema.
+type MailV1SchemaCreateMailboxRequestSchema struct {
+	// LocalPart Local part of the mailbox address (the part before the @). The domain is taken from the order. Must start and end with a letter or digit; single dots, underscores and hyphens are allowed in between.
+	LocalPart string `json:"local_part"`
+
+	// Password Mailbox password. Minimum 8 characters with uppercase, lowercase, number and special character.
+	Password string `json:"password"`
+}
+
+// MailV1SchemaCreateWebhookRequestSchema defines model for Mail.V1.Schema.CreateWebhookRequestSchema.
+type MailV1SchemaCreateWebhookRequestSchema struct {
+	// Description Optional description of the webhook's purpose
+	Description *string `json:"description,omitempty"`
+
+	// Events Events that trigger this webhook
+	Events []MailV1SchemaCreateWebhookRequestSchemaEvents `json:"events"`
+
+	// Name Human-readable name for this webhook
+	Name string `json:"name"`
+
+	// Status Initial status of the webhook
+	Status *MailV1SchemaCreateWebhookRequestSchemaStatus `json:"status,omitempty"`
+
+	// Url Publicly reachable URL that receives the webhook POST requests
+	Url string `json:"url"`
+}
+
+// MailV1SchemaCreateWebhookRequestSchemaEvents defines model for MailV1SchemaCreateWebhookRequestSchema.Events.
+type MailV1SchemaCreateWebhookRequestSchemaEvents string
+
+// MailV1SchemaCreateWebhookRequestSchemaStatus Initial status of the webhook
+type MailV1SchemaCreateWebhookRequestSchemaStatus string
+
+// MailV1SchemaUpdateWebhookRequestSchema Fields to update. All fields are optional; only provided fields are changed. Pass `"description": null` to clear the description.
+type MailV1SchemaUpdateWebhookRequestSchema struct {
+	// Description New description, or null to clear it
+	Description *string `json:"description,omitempty"`
+
+	// Events Replaces the full list of subscribed events
+	Events *[]MailV1SchemaUpdateWebhookRequestSchemaEvents `json:"events,omitempty"`
+
+	// Name New human-readable name for the webhook
+	Name *string `json:"name,omitempty"`
+
+	// Status New status for the webhook
+	Status *MailV1SchemaUpdateWebhookRequestSchemaStatus `json:"status,omitempty"`
+
+	// Url New URL to deliver events to
+	Url *string `json:"url,omitempty"`
+}
+
+// MailV1SchemaUpdateWebhookRequestSchemaEvents defines model for MailV1SchemaUpdateWebhookRequestSchema.Events.
+type MailV1SchemaUpdateWebhookRequestSchemaEvents string
+
+// MailV1SchemaUpdateWebhookRequestSchemaStatus New status for the webhook
+type MailV1SchemaUpdateWebhookRequestSchemaStatus string
+
+// MailV1WebhooksWebhookCollection Array of [`Mail.V1.Webhooks.WebhookResource`](#model/mailv1webhookswebhookresource)
+type MailV1WebhooksWebhookCollection = []MailV1WebhooksWebhookResource
+
+// MailV1WebhooksWebhookCreatedResource defines model for Mail.V1.Webhooks.WebhookCreatedResource.
+type MailV1WebhooksWebhookCreatedResource struct {
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+
+	// Description Optional description of the webhook's purpose
+	Description *string `json:"description,omitempty"`
+
+	// Events Events that trigger this webhook
+	Events *[]MailV1WebhooksWebhookCreatedResourceEvents `json:"events,omitempty"`
+
+	// Id Unique webhook identifier
+	Id      *string                               `json:"id,omitempty"`
+	Mailbox *MailV1WebhooksWebhookMailboxResource `json:"mailbox,omitempty"`
+
+	// Name Human-readable name for this webhook
+	Name *string `json:"name,omitempty"`
+
+	// Secret One-time webhook secret, returned only on creation. Sent as `Authorization: Bearer <secret>` with every delivery.
+	Secret *string `json:"secret,omitempty"`
+
+	// Status Current status of the webhook
+	Status    *MailV1WebhooksWebhookCreatedResourceStatus `json:"status,omitempty"`
+	UpdatedAt *time.Time                                  `json:"updated_at,omitempty"`
+
+	// Url URL that receives webhook POST requests
+	Url *string `json:"url,omitempty"`
+}
+
+// MailV1WebhooksWebhookCreatedResourceEvents defines model for MailV1WebhooksWebhookCreatedResource.Events.
+type MailV1WebhooksWebhookCreatedResourceEvents string
+
+// MailV1WebhooksWebhookCreatedResourceStatus Current status of the webhook
+type MailV1WebhooksWebhookCreatedResourceStatus string
+
+// MailV1WebhooksWebhookDeliveryLogCollection Array of [`Mail.V1.Webhooks.WebhookDeliveryLogResource`](#model/mailv1webhookswebhookdeliverylogresource)
+type MailV1WebhooksWebhookDeliveryLogCollection = []MailV1WebhooksWebhookDeliveryLogResource
+
+// MailV1WebhooksWebhookDeliveryLogResource defines model for Mail.V1.Webhooks.WebhookDeliveryLogResource.
+type MailV1WebhooksWebhookDeliveryLogResource struct {
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+
+	// Duration Webhook request duration in milliseconds
+	Duration *int `json:"duration,omitempty"`
+
+	// IsSuccessful Whether the delivery was successful
+	IsSuccessful *bool `json:"is_successful,omitempty"`
+
+	// MailboxAddress Email address of the mailbox this delivery is attached to
+	MailboxAddress *string `json:"mailbox_address,omitempty"`
+
+	// MaxRetryCount Maximum number of delivery attempts allowed
+	MaxRetryCount *int `json:"max_retry_count,omitempty"`
+
+	// RetryCount Number of delivery attempts made
+	RetryCount *int `json:"retry_count,omitempty"`
+
+	// WebhookUrl URL that received the webhook POST request
+	WebhookUrl *string `json:"webhook_url,omitempty"`
+}
+
+// MailV1WebhooksWebhookMailboxResource defines model for Mail.V1.Webhooks.WebhookMailboxResource.
+type MailV1WebhooksWebhookMailboxResource struct {
+	Address *string `json:"address,omitempty"`
+	Id      *string `json:"id,omitempty"`
+}
+
+// MailV1WebhooksWebhookResource defines model for Mail.V1.Webhooks.WebhookResource.
+type MailV1WebhooksWebhookResource struct {
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+
+	// Description Optional description of the webhook's purpose
+	Description *string `json:"description,omitempty"`
+
+	// Events Events that trigger this webhook
+	Events *[]MailV1WebhooksWebhookResourceEvents `json:"events,omitempty"`
+
+	// Id Unique webhook identifier
+	Id      *string                               `json:"id,omitempty"`
+	Mailbox *MailV1WebhooksWebhookMailboxResource `json:"mailbox,omitempty"`
+
+	// Name Human-readable name for this webhook
+	Name *string `json:"name,omitempty"`
+
+	// Status Current status of the webhook
+	Status    *MailV1WebhooksWebhookResourceStatus `json:"status,omitempty"`
+	UpdatedAt *time.Time                           `json:"updated_at,omitempty"`
+
+	// Url URL that receives webhook POST requests
+	Url *string `json:"url,omitempty"`
+}
+
+// MailV1WebhooksWebhookResourceEvents defines model for MailV1WebhooksWebhookResource.Events.
+type MailV1WebhooksWebhookResourceEvents string
+
+// MailV1WebhooksWebhookResourceStatus Current status of the webhook
+type MailV1WebhooksWebhookResourceStatus string
+
+// MailV1WebhooksWebhookSecretResource defines model for Mail.V1.Webhooks.WebhookSecretResource.
+type MailV1WebhooksWebhookSecretResource struct {
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+
+	// Description Optional description of the webhook's purpose
+	Description *string `json:"description,omitempty"`
+
+	// Events Events that trigger this webhook
+	Events *[]MailV1WebhooksWebhookSecretResourceEvents `json:"events,omitempty"`
+
+	// Id Unique webhook identifier
+	Id      *string                               `json:"id,omitempty"`
+	Mailbox *MailV1WebhooksWebhookMailboxResource `json:"mailbox,omitempty"`
+
+	// Name Human-readable name for this webhook
+	Name *string `json:"name,omitempty"`
+
+	// Secret New webhook secret, sent as `Authorization: Bearer <secret>` with every delivery. The previous secret is immediately invalidated and the new one is not returned again.
+	Secret *string `json:"secret,omitempty"`
+
+	// Status Current status of the webhook
+	Status    *MailV1WebhooksWebhookSecretResourceStatus `json:"status,omitempty"`
+	UpdatedAt *time.Time                                 `json:"updated_at,omitempty"`
+
+	// Url URL that receives webhook POST requests
+	Url *string `json:"url,omitempty"`
+}
+
+// MailV1WebhooksWebhookSecretResourceEvents defines model for MailV1WebhooksWebhookSecretResource.Events.
+type MailV1WebhooksWebhookSecretResourceEvents string
+
+// MailV1WebhooksWebhookSecretResourceStatus Current status of the webhook
+type MailV1WebhooksWebhookSecretResourceStatus string
+
+// MailV1WebhooksWebhookTestResultResource defines model for Mail.V1.Webhooks.WebhookTestResultResource.
+type MailV1WebhooksWebhookTestResultResource struct {
+	// Error Error message returned by the webhook endpoint in case of failure
+	Error *string `json:"error,omitempty"`
+
+	// HttpStatus HTTP status code returned by the webhook endpoint
+	HttpStatus *int `json:"http_status,omitempty"`
+
+	// IsSuccessful Whether the test delivery was successful
+	IsSuccessful *bool `json:"is_successful,omitempty"`
+}
 
 // ReachV1ContactsContactCollection Array of [`Reach.V1.Contacts.ContactResource`](#model/reachv1contactscontactresource)
 type ReachV1ContactsContactCollection = []ReachV1ContactsContactResource
@@ -5342,6 +6742,12 @@ type ActionId = int
 // AgencyCronJobUuidPath defines model for agency_cron_job_uuid_path.
 type AgencyCronJobUuidPath = openapi_types.UUID
 
+// AgencyDatabaseNamePath defines model for agency_database_name_path.
+type AgencyDatabaseNamePath = string
+
+// AgencyDatabaseUserNamePath defines model for agency_database_user_name_path.
+type AgencyDatabaseUserNamePath = string
+
 // BackupId defines model for backupId.
 type BackupId = int
 
@@ -5383,6 +6789,78 @@ type IpAddressId = int
 
 // IsEnabled defines model for is_enabled.
 type IsEnabled = bool
+
+// MailAccessLogHasDeletions defines model for mail_access_log_has_deletions.
+type MailAccessLogHasDeletions = bool
+
+// MailAccessLogProtocol defines model for mail_access_log_protocol.
+type MailAccessLogProtocol string
+
+// MailApiTokenIdPath defines model for mail_api_token_id_path.
+type MailApiTokenIdPath = string
+
+// MailApiTokenOrderFilter defines model for mail_api_token_order_filter.
+type MailApiTokenOrderFilter = string
+
+// MailLogAccount defines model for mail_log_account.
+type MailLogAccount = openapi_types.Email
+
+// MailLogDate defines model for mail_log_date.
+type MailLogDate = openapi_types.Date
+
+// MailLogFromDate defines model for mail_log_from_date.
+type MailLogFromDate = time.Time
+
+// MailLogRecipient defines model for mail_log_recipient.
+type MailLogRecipient = string
+
+// MailLogSender defines model for mail_log_sender.
+type MailLogSender = string
+
+// MailLogStatus defines model for mail_log_status.
+type MailLogStatus string
+
+// MailLogToDate defines model for mail_log_to_date.
+type MailLogToDate = time.Time
+
+// MailMailboxActionEvent defines model for mail_mailbox_action_event.
+type MailMailboxActionEvent string
+
+// MailMailboxEmail defines model for mail_mailbox_email.
+type MailMailboxEmail = openapi_types.Email
+
+// MailMailboxIdPath defines model for mail_mailbox_id_path.
+type MailMailboxIdPath = string
+
+// MailMailboxSearch defines model for mail_mailbox_search.
+type MailMailboxSearch = string
+
+// MailMailboxSort defines model for mail_mailbox_sort.
+type MailMailboxSort string
+
+// MailOrderDomainFilter defines model for mail_order_domain_filter.
+type MailOrderDomainFilter = string
+
+// MailOrderIdPath defines model for mail_order_id_path.
+type MailOrderIdPath = string
+
+// MailOrderIsTrial defines model for mail_order_is_trial.
+type MailOrderIsTrial = bool
+
+// MailOrderSort defines model for mail_order_sort.
+type MailOrderSort string
+
+// MailOrderStatus defines model for mail_order_status.
+type MailOrderStatus string
+
+// MailWebhookIdPath defines model for mail_webhook_id_path.
+type MailWebhookIdPath = string
+
+// MailWebhookMailboxFilter defines model for mail_webhook_mailbox_filter.
+type MailWebhookMailboxFilter = string
+
+// MailWebhookStatus defines model for mail_webhook_status.
+type MailWebhookStatus string
 
 // Name defines model for name.
 type Name = string
@@ -5530,6 +7008,15 @@ type AgencyHostingListAgencyPlanDomainsV1Params struct {
 
 // AgencyHostingListAgencyPlanWebsiteCronJobsV1Params defines parameters for AgencyHostingListAgencyPlanWebsiteCronJobsV1.
 type AgencyHostingListAgencyPlanWebsiteCronJobsV1Params struct {
+	// Page Page number
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PerPage Number of items per page
+	PerPage *PerPage `form:"per_page,omitempty" json:"per_page,omitempty"`
+}
+
+// AgencyHostingListAgencyPlanWebsiteDatabasesV1Params defines parameters for AgencyHostingListAgencyPlanWebsiteDatabasesV1.
+type AgencyHostingListAgencyPlanWebsiteDatabasesV1Params struct {
 	// Page Page number
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -5735,6 +7222,249 @@ type HostingListWordPressThemesV1Params struct {
 	Search *string `form:"search,omitempty" json:"search,omitempty"`
 }
 
+// MailListAPITokensV1Params defines parameters for MailListAPITokensV1.
+type MailListAPITokensV1Params struct {
+	// OrderId Filter tokens by order resource ID. Single value or comma-separated list.
+	OrderId *MailApiTokenOrderFilter `form:"order_id,omitempty" json:"order_id,omitempty"`
+
+	// Page Page number
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PerPage Number of items per page
+	PerPage *PerPage `form:"per_page,omitempty" json:"per_page,omitempty"`
+}
+
+// MailListOrdersV1Params defines parameters for MailListOrdersV1.
+type MailListOrdersV1Params struct {
+	// Domain Filter orders by domain name (exact match)
+	Domain *MailOrderDomainFilter `form:"domain,omitempty" json:"domain,omitempty"`
+
+	// Status Filter orders by status
+	Status *MailListOrdersV1ParamsStatus `form:"status,omitempty" json:"status,omitempty"`
+
+	// IsTrial Filter orders by trial state
+	IsTrial *MailOrderIsTrial `form:"is_trial,omitempty" json:"is_trial,omitempty"`
+
+	// Sort Sort orders by field. Prefix with `-` for descending order.
+	Sort *MailListOrdersV1ParamsSort `form:"sort,omitempty" json:"sort,omitempty"`
+
+	// Page Page number
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PerPage Number of items per page
+	PerPage *PerPage `form:"per_page,omitempty" json:"per_page,omitempty"`
+}
+
+// MailListOrdersV1ParamsStatus defines parameters for MailListOrdersV1.
+type MailListOrdersV1ParamsStatus string
+
+// MailListOrdersV1ParamsSort defines parameters for MailListOrdersV1.
+type MailListOrdersV1ParamsSort string
+
+// MailListAccessLogsV1Params defines parameters for MailListAccessLogsV1.
+type MailListAccessLogsV1Params struct {
+	// Account Filter log entries by a specific email account
+	Account *MailLogAccount `form:"account,omitempty" json:"account,omitempty"`
+
+	// Date Exact date filter (YYYY-MM-DD). Takes precedence over `from_date`/`to_date` when both are given.
+	Date *MailLogDate `form:"date,omitempty" json:"date,omitempty"`
+
+	// FromDate Date range start (RFC 3339)
+	FromDate *MailLogFromDate `form:"from_date,omitempty" json:"from_date,omitempty"`
+
+	// ToDate Date range end (RFC 3339)
+	ToDate *MailLogToDate `form:"to_date,omitempty" json:"to_date,omitempty"`
+
+	// Status Filter log entries by status
+	Status *MailListAccessLogsV1ParamsStatus `form:"status,omitempty" json:"status,omitempty"`
+
+	// Protocol Filter access log entries by protocol
+	Protocol *MailListAccessLogsV1ParamsProtocol `form:"protocol,omitempty" json:"protocol,omitempty"`
+
+	// HasDeletions Filter access log entries by whether the session had deletions
+	HasDeletions *MailAccessLogHasDeletions `form:"has_deletions,omitempty" json:"has_deletions,omitempty"`
+
+	// Page Page number
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PerPage Number of items per page
+	PerPage *PerPage `form:"per_page,omitempty" json:"per_page,omitempty"`
+}
+
+// MailListAccessLogsV1ParamsStatus defines parameters for MailListAccessLogsV1.
+type MailListAccessLogsV1ParamsStatus string
+
+// MailListAccessLogsV1ParamsProtocol defines parameters for MailListAccessLogsV1.
+type MailListAccessLogsV1ParamsProtocol string
+
+// MailListActionLogsV1Params defines parameters for MailListActionLogsV1.
+type MailListActionLogsV1Params struct {
+	// Account Filter log entries by a specific email account
+	Account *MailLogAccount `form:"account,omitempty" json:"account,omitempty"`
+
+	// Date Exact date filter (YYYY-MM-DD). Takes precedence over `from_date`/`to_date` when both are given.
+	Date *MailLogDate `form:"date,omitempty" json:"date,omitempty"`
+
+	// FromDate Date range start (RFC 3339)
+	FromDate *MailLogFromDate `form:"from_date,omitempty" json:"from_date,omitempty"`
+
+	// ToDate Date range end (RFC 3339)
+	ToDate *MailLogToDate `form:"to_date,omitempty" json:"to_date,omitempty"`
+
+	// Status Filter log entries by status
+	Status *MailListActionLogsV1ParamsStatus `form:"status,omitempty" json:"status,omitempty"`
+
+	// Page Page number
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PerPage Number of items per page
+	PerPage *PerPage `form:"per_page,omitempty" json:"per_page,omitempty"`
+}
+
+// MailListActionLogsV1ParamsStatus defines parameters for MailListActionLogsV1.
+type MailListActionLogsV1ParamsStatus string
+
+// MailListInboundLogsV1Params defines parameters for MailListInboundLogsV1.
+type MailListInboundLogsV1Params struct {
+	// Account Filter log entries by a specific email account
+	Account *MailLogAccount `form:"account,omitempty" json:"account,omitempty"`
+
+	// Date Exact date filter (YYYY-MM-DD). Takes precedence over `from_date`/`to_date` when both are given.
+	Date *MailLogDate `form:"date,omitempty" json:"date,omitempty"`
+
+	// FromDate Date range start (RFC 3339)
+	FromDate *MailLogFromDate `form:"from_date,omitempty" json:"from_date,omitempty"`
+
+	// ToDate Date range end (RFC 3339)
+	ToDate *MailLogToDate `form:"to_date,omitempty" json:"to_date,omitempty"`
+
+	// Status Filter log entries by status
+	Status *MailListInboundLogsV1ParamsStatus `form:"status,omitempty" json:"status,omitempty"`
+
+	// Sender Filter log entries by sender. Accepts a full email address or a domain.
+	Sender *MailLogSender `form:"sender,omitempty" json:"sender,omitempty"`
+
+	// Recipient Filter log entries by recipient. Accepts a full email address or a domain.
+	Recipient *MailLogRecipient `form:"recipient,omitempty" json:"recipient,omitempty"`
+
+	// Page Page number
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PerPage Number of items per page
+	PerPage *PerPage `form:"per_page,omitempty" json:"per_page,omitempty"`
+}
+
+// MailListInboundLogsV1ParamsStatus defines parameters for MailListInboundLogsV1.
+type MailListInboundLogsV1ParamsStatus string
+
+// MailListMailboxActionLogsV1Params defines parameters for MailListMailboxActionLogsV1.
+type MailListMailboxActionLogsV1Params struct {
+	// Email Mailbox email address. Must belong to the order's domain.
+	Email MailMailboxEmail `form:"email" json:"email"`
+
+	// Date Exact date filter (YYYY-MM-DD). Takes precedence over `from_date`/`to_date` when both are given.
+	Date *MailLogDate `form:"date,omitempty" json:"date,omitempty"`
+
+	// FromDate Date range start (RFC 3339)
+	FromDate *MailLogFromDate `form:"from_date,omitempty" json:"from_date,omitempty"`
+
+	// ToDate Date range end (RFC 3339)
+	ToDate *MailLogToDate `form:"to_date,omitempty" json:"to_date,omitempty"`
+
+	// Event Filter mailbox action log entries by event type
+	Event *MailListMailboxActionLogsV1ParamsEvent `form:"event,omitempty" json:"event,omitempty"`
+
+	// Page Page number
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PerPage Number of items per page
+	PerPage *PerPage `form:"per_page,omitempty" json:"per_page,omitempty"`
+}
+
+// MailListMailboxActionLogsV1ParamsEvent defines parameters for MailListMailboxActionLogsV1.
+type MailListMailboxActionLogsV1ParamsEvent string
+
+// MailListOutboundLogsV1Params defines parameters for MailListOutboundLogsV1.
+type MailListOutboundLogsV1Params struct {
+	// Account Filter log entries by a specific email account
+	Account *MailLogAccount `form:"account,omitempty" json:"account,omitempty"`
+
+	// Date Exact date filter (YYYY-MM-DD). Takes precedence over `from_date`/`to_date` when both are given.
+	Date *MailLogDate `form:"date,omitempty" json:"date,omitempty"`
+
+	// FromDate Date range start (RFC 3339)
+	FromDate *MailLogFromDate `form:"from_date,omitempty" json:"from_date,omitempty"`
+
+	// ToDate Date range end (RFC 3339)
+	ToDate *MailLogToDate `form:"to_date,omitempty" json:"to_date,omitempty"`
+
+	// Status Filter log entries by status
+	Status *MailListOutboundLogsV1ParamsStatus `form:"status,omitempty" json:"status,omitempty"`
+
+	// Sender Filter log entries by sender. Accepts a full email address or a domain.
+	Sender *MailLogSender `form:"sender,omitempty" json:"sender,omitempty"`
+
+	// Recipient Filter log entries by recipient. Accepts a full email address or a domain.
+	Recipient *MailLogRecipient `form:"recipient,omitempty" json:"recipient,omitempty"`
+
+	// Page Page number
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PerPage Number of items per page
+	PerPage *PerPage `form:"per_page,omitempty" json:"per_page,omitempty"`
+}
+
+// MailListOutboundLogsV1ParamsStatus defines parameters for MailListOutboundLogsV1.
+type MailListOutboundLogsV1ParamsStatus string
+
+// MailListMailboxesV1Params defines parameters for MailListMailboxesV1.
+type MailListMailboxesV1Params struct {
+	// Search Filter mailboxes whose email address contains the given string
+	Search *MailMailboxSearch `form:"search,omitempty" json:"search,omitempty"`
+
+	// Sort Sort mailboxes by field. Prefix with `-` for descending order.
+	Sort *MailListMailboxesV1ParamsSort `form:"sort,omitempty" json:"sort,omitempty"`
+
+	// Page Page number
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PerPage Number of items per page
+	PerPage *PerPage `form:"per_page,omitempty" json:"per_page,omitempty"`
+}
+
+// MailListMailboxesV1ParamsSort defines parameters for MailListMailboxesV1.
+type MailListMailboxesV1ParamsSort string
+
+// MailListWebhooksV1Params defines parameters for MailListWebhooksV1.
+type MailListWebhooksV1Params struct {
+	// MailboxId Filter by the mailbox resource ID the webhooks are attached to
+	MailboxId *MailWebhookMailboxFilter `form:"mailbox_id,omitempty" json:"mailbox_id,omitempty"`
+
+	// Status Filter webhooks by status
+	Status *MailListWebhooksV1ParamsStatus `form:"status,omitempty" json:"status,omitempty"`
+
+	// Page Page number
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PerPage Number of items per page
+	PerPage *PerPage `form:"per_page,omitempty" json:"per_page,omitempty"`
+}
+
+// MailListWebhooksV1ParamsStatus defines parameters for MailListWebhooksV1.
+type MailListWebhooksV1ParamsStatus string
+
+// MailListWebhookDeliveryLogsV1Params defines parameters for MailListWebhookDeliveryLogsV1.
+type MailListWebhookDeliveryLogsV1Params struct {
+	// MailboxId Filter by the mailbox resource ID the webhooks are attached to
+	MailboxId *MailWebhookMailboxFilter `form:"mailbox_id,omitempty" json:"mailbox_id,omitempty"`
+
+	// Page Page number
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PerPage Number of items per page
+	PerPage *PerPage `form:"per_page,omitempty" json:"per_page,omitempty"`
+}
+
 // ReachListContactsV1Params defines parameters for ReachListContactsV1.
 type ReachListContactsV1Params struct {
 	// GroupUuid Filter contacts by group UUID
@@ -5819,6 +7549,12 @@ type AgencyHostingBuildAgencyPlanWebsiteNodeJSAssetsV1JSONRequestBody = AgencyHo
 // AgencyHostingCreateAgencyPlanWebsiteCronJobV1JSONRequestBody defines body for AgencyHostingCreateAgencyPlanWebsiteCronJobV1 for application/json ContentType.
 type AgencyHostingCreateAgencyPlanWebsiteCronJobV1JSONRequestBody = AgencyHostingV1WebsitesCronJobsCreateCronJobRequest
 
+// AgencyHostingCreateAgencyPlanWebsiteDatabaseV1JSONRequestBody defines body for AgencyHostingCreateAgencyPlanWebsiteDatabaseV1 for application/json ContentType.
+type AgencyHostingCreateAgencyPlanWebsiteDatabaseV1JSONRequestBody = AgencyHostingV1WebsitesDatabasesCreateDatabaseRequest
+
+// AgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1JSONRequestBody defines body for AgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1 for application/json ContentType.
+type AgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1JSONRequestBody = AgencyHostingV1WebsitesDatabasesUsersCreateDatabaseUserRequest
+
 // AgencyHostingLinkDomainToAgencyPlanWebsiteV1JSONRequestBody defines body for AgencyHostingLinkDomainToAgencyPlanWebsiteV1 for application/json ContentType.
 type AgencyHostingLinkDomainToAgencyPlanWebsiteV1JSONRequestBody = AgencyHostingV1DomainsLinkDomainRequest
 
@@ -5827,6 +7563,12 @@ type AgencyHostingChangeAgencyPlanWebsiteDomainV1JSONRequestBody = AgencyHosting
 
 // AgencyHostingImportAgencyPlanWebsiteFromArchiveV1JSONRequestBody defines body for AgencyHostingImportAgencyPlanWebsiteFromArchiveV1 for application/json ContentType.
 type AgencyHostingImportAgencyPlanWebsiteFromArchiveV1JSONRequestBody = AgencyHostingV1FilesImportArchiveRequest
+
+// AgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1JSONRequestBody defines body for AgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1 for application/json ContentType.
+type AgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1JSONRequestBody = AgencyHostingV1WordPressChangeVersionRequest
+
+// BillingCreatePurchaseOrderV1JSONRequestBody defines body for BillingCreatePurchaseOrderV1 for application/json ContentType.
+type BillingCreatePurchaseOrderV1JSONRequestBody = BillingV1OrderPurchaseRequest
 
 // DNSDeleteDNSRecordsV1JSONRequestBody defines body for DNSDeleteDNSRecordsV1 for application/json ContentType.
 type DNSDeleteDNSRecordsV1JSONRequestBody = DNSV1ZoneDestroyRequest
@@ -5845,6 +7587,9 @@ type DomainsCheckDomainAvailabilityV1JSONRequestBody = DomainsV1AvailabilityAvai
 
 // DomainsCreateDomainForwardingV1JSONRequestBody defines body for DomainsCreateDomainForwardingV1 for application/json ContentType.
 type DomainsCreateDomainForwardingV1JSONRequestBody = DomainsV1ForwardingStoreRequest
+
+// DomainsUpdateDomainForwardingV1JSONRequestBody defines body for DomainsUpdateDomainForwardingV1 for application/json ContentType.
+type DomainsUpdateDomainForwardingV1JSONRequestBody = DomainsV1ForwardingUpdateRequest
 
 // DomainsPurchaseNewDomainV1JSONRequestBody defines body for DomainsPurchaseNewDomainV1 for application/json ContentType.
 type DomainsPurchaseNewDomainV1JSONRequestBody = DomainsV1PortfolioPurchaseRequest
@@ -5977,6 +7722,21 @@ type HostingCreateWebsiteV1JSONRequestBody = HostingV1WebsitesCreateWebsiteReque
 
 // HostingDeleteWebsiteV1JSONRequestBody defines body for HostingDeleteWebsiteV1 for application/json ContentType.
 type HostingDeleteWebsiteV1JSONRequestBody = HostingV1WebsitesDeleteWebsiteRequest
+
+// MailChangeMailboxPasswordV1JSONRequestBody defines body for MailChangeMailboxPasswordV1 for application/json ContentType.
+type MailChangeMailboxPasswordV1JSONRequestBody = MailV1SchemaChangeMailboxPasswordRequestSchema
+
+// MailCreateWebhookV1JSONRequestBody defines body for MailCreateWebhookV1 for application/json ContentType.
+type MailCreateWebhookV1JSONRequestBody = MailV1SchemaCreateWebhookRequestSchema
+
+// MailCreateAPITokenV1JSONRequestBody defines body for MailCreateAPITokenV1 for application/json ContentType.
+type MailCreateAPITokenV1JSONRequestBody = MailV1SchemaCreateApiTokenRequestSchema
+
+// MailCreateMailboxV1JSONRequestBody defines body for MailCreateMailboxV1 for application/json ContentType.
+type MailCreateMailboxV1JSONRequestBody = MailV1SchemaCreateMailboxRequestSchema
+
+// MailUpdateWebhookV1JSONRequestBody defines body for MailUpdateWebhookV1 for application/json ContentType.
+type MailUpdateWebhookV1JSONRequestBody = MailV1SchemaUpdateWebhookRequestSchema
 
 // ReachCreateANewContactV1JSONRequestBody defines body for ReachCreateANewContactV1 for application/json ContentType.
 type ReachCreateANewContactV1JSONRequestBody = ReachV1ContactsStoreRequest
@@ -6387,6 +8147,78 @@ func (t HostingV1PhpUpdatePhpOptionsRequest_Options_AdditionalProperties) Marsha
 }
 
 func (t *HostingV1PhpUpdatePhpOptionsRequest_Options_AdditionalProperties) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsMailV1OrdersOrderDomainResource returns the union data inside the MailV1OrdersOrderResource_Domain as a MailV1OrdersOrderDomainResource
+func (t MailV1OrdersOrderResource_Domain) AsMailV1OrdersOrderDomainResource() (MailV1OrdersOrderDomainResource, error) {
+	var body MailV1OrdersOrderDomainResource
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromMailV1OrdersOrderDomainResource overwrites any union data inside the MailV1OrdersOrderResource_Domain as the provided MailV1OrdersOrderDomainResource
+func (t *MailV1OrdersOrderResource_Domain) FromMailV1OrdersOrderDomainResource(v MailV1OrdersOrderDomainResource) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeMailV1OrdersOrderDomainResource performs a merge with any union data inside the MailV1OrdersOrderResource_Domain, using the provided MailV1OrdersOrderDomainResource
+func (t *MailV1OrdersOrderResource_Domain) MergeMailV1OrdersOrderDomainResource(v MailV1OrdersOrderDomainResource) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t MailV1OrdersOrderResource_Domain) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *MailV1OrdersOrderResource_Domain) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsMailV1OrdersOrderPlanResource returns the union data inside the MailV1OrdersOrderResource_Plan as a MailV1OrdersOrderPlanResource
+func (t MailV1OrdersOrderResource_Plan) AsMailV1OrdersOrderPlanResource() (MailV1OrdersOrderPlanResource, error) {
+	var body MailV1OrdersOrderPlanResource
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromMailV1OrdersOrderPlanResource overwrites any union data inside the MailV1OrdersOrderResource_Plan as the provided MailV1OrdersOrderPlanResource
+func (t *MailV1OrdersOrderResource_Plan) FromMailV1OrdersOrderPlanResource(v MailV1OrdersOrderPlanResource) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeMailV1OrdersOrderPlanResource performs a merge with any union data inside the MailV1OrdersOrderResource_Plan, using the provided MailV1OrdersOrderPlanResource
+func (t *MailV1OrdersOrderResource_Plan) MergeMailV1OrdersOrderPlanResource(v MailV1OrdersOrderPlanResource) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t MailV1OrdersOrderResource_Plan) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *MailV1OrdersOrderResource_Plan) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -6925,6 +8757,25 @@ type ClientInterface interface {
 	// AgencyHostingDeleteAgencyPlanWebsiteCronJobV1 request
 	AgencyHostingDeleteAgencyPlanWebsiteCronJobV1(ctx context.Context, websiteUid WebsiteUid, uuid AgencyCronJobUuidPath, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// AgencyHostingListAgencyPlanWebsiteDatabasesV1 request
+	AgencyHostingListAgencyPlanWebsiteDatabasesV1(ctx context.Context, websiteUid WebsiteUid, params *AgencyHostingListAgencyPlanWebsiteDatabasesV1Params, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AgencyHostingCreateAgencyPlanWebsiteDatabaseV1WithBody request with any body
+	AgencyHostingCreateAgencyPlanWebsiteDatabaseV1WithBody(ctx context.Context, websiteUid WebsiteUid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AgencyHostingCreateAgencyPlanWebsiteDatabaseV1(ctx context.Context, websiteUid WebsiteUid, body AgencyHostingCreateAgencyPlanWebsiteDatabaseV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AgencyHostingDeleteAgencyPlanWebsiteDatabaseV1 request
+	AgencyHostingDeleteAgencyPlanWebsiteDatabaseV1(ctx context.Context, websiteUid WebsiteUid, databaseName AgencyDatabaseNamePath, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1WithBody request with any body
+	AgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1WithBody(ctx context.Context, websiteUid WebsiteUid, databaseName AgencyDatabaseNamePath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1(ctx context.Context, websiteUid WebsiteUid, databaseName AgencyDatabaseNamePath, body AgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AgencyHostingDeleteAgencyPlanWebsiteDatabaseUserV1 request
+	AgencyHostingDeleteAgencyPlanWebsiteDatabaseUserV1(ctx context.Context, websiteUid WebsiteUid, databaseName AgencyDatabaseNamePath, databaseUserName AgencyDatabaseUserNamePath, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// AgencyHostingLinkDomainToAgencyPlanWebsiteV1WithBody request with any body
 	AgencyHostingLinkDomainToAgencyPlanWebsiteV1WithBody(ctx context.Context, websiteUid WebsiteUid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -6946,8 +8797,24 @@ type ClientInterface interface {
 	// AgencyHostingListRunningAgencyPlanWebsiteProcessesV1 request
 	AgencyHostingListRunningAgencyPlanWebsiteProcessesV1(ctx context.Context, websiteUid WebsiteUid, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// AgencyHostingGetAgencyPlanWebsiteWordPressSettingsV1 request
+	AgencyHostingGetAgencyPlanWebsiteWordPressSettingsV1(ctx context.Context, websiteUid WebsiteUid, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1WithBody request with any body
+	AgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1WithBody(ctx context.Context, websiteUid WebsiteUid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1(ctx context.Context, websiteUid WebsiteUid, body AgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AgencyHostingListAvailableWordPressVersionsForAnAgencyPlanWebsiteV1 request
+	AgencyHostingListAvailableWordPressVersionsForAnAgencyPlanWebsiteV1(ctx context.Context, websiteUid WebsiteUid, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// BillingGetCatalogItemListV1 request
 	BillingGetCatalogItemListV1(ctx context.Context, params *BillingGetCatalogItemListV1Params, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// BillingCreatePurchaseOrderV1WithBody request with any body
+	BillingCreatePurchaseOrderV1WithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	BillingCreatePurchaseOrderV1(ctx context.Context, body BillingCreatePurchaseOrderV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// BillingGetPaymentMethodListV1 request
 	BillingGetPaymentMethodListV1(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -7015,6 +8882,11 @@ type ClientInterface interface {
 	// DomainsGetDomainForwardingV1 request
 	DomainsGetDomainForwardingV1(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// DomainsUpdateDomainForwardingV1WithBody request with any body
+	DomainsUpdateDomainForwardingV1WithBody(ctx context.Context, domain Domain, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	DomainsUpdateDomainForwardingV1(ctx context.Context, domain Domain, body DomainsUpdateDomainForwardingV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// DomainsGetDomainListV1 request
 	DomainsGetDomainListV1(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -7025,6 +8897,9 @@ type ClientInterface interface {
 
 	// DomainsGetDomainDetailsV1 request
 	DomainsGetDomainDetailsV1(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DomainsGetDomainAuthorizationCodeV1 request
+	DomainsGetDomainAuthorizationCodeV1(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DomainsDisableDomainLockV1 request
 	DomainsDisableDomainLockV1(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -7045,6 +8920,12 @@ type ClientInterface interface {
 
 	// DomainsGetDomainRenewalInformationV1 request
 	DomainsGetDomainRenewalInformationV1(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DomainsGetTransferListV1 request
+	DomainsGetTransferListV1(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DomainsGetTransferV1 request
+	DomainsGetTransferV1(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DomainsGetWHOISProfileListV1 request
 	DomainsGetWHOISProfileListV1(ctx context.Context, params *DomainsGetWHOISProfileListV1Params, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -7414,6 +9295,82 @@ type ClientInterface interface {
 
 	// HostingListWordPressThemesV1 request
 	HostingListWordPressThemesV1(ctx context.Context, params *HostingListWordPressThemesV1Params, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MailListAPITokensV1 request
+	MailListAPITokensV1(ctx context.Context, params *MailListAPITokensV1Params, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MailRevokeAPITokenV1 request
+	MailRevokeAPITokenV1(ctx context.Context, tokenId MailApiTokenIdPath, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MailDeleteMailboxV1 request
+	MailDeleteMailboxV1(ctx context.Context, mailboxId MailMailboxIdPath, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MailChangeMailboxPasswordV1WithBody request with any body
+	MailChangeMailboxPasswordV1WithBody(ctx context.Context, mailboxId MailMailboxIdPath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MailChangeMailboxPasswordV1(ctx context.Context, mailboxId MailMailboxIdPath, body MailChangeMailboxPasswordV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MailCreateWebhookV1WithBody request with any body
+	MailCreateWebhookV1WithBody(ctx context.Context, mailboxId MailMailboxIdPath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MailCreateWebhookV1(ctx context.Context, mailboxId MailMailboxIdPath, body MailCreateWebhookV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MailListOrdersV1 request
+	MailListOrdersV1(ctx context.Context, params *MailListOrdersV1Params, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MailCreateAPITokenV1WithBody request with any body
+	MailCreateAPITokenV1WithBody(ctx context.Context, orderId MailOrderIdPath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MailCreateAPITokenV1(ctx context.Context, orderId MailOrderIdPath, body MailCreateAPITokenV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MailListAccessLogsV1 request
+	MailListAccessLogsV1(ctx context.Context, orderId MailOrderIdPath, params *MailListAccessLogsV1Params, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MailListActionLogsV1 request
+	MailListActionLogsV1(ctx context.Context, orderId MailOrderIdPath, params *MailListActionLogsV1Params, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MailListInboundLogsV1 request
+	MailListInboundLogsV1(ctx context.Context, orderId MailOrderIdPath, params *MailListInboundLogsV1Params, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MailListMailboxActionLogsV1 request
+	MailListMailboxActionLogsV1(ctx context.Context, orderId MailOrderIdPath, params *MailListMailboxActionLogsV1Params, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MailListOutboundLogsV1 request
+	MailListOutboundLogsV1(ctx context.Context, orderId MailOrderIdPath, params *MailListOutboundLogsV1Params, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MailListMailboxesV1 request
+	MailListMailboxesV1(ctx context.Context, orderId MailOrderIdPath, params *MailListMailboxesV1Params, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MailCreateMailboxV1WithBody request with any body
+	MailCreateMailboxV1WithBody(ctx context.Context, orderId MailOrderIdPath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MailCreateMailboxV1(ctx context.Context, orderId MailOrderIdPath, body MailCreateMailboxV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MailGetOrderPlanV1 request
+	MailGetOrderPlanV1(ctx context.Context, orderId MailOrderIdPath, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MailListWebhooksV1 request
+	MailListWebhooksV1(ctx context.Context, orderId MailOrderIdPath, params *MailListWebhooksV1Params, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MailListWebhookDeliveryLogsV1 request
+	MailListWebhookDeliveryLogsV1(ctx context.Context, orderId MailOrderIdPath, params *MailListWebhookDeliveryLogsV1Params, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MailDeleteWebhookV1 request
+	MailDeleteWebhookV1(ctx context.Context, webhookId MailWebhookIdPath, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MailGetWebhookV1 request
+	MailGetWebhookV1(ctx context.Context, webhookId MailWebhookIdPath, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MailUpdateWebhookV1WithBody request with any body
+	MailUpdateWebhookV1WithBody(ctx context.Context, webhookId MailWebhookIdPath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MailUpdateWebhookV1(ctx context.Context, webhookId MailWebhookIdPath, body MailUpdateWebhookV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MailRegenerateWebhookSecretV1 request
+	MailRegenerateWebhookSecretV1(ctx context.Context, webhookId MailWebhookIdPath, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MailTestWebhookV1 request
+	MailTestWebhookV1(ctx context.Context, webhookId MailWebhookIdPath, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ReachListContactsV1 request
 	ReachListContactsV1(ctx context.Context, params *ReachListContactsV1Params, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -7851,6 +9808,90 @@ func (c *Client) AgencyHostingDeleteAgencyPlanWebsiteCronJobV1(ctx context.Conte
 	return c.Client.Do(req)
 }
 
+func (c *Client) AgencyHostingListAgencyPlanWebsiteDatabasesV1(ctx context.Context, websiteUid WebsiteUid, params *AgencyHostingListAgencyPlanWebsiteDatabasesV1Params, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAgencyHostingListAgencyPlanWebsiteDatabasesV1Request(c.Server, websiteUid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AgencyHostingCreateAgencyPlanWebsiteDatabaseV1WithBody(ctx context.Context, websiteUid WebsiteUid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAgencyHostingCreateAgencyPlanWebsiteDatabaseV1RequestWithBody(c.Server, websiteUid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AgencyHostingCreateAgencyPlanWebsiteDatabaseV1(ctx context.Context, websiteUid WebsiteUid, body AgencyHostingCreateAgencyPlanWebsiteDatabaseV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAgencyHostingCreateAgencyPlanWebsiteDatabaseV1Request(c.Server, websiteUid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AgencyHostingDeleteAgencyPlanWebsiteDatabaseV1(ctx context.Context, websiteUid WebsiteUid, databaseName AgencyDatabaseNamePath, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAgencyHostingDeleteAgencyPlanWebsiteDatabaseV1Request(c.Server, websiteUid, databaseName)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1WithBody(ctx context.Context, websiteUid WebsiteUid, databaseName AgencyDatabaseNamePath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1RequestWithBody(c.Server, websiteUid, databaseName, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1(ctx context.Context, websiteUid WebsiteUid, databaseName AgencyDatabaseNamePath, body AgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1Request(c.Server, websiteUid, databaseName, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AgencyHostingDeleteAgencyPlanWebsiteDatabaseUserV1(ctx context.Context, websiteUid WebsiteUid, databaseName AgencyDatabaseNamePath, databaseUserName AgencyDatabaseUserNamePath, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAgencyHostingDeleteAgencyPlanWebsiteDatabaseUserV1Request(c.Server, websiteUid, databaseName, databaseUserName)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) AgencyHostingLinkDomainToAgencyPlanWebsiteV1WithBody(ctx context.Context, websiteUid WebsiteUid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewAgencyHostingLinkDomainToAgencyPlanWebsiteV1RequestWithBody(c.Server, websiteUid, contentType, body)
 	if err != nil {
@@ -7947,8 +9988,80 @@ func (c *Client) AgencyHostingListRunningAgencyPlanWebsiteProcessesV1(ctx contex
 	return c.Client.Do(req)
 }
 
+func (c *Client) AgencyHostingGetAgencyPlanWebsiteWordPressSettingsV1(ctx context.Context, websiteUid WebsiteUid, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAgencyHostingGetAgencyPlanWebsiteWordPressSettingsV1Request(c.Server, websiteUid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1WithBody(ctx context.Context, websiteUid WebsiteUid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1RequestWithBody(c.Server, websiteUid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1(ctx context.Context, websiteUid WebsiteUid, body AgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1Request(c.Server, websiteUid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AgencyHostingListAvailableWordPressVersionsForAnAgencyPlanWebsiteV1(ctx context.Context, websiteUid WebsiteUid, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAgencyHostingListAvailableWordPressVersionsForAnAgencyPlanWebsiteV1Request(c.Server, websiteUid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) BillingGetCatalogItemListV1(ctx context.Context, params *BillingGetCatalogItemListV1Params, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewBillingGetCatalogItemListV1Request(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) BillingCreatePurchaseOrderV1WithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewBillingCreatePurchaseOrderV1RequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) BillingCreatePurchaseOrderV1(ctx context.Context, body BillingCreatePurchaseOrderV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewBillingCreatePurchaseOrderV1Request(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -8247,6 +10360,30 @@ func (c *Client) DomainsGetDomainForwardingV1(ctx context.Context, domain Domain
 	return c.Client.Do(req)
 }
 
+func (c *Client) DomainsUpdateDomainForwardingV1WithBody(ctx context.Context, domain Domain, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDomainsUpdateDomainForwardingV1RequestWithBody(c.Server, domain, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DomainsUpdateDomainForwardingV1(ctx context.Context, domain Domain, body DomainsUpdateDomainForwardingV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDomainsUpdateDomainForwardingV1Request(c.Server, domain, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) DomainsGetDomainListV1(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewDomainsGetDomainListV1Request(c.Server)
 	if err != nil {
@@ -8285,6 +10422,18 @@ func (c *Client) DomainsPurchaseNewDomainV1(ctx context.Context, body DomainsPur
 
 func (c *Client) DomainsGetDomainDetailsV1(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewDomainsGetDomainDetailsV1Request(c.Server, domain)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DomainsGetDomainAuthorizationCodeV1(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDomainsGetDomainAuthorizationCodeV1Request(c.Server, domain)
 	if err != nil {
 		return nil, err
 	}
@@ -8369,6 +10518,30 @@ func (c *Client) DomainsEnablePrivacyProtectionV1(ctx context.Context, domain Do
 
 func (c *Client) DomainsGetDomainRenewalInformationV1(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewDomainsGetDomainRenewalInformationV1Request(c.Server, domain)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DomainsGetTransferListV1(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDomainsGetTransferListV1Request(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DomainsGetTransferV1(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDomainsGetTransferV1Request(c.Server, domain)
 	if err != nil {
 		return nil, err
 	}
@@ -10013,6 +12186,330 @@ func (c *Client) HostingListSuggestedWordPressPluginsV1(ctx context.Context, par
 
 func (c *Client) HostingListWordPressThemesV1(ctx context.Context, params *HostingListWordPressThemesV1Params, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewHostingListWordPressThemesV1Request(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MailListAPITokensV1(ctx context.Context, params *MailListAPITokensV1Params, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMailListAPITokensV1Request(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MailRevokeAPITokenV1(ctx context.Context, tokenId MailApiTokenIdPath, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMailRevokeAPITokenV1Request(c.Server, tokenId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MailDeleteMailboxV1(ctx context.Context, mailboxId MailMailboxIdPath, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMailDeleteMailboxV1Request(c.Server, mailboxId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MailChangeMailboxPasswordV1WithBody(ctx context.Context, mailboxId MailMailboxIdPath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMailChangeMailboxPasswordV1RequestWithBody(c.Server, mailboxId, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MailChangeMailboxPasswordV1(ctx context.Context, mailboxId MailMailboxIdPath, body MailChangeMailboxPasswordV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMailChangeMailboxPasswordV1Request(c.Server, mailboxId, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MailCreateWebhookV1WithBody(ctx context.Context, mailboxId MailMailboxIdPath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMailCreateWebhookV1RequestWithBody(c.Server, mailboxId, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MailCreateWebhookV1(ctx context.Context, mailboxId MailMailboxIdPath, body MailCreateWebhookV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMailCreateWebhookV1Request(c.Server, mailboxId, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MailListOrdersV1(ctx context.Context, params *MailListOrdersV1Params, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMailListOrdersV1Request(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MailCreateAPITokenV1WithBody(ctx context.Context, orderId MailOrderIdPath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMailCreateAPITokenV1RequestWithBody(c.Server, orderId, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MailCreateAPITokenV1(ctx context.Context, orderId MailOrderIdPath, body MailCreateAPITokenV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMailCreateAPITokenV1Request(c.Server, orderId, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MailListAccessLogsV1(ctx context.Context, orderId MailOrderIdPath, params *MailListAccessLogsV1Params, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMailListAccessLogsV1Request(c.Server, orderId, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MailListActionLogsV1(ctx context.Context, orderId MailOrderIdPath, params *MailListActionLogsV1Params, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMailListActionLogsV1Request(c.Server, orderId, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MailListInboundLogsV1(ctx context.Context, orderId MailOrderIdPath, params *MailListInboundLogsV1Params, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMailListInboundLogsV1Request(c.Server, orderId, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MailListMailboxActionLogsV1(ctx context.Context, orderId MailOrderIdPath, params *MailListMailboxActionLogsV1Params, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMailListMailboxActionLogsV1Request(c.Server, orderId, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MailListOutboundLogsV1(ctx context.Context, orderId MailOrderIdPath, params *MailListOutboundLogsV1Params, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMailListOutboundLogsV1Request(c.Server, orderId, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MailListMailboxesV1(ctx context.Context, orderId MailOrderIdPath, params *MailListMailboxesV1Params, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMailListMailboxesV1Request(c.Server, orderId, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MailCreateMailboxV1WithBody(ctx context.Context, orderId MailOrderIdPath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMailCreateMailboxV1RequestWithBody(c.Server, orderId, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MailCreateMailboxV1(ctx context.Context, orderId MailOrderIdPath, body MailCreateMailboxV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMailCreateMailboxV1Request(c.Server, orderId, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MailGetOrderPlanV1(ctx context.Context, orderId MailOrderIdPath, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMailGetOrderPlanV1Request(c.Server, orderId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MailListWebhooksV1(ctx context.Context, orderId MailOrderIdPath, params *MailListWebhooksV1Params, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMailListWebhooksV1Request(c.Server, orderId, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MailListWebhookDeliveryLogsV1(ctx context.Context, orderId MailOrderIdPath, params *MailListWebhookDeliveryLogsV1Params, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMailListWebhookDeliveryLogsV1Request(c.Server, orderId, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MailDeleteWebhookV1(ctx context.Context, webhookId MailWebhookIdPath, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMailDeleteWebhookV1Request(c.Server, webhookId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MailGetWebhookV1(ctx context.Context, webhookId MailWebhookIdPath, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMailGetWebhookV1Request(c.Server, webhookId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MailUpdateWebhookV1WithBody(ctx context.Context, webhookId MailWebhookIdPath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMailUpdateWebhookV1RequestWithBody(c.Server, webhookId, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MailUpdateWebhookV1(ctx context.Context, webhookId MailWebhookIdPath, body MailUpdateWebhookV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMailUpdateWebhookV1Request(c.Server, webhookId, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MailRegenerateWebhookSecretV1(ctx context.Context, webhookId MailWebhookIdPath, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMailRegenerateWebhookSecretV1Request(c.Server, webhookId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MailTestWebhookV1(ctx context.Context, webhookId MailWebhookIdPath, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMailTestWebhookV1Request(c.Server, webhookId)
 	if err != nil {
 		return nil, err
 	}
@@ -11685,6 +14182,269 @@ func NewAgencyHostingDeleteAgencyPlanWebsiteCronJobV1Request(server string, webs
 	return req, nil
 }
 
+// NewAgencyHostingListAgencyPlanWebsiteDatabasesV1Request generates requests for AgencyHostingListAgencyPlanWebsiteDatabasesV1
+func NewAgencyHostingListAgencyPlanWebsiteDatabasesV1Request(server string, websiteUid WebsiteUid, params *AgencyHostingListAgencyPlanWebsiteDatabasesV1Params) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "website_uid", websiteUid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/agency-hosting/v1/websites/%s/databases", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PerPage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "per_page", *params.PerPage, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAgencyHostingCreateAgencyPlanWebsiteDatabaseV1Request calls the generic AgencyHostingCreateAgencyPlanWebsiteDatabaseV1 builder with application/json body
+func NewAgencyHostingCreateAgencyPlanWebsiteDatabaseV1Request(server string, websiteUid WebsiteUid, body AgencyHostingCreateAgencyPlanWebsiteDatabaseV1JSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAgencyHostingCreateAgencyPlanWebsiteDatabaseV1RequestWithBody(server, websiteUid, "application/json", bodyReader)
+}
+
+// NewAgencyHostingCreateAgencyPlanWebsiteDatabaseV1RequestWithBody generates requests for AgencyHostingCreateAgencyPlanWebsiteDatabaseV1 with any type of body
+func NewAgencyHostingCreateAgencyPlanWebsiteDatabaseV1RequestWithBody(server string, websiteUid WebsiteUid, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "website_uid", websiteUid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/agency-hosting/v1/websites/%s/databases", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAgencyHostingDeleteAgencyPlanWebsiteDatabaseV1Request generates requests for AgencyHostingDeleteAgencyPlanWebsiteDatabaseV1
+func NewAgencyHostingDeleteAgencyPlanWebsiteDatabaseV1Request(server string, websiteUid WebsiteUid, databaseName AgencyDatabaseNamePath) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "website_uid", websiteUid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "database_name", databaseName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/agency-hosting/v1/websites/%s/databases/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1Request calls the generic AgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1 builder with application/json body
+func NewAgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1Request(server string, websiteUid WebsiteUid, databaseName AgencyDatabaseNamePath, body AgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1JSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1RequestWithBody(server, websiteUid, databaseName, "application/json", bodyReader)
+}
+
+// NewAgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1RequestWithBody generates requests for AgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1 with any type of body
+func NewAgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1RequestWithBody(server string, websiteUid WebsiteUid, databaseName AgencyDatabaseNamePath, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "website_uid", websiteUid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "database_name", databaseName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/agency-hosting/v1/websites/%s/databases/%s/users", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAgencyHostingDeleteAgencyPlanWebsiteDatabaseUserV1Request generates requests for AgencyHostingDeleteAgencyPlanWebsiteDatabaseUserV1
+func NewAgencyHostingDeleteAgencyPlanWebsiteDatabaseUserV1Request(server string, websiteUid WebsiteUid, databaseName AgencyDatabaseNamePath, databaseUserName AgencyDatabaseUserNamePath) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "website_uid", websiteUid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "database_name", databaseName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam2 string
+
+	pathParam2, err = runtime.StyleParamWithOptions("simple", false, "database_user_name", databaseUserName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/agency-hosting/v1/websites/%s/databases/%s/users/%s", pathParam0, pathParam1, pathParam2)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewAgencyHostingLinkDomainToAgencyPlanWebsiteV1Request calls the generic AgencyHostingLinkDomainToAgencyPlanWebsiteV1 builder with application/json body
 func NewAgencyHostingLinkDomainToAgencyPlanWebsiteV1Request(server string, websiteUid WebsiteUid, body AgencyHostingLinkDomainToAgencyPlanWebsiteV1JSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -11908,6 +14668,121 @@ func NewAgencyHostingListRunningAgencyPlanWebsiteProcessesV1Request(server strin
 	return req, nil
 }
 
+// NewAgencyHostingGetAgencyPlanWebsiteWordPressSettingsV1Request generates requests for AgencyHostingGetAgencyPlanWebsiteWordPressSettingsV1
+func NewAgencyHostingGetAgencyPlanWebsiteWordPressSettingsV1Request(server string, websiteUid WebsiteUid) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "website_uid", websiteUid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/agency-hosting/v1/websites/%s/wordpress/settings", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1Request calls the generic AgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1 builder with application/json body
+func NewAgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1Request(server string, websiteUid WebsiteUid, body AgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1JSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1RequestWithBody(server, websiteUid, "application/json", bodyReader)
+}
+
+// NewAgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1RequestWithBody generates requests for AgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1 with any type of body
+func NewAgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1RequestWithBody(server string, websiteUid WebsiteUid, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "website_uid", websiteUid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/agency-hosting/v1/websites/%s/wordpress/settings/version", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAgencyHostingListAvailableWordPressVersionsForAnAgencyPlanWebsiteV1Request generates requests for AgencyHostingListAvailableWordPressVersionsForAnAgencyPlanWebsiteV1
+func NewAgencyHostingListAvailableWordPressVersionsForAnAgencyPlanWebsiteV1Request(server string, websiteUid WebsiteUid) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "website_uid", websiteUid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/agency-hosting/v1/websites/%s/wordpress/settings/versions", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewBillingGetCatalogItemListV1Request generates requests for BillingGetCatalogItemListV1
 func NewBillingGetCatalogItemListV1Request(server string, params *BillingGetCatalogItemListV1Params) (*http.Request, error) {
 	var err error
@@ -11970,6 +14845,46 @@ func NewBillingGetCatalogItemListV1Request(server string, params *BillingGetCata
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewBillingCreatePurchaseOrderV1Request calls the generic BillingCreatePurchaseOrderV1 builder with application/json body
+func NewBillingCreatePurchaseOrderV1Request(server string, body BillingCreatePurchaseOrderV1JSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewBillingCreatePurchaseOrderV1RequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewBillingCreatePurchaseOrderV1RequestWithBody generates requests for BillingCreatePurchaseOrderV1 with any type of body
+func NewBillingCreatePurchaseOrderV1RequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/billing/v1/orders")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -12650,6 +15565,53 @@ func NewDomainsGetDomainForwardingV1Request(server string, domain Domain) (*http
 	return req, nil
 }
 
+// NewDomainsUpdateDomainForwardingV1Request calls the generic DomainsUpdateDomainForwardingV1 builder with application/json body
+func NewDomainsUpdateDomainForwardingV1Request(server string, domain Domain, body DomainsUpdateDomainForwardingV1JSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewDomainsUpdateDomainForwardingV1RequestWithBody(server, domain, "application/json", bodyReader)
+}
+
+// NewDomainsUpdateDomainForwardingV1RequestWithBody generates requests for DomainsUpdateDomainForwardingV1 with any type of body
+func NewDomainsUpdateDomainForwardingV1RequestWithBody(server string, domain Domain, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "domain", domain, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/domains/v1/forwarding/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPut, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewDomainsGetDomainListV1Request generates requests for DomainsGetDomainListV1
 func NewDomainsGetDomainListV1Request(server string) (*http.Request, error) {
 	var err error
@@ -12734,6 +15696,40 @@ func NewDomainsGetDomainDetailsV1Request(server string, domain Domain) (*http.Re
 	}
 
 	operationPath := fmt.Sprintf("/api/domains/v1/portfolio/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewDomainsGetDomainAuthorizationCodeV1Request generates requests for DomainsGetDomainAuthorizationCodeV1
+func NewDomainsGetDomainAuthorizationCodeV1Request(server string, domain Domain) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "domain", domain, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/domains/v1/portfolio/%s/auth-code", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -12951,6 +15947,67 @@ func NewDomainsGetDomainRenewalInformationV1Request(server string, domain Domain
 	}
 
 	operationPath := fmt.Sprintf("/api/domains/v1/portfolio/%s/renewal", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewDomainsGetTransferListV1Request generates requests for DomainsGetTransferListV1
+func NewDomainsGetTransferListV1Request(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/domains/v1/transfers")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewDomainsGetTransferV1Request generates requests for DomainsGetTransferV1
+func NewDomainsGetTransferV1Request(server string, domain Domain) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "domain", domain, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/domains/v1/transfers/%s", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -17750,6 +20807,1683 @@ func NewHostingListWordPressThemesV1Request(server string, params *HostingListWo
 	return req, nil
 }
 
+// NewMailListAPITokensV1Request generates requests for MailListAPITokensV1
+func NewMailListAPITokensV1Request(server string, params *MailListAPITokensV1Params) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/mail/v1/api-tokens")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.OrderId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "order_id", *params.OrderId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PerPage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "per_page", *params.PerPage, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMailRevokeAPITokenV1Request generates requests for MailRevokeAPITokenV1
+func NewMailRevokeAPITokenV1Request(server string, tokenId MailApiTokenIdPath) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "tokenId", tokenId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/mail/v1/api-tokens/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMailDeleteMailboxV1Request generates requests for MailDeleteMailboxV1
+func NewMailDeleteMailboxV1Request(server string, mailboxId MailMailboxIdPath) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "mailboxId", mailboxId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/mail/v1/mailboxes/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMailChangeMailboxPasswordV1Request calls the generic MailChangeMailboxPasswordV1 builder with application/json body
+func NewMailChangeMailboxPasswordV1Request(server string, mailboxId MailMailboxIdPath, body MailChangeMailboxPasswordV1JSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMailChangeMailboxPasswordV1RequestWithBody(server, mailboxId, "application/json", bodyReader)
+}
+
+// NewMailChangeMailboxPasswordV1RequestWithBody generates requests for MailChangeMailboxPasswordV1 with any type of body
+func NewMailChangeMailboxPasswordV1RequestWithBody(server string, mailboxId MailMailboxIdPath, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "mailboxId", mailboxId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/mail/v1/mailboxes/%s/password", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMailCreateWebhookV1Request calls the generic MailCreateWebhookV1 builder with application/json body
+func NewMailCreateWebhookV1Request(server string, mailboxId MailMailboxIdPath, body MailCreateWebhookV1JSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMailCreateWebhookV1RequestWithBody(server, mailboxId, "application/json", bodyReader)
+}
+
+// NewMailCreateWebhookV1RequestWithBody generates requests for MailCreateWebhookV1 with any type of body
+func NewMailCreateWebhookV1RequestWithBody(server string, mailboxId MailMailboxIdPath, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "mailboxId", mailboxId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/mail/v1/mailboxes/%s/webhooks", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMailListOrdersV1Request generates requests for MailListOrdersV1
+func NewMailListOrdersV1Request(server string, params *MailListOrdersV1Params) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/mail/v1/orders")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Domain != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "domain", *params.Domain, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Status != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "status", *params.Status, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsTrial != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_trial", *params.IsTrial, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Sort != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "sort", *params.Sort, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PerPage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "per_page", *params.PerPage, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMailCreateAPITokenV1Request calls the generic MailCreateAPITokenV1 builder with application/json body
+func NewMailCreateAPITokenV1Request(server string, orderId MailOrderIdPath, body MailCreateAPITokenV1JSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMailCreateAPITokenV1RequestWithBody(server, orderId, "application/json", bodyReader)
+}
+
+// NewMailCreateAPITokenV1RequestWithBody generates requests for MailCreateAPITokenV1 with any type of body
+func NewMailCreateAPITokenV1RequestWithBody(server string, orderId MailOrderIdPath, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "orderId", orderId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/mail/v1/orders/%s/api-tokens", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMailListAccessLogsV1Request generates requests for MailListAccessLogsV1
+func NewMailListAccessLogsV1Request(server string, orderId MailOrderIdPath, params *MailListAccessLogsV1Params) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "orderId", orderId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/mail/v1/orders/%s/logs/access", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Account != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "account", *params.Account, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "email"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Date != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "date", *params.Date, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FromDate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "from_date", *params.FromDate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ToDate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "to_date", *params.ToDate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Status != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "status", *params.Status, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Protocol != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "protocol", *params.Protocol, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasDeletions != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_deletions", *params.HasDeletions, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PerPage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "per_page", *params.PerPage, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMailListActionLogsV1Request generates requests for MailListActionLogsV1
+func NewMailListActionLogsV1Request(server string, orderId MailOrderIdPath, params *MailListActionLogsV1Params) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "orderId", orderId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/mail/v1/orders/%s/logs/action", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Account != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "account", *params.Account, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "email"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Date != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "date", *params.Date, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FromDate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "from_date", *params.FromDate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ToDate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "to_date", *params.ToDate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Status != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "status", *params.Status, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PerPage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "per_page", *params.PerPage, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMailListInboundLogsV1Request generates requests for MailListInboundLogsV1
+func NewMailListInboundLogsV1Request(server string, orderId MailOrderIdPath, params *MailListInboundLogsV1Params) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "orderId", orderId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/mail/v1/orders/%s/logs/inbound", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Account != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "account", *params.Account, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "email"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Date != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "date", *params.Date, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FromDate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "from_date", *params.FromDate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ToDate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "to_date", *params.ToDate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Status != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "status", *params.Status, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Sender != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "sender", *params.Sender, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Recipient != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "recipient", *params.Recipient, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PerPage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "per_page", *params.PerPage, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMailListMailboxActionLogsV1Request generates requests for MailListMailboxActionLogsV1
+func NewMailListMailboxActionLogsV1Request(server string, orderId MailOrderIdPath, params *MailListMailboxActionLogsV1Params) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "orderId", orderId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/mail/v1/orders/%s/logs/mailbox-actions", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "email", params.Email, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "email"}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
+		}
+
+		if params.Date != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "date", *params.Date, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FromDate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "from_date", *params.FromDate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ToDate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "to_date", *params.ToDate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Event != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "event", *params.Event, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PerPage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "per_page", *params.PerPage, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMailListOutboundLogsV1Request generates requests for MailListOutboundLogsV1
+func NewMailListOutboundLogsV1Request(server string, orderId MailOrderIdPath, params *MailListOutboundLogsV1Params) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "orderId", orderId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/mail/v1/orders/%s/logs/outbound", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Account != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "account", *params.Account, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "email"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Date != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "date", *params.Date, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FromDate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "from_date", *params.FromDate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ToDate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "to_date", *params.ToDate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Status != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "status", *params.Status, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Sender != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "sender", *params.Sender, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Recipient != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "recipient", *params.Recipient, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PerPage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "per_page", *params.PerPage, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMailListMailboxesV1Request generates requests for MailListMailboxesV1
+func NewMailListMailboxesV1Request(server string, orderId MailOrderIdPath, params *MailListMailboxesV1Params) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "orderId", orderId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/mail/v1/orders/%s/mailboxes", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Search != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "search", *params.Search, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Sort != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "sort", *params.Sort, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PerPage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "per_page", *params.PerPage, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMailCreateMailboxV1Request calls the generic MailCreateMailboxV1 builder with application/json body
+func NewMailCreateMailboxV1Request(server string, orderId MailOrderIdPath, body MailCreateMailboxV1JSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMailCreateMailboxV1RequestWithBody(server, orderId, "application/json", bodyReader)
+}
+
+// NewMailCreateMailboxV1RequestWithBody generates requests for MailCreateMailboxV1 with any type of body
+func NewMailCreateMailboxV1RequestWithBody(server string, orderId MailOrderIdPath, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "orderId", orderId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/mail/v1/orders/%s/mailboxes", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMailGetOrderPlanV1Request generates requests for MailGetOrderPlanV1
+func NewMailGetOrderPlanV1Request(server string, orderId MailOrderIdPath) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "orderId", orderId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/mail/v1/orders/%s/plan", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMailListWebhooksV1Request generates requests for MailListWebhooksV1
+func NewMailListWebhooksV1Request(server string, orderId MailOrderIdPath, params *MailListWebhooksV1Params) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "orderId", orderId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/mail/v1/orders/%s/webhooks", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.MailboxId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "mailbox_id", *params.MailboxId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Status != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "status", *params.Status, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PerPage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "per_page", *params.PerPage, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMailListWebhookDeliveryLogsV1Request generates requests for MailListWebhookDeliveryLogsV1
+func NewMailListWebhookDeliveryLogsV1Request(server string, orderId MailOrderIdPath, params *MailListWebhookDeliveryLogsV1Params) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "orderId", orderId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/mail/v1/orders/%s/webhooks/delivery-logs", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.MailboxId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "mailbox_id", *params.MailboxId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PerPage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "per_page", *params.PerPage, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMailDeleteWebhookV1Request generates requests for MailDeleteWebhookV1
+func NewMailDeleteWebhookV1Request(server string, webhookId MailWebhookIdPath) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "webhookId", webhookId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/mail/v1/webhooks/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMailGetWebhookV1Request generates requests for MailGetWebhookV1
+func NewMailGetWebhookV1Request(server string, webhookId MailWebhookIdPath) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "webhookId", webhookId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/mail/v1/webhooks/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMailUpdateWebhookV1Request calls the generic MailUpdateWebhookV1 builder with application/json body
+func NewMailUpdateWebhookV1Request(server string, webhookId MailWebhookIdPath, body MailUpdateWebhookV1JSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMailUpdateWebhookV1RequestWithBody(server, webhookId, "application/json", bodyReader)
+}
+
+// NewMailUpdateWebhookV1RequestWithBody generates requests for MailUpdateWebhookV1 with any type of body
+func NewMailUpdateWebhookV1RequestWithBody(server string, webhookId MailWebhookIdPath, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "webhookId", webhookId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/mail/v1/webhooks/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMailRegenerateWebhookSecretV1Request generates requests for MailRegenerateWebhookSecretV1
+func NewMailRegenerateWebhookSecretV1Request(server string, webhookId MailWebhookIdPath) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "webhookId", webhookId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/mail/v1/webhooks/%s/regenerate-secret", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMailTestWebhookV1Request generates requests for MailTestWebhookV1
+func NewMailTestWebhookV1Request(server string, webhookId MailWebhookIdPath) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "webhookId", webhookId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/mail/v1/webhooks/%s/test", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewReachListContactsV1Request generates requests for ReachListContactsV1
 func NewReachListContactsV1Request(server string, params *ReachListContactsV1Params) (*http.Request, error) {
 	var err error
@@ -20984,6 +25718,25 @@ type ClientWithResponsesInterface interface {
 	// AgencyHostingDeleteAgencyPlanWebsiteCronJobV1WithResponse request
 	AgencyHostingDeleteAgencyPlanWebsiteCronJobV1WithResponse(ctx context.Context, websiteUid WebsiteUid, uuid AgencyCronJobUuidPath, reqEditors ...RequestEditorFn) (*AgencyHostingDeleteAgencyPlanWebsiteCronJobV1Response, error)
 
+	// AgencyHostingListAgencyPlanWebsiteDatabasesV1WithResponse request
+	AgencyHostingListAgencyPlanWebsiteDatabasesV1WithResponse(ctx context.Context, websiteUid WebsiteUid, params *AgencyHostingListAgencyPlanWebsiteDatabasesV1Params, reqEditors ...RequestEditorFn) (*AgencyHostingListAgencyPlanWebsiteDatabasesV1Response, error)
+
+	// AgencyHostingCreateAgencyPlanWebsiteDatabaseV1WithBodyWithResponse request with any body
+	AgencyHostingCreateAgencyPlanWebsiteDatabaseV1WithBodyWithResponse(ctx context.Context, websiteUid WebsiteUid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AgencyHostingCreateAgencyPlanWebsiteDatabaseV1Response, error)
+
+	AgencyHostingCreateAgencyPlanWebsiteDatabaseV1WithResponse(ctx context.Context, websiteUid WebsiteUid, body AgencyHostingCreateAgencyPlanWebsiteDatabaseV1JSONRequestBody, reqEditors ...RequestEditorFn) (*AgencyHostingCreateAgencyPlanWebsiteDatabaseV1Response, error)
+
+	// AgencyHostingDeleteAgencyPlanWebsiteDatabaseV1WithResponse request
+	AgencyHostingDeleteAgencyPlanWebsiteDatabaseV1WithResponse(ctx context.Context, websiteUid WebsiteUid, databaseName AgencyDatabaseNamePath, reqEditors ...RequestEditorFn) (*AgencyHostingDeleteAgencyPlanWebsiteDatabaseV1Response, error)
+
+	// AgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1WithBodyWithResponse request with any body
+	AgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1WithBodyWithResponse(ctx context.Context, websiteUid WebsiteUid, databaseName AgencyDatabaseNamePath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1Response, error)
+
+	AgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1WithResponse(ctx context.Context, websiteUid WebsiteUid, databaseName AgencyDatabaseNamePath, body AgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1JSONRequestBody, reqEditors ...RequestEditorFn) (*AgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1Response, error)
+
+	// AgencyHostingDeleteAgencyPlanWebsiteDatabaseUserV1WithResponse request
+	AgencyHostingDeleteAgencyPlanWebsiteDatabaseUserV1WithResponse(ctx context.Context, websiteUid WebsiteUid, databaseName AgencyDatabaseNamePath, databaseUserName AgencyDatabaseUserNamePath, reqEditors ...RequestEditorFn) (*AgencyHostingDeleteAgencyPlanWebsiteDatabaseUserV1Response, error)
+
 	// AgencyHostingLinkDomainToAgencyPlanWebsiteV1WithBodyWithResponse request with any body
 	AgencyHostingLinkDomainToAgencyPlanWebsiteV1WithBodyWithResponse(ctx context.Context, websiteUid WebsiteUid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AgencyHostingLinkDomainToAgencyPlanWebsiteV1Response, error)
 
@@ -21005,8 +25758,24 @@ type ClientWithResponsesInterface interface {
 	// AgencyHostingListRunningAgencyPlanWebsiteProcessesV1WithResponse request
 	AgencyHostingListRunningAgencyPlanWebsiteProcessesV1WithResponse(ctx context.Context, websiteUid WebsiteUid, reqEditors ...RequestEditorFn) (*AgencyHostingListRunningAgencyPlanWebsiteProcessesV1Response, error)
 
+	// AgencyHostingGetAgencyPlanWebsiteWordPressSettingsV1WithResponse request
+	AgencyHostingGetAgencyPlanWebsiteWordPressSettingsV1WithResponse(ctx context.Context, websiteUid WebsiteUid, reqEditors ...RequestEditorFn) (*AgencyHostingGetAgencyPlanWebsiteWordPressSettingsV1Response, error)
+
+	// AgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1WithBodyWithResponse request with any body
+	AgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1WithBodyWithResponse(ctx context.Context, websiteUid WebsiteUid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1Response, error)
+
+	AgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1WithResponse(ctx context.Context, websiteUid WebsiteUid, body AgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1JSONRequestBody, reqEditors ...RequestEditorFn) (*AgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1Response, error)
+
+	// AgencyHostingListAvailableWordPressVersionsForAnAgencyPlanWebsiteV1WithResponse request
+	AgencyHostingListAvailableWordPressVersionsForAnAgencyPlanWebsiteV1WithResponse(ctx context.Context, websiteUid WebsiteUid, reqEditors ...RequestEditorFn) (*AgencyHostingListAvailableWordPressVersionsForAnAgencyPlanWebsiteV1Response, error)
+
 	// BillingGetCatalogItemListV1WithResponse request
 	BillingGetCatalogItemListV1WithResponse(ctx context.Context, params *BillingGetCatalogItemListV1Params, reqEditors ...RequestEditorFn) (*BillingGetCatalogItemListV1Response, error)
+
+	// BillingCreatePurchaseOrderV1WithBodyWithResponse request with any body
+	BillingCreatePurchaseOrderV1WithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*BillingCreatePurchaseOrderV1Response, error)
+
+	BillingCreatePurchaseOrderV1WithResponse(ctx context.Context, body BillingCreatePurchaseOrderV1JSONRequestBody, reqEditors ...RequestEditorFn) (*BillingCreatePurchaseOrderV1Response, error)
 
 	// BillingGetPaymentMethodListV1WithResponse request
 	BillingGetPaymentMethodListV1WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*BillingGetPaymentMethodListV1Response, error)
@@ -21074,6 +25843,11 @@ type ClientWithResponsesInterface interface {
 	// DomainsGetDomainForwardingV1WithResponse request
 	DomainsGetDomainForwardingV1WithResponse(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*DomainsGetDomainForwardingV1Response, error)
 
+	// DomainsUpdateDomainForwardingV1WithBodyWithResponse request with any body
+	DomainsUpdateDomainForwardingV1WithBodyWithResponse(ctx context.Context, domain Domain, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DomainsUpdateDomainForwardingV1Response, error)
+
+	DomainsUpdateDomainForwardingV1WithResponse(ctx context.Context, domain Domain, body DomainsUpdateDomainForwardingV1JSONRequestBody, reqEditors ...RequestEditorFn) (*DomainsUpdateDomainForwardingV1Response, error)
+
 	// DomainsGetDomainListV1WithResponse request
 	DomainsGetDomainListV1WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DomainsGetDomainListV1Response, error)
 
@@ -21084,6 +25858,9 @@ type ClientWithResponsesInterface interface {
 
 	// DomainsGetDomainDetailsV1WithResponse request
 	DomainsGetDomainDetailsV1WithResponse(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*DomainsGetDomainDetailsV1Response, error)
+
+	// DomainsGetDomainAuthorizationCodeV1WithResponse request
+	DomainsGetDomainAuthorizationCodeV1WithResponse(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*DomainsGetDomainAuthorizationCodeV1Response, error)
 
 	// DomainsDisableDomainLockV1WithResponse request
 	DomainsDisableDomainLockV1WithResponse(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*DomainsDisableDomainLockV1Response, error)
@@ -21104,6 +25881,12 @@ type ClientWithResponsesInterface interface {
 
 	// DomainsGetDomainRenewalInformationV1WithResponse request
 	DomainsGetDomainRenewalInformationV1WithResponse(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*DomainsGetDomainRenewalInformationV1Response, error)
+
+	// DomainsGetTransferListV1WithResponse request
+	DomainsGetTransferListV1WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DomainsGetTransferListV1Response, error)
+
+	// DomainsGetTransferV1WithResponse request
+	DomainsGetTransferV1WithResponse(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*DomainsGetTransferV1Response, error)
 
 	// DomainsGetWHOISProfileListV1WithResponse request
 	DomainsGetWHOISProfileListV1WithResponse(ctx context.Context, params *DomainsGetWHOISProfileListV1Params, reqEditors ...RequestEditorFn) (*DomainsGetWHOISProfileListV1Response, error)
@@ -21473,6 +26256,82 @@ type ClientWithResponsesInterface interface {
 
 	// HostingListWordPressThemesV1WithResponse request
 	HostingListWordPressThemesV1WithResponse(ctx context.Context, params *HostingListWordPressThemesV1Params, reqEditors ...RequestEditorFn) (*HostingListWordPressThemesV1Response, error)
+
+	// MailListAPITokensV1WithResponse request
+	MailListAPITokensV1WithResponse(ctx context.Context, params *MailListAPITokensV1Params, reqEditors ...RequestEditorFn) (*MailListAPITokensV1Response, error)
+
+	// MailRevokeAPITokenV1WithResponse request
+	MailRevokeAPITokenV1WithResponse(ctx context.Context, tokenId MailApiTokenIdPath, reqEditors ...RequestEditorFn) (*MailRevokeAPITokenV1Response, error)
+
+	// MailDeleteMailboxV1WithResponse request
+	MailDeleteMailboxV1WithResponse(ctx context.Context, mailboxId MailMailboxIdPath, reqEditors ...RequestEditorFn) (*MailDeleteMailboxV1Response, error)
+
+	// MailChangeMailboxPasswordV1WithBodyWithResponse request with any body
+	MailChangeMailboxPasswordV1WithBodyWithResponse(ctx context.Context, mailboxId MailMailboxIdPath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MailChangeMailboxPasswordV1Response, error)
+
+	MailChangeMailboxPasswordV1WithResponse(ctx context.Context, mailboxId MailMailboxIdPath, body MailChangeMailboxPasswordV1JSONRequestBody, reqEditors ...RequestEditorFn) (*MailChangeMailboxPasswordV1Response, error)
+
+	// MailCreateWebhookV1WithBodyWithResponse request with any body
+	MailCreateWebhookV1WithBodyWithResponse(ctx context.Context, mailboxId MailMailboxIdPath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MailCreateWebhookV1Response, error)
+
+	MailCreateWebhookV1WithResponse(ctx context.Context, mailboxId MailMailboxIdPath, body MailCreateWebhookV1JSONRequestBody, reqEditors ...RequestEditorFn) (*MailCreateWebhookV1Response, error)
+
+	// MailListOrdersV1WithResponse request
+	MailListOrdersV1WithResponse(ctx context.Context, params *MailListOrdersV1Params, reqEditors ...RequestEditorFn) (*MailListOrdersV1Response, error)
+
+	// MailCreateAPITokenV1WithBodyWithResponse request with any body
+	MailCreateAPITokenV1WithBodyWithResponse(ctx context.Context, orderId MailOrderIdPath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MailCreateAPITokenV1Response, error)
+
+	MailCreateAPITokenV1WithResponse(ctx context.Context, orderId MailOrderIdPath, body MailCreateAPITokenV1JSONRequestBody, reqEditors ...RequestEditorFn) (*MailCreateAPITokenV1Response, error)
+
+	// MailListAccessLogsV1WithResponse request
+	MailListAccessLogsV1WithResponse(ctx context.Context, orderId MailOrderIdPath, params *MailListAccessLogsV1Params, reqEditors ...RequestEditorFn) (*MailListAccessLogsV1Response, error)
+
+	// MailListActionLogsV1WithResponse request
+	MailListActionLogsV1WithResponse(ctx context.Context, orderId MailOrderIdPath, params *MailListActionLogsV1Params, reqEditors ...RequestEditorFn) (*MailListActionLogsV1Response, error)
+
+	// MailListInboundLogsV1WithResponse request
+	MailListInboundLogsV1WithResponse(ctx context.Context, orderId MailOrderIdPath, params *MailListInboundLogsV1Params, reqEditors ...RequestEditorFn) (*MailListInboundLogsV1Response, error)
+
+	// MailListMailboxActionLogsV1WithResponse request
+	MailListMailboxActionLogsV1WithResponse(ctx context.Context, orderId MailOrderIdPath, params *MailListMailboxActionLogsV1Params, reqEditors ...RequestEditorFn) (*MailListMailboxActionLogsV1Response, error)
+
+	// MailListOutboundLogsV1WithResponse request
+	MailListOutboundLogsV1WithResponse(ctx context.Context, orderId MailOrderIdPath, params *MailListOutboundLogsV1Params, reqEditors ...RequestEditorFn) (*MailListOutboundLogsV1Response, error)
+
+	// MailListMailboxesV1WithResponse request
+	MailListMailboxesV1WithResponse(ctx context.Context, orderId MailOrderIdPath, params *MailListMailboxesV1Params, reqEditors ...RequestEditorFn) (*MailListMailboxesV1Response, error)
+
+	// MailCreateMailboxV1WithBodyWithResponse request with any body
+	MailCreateMailboxV1WithBodyWithResponse(ctx context.Context, orderId MailOrderIdPath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MailCreateMailboxV1Response, error)
+
+	MailCreateMailboxV1WithResponse(ctx context.Context, orderId MailOrderIdPath, body MailCreateMailboxV1JSONRequestBody, reqEditors ...RequestEditorFn) (*MailCreateMailboxV1Response, error)
+
+	// MailGetOrderPlanV1WithResponse request
+	MailGetOrderPlanV1WithResponse(ctx context.Context, orderId MailOrderIdPath, reqEditors ...RequestEditorFn) (*MailGetOrderPlanV1Response, error)
+
+	// MailListWebhooksV1WithResponse request
+	MailListWebhooksV1WithResponse(ctx context.Context, orderId MailOrderIdPath, params *MailListWebhooksV1Params, reqEditors ...RequestEditorFn) (*MailListWebhooksV1Response, error)
+
+	// MailListWebhookDeliveryLogsV1WithResponse request
+	MailListWebhookDeliveryLogsV1WithResponse(ctx context.Context, orderId MailOrderIdPath, params *MailListWebhookDeliveryLogsV1Params, reqEditors ...RequestEditorFn) (*MailListWebhookDeliveryLogsV1Response, error)
+
+	// MailDeleteWebhookV1WithResponse request
+	MailDeleteWebhookV1WithResponse(ctx context.Context, webhookId MailWebhookIdPath, reqEditors ...RequestEditorFn) (*MailDeleteWebhookV1Response, error)
+
+	// MailGetWebhookV1WithResponse request
+	MailGetWebhookV1WithResponse(ctx context.Context, webhookId MailWebhookIdPath, reqEditors ...RequestEditorFn) (*MailGetWebhookV1Response, error)
+
+	// MailUpdateWebhookV1WithBodyWithResponse request with any body
+	MailUpdateWebhookV1WithBodyWithResponse(ctx context.Context, webhookId MailWebhookIdPath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MailUpdateWebhookV1Response, error)
+
+	MailUpdateWebhookV1WithResponse(ctx context.Context, webhookId MailWebhookIdPath, body MailUpdateWebhookV1JSONRequestBody, reqEditors ...RequestEditorFn) (*MailUpdateWebhookV1Response, error)
+
+	// MailRegenerateWebhookSecretV1WithResponse request
+	MailRegenerateWebhookSecretV1WithResponse(ctx context.Context, webhookId MailWebhookIdPath, reqEditors ...RequestEditorFn) (*MailRegenerateWebhookSecretV1Response, error)
+
+	// MailTestWebhookV1WithResponse request
+	MailTestWebhookV1WithResponse(ctx context.Context, webhookId MailWebhookIdPath, reqEditors ...RequestEditorFn) (*MailTestWebhookV1Response, error)
 
 	// ReachListContactsV1WithResponse request
 	ReachListContactsV1WithResponse(ctx context.Context, params *ReachListContactsV1Params, reqEditors ...RequestEditorFn) (*ReachListContactsV1Response, error)
@@ -22105,6 +26964,172 @@ func (r AgencyHostingDeleteAgencyPlanWebsiteCronJobV1Response) ContentType() str
 	return ""
 }
 
+type AgencyHostingListAgencyPlanWebsiteDatabasesV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		// Data Array of [`AgencyHosting.V1.Websites.Databases.DatabaseResource`](#model/agencyhostingv1websitesdatabasesdatabaseresource)
+		Data *AgencyHostingV1WebsitesDatabasesDatabaseCollection `json:"data,omitempty"`
+		Meta *CommonSchemaPaginationMetaSchema                   `json:"meta,omitempty"`
+	}
+	JSON401 *CommonResponseUnauthorizedResponse
+	JSON500 *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AgencyHostingListAgencyPlanWebsiteDatabasesV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AgencyHostingListAgencyPlanWebsiteDatabasesV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r AgencyHostingListAgencyPlanWebsiteDatabasesV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type AgencyHostingCreateAgencyPlanWebsiteDatabaseV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *AgencyHostingV1WebsitesDatabasesDatabaseResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON422      *CommonResponseUnprocessableContentResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AgencyHostingCreateAgencyPlanWebsiteDatabaseV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AgencyHostingCreateAgencyPlanWebsiteDatabaseV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r AgencyHostingCreateAgencyPlanWebsiteDatabaseV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type AgencyHostingDeleteAgencyPlanWebsiteDatabaseV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CommonSuccessEmptyResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AgencyHostingDeleteAgencyPlanWebsiteDatabaseV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AgencyHostingDeleteAgencyPlanWebsiteDatabaseV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r AgencyHostingDeleteAgencyPlanWebsiteDatabaseV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type AgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *AgencyHostingV1WebsitesDatabasesDatabaseUserResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON422      *CommonResponseUnprocessableContentResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r AgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type AgencyHostingDeleteAgencyPlanWebsiteDatabaseUserV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CommonSuccessEmptyResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AgencyHostingDeleteAgencyPlanWebsiteDatabaseUserV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AgencyHostingDeleteAgencyPlanWebsiteDatabaseUserV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r AgencyHostingDeleteAgencyPlanWebsiteDatabaseUserV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type AgencyHostingLinkDomainToAgencyPlanWebsiteV1Response struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -22268,6 +27293,103 @@ func (r AgencyHostingListRunningAgencyPlanWebsiteProcessesV1Response) ContentTyp
 	return ""
 }
 
+type AgencyHostingGetAgencyPlanWebsiteWordPressSettingsV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *AgencyHostingV1WordPressSettingsResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AgencyHostingGetAgencyPlanWebsiteWordPressSettingsV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AgencyHostingGetAgencyPlanWebsiteWordPressSettingsV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r AgencyHostingGetAgencyPlanWebsiteWordPressSettingsV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type AgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CommonSuccessEmptyResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON422      *CommonResponseUnprocessableContentResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r AgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type AgencyHostingListAvailableWordPressVersionsForAnAgencyPlanWebsiteV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *AgencyHostingV1WordPressVersionCollection
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AgencyHostingListAvailableWordPressVersionsForAnAgencyPlanWebsiteV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AgencyHostingListAvailableWordPressVersionsForAnAgencyPlanWebsiteV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r AgencyHostingListAvailableWordPressVersionsForAnAgencyPlanWebsiteV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type BillingGetCatalogItemListV1Response struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -22294,6 +27416,39 @@ func (r BillingGetCatalogItemListV1Response) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r BillingGetCatalogItemListV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type BillingCreatePurchaseOrderV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *BillingV1OrderOrderResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON422      *CommonResponseUnprocessableContentResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r BillingCreatePurchaseOrderV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r BillingCreatePurchaseOrderV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r BillingCreatePurchaseOrderV1Response) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -22882,6 +28037,39 @@ func (r DomainsGetDomainForwardingV1Response) ContentType() string {
 	return ""
 }
 
+type DomainsUpdateDomainForwardingV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *DomainsV1ForwardingForwardingResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON422      *CommonResponseUnprocessableContentResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r DomainsUpdateDomainForwardingV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DomainsUpdateDomainForwardingV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r DomainsUpdateDomainForwardingV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type DomainsGetDomainListV1Response struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -22973,6 +28161,38 @@ func (r DomainsGetDomainDetailsV1Response) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r DomainsGetDomainDetailsV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type DomainsGetDomainAuthorizationCodeV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *DomainsV1PortfolioAuthCodeAuthCodeResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r DomainsGetDomainAuthorizationCodeV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DomainsGetDomainAuthorizationCodeV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r DomainsGetDomainAuthorizationCodeV1Response) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -23166,6 +28386,70 @@ func (r DomainsGetDomainRenewalInformationV1Response) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r DomainsGetDomainRenewalInformationV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type DomainsGetTransferListV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *DomainsV1TransferTransferCollection
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r DomainsGetTransferListV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DomainsGetTransferListV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r DomainsGetTransferListV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type DomainsGetTransferV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *DomainsV1TransferTransferResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r DomainsGetTransferV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DomainsGetTransferV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r DomainsGetTransferV1Response) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -26275,6 +31559,798 @@ func (r HostingListWordPressThemesV1Response) ContentType() string {
 	return ""
 }
 
+type MailListAPITokensV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		// Data Array of [`Mail.V1.ApiTokens.ApiTokenResource`](#model/mailv1apitokensapitokenresource)
+		Data *MailV1ApiTokensApiTokenCollection `json:"data,omitempty"`
+		Meta *CommonSchemaPaginationMetaSchema  `json:"meta,omitempty"`
+	}
+	JSON401 *CommonResponseUnauthorizedResponse
+	JSON422 *CommonResponseErrorResponse
+	JSON500 *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MailListAPITokensV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MailListAPITokensV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MailListAPITokensV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MailRevokeAPITokenV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CommonSuccessEmptyResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON404      *CommonResponseErrorResponse
+	JSON422      *CommonResponseErrorResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MailRevokeAPITokenV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MailRevokeAPITokenV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MailRevokeAPITokenV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MailDeleteMailboxV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CommonSuccessEmptyResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON404      *CommonResponseErrorResponse
+	JSON409      *CommonResponseErrorResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MailDeleteMailboxV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MailDeleteMailboxV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MailDeleteMailboxV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MailChangeMailboxPasswordV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CommonSuccessEmptyResource
+	JSON400      *CommonResponseErrorResponse
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON404      *CommonResponseErrorResponse
+	JSON422      *CommonResponseErrorResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MailChangeMailboxPasswordV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MailChangeMailboxPasswordV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MailChangeMailboxPasswordV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MailCreateWebhookV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *MailV1WebhooksWebhookCreatedResource
+	JSON400      *CommonResponseErrorResponse
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON404      *CommonResponseErrorResponse
+	JSON409      *CommonResponseErrorResponse
+	JSON422      *CommonResponseErrorResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MailCreateWebhookV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MailCreateWebhookV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MailCreateWebhookV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MailListOrdersV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		// Data Array of [`Mail.V1.Orders.OrderResource`](#model/mailv1ordersorderresource)
+		Data *MailV1OrdersOrderCollection      `json:"data,omitempty"`
+		Meta *CommonSchemaPaginationMetaSchema `json:"meta,omitempty"`
+	}
+	JSON401 *CommonResponseUnauthorizedResponse
+	JSON422 *CommonResponseErrorResponse
+	JSON500 *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MailListOrdersV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MailListOrdersV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MailListOrdersV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MailCreateAPITokenV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *MailV1ApiTokensApiTokenCreatedResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON404      *CommonResponseErrorResponse
+	JSON409      *CommonResponseErrorResponse
+	JSON422      *CommonResponseErrorResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MailCreateAPITokenV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MailCreateAPITokenV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MailCreateAPITokenV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MailListAccessLogsV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		// Data Array of [`Mail.V1.Logs.Access.AccessLogResource`](#model/mailv1logsaccessaccesslogresource)
+		Data *MailV1LogsAccessAccessLogCollection `json:"data,omitempty"`
+		Meta *CommonSchemaPaginationMetaSchema    `json:"meta,omitempty"`
+	}
+	JSON401 *CommonResponseUnauthorizedResponse
+	JSON404 *CommonResponseErrorResponse
+	JSON422 *CommonResponseErrorResponse
+	JSON500 *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MailListAccessLogsV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MailListAccessLogsV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MailListAccessLogsV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MailListActionLogsV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		// Data Array of [`Mail.V1.Logs.Action.ActionLogResource`](#model/mailv1logsactionactionlogresource)
+		Data *MailV1LogsActionActionLogCollection `json:"data,omitempty"`
+		Meta *CommonSchemaPaginationMetaSchema    `json:"meta,omitempty"`
+	}
+	JSON401 *CommonResponseUnauthorizedResponse
+	JSON404 *CommonResponseErrorResponse
+	JSON422 *CommonResponseErrorResponse
+	JSON500 *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MailListActionLogsV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MailListActionLogsV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MailListActionLogsV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MailListInboundLogsV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		// Data Array of [`Mail.V1.Logs.Common.DeliveryLogResource`](#model/mailv1logscommondeliverylogresource)
+		Data *MailV1LogsCommonDeliveryLogCollection `json:"data,omitempty"`
+		Meta *CommonSchemaPaginationMetaSchema      `json:"meta,omitempty"`
+	}
+	JSON401 *CommonResponseUnauthorizedResponse
+	JSON404 *CommonResponseErrorResponse
+	JSON422 *CommonResponseErrorResponse
+	JSON500 *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MailListInboundLogsV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MailListInboundLogsV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MailListInboundLogsV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MailListMailboxActionLogsV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		// Data Array of [`Mail.V1.Logs.MailboxActions.MailboxActionLogResource`](#model/mailv1logsmailboxactionsmailboxactionlogresource)
+		Data *MailV1LogsMailboxActionsMailboxActionLogCollection `json:"data,omitempty"`
+		Meta *CommonSchemaPaginationMetaSchema                   `json:"meta,omitempty"`
+	}
+	JSON401 *CommonResponseUnauthorizedResponse
+	JSON404 *CommonResponseErrorResponse
+	JSON422 *CommonResponseErrorResponse
+	JSON500 *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MailListMailboxActionLogsV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MailListMailboxActionLogsV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MailListMailboxActionLogsV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MailListOutboundLogsV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		// Data Array of [`Mail.V1.Logs.Common.DeliveryLogResource`](#model/mailv1logscommondeliverylogresource)
+		Data *MailV1LogsCommonDeliveryLogCollection `json:"data,omitempty"`
+		Meta *CommonSchemaPaginationMetaSchema      `json:"meta,omitempty"`
+	}
+	JSON401 *CommonResponseUnauthorizedResponse
+	JSON404 *CommonResponseErrorResponse
+	JSON422 *CommonResponseErrorResponse
+	JSON500 *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MailListOutboundLogsV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MailListOutboundLogsV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MailListOutboundLogsV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MailListMailboxesV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		// Data Array of [`Mail.V1.Mailboxes.MailboxResource`](#model/mailv1mailboxesmailboxresource)
+		Data *MailV1MailboxesMailboxCollection `json:"data,omitempty"`
+		Meta *CommonSchemaPaginationMetaSchema `json:"meta,omitempty"`
+	}
+	JSON401 *CommonResponseUnauthorizedResponse
+	JSON404 *CommonResponseErrorResponse
+	JSON422 *CommonResponseErrorResponse
+	JSON500 *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MailListMailboxesV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MailListMailboxesV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MailListMailboxesV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MailCreateMailboxV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *MailV1MailboxesMailboxResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON404      *CommonResponseErrorResponse
+	JSON409      *CommonResponseErrorResponse
+	JSON422      *CommonResponseErrorResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MailCreateMailboxV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MailCreateMailboxV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MailCreateMailboxV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MailGetOrderPlanV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *MailV1OrdersPlanResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON404      *CommonResponseErrorResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MailGetOrderPlanV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MailGetOrderPlanV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MailGetOrderPlanV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MailListWebhooksV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		// Data Array of [`Mail.V1.Webhooks.WebhookResource`](#model/mailv1webhookswebhookresource)
+		Data *MailV1WebhooksWebhookCollection  `json:"data,omitempty"`
+		Meta *CommonSchemaPaginationMetaSchema `json:"meta,omitempty"`
+	}
+	JSON401 *CommonResponseUnauthorizedResponse
+	JSON404 *CommonResponseErrorResponse
+	JSON422 *CommonResponseErrorResponse
+	JSON500 *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MailListWebhooksV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MailListWebhooksV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MailListWebhooksV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MailListWebhookDeliveryLogsV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		// Data Array of [`Mail.V1.Webhooks.WebhookDeliveryLogResource`](#model/mailv1webhookswebhookdeliverylogresource)
+		Data *MailV1WebhooksWebhookDeliveryLogCollection `json:"data,omitempty"`
+		Meta *CommonSchemaPaginationMetaSchema           `json:"meta,omitempty"`
+	}
+	JSON401 *CommonResponseUnauthorizedResponse
+	JSON404 *CommonResponseErrorResponse
+	JSON422 *CommonResponseErrorResponse
+	JSON500 *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MailListWebhookDeliveryLogsV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MailListWebhookDeliveryLogsV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MailListWebhookDeliveryLogsV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MailDeleteWebhookV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CommonSuccessEmptyResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON404      *CommonResponseErrorResponse
+	JSON422      *CommonResponseErrorResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MailDeleteWebhookV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MailDeleteWebhookV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MailDeleteWebhookV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MailGetWebhookV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *MailV1WebhooksWebhookResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON404      *CommonResponseErrorResponse
+	JSON422      *CommonResponseErrorResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MailGetWebhookV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MailGetWebhookV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MailGetWebhookV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MailUpdateWebhookV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *MailV1WebhooksWebhookResource
+	JSON400      *CommonResponseErrorResponse
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON404      *CommonResponseErrorResponse
+	JSON422      *CommonResponseErrorResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MailUpdateWebhookV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MailUpdateWebhookV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MailUpdateWebhookV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MailRegenerateWebhookSecretV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *MailV1WebhooksWebhookSecretResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON404      *CommonResponseErrorResponse
+	JSON422      *CommonResponseErrorResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MailRegenerateWebhookSecretV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MailRegenerateWebhookSecretV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MailRegenerateWebhookSecretV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MailTestWebhookV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *MailV1WebhooksWebhookTestResultResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON404      *CommonResponseErrorResponse
+	JSON422      *CommonResponseErrorResponse
+	JSON429      *CommonResponseErrorResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MailTestWebhookV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MailTestWebhookV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MailTestWebhookV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type ReachListContactsV1Response struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -28871,6 +34947,67 @@ func (c *ClientWithResponses) AgencyHostingDeleteAgencyPlanWebsiteCronJobV1WithR
 	return ParseAgencyHostingDeleteAgencyPlanWebsiteCronJobV1Response(rsp)
 }
 
+// AgencyHostingListAgencyPlanWebsiteDatabasesV1WithResponse request returning *AgencyHostingListAgencyPlanWebsiteDatabasesV1Response
+func (c *ClientWithResponses) AgencyHostingListAgencyPlanWebsiteDatabasesV1WithResponse(ctx context.Context, websiteUid WebsiteUid, params *AgencyHostingListAgencyPlanWebsiteDatabasesV1Params, reqEditors ...RequestEditorFn) (*AgencyHostingListAgencyPlanWebsiteDatabasesV1Response, error) {
+	rsp, err := c.AgencyHostingListAgencyPlanWebsiteDatabasesV1(ctx, websiteUid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAgencyHostingListAgencyPlanWebsiteDatabasesV1Response(rsp)
+}
+
+// AgencyHostingCreateAgencyPlanWebsiteDatabaseV1WithBodyWithResponse request with arbitrary body returning *AgencyHostingCreateAgencyPlanWebsiteDatabaseV1Response
+func (c *ClientWithResponses) AgencyHostingCreateAgencyPlanWebsiteDatabaseV1WithBodyWithResponse(ctx context.Context, websiteUid WebsiteUid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AgencyHostingCreateAgencyPlanWebsiteDatabaseV1Response, error) {
+	rsp, err := c.AgencyHostingCreateAgencyPlanWebsiteDatabaseV1WithBody(ctx, websiteUid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAgencyHostingCreateAgencyPlanWebsiteDatabaseV1Response(rsp)
+}
+
+func (c *ClientWithResponses) AgencyHostingCreateAgencyPlanWebsiteDatabaseV1WithResponse(ctx context.Context, websiteUid WebsiteUid, body AgencyHostingCreateAgencyPlanWebsiteDatabaseV1JSONRequestBody, reqEditors ...RequestEditorFn) (*AgencyHostingCreateAgencyPlanWebsiteDatabaseV1Response, error) {
+	rsp, err := c.AgencyHostingCreateAgencyPlanWebsiteDatabaseV1(ctx, websiteUid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAgencyHostingCreateAgencyPlanWebsiteDatabaseV1Response(rsp)
+}
+
+// AgencyHostingDeleteAgencyPlanWebsiteDatabaseV1WithResponse request returning *AgencyHostingDeleteAgencyPlanWebsiteDatabaseV1Response
+func (c *ClientWithResponses) AgencyHostingDeleteAgencyPlanWebsiteDatabaseV1WithResponse(ctx context.Context, websiteUid WebsiteUid, databaseName AgencyDatabaseNamePath, reqEditors ...RequestEditorFn) (*AgencyHostingDeleteAgencyPlanWebsiteDatabaseV1Response, error) {
+	rsp, err := c.AgencyHostingDeleteAgencyPlanWebsiteDatabaseV1(ctx, websiteUid, databaseName, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAgencyHostingDeleteAgencyPlanWebsiteDatabaseV1Response(rsp)
+}
+
+// AgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1WithBodyWithResponse request with arbitrary body returning *AgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1Response
+func (c *ClientWithResponses) AgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1WithBodyWithResponse(ctx context.Context, websiteUid WebsiteUid, databaseName AgencyDatabaseNamePath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1Response, error) {
+	rsp, err := c.AgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1WithBody(ctx, websiteUid, databaseName, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1Response(rsp)
+}
+
+func (c *ClientWithResponses) AgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1WithResponse(ctx context.Context, websiteUid WebsiteUid, databaseName AgencyDatabaseNamePath, body AgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1JSONRequestBody, reqEditors ...RequestEditorFn) (*AgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1Response, error) {
+	rsp, err := c.AgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1(ctx, websiteUid, databaseName, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1Response(rsp)
+}
+
+// AgencyHostingDeleteAgencyPlanWebsiteDatabaseUserV1WithResponse request returning *AgencyHostingDeleteAgencyPlanWebsiteDatabaseUserV1Response
+func (c *ClientWithResponses) AgencyHostingDeleteAgencyPlanWebsiteDatabaseUserV1WithResponse(ctx context.Context, websiteUid WebsiteUid, databaseName AgencyDatabaseNamePath, databaseUserName AgencyDatabaseUserNamePath, reqEditors ...RequestEditorFn) (*AgencyHostingDeleteAgencyPlanWebsiteDatabaseUserV1Response, error) {
+	rsp, err := c.AgencyHostingDeleteAgencyPlanWebsiteDatabaseUserV1(ctx, websiteUid, databaseName, databaseUserName, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAgencyHostingDeleteAgencyPlanWebsiteDatabaseUserV1Response(rsp)
+}
+
 // AgencyHostingLinkDomainToAgencyPlanWebsiteV1WithBodyWithResponse request with arbitrary body returning *AgencyHostingLinkDomainToAgencyPlanWebsiteV1Response
 func (c *ClientWithResponses) AgencyHostingLinkDomainToAgencyPlanWebsiteV1WithBodyWithResponse(ctx context.Context, websiteUid WebsiteUid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AgencyHostingLinkDomainToAgencyPlanWebsiteV1Response, error) {
 	rsp, err := c.AgencyHostingLinkDomainToAgencyPlanWebsiteV1WithBody(ctx, websiteUid, contentType, body, reqEditors...)
@@ -28940,6 +35077,41 @@ func (c *ClientWithResponses) AgencyHostingListRunningAgencyPlanWebsiteProcesses
 	return ParseAgencyHostingListRunningAgencyPlanWebsiteProcessesV1Response(rsp)
 }
 
+// AgencyHostingGetAgencyPlanWebsiteWordPressSettingsV1WithResponse request returning *AgencyHostingGetAgencyPlanWebsiteWordPressSettingsV1Response
+func (c *ClientWithResponses) AgencyHostingGetAgencyPlanWebsiteWordPressSettingsV1WithResponse(ctx context.Context, websiteUid WebsiteUid, reqEditors ...RequestEditorFn) (*AgencyHostingGetAgencyPlanWebsiteWordPressSettingsV1Response, error) {
+	rsp, err := c.AgencyHostingGetAgencyPlanWebsiteWordPressSettingsV1(ctx, websiteUid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAgencyHostingGetAgencyPlanWebsiteWordPressSettingsV1Response(rsp)
+}
+
+// AgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1WithBodyWithResponse request with arbitrary body returning *AgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1Response
+func (c *ClientWithResponses) AgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1WithBodyWithResponse(ctx context.Context, websiteUid WebsiteUid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1Response, error) {
+	rsp, err := c.AgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1WithBody(ctx, websiteUid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1Response(rsp)
+}
+
+func (c *ClientWithResponses) AgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1WithResponse(ctx context.Context, websiteUid WebsiteUid, body AgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1JSONRequestBody, reqEditors ...RequestEditorFn) (*AgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1Response, error) {
+	rsp, err := c.AgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1(ctx, websiteUid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1Response(rsp)
+}
+
+// AgencyHostingListAvailableWordPressVersionsForAnAgencyPlanWebsiteV1WithResponse request returning *AgencyHostingListAvailableWordPressVersionsForAnAgencyPlanWebsiteV1Response
+func (c *ClientWithResponses) AgencyHostingListAvailableWordPressVersionsForAnAgencyPlanWebsiteV1WithResponse(ctx context.Context, websiteUid WebsiteUid, reqEditors ...RequestEditorFn) (*AgencyHostingListAvailableWordPressVersionsForAnAgencyPlanWebsiteV1Response, error) {
+	rsp, err := c.AgencyHostingListAvailableWordPressVersionsForAnAgencyPlanWebsiteV1(ctx, websiteUid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAgencyHostingListAvailableWordPressVersionsForAnAgencyPlanWebsiteV1Response(rsp)
+}
+
 // BillingGetCatalogItemListV1WithResponse request returning *BillingGetCatalogItemListV1Response
 func (c *ClientWithResponses) BillingGetCatalogItemListV1WithResponse(ctx context.Context, params *BillingGetCatalogItemListV1Params, reqEditors ...RequestEditorFn) (*BillingGetCatalogItemListV1Response, error) {
 	rsp, err := c.BillingGetCatalogItemListV1(ctx, params, reqEditors...)
@@ -28947,6 +35119,23 @@ func (c *ClientWithResponses) BillingGetCatalogItemListV1WithResponse(ctx contex
 		return nil, err
 	}
 	return ParseBillingGetCatalogItemListV1Response(rsp)
+}
+
+// BillingCreatePurchaseOrderV1WithBodyWithResponse request with arbitrary body returning *BillingCreatePurchaseOrderV1Response
+func (c *ClientWithResponses) BillingCreatePurchaseOrderV1WithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*BillingCreatePurchaseOrderV1Response, error) {
+	rsp, err := c.BillingCreatePurchaseOrderV1WithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseBillingCreatePurchaseOrderV1Response(rsp)
+}
+
+func (c *ClientWithResponses) BillingCreatePurchaseOrderV1WithResponse(ctx context.Context, body BillingCreatePurchaseOrderV1JSONRequestBody, reqEditors ...RequestEditorFn) (*BillingCreatePurchaseOrderV1Response, error) {
+	rsp, err := c.BillingCreatePurchaseOrderV1(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseBillingCreatePurchaseOrderV1Response(rsp)
 }
 
 // BillingGetPaymentMethodListV1WithResponse request returning *BillingGetPaymentMethodListV1Response
@@ -29159,6 +35348,23 @@ func (c *ClientWithResponses) DomainsGetDomainForwardingV1WithResponse(ctx conte
 	return ParseDomainsGetDomainForwardingV1Response(rsp)
 }
 
+// DomainsUpdateDomainForwardingV1WithBodyWithResponse request with arbitrary body returning *DomainsUpdateDomainForwardingV1Response
+func (c *ClientWithResponses) DomainsUpdateDomainForwardingV1WithBodyWithResponse(ctx context.Context, domain Domain, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DomainsUpdateDomainForwardingV1Response, error) {
+	rsp, err := c.DomainsUpdateDomainForwardingV1WithBody(ctx, domain, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDomainsUpdateDomainForwardingV1Response(rsp)
+}
+
+func (c *ClientWithResponses) DomainsUpdateDomainForwardingV1WithResponse(ctx context.Context, domain Domain, body DomainsUpdateDomainForwardingV1JSONRequestBody, reqEditors ...RequestEditorFn) (*DomainsUpdateDomainForwardingV1Response, error) {
+	rsp, err := c.DomainsUpdateDomainForwardingV1(ctx, domain, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDomainsUpdateDomainForwardingV1Response(rsp)
+}
+
 // DomainsGetDomainListV1WithResponse request returning *DomainsGetDomainListV1Response
 func (c *ClientWithResponses) DomainsGetDomainListV1WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DomainsGetDomainListV1Response, error) {
 	rsp, err := c.DomainsGetDomainListV1(ctx, reqEditors...)
@@ -29192,6 +35398,15 @@ func (c *ClientWithResponses) DomainsGetDomainDetailsV1WithResponse(ctx context.
 		return nil, err
 	}
 	return ParseDomainsGetDomainDetailsV1Response(rsp)
+}
+
+// DomainsGetDomainAuthorizationCodeV1WithResponse request returning *DomainsGetDomainAuthorizationCodeV1Response
+func (c *ClientWithResponses) DomainsGetDomainAuthorizationCodeV1WithResponse(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*DomainsGetDomainAuthorizationCodeV1Response, error) {
+	rsp, err := c.DomainsGetDomainAuthorizationCodeV1(ctx, domain, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDomainsGetDomainAuthorizationCodeV1Response(rsp)
 }
 
 // DomainsDisableDomainLockV1WithResponse request returning *DomainsDisableDomainLockV1Response
@@ -29254,6 +35469,24 @@ func (c *ClientWithResponses) DomainsGetDomainRenewalInformationV1WithResponse(c
 		return nil, err
 	}
 	return ParseDomainsGetDomainRenewalInformationV1Response(rsp)
+}
+
+// DomainsGetTransferListV1WithResponse request returning *DomainsGetTransferListV1Response
+func (c *ClientWithResponses) DomainsGetTransferListV1WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DomainsGetTransferListV1Response, error) {
+	rsp, err := c.DomainsGetTransferListV1(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDomainsGetTransferListV1Response(rsp)
+}
+
+// DomainsGetTransferV1WithResponse request returning *DomainsGetTransferV1Response
+func (c *ClientWithResponses) DomainsGetTransferV1WithResponse(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*DomainsGetTransferV1Response, error) {
+	rsp, err := c.DomainsGetTransferV1(ctx, domain, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDomainsGetTransferV1Response(rsp)
 }
 
 // DomainsGetWHOISProfileListV1WithResponse request returning *DomainsGetWHOISProfileListV1Response
@@ -30445,6 +36678,244 @@ func (c *ClientWithResponses) HostingListWordPressThemesV1WithResponse(ctx conte
 		return nil, err
 	}
 	return ParseHostingListWordPressThemesV1Response(rsp)
+}
+
+// MailListAPITokensV1WithResponse request returning *MailListAPITokensV1Response
+func (c *ClientWithResponses) MailListAPITokensV1WithResponse(ctx context.Context, params *MailListAPITokensV1Params, reqEditors ...RequestEditorFn) (*MailListAPITokensV1Response, error) {
+	rsp, err := c.MailListAPITokensV1(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMailListAPITokensV1Response(rsp)
+}
+
+// MailRevokeAPITokenV1WithResponse request returning *MailRevokeAPITokenV1Response
+func (c *ClientWithResponses) MailRevokeAPITokenV1WithResponse(ctx context.Context, tokenId MailApiTokenIdPath, reqEditors ...RequestEditorFn) (*MailRevokeAPITokenV1Response, error) {
+	rsp, err := c.MailRevokeAPITokenV1(ctx, tokenId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMailRevokeAPITokenV1Response(rsp)
+}
+
+// MailDeleteMailboxV1WithResponse request returning *MailDeleteMailboxV1Response
+func (c *ClientWithResponses) MailDeleteMailboxV1WithResponse(ctx context.Context, mailboxId MailMailboxIdPath, reqEditors ...RequestEditorFn) (*MailDeleteMailboxV1Response, error) {
+	rsp, err := c.MailDeleteMailboxV1(ctx, mailboxId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMailDeleteMailboxV1Response(rsp)
+}
+
+// MailChangeMailboxPasswordV1WithBodyWithResponse request with arbitrary body returning *MailChangeMailboxPasswordV1Response
+func (c *ClientWithResponses) MailChangeMailboxPasswordV1WithBodyWithResponse(ctx context.Context, mailboxId MailMailboxIdPath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MailChangeMailboxPasswordV1Response, error) {
+	rsp, err := c.MailChangeMailboxPasswordV1WithBody(ctx, mailboxId, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMailChangeMailboxPasswordV1Response(rsp)
+}
+
+func (c *ClientWithResponses) MailChangeMailboxPasswordV1WithResponse(ctx context.Context, mailboxId MailMailboxIdPath, body MailChangeMailboxPasswordV1JSONRequestBody, reqEditors ...RequestEditorFn) (*MailChangeMailboxPasswordV1Response, error) {
+	rsp, err := c.MailChangeMailboxPasswordV1(ctx, mailboxId, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMailChangeMailboxPasswordV1Response(rsp)
+}
+
+// MailCreateWebhookV1WithBodyWithResponse request with arbitrary body returning *MailCreateWebhookV1Response
+func (c *ClientWithResponses) MailCreateWebhookV1WithBodyWithResponse(ctx context.Context, mailboxId MailMailboxIdPath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MailCreateWebhookV1Response, error) {
+	rsp, err := c.MailCreateWebhookV1WithBody(ctx, mailboxId, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMailCreateWebhookV1Response(rsp)
+}
+
+func (c *ClientWithResponses) MailCreateWebhookV1WithResponse(ctx context.Context, mailboxId MailMailboxIdPath, body MailCreateWebhookV1JSONRequestBody, reqEditors ...RequestEditorFn) (*MailCreateWebhookV1Response, error) {
+	rsp, err := c.MailCreateWebhookV1(ctx, mailboxId, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMailCreateWebhookV1Response(rsp)
+}
+
+// MailListOrdersV1WithResponse request returning *MailListOrdersV1Response
+func (c *ClientWithResponses) MailListOrdersV1WithResponse(ctx context.Context, params *MailListOrdersV1Params, reqEditors ...RequestEditorFn) (*MailListOrdersV1Response, error) {
+	rsp, err := c.MailListOrdersV1(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMailListOrdersV1Response(rsp)
+}
+
+// MailCreateAPITokenV1WithBodyWithResponse request with arbitrary body returning *MailCreateAPITokenV1Response
+func (c *ClientWithResponses) MailCreateAPITokenV1WithBodyWithResponse(ctx context.Context, orderId MailOrderIdPath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MailCreateAPITokenV1Response, error) {
+	rsp, err := c.MailCreateAPITokenV1WithBody(ctx, orderId, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMailCreateAPITokenV1Response(rsp)
+}
+
+func (c *ClientWithResponses) MailCreateAPITokenV1WithResponse(ctx context.Context, orderId MailOrderIdPath, body MailCreateAPITokenV1JSONRequestBody, reqEditors ...RequestEditorFn) (*MailCreateAPITokenV1Response, error) {
+	rsp, err := c.MailCreateAPITokenV1(ctx, orderId, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMailCreateAPITokenV1Response(rsp)
+}
+
+// MailListAccessLogsV1WithResponse request returning *MailListAccessLogsV1Response
+func (c *ClientWithResponses) MailListAccessLogsV1WithResponse(ctx context.Context, orderId MailOrderIdPath, params *MailListAccessLogsV1Params, reqEditors ...RequestEditorFn) (*MailListAccessLogsV1Response, error) {
+	rsp, err := c.MailListAccessLogsV1(ctx, orderId, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMailListAccessLogsV1Response(rsp)
+}
+
+// MailListActionLogsV1WithResponse request returning *MailListActionLogsV1Response
+func (c *ClientWithResponses) MailListActionLogsV1WithResponse(ctx context.Context, orderId MailOrderIdPath, params *MailListActionLogsV1Params, reqEditors ...RequestEditorFn) (*MailListActionLogsV1Response, error) {
+	rsp, err := c.MailListActionLogsV1(ctx, orderId, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMailListActionLogsV1Response(rsp)
+}
+
+// MailListInboundLogsV1WithResponse request returning *MailListInboundLogsV1Response
+func (c *ClientWithResponses) MailListInboundLogsV1WithResponse(ctx context.Context, orderId MailOrderIdPath, params *MailListInboundLogsV1Params, reqEditors ...RequestEditorFn) (*MailListInboundLogsV1Response, error) {
+	rsp, err := c.MailListInboundLogsV1(ctx, orderId, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMailListInboundLogsV1Response(rsp)
+}
+
+// MailListMailboxActionLogsV1WithResponse request returning *MailListMailboxActionLogsV1Response
+func (c *ClientWithResponses) MailListMailboxActionLogsV1WithResponse(ctx context.Context, orderId MailOrderIdPath, params *MailListMailboxActionLogsV1Params, reqEditors ...RequestEditorFn) (*MailListMailboxActionLogsV1Response, error) {
+	rsp, err := c.MailListMailboxActionLogsV1(ctx, orderId, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMailListMailboxActionLogsV1Response(rsp)
+}
+
+// MailListOutboundLogsV1WithResponse request returning *MailListOutboundLogsV1Response
+func (c *ClientWithResponses) MailListOutboundLogsV1WithResponse(ctx context.Context, orderId MailOrderIdPath, params *MailListOutboundLogsV1Params, reqEditors ...RequestEditorFn) (*MailListOutboundLogsV1Response, error) {
+	rsp, err := c.MailListOutboundLogsV1(ctx, orderId, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMailListOutboundLogsV1Response(rsp)
+}
+
+// MailListMailboxesV1WithResponse request returning *MailListMailboxesV1Response
+func (c *ClientWithResponses) MailListMailboxesV1WithResponse(ctx context.Context, orderId MailOrderIdPath, params *MailListMailboxesV1Params, reqEditors ...RequestEditorFn) (*MailListMailboxesV1Response, error) {
+	rsp, err := c.MailListMailboxesV1(ctx, orderId, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMailListMailboxesV1Response(rsp)
+}
+
+// MailCreateMailboxV1WithBodyWithResponse request with arbitrary body returning *MailCreateMailboxV1Response
+func (c *ClientWithResponses) MailCreateMailboxV1WithBodyWithResponse(ctx context.Context, orderId MailOrderIdPath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MailCreateMailboxV1Response, error) {
+	rsp, err := c.MailCreateMailboxV1WithBody(ctx, orderId, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMailCreateMailboxV1Response(rsp)
+}
+
+func (c *ClientWithResponses) MailCreateMailboxV1WithResponse(ctx context.Context, orderId MailOrderIdPath, body MailCreateMailboxV1JSONRequestBody, reqEditors ...RequestEditorFn) (*MailCreateMailboxV1Response, error) {
+	rsp, err := c.MailCreateMailboxV1(ctx, orderId, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMailCreateMailboxV1Response(rsp)
+}
+
+// MailGetOrderPlanV1WithResponse request returning *MailGetOrderPlanV1Response
+func (c *ClientWithResponses) MailGetOrderPlanV1WithResponse(ctx context.Context, orderId MailOrderIdPath, reqEditors ...RequestEditorFn) (*MailGetOrderPlanV1Response, error) {
+	rsp, err := c.MailGetOrderPlanV1(ctx, orderId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMailGetOrderPlanV1Response(rsp)
+}
+
+// MailListWebhooksV1WithResponse request returning *MailListWebhooksV1Response
+func (c *ClientWithResponses) MailListWebhooksV1WithResponse(ctx context.Context, orderId MailOrderIdPath, params *MailListWebhooksV1Params, reqEditors ...RequestEditorFn) (*MailListWebhooksV1Response, error) {
+	rsp, err := c.MailListWebhooksV1(ctx, orderId, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMailListWebhooksV1Response(rsp)
+}
+
+// MailListWebhookDeliveryLogsV1WithResponse request returning *MailListWebhookDeliveryLogsV1Response
+func (c *ClientWithResponses) MailListWebhookDeliveryLogsV1WithResponse(ctx context.Context, orderId MailOrderIdPath, params *MailListWebhookDeliveryLogsV1Params, reqEditors ...RequestEditorFn) (*MailListWebhookDeliveryLogsV1Response, error) {
+	rsp, err := c.MailListWebhookDeliveryLogsV1(ctx, orderId, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMailListWebhookDeliveryLogsV1Response(rsp)
+}
+
+// MailDeleteWebhookV1WithResponse request returning *MailDeleteWebhookV1Response
+func (c *ClientWithResponses) MailDeleteWebhookV1WithResponse(ctx context.Context, webhookId MailWebhookIdPath, reqEditors ...RequestEditorFn) (*MailDeleteWebhookV1Response, error) {
+	rsp, err := c.MailDeleteWebhookV1(ctx, webhookId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMailDeleteWebhookV1Response(rsp)
+}
+
+// MailGetWebhookV1WithResponse request returning *MailGetWebhookV1Response
+func (c *ClientWithResponses) MailGetWebhookV1WithResponse(ctx context.Context, webhookId MailWebhookIdPath, reqEditors ...RequestEditorFn) (*MailGetWebhookV1Response, error) {
+	rsp, err := c.MailGetWebhookV1(ctx, webhookId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMailGetWebhookV1Response(rsp)
+}
+
+// MailUpdateWebhookV1WithBodyWithResponse request with arbitrary body returning *MailUpdateWebhookV1Response
+func (c *ClientWithResponses) MailUpdateWebhookV1WithBodyWithResponse(ctx context.Context, webhookId MailWebhookIdPath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MailUpdateWebhookV1Response, error) {
+	rsp, err := c.MailUpdateWebhookV1WithBody(ctx, webhookId, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMailUpdateWebhookV1Response(rsp)
+}
+
+func (c *ClientWithResponses) MailUpdateWebhookV1WithResponse(ctx context.Context, webhookId MailWebhookIdPath, body MailUpdateWebhookV1JSONRequestBody, reqEditors ...RequestEditorFn) (*MailUpdateWebhookV1Response, error) {
+	rsp, err := c.MailUpdateWebhookV1(ctx, webhookId, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMailUpdateWebhookV1Response(rsp)
+}
+
+// MailRegenerateWebhookSecretV1WithResponse request returning *MailRegenerateWebhookSecretV1Response
+func (c *ClientWithResponses) MailRegenerateWebhookSecretV1WithResponse(ctx context.Context, webhookId MailWebhookIdPath, reqEditors ...RequestEditorFn) (*MailRegenerateWebhookSecretV1Response, error) {
+	rsp, err := c.MailRegenerateWebhookSecretV1(ctx, webhookId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMailRegenerateWebhookSecretV1Response(rsp)
+}
+
+// MailTestWebhookV1WithResponse request returning *MailTestWebhookV1Response
+func (c *ClientWithResponses) MailTestWebhookV1WithResponse(ctx context.Context, webhookId MailWebhookIdPath, reqEditors ...RequestEditorFn) (*MailTestWebhookV1Response, error) {
+	rsp, err := c.MailTestWebhookV1(ctx, webhookId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMailTestWebhookV1Response(rsp)
 }
 
 // ReachListContactsV1WithResponse request returning *ReachListContactsV1Response
@@ -31759,6 +38230,224 @@ func ParseAgencyHostingDeleteAgencyPlanWebsiteCronJobV1Response(rsp *http.Respon
 	return response, nil
 }
 
+// ParseAgencyHostingListAgencyPlanWebsiteDatabasesV1Response parses an HTTP response from a AgencyHostingListAgencyPlanWebsiteDatabasesV1WithResponse call
+func ParseAgencyHostingListAgencyPlanWebsiteDatabasesV1Response(rsp *http.Response) (*AgencyHostingListAgencyPlanWebsiteDatabasesV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AgencyHostingListAgencyPlanWebsiteDatabasesV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			// Data Array of [`AgencyHosting.V1.Websites.Databases.DatabaseResource`](#model/agencyhostingv1websitesdatabasesdatabaseresource)
+			Data *AgencyHostingV1WebsitesDatabasesDatabaseCollection `json:"data,omitempty"`
+			Meta *CommonSchemaPaginationMetaSchema                   `json:"meta,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAgencyHostingCreateAgencyPlanWebsiteDatabaseV1Response parses an HTTP response from a AgencyHostingCreateAgencyPlanWebsiteDatabaseV1WithResponse call
+func ParseAgencyHostingCreateAgencyPlanWebsiteDatabaseV1Response(rsp *http.Response) (*AgencyHostingCreateAgencyPlanWebsiteDatabaseV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AgencyHostingCreateAgencyPlanWebsiteDatabaseV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AgencyHostingV1WebsitesDatabasesDatabaseResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseUnprocessableContentResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAgencyHostingDeleteAgencyPlanWebsiteDatabaseV1Response parses an HTTP response from a AgencyHostingDeleteAgencyPlanWebsiteDatabaseV1WithResponse call
+func ParseAgencyHostingDeleteAgencyPlanWebsiteDatabaseV1Response(rsp *http.Response) (*AgencyHostingDeleteAgencyPlanWebsiteDatabaseV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AgencyHostingDeleteAgencyPlanWebsiteDatabaseV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CommonSuccessEmptyResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1Response parses an HTTP response from a AgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1WithResponse call
+func ParseAgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1Response(rsp *http.Response) (*AgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AgencyHostingCreateAgencyPlanWebsiteDatabaseUserV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AgencyHostingV1WebsitesDatabasesDatabaseUserResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseUnprocessableContentResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAgencyHostingDeleteAgencyPlanWebsiteDatabaseUserV1Response parses an HTTP response from a AgencyHostingDeleteAgencyPlanWebsiteDatabaseUserV1WithResponse call
+func ParseAgencyHostingDeleteAgencyPlanWebsiteDatabaseUserV1Response(rsp *http.Response) (*AgencyHostingDeleteAgencyPlanWebsiteDatabaseUserV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AgencyHostingDeleteAgencyPlanWebsiteDatabaseUserV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CommonSuccessEmptyResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseAgencyHostingLinkDomainToAgencyPlanWebsiteV1Response parses an HTTP response from a AgencyHostingLinkDomainToAgencyPlanWebsiteV1WithResponse call
 func ParseAgencyHostingLinkDomainToAgencyPlanWebsiteV1Response(rsp *http.Response) (*AgencyHostingLinkDomainToAgencyPlanWebsiteV1Response, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -31980,6 +38669,133 @@ func ParseAgencyHostingListRunningAgencyPlanWebsiteProcessesV1Response(rsp *http
 	return response, nil
 }
 
+// ParseAgencyHostingGetAgencyPlanWebsiteWordPressSettingsV1Response parses an HTTP response from a AgencyHostingGetAgencyPlanWebsiteWordPressSettingsV1WithResponse call
+func ParseAgencyHostingGetAgencyPlanWebsiteWordPressSettingsV1Response(rsp *http.Response) (*AgencyHostingGetAgencyPlanWebsiteWordPressSettingsV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AgencyHostingGetAgencyPlanWebsiteWordPressSettingsV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AgencyHostingV1WordPressSettingsResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1Response parses an HTTP response from a AgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1WithResponse call
+func ParseAgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1Response(rsp *http.Response) (*AgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CommonSuccessEmptyResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseUnprocessableContentResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAgencyHostingListAvailableWordPressVersionsForAnAgencyPlanWebsiteV1Response parses an HTTP response from a AgencyHostingListAvailableWordPressVersionsForAnAgencyPlanWebsiteV1WithResponse call
+func ParseAgencyHostingListAvailableWordPressVersionsForAnAgencyPlanWebsiteV1Response(rsp *http.Response) (*AgencyHostingListAvailableWordPressVersionsForAnAgencyPlanWebsiteV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AgencyHostingListAvailableWordPressVersionsForAnAgencyPlanWebsiteV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AgencyHostingV1WordPressVersionCollection
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseBillingGetCatalogItemListV1Response parses an HTTP response from a BillingGetCatalogItemListV1WithResponse call
 func ParseBillingGetCatalogItemListV1Response(rsp *http.Response) (*BillingGetCatalogItemListV1Response, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -32007,6 +38823,53 @@ func ParseBillingGetCatalogItemListV1Response(rsp *http.Response) (*BillingGetCa
 			return nil, err
 		}
 		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseBillingCreatePurchaseOrderV1Response parses an HTTP response from a BillingCreatePurchaseOrderV1WithResponse call
+func ParseBillingCreatePurchaseOrderV1Response(rsp *http.Response) (*BillingCreatePurchaseOrderV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &BillingCreatePurchaseOrderV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest BillingV1OrderOrderResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseUnprocessableContentResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
 		var dest CommonResponseErrorResponse
@@ -32782,6 +39645,53 @@ func ParseDomainsGetDomainForwardingV1Response(rsp *http.Response) (*DomainsGetD
 	return response, nil
 }
 
+// ParseDomainsUpdateDomainForwardingV1Response parses an HTTP response from a DomainsUpdateDomainForwardingV1WithResponse call
+func ParseDomainsUpdateDomainForwardingV1Response(rsp *http.Response) (*DomainsUpdateDomainForwardingV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DomainsUpdateDomainForwardingV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest DomainsV1ForwardingForwardingResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseUnprocessableContentResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseDomainsGetDomainListV1Response parses an HTTP response from a DomainsGetDomainListV1WithResponse call
 func ParseDomainsGetDomainListV1Response(rsp *http.Response) (*DomainsGetDomainListV1Response, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -32885,6 +39795,46 @@ func ParseDomainsGetDomainDetailsV1Response(rsp *http.Response) (*DomainsGetDoma
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest DomainsV1DomainDomainExtendedResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDomainsGetDomainAuthorizationCodeV1Response parses an HTTP response from a DomainsGetDomainAuthorizationCodeV1WithResponse call
+func ParseDomainsGetDomainAuthorizationCodeV1Response(rsp *http.Response) (*DomainsGetDomainAuthorizationCodeV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DomainsGetDomainAuthorizationCodeV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest DomainsV1PortfolioAuthCodeAuthCodeResource
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -33132,6 +40082,86 @@ func ParseDomainsGetDomainRenewalInformationV1Response(rsp *http.Response) (*Dom
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest DomainsV1PortfolioRenewalRenewalInformationResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDomainsGetTransferListV1Response parses an HTTP response from a DomainsGetTransferListV1WithResponse call
+func ParseDomainsGetTransferListV1Response(rsp *http.Response) (*DomainsGetTransferListV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DomainsGetTransferListV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest DomainsV1TransferTransferCollection
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDomainsGetTransferV1Response parses an HTTP response from a DomainsGetTransferV1WithResponse call
+func ParseDomainsGetTransferV1Response(rsp *http.Response) (*DomainsGetTransferV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DomainsGetTransferV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest DomainsV1TransferTransferResource
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -37264,6 +44294,1262 @@ func ParseHostingListWordPressThemesV1Response(rsp *http.Response) (*HostingList
 			return nil, err
 		}
 		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMailListAPITokensV1Response parses an HTTP response from a MailListAPITokensV1WithResponse call
+func ParseMailListAPITokensV1Response(rsp *http.Response) (*MailListAPITokensV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MailListAPITokensV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			// Data Array of [`Mail.V1.ApiTokens.ApiTokenResource`](#model/mailv1apitokensapitokenresource)
+			Data *MailV1ApiTokensApiTokenCollection `json:"data,omitempty"`
+			Meta *CommonSchemaPaginationMetaSchema  `json:"meta,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMailRevokeAPITokenV1Response parses an HTTP response from a MailRevokeAPITokenV1WithResponse call
+func ParseMailRevokeAPITokenV1Response(rsp *http.Response) (*MailRevokeAPITokenV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MailRevokeAPITokenV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CommonSuccessEmptyResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMailDeleteMailboxV1Response parses an HTTP response from a MailDeleteMailboxV1WithResponse call
+func ParseMailDeleteMailboxV1Response(rsp *http.Response) (*MailDeleteMailboxV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MailDeleteMailboxV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CommonSuccessEmptyResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMailChangeMailboxPasswordV1Response parses an HTTP response from a MailChangeMailboxPasswordV1WithResponse call
+func ParseMailChangeMailboxPasswordV1Response(rsp *http.Response) (*MailChangeMailboxPasswordV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MailChangeMailboxPasswordV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CommonSuccessEmptyResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMailCreateWebhookV1Response parses an HTTP response from a MailCreateWebhookV1WithResponse call
+func ParseMailCreateWebhookV1Response(rsp *http.Response) (*MailCreateWebhookV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MailCreateWebhookV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest MailV1WebhooksWebhookCreatedResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMailListOrdersV1Response parses an HTTP response from a MailListOrdersV1WithResponse call
+func ParseMailListOrdersV1Response(rsp *http.Response) (*MailListOrdersV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MailListOrdersV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			// Data Array of [`Mail.V1.Orders.OrderResource`](#model/mailv1ordersorderresource)
+			Data *MailV1OrdersOrderCollection      `json:"data,omitempty"`
+			Meta *CommonSchemaPaginationMetaSchema `json:"meta,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMailCreateAPITokenV1Response parses an HTTP response from a MailCreateAPITokenV1WithResponse call
+func ParseMailCreateAPITokenV1Response(rsp *http.Response) (*MailCreateAPITokenV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MailCreateAPITokenV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest MailV1ApiTokensApiTokenCreatedResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMailListAccessLogsV1Response parses an HTTP response from a MailListAccessLogsV1WithResponse call
+func ParseMailListAccessLogsV1Response(rsp *http.Response) (*MailListAccessLogsV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MailListAccessLogsV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			// Data Array of [`Mail.V1.Logs.Access.AccessLogResource`](#model/mailv1logsaccessaccesslogresource)
+			Data *MailV1LogsAccessAccessLogCollection `json:"data,omitempty"`
+			Meta *CommonSchemaPaginationMetaSchema    `json:"meta,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMailListActionLogsV1Response parses an HTTP response from a MailListActionLogsV1WithResponse call
+func ParseMailListActionLogsV1Response(rsp *http.Response) (*MailListActionLogsV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MailListActionLogsV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			// Data Array of [`Mail.V1.Logs.Action.ActionLogResource`](#model/mailv1logsactionactionlogresource)
+			Data *MailV1LogsActionActionLogCollection `json:"data,omitempty"`
+			Meta *CommonSchemaPaginationMetaSchema    `json:"meta,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMailListInboundLogsV1Response parses an HTTP response from a MailListInboundLogsV1WithResponse call
+func ParseMailListInboundLogsV1Response(rsp *http.Response) (*MailListInboundLogsV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MailListInboundLogsV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			// Data Array of [`Mail.V1.Logs.Common.DeliveryLogResource`](#model/mailv1logscommondeliverylogresource)
+			Data *MailV1LogsCommonDeliveryLogCollection `json:"data,omitempty"`
+			Meta *CommonSchemaPaginationMetaSchema      `json:"meta,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMailListMailboxActionLogsV1Response parses an HTTP response from a MailListMailboxActionLogsV1WithResponse call
+func ParseMailListMailboxActionLogsV1Response(rsp *http.Response) (*MailListMailboxActionLogsV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MailListMailboxActionLogsV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			// Data Array of [`Mail.V1.Logs.MailboxActions.MailboxActionLogResource`](#model/mailv1logsmailboxactionsmailboxactionlogresource)
+			Data *MailV1LogsMailboxActionsMailboxActionLogCollection `json:"data,omitempty"`
+			Meta *CommonSchemaPaginationMetaSchema                   `json:"meta,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMailListOutboundLogsV1Response parses an HTTP response from a MailListOutboundLogsV1WithResponse call
+func ParseMailListOutboundLogsV1Response(rsp *http.Response) (*MailListOutboundLogsV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MailListOutboundLogsV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			// Data Array of [`Mail.V1.Logs.Common.DeliveryLogResource`](#model/mailv1logscommondeliverylogresource)
+			Data *MailV1LogsCommonDeliveryLogCollection `json:"data,omitempty"`
+			Meta *CommonSchemaPaginationMetaSchema      `json:"meta,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMailListMailboxesV1Response parses an HTTP response from a MailListMailboxesV1WithResponse call
+func ParseMailListMailboxesV1Response(rsp *http.Response) (*MailListMailboxesV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MailListMailboxesV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			// Data Array of [`Mail.V1.Mailboxes.MailboxResource`](#model/mailv1mailboxesmailboxresource)
+			Data *MailV1MailboxesMailboxCollection `json:"data,omitempty"`
+			Meta *CommonSchemaPaginationMetaSchema `json:"meta,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMailCreateMailboxV1Response parses an HTTP response from a MailCreateMailboxV1WithResponse call
+func ParseMailCreateMailboxV1Response(rsp *http.Response) (*MailCreateMailboxV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MailCreateMailboxV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest MailV1MailboxesMailboxResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMailGetOrderPlanV1Response parses an HTTP response from a MailGetOrderPlanV1WithResponse call
+func ParseMailGetOrderPlanV1Response(rsp *http.Response) (*MailGetOrderPlanV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MailGetOrderPlanV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MailV1OrdersPlanResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMailListWebhooksV1Response parses an HTTP response from a MailListWebhooksV1WithResponse call
+func ParseMailListWebhooksV1Response(rsp *http.Response) (*MailListWebhooksV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MailListWebhooksV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			// Data Array of [`Mail.V1.Webhooks.WebhookResource`](#model/mailv1webhookswebhookresource)
+			Data *MailV1WebhooksWebhookCollection  `json:"data,omitempty"`
+			Meta *CommonSchemaPaginationMetaSchema `json:"meta,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMailListWebhookDeliveryLogsV1Response parses an HTTP response from a MailListWebhookDeliveryLogsV1WithResponse call
+func ParseMailListWebhookDeliveryLogsV1Response(rsp *http.Response) (*MailListWebhookDeliveryLogsV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MailListWebhookDeliveryLogsV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			// Data Array of [`Mail.V1.Webhooks.WebhookDeliveryLogResource`](#model/mailv1webhookswebhookdeliverylogresource)
+			Data *MailV1WebhooksWebhookDeliveryLogCollection `json:"data,omitempty"`
+			Meta *CommonSchemaPaginationMetaSchema           `json:"meta,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMailDeleteWebhookV1Response parses an HTTP response from a MailDeleteWebhookV1WithResponse call
+func ParseMailDeleteWebhookV1Response(rsp *http.Response) (*MailDeleteWebhookV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MailDeleteWebhookV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CommonSuccessEmptyResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMailGetWebhookV1Response parses an HTTP response from a MailGetWebhookV1WithResponse call
+func ParseMailGetWebhookV1Response(rsp *http.Response) (*MailGetWebhookV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MailGetWebhookV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MailV1WebhooksWebhookResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMailUpdateWebhookV1Response parses an HTTP response from a MailUpdateWebhookV1WithResponse call
+func ParseMailUpdateWebhookV1Response(rsp *http.Response) (*MailUpdateWebhookV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MailUpdateWebhookV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MailV1WebhooksWebhookResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMailRegenerateWebhookSecretV1Response parses an HTTP response from a MailRegenerateWebhookSecretV1WithResponse call
+func ParseMailRegenerateWebhookSecretV1Response(rsp *http.Response) (*MailRegenerateWebhookSecretV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MailRegenerateWebhookSecretV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MailV1WebhooksWebhookSecretResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMailTestWebhookV1Response parses an HTTP response from a MailTestWebhookV1WithResponse call
+func ParseMailTestWebhookV1Response(rsp *http.Response) (*MailTestWebhookV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MailTestWebhookV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MailV1WebhooksWebhookTestResultResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON429 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
 		var dest CommonResponseErrorResponse

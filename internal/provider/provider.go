@@ -151,7 +151,7 @@ func (p *hostingerProvider) DataSources(ctx context.Context) []func() datasource
 	return []func() datasource.DataSource{
 		NewDataSourceBillingCatalogs,
 		NewDataSourceVPSVirtualMachines,
-		//NewDataSourceVPSVirtualMachine,
+		NewDataSourceVPSVirtualMachine,
 		NewDataSourceReachContacts,
 		NewDataSourceReachSegments,
 		NewDataSourceAgencyHostingWebsite,
