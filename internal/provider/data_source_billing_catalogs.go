@@ -209,8 +209,8 @@ func (d *DataSourceBillingCatalogs) Read(ctx context.Context, req datasource.Rea
 		d.Category = types.StringPointerValue(item.Category)
 		d.Name = types.StringPointerValue(item.Name)
 
-		d.Metadata = make(map[string]types.String, len(*item.Metadata))
 		if item.Metadata != nil {
+			d.Metadata = make(map[string]types.String, len(*item.Metadata))
 			for k, v := range *item.Metadata {
 				if s, ok := v.(string); ok {
 					d.Metadata[k] = types.StringValue(s)
