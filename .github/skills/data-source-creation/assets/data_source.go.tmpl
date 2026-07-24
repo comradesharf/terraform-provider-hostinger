@@ -9,6 +9,10 @@ import (
 	"net/http"
 
 	"github.com/comradesharf/terraform-provider-hostinger/internal/client"
+	// Add when API response has network fields (IPv4/IPv6):
+	// "github.com/hashicorp/terraform-plugin-framework-nettypes/iptypes"
+	// Add when API response has RFC3339 datetime fields:
+	// "github.com/hashicorp/terraform-plugin-framework-timetypes/timetypes"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
@@ -34,6 +38,10 @@ type DataSource{{PascalName}} struct {
 type {{PascalName}}ItemModel struct {
 	ID   types.String `tfsdk:"id"`
 	Name types.String `tfsdk:"name"`
+	// Example typed fields:
+	// CreatedAt timetypes.RFC3339 `tfsdk:"created_at"`
+	// IPv4      iptypes.IPv4Address `tfsdk:"ipv4"`
+	// IPv6      iptypes.IPv6Address `tfsdk:"ipv6"`
 	// TODO: add additional fields matching the API response struct
 }
 
@@ -71,6 +79,19 @@ func (d *DataSource{{PascalName}}) Schema(ctx context.Context, req datasource.Sc
 						"name": schema.StringAttribute{
 							Computed: true,
 						},
+						// Example typed attributes:
+						// "created_at": schema.StringAttribute{
+						// 	Computed:   true,
+						// 	CustomType: timetypes.RFC3339Type{},
+						// },
+						// "ipv4": schema.StringAttribute{
+						// 	Computed:   true,
+						// 	CustomType: iptypes.IPv4AddressType{},
+						// },
+						// "ipv6": schema.StringAttribute{
+						// 	Computed:   true,
+						// 	CustomType: iptypes.IPv6AddressType{},
+						// },
 						// TODO: add additional computed attributes
 					},
 				},
@@ -148,6 +169,10 @@ func (d *DataSource{{PascalName}}) Read(ctx context.Context, req datasource.Read
 		var m {{PascalName}}ItemModel
 		m.ID = types.StringPointerValue(item.Id)
 		m.Name = types.StringPointerValue(item.Name)
+		// Example typed mappings:
+		// m.CreatedAt = timetypes.NewRFC3339TimePointerValue(item.CreatedAt)
+		// m.IPv4 = iptypes.NewIPv4AddressPointerValue(item.Ipv4)
+		// m.IPv6 = iptypes.NewIPv6AddressPointerValue(item.Ipv6)
 		// TODO: map additional fields
 
 		data.{{PascalName}} = append(data.{{PascalName}}, m)
