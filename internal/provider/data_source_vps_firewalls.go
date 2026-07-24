@@ -13,7 +13,6 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
-	"github.com/hashicorp/terraform-plugin-log/tflog"
 )
 
 // Ensure provider defined types fully satisfy framework interfaces.
@@ -33,11 +32,12 @@ type DataSourceVPSFirewalls struct {
 
 // VPSFirewallRuleModel maps a single firewall rule from the API response.
 type VPSFirewallRuleModel struct {
-	ID       types.Int64  `tfsdk:"id"`
-	Protocol types.String `tfsdk:"protocol"`
-	Port     types.String `tfsdk:"port"`
-	Source   types.String `tfsdk:"source"`
-	Action   types.String `tfsdk:"action"`
+	ID            types.Int64  `tfsdk:"id"`
+	Action        types.String `tfsdk:"action"`
+	Protocol      types.String `tfsdk:"protocol"`
+	Port          types.String `tfsdk:"port"`
+	Source        types.String `tfsdk:"source"`
+	SourceDetail types.String `tfsdk:"source_detail"`
 }
 
 // VPSFirewallModel maps a single firewall from the API response.
@@ -45,14 +45,14 @@ type VPSFirewallModel struct {
 	ID        types.Int64            `tfsdk:"id"`
 	Name      types.String           `tfsdk:"name"`
 	IsSynced  types.Bool             `tfsdk:"is_synced"`
-	CreatedAt timetypes.RFC3339      `tfsdk:"created_at"`
 	Rules     []VPSFirewallRuleModel `tfsdk:"rules"`
+	CreatedAt timetypes.RFC3339      `tfsdk:"created_at"`
+	UpdatedAt timetypes.RFC3339      `tfsdk:"updated_at"`
 }
 
 // DataSourceVPSFirewallsModel describes the data source data model.
 type DataSourceVPSFirewallsModel struct {
-	FirewallID types.Int64        `tfsdk:"firewall_id"`
-	Firewalls  []VPSFirewallModel `tfsdk:"firewalls"`
+	Firewalls []VPSFirewallModel `tfsdk:"firewalls"`
 }
 
 func (d *DataSourceVPSFirewalls) Metadata(ctx context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
@@ -62,10 +62,6 @@ func (d *DataSourceVPSFirewalls) Metadata(ctx context.Context, req datasource.Me
 func (d *DataSourceVPSFirewalls) Schema(ctx context.Context, req datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		Attributes: map[string]schema.Attribute{
-			"firewall_id": schema.Int64Attribute{
-				Optional:            true,
-				MarkdownDescription: "When set, fetches the single firewall with its rules. When omitted, lists all firewalls without rules.",
-			},
 			"firewalls": schema.ListNestedAttribute{
 				Computed:            true,
 				MarkdownDescription: "List of firewall groups.",
@@ -88,6 +84,11 @@ func (d *DataSourceVPSFirewalls) Schema(ctx context.Context, req datasource.Sche
 							CustomType:          timetypes.RFC3339Type{},
 							MarkdownDescription: "Timestamp when the firewall was created (RFC3339).",
 						},
+						"updated_at": schema.StringAttribute{
+							Computed:            true,
+							CustomType:          timetypes.RFC3339Type{},
+							MarkdownDescription: "Timestamp when the firewall was updated (RFC3339).",
+						},
 						"rules": schema.ListNestedAttribute{
 							Computed:            true,
 							MarkdownDescription: "Firewall rules. Populated only when `firewall_id` is set.",
@@ -96,6 +97,10 @@ func (d *DataSourceVPSFirewalls) Schema(ctx context.Context, req datasource.Sche
 									"id": schema.Int64Attribute{
 										Computed:            true,
 										MarkdownDescription: "Firewall rule ID.",
+									},
+									"action": schema.StringAttribute{
+										Computed:            true,
+										MarkdownDescription: "Firewall rule action. Can be `accept` or `drop`.",
 									},
 									"protocol": schema.StringAttribute{
 										Computed:            true,
@@ -109,9 +114,9 @@ func (d *DataSourceVPSFirewalls) Schema(ctx context.Context, req datasource.Sche
 										Computed:            true,
 										MarkdownDescription: "Source of the rule. Can be `any` or `custom`.",
 									},
-									"action": schema.StringAttribute{
+									"source_detail": schema.StringAttribute{
 										Computed:            true,
-										MarkdownDescription: "Firewall rule action. Can be `accept` or `drop`.",
+										MarkdownDescription: "Source detail of the rule. Populated when `source` is `custom`.",
 									},
 								},
 							},
@@ -147,22 +152,13 @@ func (d *DataSourceVPSFirewalls) Read(ctx context.Context, req datasource.ReadRe
 		return
 	}
 
-	if data.FirewallID.IsUnknown() {
-		resp.Diagnostics.AddError(
-			"Unknown Firewall ID",
-			"The 'firewall_id' attribute cannot be unknown.",
-		)
-	}
+	params := &client.VPSGetFirewallListV1Params{}
 
-	if resp.Diagnostics.HasError() {
-		return
-	}
+	page := 1
+	for {
+		params.Page = &page
 
-	if !data.FirewallID.IsNull() {
-		firewallID := int(data.FirewallID.ValueInt64())
-		ctx = tflog.SetField(ctx, "firewall_id", firewallID)
-
-		response, err := d.client.VPSGetFirewallDetailsV1WithResponse(ctx, firewallID)
+		response, err := d.client.VPSGetFirewallListV1WithResponse(ctx, params)
 		if err != nil {
 			resp.Diagnostics.AddError(
 				"Unable to Read VPS Firewalls",
@@ -173,57 +169,7 @@ func (d *DataSourceVPSFirewalls) Read(ctx context.Context, req datasource.ReadRe
 		if response.StatusCode() != http.StatusOK {
 			resp.Diagnostics.AddError(
 				"Unable to Read VPS Firewalls",
-				fmt.Sprintf("Unexpected status code: %d", response.StatusCode()),
-			)
-			return
-		}
-		if response.JSON200 == nil {
-			resp.Diagnostics.AddError(
-				"Unable to Read VPS Firewalls",
-				"Response body is nil",
-			)
-			return
-		}
-
-		item := response.JSON200
-		m := VPSFirewallModel{
-			ID:        int64Value(item.Id),
-			Name:      types.StringPointerValue(item.Name),
-			IsSynced:  types.BoolPointerValue(item.IsSynced),
-			CreatedAt: timetypes.NewRFC3339TimePointerValue(item.CreatedAt),
-		}
-
-		if item.Rules != nil {
-			for _, rule := range *item.Rules {
-				r := VPSFirewallRuleModel{
-					ID:       int64Value(rule.Id),
-					Protocol: types.StringPointerValue((*string)(rule.Protocol)),
-					Port:     types.StringPointerValue(rule.Port),
-					Source:   types.StringPointerValue(rule.Source),
-					Action:   types.StringPointerValue((*string)(rule.Action)),
-				}
-				m.Rules = append(m.Rules, r)
-			}
-		}
-
-		if m.Rules == nil {
-			m.Rules = []VPSFirewallRuleModel{}
-		}
-
-		data.Firewalls = append(data.Firewalls, m)
-	} else {
-		response, err := d.client.VPSGetFirewallListV1WithResponse(ctx, &client.VPSGetFirewallListV1Params{})
-		if err != nil {
-			resp.Diagnostics.AddError(
-				"Unable to Read VPS Firewalls",
-				fmt.Sprintf("Got error: %s", err),
-			)
-			return
-		}
-		if response.StatusCode() != http.StatusOK {
-			resp.Diagnostics.AddError(
-				"Unable to Read VPS Firewalls",
-				fmt.Sprintf("Unexpected status code: %d", response.StatusCode()),
+				fmt.Sprintf("Unexpected status code: %d, response: %s", response.StatusCode(), string(response.Body)),
 			)
 			return
 		}
@@ -246,11 +192,17 @@ func (d *DataSourceVPSFirewalls) Read(ctx context.Context, req datasource.ReadRe
 				}
 				data.Firewalls = append(data.Firewalls, m)
 			}
-		}
-	}
 
-	if data.Firewalls == nil {
-		data.Firewalls = []VPSFirewallModel{}
+			meta := response.JSON200.Meta
+			if meta == nil || meta.CurrentPage == nil || meta.PerPage == nil || meta.Total == nil {
+				break
+			}
+			fetched := (*meta.CurrentPage) * (*meta.PerPage)
+			if fetched >= *meta.Total {
+				break
+			}
+			page++
+		}
 	}
 
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
