@@ -535,7 +535,7 @@ func (d *DataSourceAgencyHostingWebsite) Read(ctx context.Context, req datasourc
 	if response.StatusCode() != http.StatusOK {
 		resp.Diagnostics.AddError(
 			"Unable to Read Agency Hosting Website",
-			fmt.Sprintf("Unexpected status code: %d", response.StatusCode()),
+			fmt.Sprintf("Unexpected status code: %d, response: %s", response.StatusCode(), string(response.Body)),
 		)
 		return
 	}

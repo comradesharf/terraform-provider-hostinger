@@ -191,7 +191,7 @@ func (d *DataSourceBillingCatalogs) Read(ctx context.Context, req datasource.Rea
 	if response.StatusCode() != http.StatusOK {
 		resp.Diagnostics.AddError(
 			"Unable to Read Billing Catalogs",
-			fmt.Sprintf("Unexpected status code: %d", response.StatusCode()),
+			fmt.Sprintf("Unexpected status code: %d, response: %s", response.StatusCode(), string(response.Body)),
 		)
 		return
 	}

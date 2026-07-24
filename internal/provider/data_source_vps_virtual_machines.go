@@ -188,7 +188,7 @@ func (d *DataSourceVPSVirtualMachines) Read(ctx context.Context, req datasource.
 	if response.StatusCode() != http.StatusOK {
 		resp.Diagnostics.AddError(
 			"Unable to Read VPS Virtual Machines",
-			fmt.Sprintf("Unexpected status code: %d", response.StatusCode()),
+			fmt.Sprintf("Unexpected status code: %d, response: %s", response.StatusCode(), string(response.Body)),
 		)
 		return
 	}
