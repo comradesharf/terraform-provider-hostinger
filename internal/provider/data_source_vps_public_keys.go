@@ -5,9 +5,11 @@ package provider
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"strings"
+	"time"
 
 	"github.com/comradesharf/terraform-provider-hostinger/internal/client"
 	"github.com/hashicorp/terraform-plugin-framework-timetypes/timetypes"
@@ -54,24 +56,30 @@ func (d *DataSourceVPSPublicKeys) Schema(ctx context.Context, req datasource.Sch
 	resp.Schema = schema.Schema{
 		Attributes: map[string]schema.Attribute{
 			"name": schema.StringAttribute{
-				Optional: true,
+				Optional:            true,
+				MarkdownDescription: "Client-side substring filter applied to public key names after fetching all pages.",
 			},
 			"public_keys": schema.ListNestedAttribute{
-				Computed: true,
+				Computed:            true,
+				MarkdownDescription: "The list of SSH public keys in the account.",
 				NestedObject: schema.NestedAttributeObject{
 					Attributes: map[string]schema.Attribute{
 						"id": schema.Int64Attribute{
-							Computed: true,
+							Computed:            true,
+							MarkdownDescription: "Public key ID.",
 						},
 						"name": schema.StringAttribute{
-							Computed: true,
+							Computed:            true,
+							MarkdownDescription: "Public key name.",
 						},
 						"key": schema.StringAttribute{
-							Computed: true,
+							Computed:            true,
+							MarkdownDescription: "Public key content.",
 						},
 						"created_at": schema.StringAttribute{
-							Computed:   true,
-							CustomType: timetypes.RFC3339Type{},
+							Computed:            true,
+							CustomType:          timetypes.RFC3339Type{},
+							MarkdownDescription: "RFC3339 timestamp when the key was created.",
 						},
 					},
 				},
@@ -109,14 +117,16 @@ func (d *DataSourceVPSPublicKeys) Read(ctx context.Context, req datasource.ReadR
 			"Unknown Name",
 			"The 'name' attribute cannot be unknown.",
 		)
-	}
-
-	if resp.Diagnostics.HasError() {
 		return
 	}
 
-	if !data.Name.IsNull() && data.Name.ValueString() != "" {
-		ctx = tflog.SetField(ctx, "name", data.Name.ValueString())
+	nameFilter := ""
+	if !data.Name.IsNull() {
+		nameFilter = data.Name.ValueString()
+	}
+
+	if nameFilter != "" {
+		ctx = tflog.SetField(ctx, "name", nameFilter)
 	}
 
 	params := client.VPSGetPublicKeysV1Params{}
@@ -153,12 +163,30 @@ func (d *DataSourceVPSPublicKeys) Read(ctx context.Context, req datasource.ReadR
 			break
 		}
 
-		for _, item := range *publicKeys {
+		var rawBody struct {
+			Data []struct {
+				CreatedAt *time.Time `json:"created_at,omitempty"`
+			} `json:"data"`
+		}
+		if err := json.Unmarshal(response.Body, &rawBody); err != nil {
+			resp.Diagnostics.AddError(
+				"Unable to Read VPS Public Keys",
+				fmt.Sprintf("Unable to decode response body: %s", err),
+			)
+			return
+		}
+
+		for i, item := range *publicKeys {
+			var createdAt *time.Time
+			if i < len(rawBody.Data) {
+				createdAt = rawBody.Data[i].CreatedAt
+			}
+
 			m := VPSPublicKeysItemModel{
 				ID:        int64Value(item.Id),
 				Name:      types.StringPointerValue(item.Name),
 				Key:       types.StringPointerValue(item.Key),
-				CreatedAt: timetypes.NewRFC3339TimePointerValue(nil),
+				CreatedAt: timetypes.NewRFC3339TimePointerValue(createdAt),
 			}
 
 			data.PublicKeys = append(data.PublicKeys, m)
@@ -175,10 +203,11 @@ func (d *DataSourceVPSPublicKeys) Read(ctx context.Context, req datasource.ReadR
 		page++
 	}
 
-	if !data.Name.IsNull() && data.Name.ValueString() != "" {
+	if nameFilter != "" {
+		nameFilterLower := strings.ToLower(nameFilter)
 		filteredKeys := make([]VPSPublicKeysItemModel, 0, len(data.PublicKeys))
 		for _, publicKey := range data.PublicKeys {
-			if strings.Contains(publicKey.Name.ValueString(), data.Name.ValueString()) {
+			if strings.Contains(strings.ToLower(publicKey.Name.ValueString()), nameFilterLower) {
 				filteredKeys = append(filteredKeys, publicKey)
 			}
 		}
