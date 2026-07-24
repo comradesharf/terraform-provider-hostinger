@@ -121,7 +121,7 @@ func (d *DataSourceAgencyHostingDomains) Read(ctx context.Context, req datasourc
 		return
 	}
 
-	page := 0
+	page := 1
 	for {
 		params.Page = &page
 
@@ -136,7 +136,7 @@ func (d *DataSourceAgencyHostingDomains) Read(ctx context.Context, req datasourc
 		if response.StatusCode() != http.StatusOK {
 			resp.Diagnostics.AddError(
 				"Unable to Read Agency Hosting Domains",
-				fmt.Sprintf("Unexpected status code: %d", response.StatusCode()),
+				fmt.Sprintf("Unexpected status code: %d, response: %s", response.StatusCode(), string(response.Body)),
 			)
 			return
 		}
