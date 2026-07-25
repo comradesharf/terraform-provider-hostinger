@@ -116,7 +116,7 @@ func (d *DataSourceReachSegments) Read(ctx context.Context, req datasource.ReadR
 	if response.StatusCode() != http.StatusOK {
 		resp.Diagnostics.AddError(
 			"Unable to Read Reach Segments",
-			fmt.Sprintf("Unexpected status code: %d", response.StatusCode()),
+			fmt.Sprintf("Unexpected status code: %d, response: %s", response.StatusCode(), string(response.Body)),
 		)
 		return
 	}
