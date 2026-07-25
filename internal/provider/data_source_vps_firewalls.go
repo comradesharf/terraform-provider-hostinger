@@ -10,8 +10,10 @@ import (
 
 	"github.com/comradesharf/terraform-provider-hostinger/internal/client"
 	"github.com/hashicorp/terraform-plugin-framework-timetypes/timetypes"
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
+	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
@@ -32,11 +34,11 @@ type DataSourceVPSFirewalls struct {
 
 // VPSFirewallRuleModel maps a single firewall rule from the API response.
 type VPSFirewallRuleModel struct {
-	ID            types.Int64  `tfsdk:"id"`
-	Action        types.String `tfsdk:"action"`
-	Protocol      types.String `tfsdk:"protocol"`
-	Port          types.String `tfsdk:"port"`
-	Source        types.String `tfsdk:"source"`
+	ID           types.Int64  `tfsdk:"id"`
+	Action       types.String `tfsdk:"action"`
+	Protocol     types.String `tfsdk:"protocol"`
+	Port         types.String `tfsdk:"port"`
+	Source       types.String `tfsdk:"source"`
 	SourceDetail types.String `tfsdk:"source_detail"`
 }
 
@@ -69,15 +71,15 @@ func (d *DataSourceVPSFirewalls) Schema(ctx context.Context, req datasource.Sche
 					Attributes: map[string]schema.Attribute{
 						"id": schema.Int64Attribute{
 							Computed:            true,
-							MarkdownDescription: "Firewall ID.",
+							MarkdownDescription: "Firewall ID",
 						},
 						"name": schema.StringAttribute{
 							Computed:            true,
-							MarkdownDescription: "Firewall name.",
+							MarkdownDescription: "Firewall name",
 						},
 						"is_synced": schema.BoolAttribute{
 							Computed:            true,
-							MarkdownDescription: "Whether the firewall is synced with the VPS.",
+							MarkdownDescription: "Is current firewall synced with VPS",
 						},
 						"created_at": schema.StringAttribute{
 							Computed:            true,
@@ -90,33 +92,55 @@ func (d *DataSourceVPSFirewalls) Schema(ctx context.Context, req datasource.Sche
 							MarkdownDescription: "Timestamp when the firewall was updated (RFC3339).",
 						},
 						"rules": schema.ListNestedAttribute{
-							Computed:            true,
-							MarkdownDescription: "Firewall rules. Populated only when `firewall_id` is set.",
+							Computed: true,
 							NestedObject: schema.NestedAttributeObject{
 								Attributes: map[string]schema.Attribute{
 									"id": schema.Int64Attribute{
 										Computed:            true,
-										MarkdownDescription: "Firewall rule ID.",
+										MarkdownDescription: "Firewall rule ID",
 									},
 									"action": schema.StringAttribute{
 										Computed:            true,
-										MarkdownDescription: "Firewall rule action. Can be `accept` or `drop`.",
+										MarkdownDescription: "Firewall rule action",
+										Validators: []validator.String{
+											stringvalidator.OneOf(
+												"accept",
+												"drop",
+											),
+										},
 									},
 									"protocol": schema.StringAttribute{
 										Computed:            true,
-										MarkdownDescription: "Firewall rule protocol (e.g. TCP, UDP, ICMP).",
+										MarkdownDescription: "Firewall rule protocol",
+										Validators: []validator.String{
+											stringvalidator.OneOf(
+												"TCP",
+												"UDP",
+												"ICMP",
+												"GRE",
+												"any",
+												"ESP",
+												"AH",
+												"ICMPv6",
+												"SSH",
+												"HTTP",
+												"HTTPS",
+												"MySQL",
+												"PostgreSQL",
+											),
+										},
 									},
 									"port": schema.StringAttribute{
 										Computed:            true,
-										MarkdownDescription: "Destination port or port range.",
+										MarkdownDescription: "Firewall rule destination port: single or port range",
 									},
 									"source": schema.StringAttribute{
 										Computed:            true,
-										MarkdownDescription: "Source of the rule. Can be `any` or `custom`.",
+										MarkdownDescription: "Firewall rule source. Can be `any` or `custom`",
 									},
 									"source_detail": schema.StringAttribute{
 										Computed:            true,
-										MarkdownDescription: "Source detail of the rule. Populated when `source` is `custom`.",
+										MarkdownDescription: "Firewall rule source detail. Can be `any` or IP address, CIDR or range",
 									},
 								},
 							},
@@ -181,28 +205,40 @@ func (d *DataSourceVPSFirewalls) Read(ctx context.Context, req datasource.ReadRe
 			return
 		}
 
-		if response.JSON200.Data != nil {
-			for _, item := range *response.JSON200.Data {
-				m := VPSFirewallModel{
-					ID:        int64Value(item.Id),
-					Name:      types.StringPointerValue(item.Name),
-					IsSynced:  types.BoolPointerValue(item.IsSynced),
-					CreatedAt: timetypes.NewRFC3339TimePointerValue(item.CreatedAt),
-					Rules:     []VPSFirewallRuleModel{},
+		for _, item := range *response.JSON200.Data {
+			var d VPSFirewallModel
+			d.ID = int64Value(item.Id)
+			d.Name = types.StringPointerValue(item.Name)
+			d.IsSynced = types.BoolPointerValue(item.IsSynced)
+			d.CreatedAt = timetypes.NewRFC3339TimePointerValue(item.CreatedAt)
+			d.UpdatedAt = timetypes.NewRFC3339TimePointerValue(item.UpdatedAt)
+
+			if item.Rules != nil {
+				for _, rule := range *item.Rules {
+					var p VPSFirewallRuleModel
+					p.ID = int64Value(rule.Id)
+					p.Action = types.StringPointerValue((*string)(rule.Action))
+					p.Protocol = types.StringPointerValue((*string)(rule.Protocol))
+					p.Port = types.StringPointerValue(rule.Port)
+					p.Source = types.StringPointerValue(rule.Source)
+					p.SourceDetail = types.StringPointerValue(rule.SourceDetail)
+
+					d.Rules = append(d.Rules, p)
 				}
-				data.Firewalls = append(data.Firewalls, m)
 			}
 
-			meta := response.JSON200.Meta
-			if meta == nil || meta.CurrentPage == nil || meta.PerPage == nil || meta.Total == nil {
-				break
-			}
-			fetched := (*meta.CurrentPage) * (*meta.PerPage)
-			if fetched >= *meta.Total {
-				break
-			}
-			page++
+			data.Firewalls = append(data.Firewalls, d)
 		}
+
+		meta := response.JSON200.Meta
+		if meta == nil || meta.CurrentPage == nil || meta.PerPage == nil || meta.Total == nil {
+			break
+		}
+		fetched := (*meta.CurrentPage) * (*meta.PerPage)
+		if fetched >= *meta.Total {
+			break
+		}
+		page++
 	}
 
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
