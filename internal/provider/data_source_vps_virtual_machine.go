@@ -170,7 +170,7 @@ func (d *DataSourceVPSVirtualMachine) Read(ctx context.Context, req datasource.R
 		return
 	}
 
-	if data.Id.IsUnknown() {
+	if data.ID.IsUnknown() {
 		resp.Diagnostics.AddError(
 			"Unknown ID",
 			"ID is unknown, unable to read VPS virtual machine.",
@@ -178,7 +178,7 @@ func (d *DataSourceVPSVirtualMachine) Read(ctx context.Context, req datasource.R
 		return
 	}
 
-	if data.Id.IsNull() || data.Id.ValueInt64() == 0 {
+	if data.ID.IsNull() || data.ID.ValueInt64() == 0 {
 		resp.Diagnostics.AddError(
 			"Null ID",
 			"ID is null or zero, unable to read VPS virtual machine.",
@@ -186,7 +186,7 @@ func (d *DataSourceVPSVirtualMachine) Read(ctx context.Context, req datasource.R
 		return
 	}
 
-	response, err := d.client.VPSGetVirtualMachineDetailsV1WithResponse(ctx, client.VirtualMachineId(data.Id.ValueInt64()))
+	response, err := d.client.VPSGetVirtualMachineDetailsV1WithResponse(ctx, client.VirtualMachineId(data.ID.ValueInt64()))
 	if err != nil {
 		resp.Diagnostics.AddError(
 			"Unable to Read VPS Virtual Machines",
@@ -197,7 +197,7 @@ func (d *DataSourceVPSVirtualMachine) Read(ctx context.Context, req datasource.R
 	if response.StatusCode() != http.StatusOK {
 		resp.Diagnostics.AddError(
 			"Unable to Read VPS Virtual Machines",
-			fmt.Sprintf("Unexpected status code: %d", response.StatusCode()),
+			fmt.Sprintf("Unexpected status code: %d, response: %s", response.StatusCode(), string(response.Body)),
 		)
 		return
 	}
@@ -211,8 +211,8 @@ func (d *DataSourceVPSVirtualMachine) Read(ctx context.Context, req datasource.R
 
 	item := response.JSON200
 
-	data.Id = int64Value(item.Id)
-	data.FirewallGroupId = int64Value(item.FirewallGroupId)
+	data.ID = int64Value(item.Id)
+	data.FirewallGroupID = int64Value(item.FirewallGroupId)
 	data.SubscriptionID = types.StringPointerValue(item.SubscriptionId)
 	data.DataCenterID = int64Value(item.DataCenterId)
 	data.Plan = types.StringPointerValue(item.Plan)

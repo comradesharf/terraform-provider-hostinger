@@ -188,7 +188,7 @@ func (d *DataSourceVPSVirtualMachines) Read(ctx context.Context, req datasource.
 	if response.StatusCode() != http.StatusOK {
 		resp.Diagnostics.AddError(
 			"Unable to Read VPS Virtual Machines",
-			fmt.Sprintf("Unexpected status code: %d", response.StatusCode()),
+			fmt.Sprintf("Unexpected status code: %d, response: %s", response.StatusCode(), string(response.Body)),
 		)
 		return
 	}
@@ -202,8 +202,8 @@ func (d *DataSourceVPSVirtualMachines) Read(ctx context.Context, req datasource.
 
 	for _, item := range *response.JSON200 {
 		var d VPSVirtualMachineModel
-		d.Id = int64Value(item.Id)
-		d.FirewallGroupId = int64Value(item.FirewallGroupId)
+		d.ID = int64Value(item.Id)
+		d.FirewallGroupID = int64Value(item.FirewallGroupId)
 		d.SubscriptionID = types.StringPointerValue(item.SubscriptionId)
 		d.DataCenterID = int64Value(item.DataCenterId)
 		d.Plan = types.StringPointerValue(item.Plan)

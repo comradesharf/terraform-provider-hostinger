@@ -24,8 +24,8 @@ type VPSVirtualMachineTemplateModel struct {
 
 // VPSVirtualMachineModel describes the data source data model.
 type VPSVirtualMachineModel struct {
-	Id              types.Int64                       `tfsdk:"id"`
-	FirewallGroupId types.Int64                       `tfsdk:"firewall_group_id"`
+	ID              types.Int64                       `tfsdk:"id"`
+	FirewallGroupID types.Int64                       `tfsdk:"firewall_group_id"`
 	SubscriptionID  types.String                      `tfsdk:"subscription_id"`
 	DataCenterID    types.Int64                       `tfsdk:"data_center_id"`
 	Plan            types.String                      `tfsdk:"plan"`
