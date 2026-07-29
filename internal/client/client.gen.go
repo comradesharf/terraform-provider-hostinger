@@ -2101,6 +2101,7 @@ func (e WordPressV1ThemesInstalledThemeResourceStatus) Valid() bool {
 // Defines values for Category.
 const (
 	CategoryDOMAIN Category = "DOMAIN"
+	CategoryEMAIL  Category = "EMAIL"
 	CategoryVPS    Category = "VPS"
 )
 
@@ -2108,6 +2109,8 @@ const (
 func (e Category) Valid() bool {
 	switch e {
 	case CategoryDOMAIN:
+		return true
+	case CategoryEMAIL:
 		return true
 	case CategoryVPS:
 		return true
@@ -2293,6 +2296,7 @@ func (e SubscriptionStatus) Valid() bool {
 // Defines values for BillingGetCatalogItemListV1ParamsCategory.
 const (
 	BillingGetCatalogItemListV1ParamsCategoryDOMAIN BillingGetCatalogItemListV1ParamsCategory = "DOMAIN"
+	BillingGetCatalogItemListV1ParamsCategoryEMAIL  BillingGetCatalogItemListV1ParamsCategory = "EMAIL"
 	BillingGetCatalogItemListV1ParamsCategoryVPS    BillingGetCatalogItemListV1ParamsCategory = "VPS"
 )
 
@@ -2300,6 +2304,8 @@ const (
 func (e BillingGetCatalogItemListV1ParamsCategory) Valid() bool {
 	switch e {
 	case BillingGetCatalogItemListV1ParamsCategoryDOMAIN:
+		return true
+	case BillingGetCatalogItemListV1ParamsCategoryEMAIL:
 		return true
 	case BillingGetCatalogItemListV1ParamsCategoryVPS:
 		return true
@@ -4852,6 +4858,32 @@ type HostingV1WebsitesWebsiteResource struct {
 // HostingV1WebsitesWebsiteResourceVhostType Virtual host type
 type HostingV1WebsitesWebsiteResourceVhostType string
 
+// MailV1AliasesAliasCollection Array of [`Mail.V1.Aliases.AliasResource`](#model/mailv1aliasesaliasresource)
+type MailV1AliasesAliasCollection = []MailV1AliasesAliasResource
+
+// MailV1AliasesAliasMailboxResource defines model for Mail.V1.Aliases.AliasMailboxResource.
+type MailV1AliasesAliasMailboxResource struct {
+	Address *string `json:"address,omitempty"`
+
+	// Id Mailbox resource ID
+	Id *string `json:"id,omitempty"`
+}
+
+// MailV1AliasesAliasResource defines model for Mail.V1.Aliases.AliasResource.
+type MailV1AliasesAliasResource struct {
+	// Address Email address of the alias
+	Address   *string    `json:"address,omitempty"`
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+
+	// Id Unique alias identifier
+	Id *string `json:"id,omitempty"`
+
+	// IsActive Whether the alias is active and not suspended
+	IsActive  *bool                              `json:"is_active,omitempty"`
+	Mailbox   *MailV1AliasesAliasMailboxResource `json:"mailbox,omitempty"`
+	UpdatedAt *time.Time                         `json:"updated_at,omitempty"`
+}
+
 // MailV1ApiTokensApiTokenCollection Array of [`Mail.V1.ApiTokens.ApiTokenResource`](#model/mailv1apitokensapitokenresource)
 type MailV1ApiTokensApiTokenCollection = []MailV1ApiTokensApiTokenResource
 
@@ -4946,6 +4978,36 @@ type MailV1AutorepliesAutoreplyResource struct {
 	// Subject Subject of the automatic reply
 	Subject   *string    `json:"subject,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+}
+
+// MailV1CatchallsCatchallCollection Array of [`Mail.V1.Catchalls.CatchallResource`](#model/mailv1catchallscatchallresource)
+type MailV1CatchallsCatchallCollection = []MailV1CatchallsCatchallResource
+
+// MailV1CatchallsCatchallMailboxResource defines model for Mail.V1.Catchalls.CatchallMailboxResource.
+type MailV1CatchallsCatchallMailboxResource struct {
+	Address *string `json:"address,omitempty"`
+
+	// Id Mailbox resource ID
+	Id *string `json:"id,omitempty"`
+}
+
+// MailV1CatchallsCatchallResource defines model for Mail.V1.Catchalls.CatchallResource.
+type MailV1CatchallsCatchallResource struct {
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+
+	// Domain Domain whose unrouted messages are caught
+	Domain *string `json:"domain,omitempty"`
+
+	// Id Unique catch-all identifier
+	Id *string `json:"id,omitempty"`
+
+	// IsActive Whether the catch-all is active
+	IsActive *bool `json:"is_active,omitempty"`
+
+	// IsConfirmed Whether the mailbox address has confirmed the catch-all
+	IsConfirmed *bool                                   `json:"is_confirmed,omitempty"`
+	Mailbox     *MailV1CatchallsCatchallMailboxResource `json:"mailbox,omitempty"`
+	UpdatedAt   *time.Time                              `json:"updated_at,omitempty"`
 }
 
 // MailV1ForwardersForwarderCollection Array of [`Mail.V1.Forwarders.ForwarderResource`](#model/mailv1forwardersforwarderresource)
@@ -5275,6 +5337,12 @@ type MailV1OrdersPlanResource struct {
 type MailV1SchemaChangeMailboxPasswordRequestSchema struct {
 	// Password New mailbox password. Minimum 8 characters with uppercase, lowercase, number and special character; must not be a commonly used password.
 	Password string `json:"password"`
+}
+
+// MailV1SchemaCreateAliasRequestSchema defines model for Mail.V1.Schema.CreateAliasRequestSchema.
+type MailV1SchemaCreateAliasRequestSchema struct {
+	// LocalPart Local part of the alias address (the part before the @). The domain is taken from the mailbox. Case-insensitive and stored lowercase; must start and end with a letter or digit; single dots, underscores and hyphens are allowed in between.
+	LocalPart string `json:"local_part"`
 }
 
 // MailV1SchemaCreateApiTokenRequestSchema defines model for Mail.V1.Schema.CreateApiTokenRequestSchema.
@@ -6942,6 +7010,9 @@ type MailAccessLogHasDeletions = bool
 // MailAccessLogProtocol defines model for mail_access_log_protocol.
 type MailAccessLogProtocol string
 
+// MailAliasIdPath defines model for mail_alias_id_path.
+type MailAliasIdPath = string
+
 // MailApiTokenIdPath defines model for mail_api_token_id_path.
 type MailApiTokenIdPath = string
 
@@ -6950,6 +7021,9 @@ type MailApiTokenOrderFilter = string
 
 // MailAutoreplyIdPath defines model for mail_autoreply_id_path.
 type MailAutoreplyIdPath = string
+
+// MailCatchallIdPath defines model for mail_catchall_id_path.
+type MailCatchallIdPath = string
 
 // MailForwarderIdPath defines model for mail_forwarder_id_path.
 type MailForwarderIdPath = string
@@ -7227,15 +7301,15 @@ type HostingListAccountDatabasesV1Params struct {
 	Search *DatabaseSearch `form:"search,omitempty" json:"search,omitempty"`
 }
 
-// HostingListAccountDatabaseRemoteConnectionsV1Params defines parameters for HostingListAccountDatabaseRemoteConnectionsV1.
-type HostingListAccountDatabaseRemoteConnectionsV1Params struct {
+// HostingListDatabaseRemoteConnectionsV1Params defines parameters for HostingListDatabaseRemoteConnectionsV1.
+type HostingListDatabaseRemoteConnectionsV1Params struct {
 	// Domain Filter remote connections by the domain the database is assigned to.
 	// Rules for databases not assigned to any domain are always included.
 	Domain *string `form:"domain,omitempty" json:"domain,omitempty"`
 }
 
-// HostingDeleteAccountDatabaseRemoteConnectionV1Params defines parameters for HostingDeleteAccountDatabaseRemoteConnectionV1.
-type HostingDeleteAccountDatabaseRemoteConnectionV1Params struct {
+// HostingDeleteDatabaseRemoteConnectionV1Params defines parameters for HostingDeleteDatabaseRemoteConnectionV1.
+type HostingDeleteDatabaseRemoteConnectionV1Params struct {
 	// Ip Remote host to revoke: the IPv4/IPv6 address, or "%",
 	// exactly as returned by the list remote connections endpoint.
 	Ip string `form:"ip" json:"ip"`
@@ -7422,8 +7496,26 @@ type MailListOrdersV1ParamsStatus string
 // MailListOrdersV1ParamsSort defines parameters for MailListOrdersV1.
 type MailListOrdersV1ParamsSort string
 
+// MailListAliasesV1Params defines parameters for MailListAliasesV1.
+type MailListAliasesV1Params struct {
+	// Page Page number
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PerPage Number of items per page
+	PerPage *PerPage `form:"per_page,omitempty" json:"per_page,omitempty"`
+}
+
 // MailListAutorepliesV1Params defines parameters for MailListAutorepliesV1.
 type MailListAutorepliesV1Params struct {
+	// Page Page number
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PerPage Number of items per page
+	PerPage *PerPage `form:"per_page,omitempty" json:"per_page,omitempty"`
+}
+
+// MailListCatchAllsV1Params defines parameters for MailListCatchAllsV1.
+type MailListCatchAllsV1Params struct {
 	// Page Page number
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -7812,8 +7904,8 @@ type HostingCreateAccountDatabaseV1JSONRequestBody = HostingV1DatabasesCreateDat
 // HostingChangeDatabasePasswordV1JSONRequestBody defines body for HostingChangeDatabasePasswordV1 for application/json ContentType.
 type HostingChangeDatabasePasswordV1JSONRequestBody = HostingV1DatabasesChangeDatabasePasswordRequest
 
-// HostingCreateAccountDatabaseRemoteConnectionV1JSONRequestBody defines body for HostingCreateAccountDatabaseRemoteConnectionV1 for application/json ContentType.
-type HostingCreateAccountDatabaseRemoteConnectionV1JSONRequestBody = HostingV1DatabasesRemoteConnectionsCreateRemoteConnectionRequest
+// HostingCreateDatabaseRemoteConnectionV1JSONRequestBody defines body for HostingCreateDatabaseRemoteConnectionV1 for application/json ContentType.
+type HostingCreateDatabaseRemoteConnectionV1JSONRequestBody = HostingV1DatabasesRemoteConnectionsCreateRemoteConnectionRequest
 
 // HostingToggleWebsiteCacheV1JSONRequestBody defines body for HostingToggleWebsiteCacheV1 for application/json ContentType.
 type HostingToggleWebsiteCacheV1JSONRequestBody = HostingV1CacheToggleCacheRequest
@@ -7907,6 +7999,9 @@ type MailUpdateAutoreplyV1JSONRequestBody = MailV1SchemaUpsertAutoreplyRequestSc
 
 // MailUpdateForwarderKeepCopySettingV1JSONRequestBody defines body for MailUpdateForwarderKeepCopySettingV1 for application/json ContentType.
 type MailUpdateForwarderKeepCopySettingV1JSONRequestBody = MailV1SchemaUpdateForwarderKeepCopyRequestSchema
+
+// MailCreateAliasV1JSONRequestBody defines body for MailCreateAliasV1 for application/json ContentType.
+type MailCreateAliasV1JSONRequestBody = MailV1SchemaCreateAliasRequestSchema
 
 // MailCreateAutoreplyV1JSONRequestBody defines body for MailCreateAutoreplyV1 for application/json ContentType.
 type MailCreateAutoreplyV1JSONRequestBody = MailV1SchemaUpsertAutoreplyRequestSchema
@@ -9254,8 +9349,8 @@ type ClientInterface interface {
 
 	HostingCreateAccountDatabaseV1(ctx context.Context, username UsernamePath, body HostingCreateAccountDatabaseV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// HostingListAccountDatabaseRemoteConnectionsV1 request
-	HostingListAccountDatabaseRemoteConnectionsV1(ctx context.Context, username UsernamePath, params *HostingListAccountDatabaseRemoteConnectionsV1Params, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// HostingListDatabaseRemoteConnectionsV1 request
+	HostingListDatabaseRemoteConnectionsV1(ctx context.Context, username UsernamePath, params *HostingListDatabaseRemoteConnectionsV1Params, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// HostingDeleteAccountDatabaseV1 request
 	HostingDeleteAccountDatabaseV1(ctx context.Context, username UsernamePath, name DatabaseNamePath, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -9268,13 +9363,13 @@ type ClientInterface interface {
 	// HostingGetPhpMyAdminLinkV1 request
 	HostingGetPhpMyAdminLinkV1(ctx context.Context, username UsernamePath, name DatabaseNamePath, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// HostingDeleteAccountDatabaseRemoteConnectionV1 request
-	HostingDeleteAccountDatabaseRemoteConnectionV1(ctx context.Context, username UsernamePath, name DatabaseNamePath, params *HostingDeleteAccountDatabaseRemoteConnectionV1Params, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// HostingDeleteDatabaseRemoteConnectionV1 request
+	HostingDeleteDatabaseRemoteConnectionV1(ctx context.Context, username UsernamePath, name DatabaseNamePath, params *HostingDeleteDatabaseRemoteConnectionV1Params, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// HostingCreateAccountDatabaseRemoteConnectionV1WithBody request with any body
-	HostingCreateAccountDatabaseRemoteConnectionV1WithBody(ctx context.Context, username UsernamePath, name DatabaseNamePath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// HostingCreateDatabaseRemoteConnectionV1WithBody request with any body
+	HostingCreateDatabaseRemoteConnectionV1WithBody(ctx context.Context, username UsernamePath, name DatabaseNamePath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	HostingCreateAccountDatabaseRemoteConnectionV1(ctx context.Context, username UsernamePath, name DatabaseNamePath, body HostingCreateAccountDatabaseRemoteConnectionV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	HostingCreateDatabaseRemoteConnectionV1(ctx context.Context, username UsernamePath, name DatabaseNamePath, body HostingCreateDatabaseRemoteConnectionV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// HostingRepairDatabaseV1 request
 	HostingRepairDatabaseV1(ctx context.Context, username UsernamePath, name DatabaseNamePath, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -9526,6 +9621,9 @@ type ClientInterface interface {
 	// HostingListWordPressThemesV1 request
 	HostingListWordPressThemesV1(ctx context.Context, params *HostingListWordPressThemesV1Params, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MailDeleteAliasV1 request
+	MailDeleteAliasV1(ctx context.Context, aliasId MailAliasIdPath, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MailListAPITokensV1 request
 	MailListAPITokensV1(ctx context.Context, params *MailListAPITokensV1Params, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -9539,6 +9637,12 @@ type ClientInterface interface {
 	MailUpdateAutoreplyV1WithBody(ctx context.Context, autoreplyId MailAutoreplyIdPath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MailUpdateAutoreplyV1(ctx context.Context, autoreplyId MailAutoreplyIdPath, body MailUpdateAutoreplyV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MailDeleteCatchAllV1 request
+	MailDeleteCatchAllV1(ctx context.Context, catchallId MailCatchallIdPath, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MailResendCatchAllConfirmationV1 request
+	MailResendCatchAllConfirmationV1(ctx context.Context, catchallId MailCatchallIdPath, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MailDeleteForwarderV1 request
 	MailDeleteForwarderV1(ctx context.Context, forwarderId MailForwarderIdPath, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -9554,10 +9658,18 @@ type ClientInterface interface {
 	// MailDeleteMailboxV1 request
 	MailDeleteMailboxV1(ctx context.Context, mailboxId MailMailboxIdPath, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MailCreateAliasV1WithBody request with any body
+	MailCreateAliasV1WithBody(ctx context.Context, mailboxId MailMailboxIdPath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MailCreateAliasV1(ctx context.Context, mailboxId MailMailboxIdPath, body MailCreateAliasV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MailCreateAutoreplyV1WithBody request with any body
 	MailCreateAutoreplyV1WithBody(ctx context.Context, mailboxId MailMailboxIdPath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MailCreateAutoreplyV1(ctx context.Context, mailboxId MailMailboxIdPath, body MailCreateAutoreplyV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MailCreateCatchAllV1 request
+	MailCreateCatchAllV1(ctx context.Context, mailboxId MailMailboxIdPath, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MailCreateForwarderV1WithBody request with any body
 	MailCreateForwarderV1WithBody(ctx context.Context, mailboxId MailMailboxIdPath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -9577,6 +9689,9 @@ type ClientInterface interface {
 	// MailListOrdersV1 request
 	MailListOrdersV1(ctx context.Context, params *MailListOrdersV1Params, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MailListAliasesV1 request
+	MailListAliasesV1(ctx context.Context, orderId MailOrderIdPath, params *MailListAliasesV1Params, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MailCreateAPITokenV1WithBody request with any body
 	MailCreateAPITokenV1WithBody(ctx context.Context, orderId MailOrderIdPath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -9584,6 +9699,9 @@ type ClientInterface interface {
 
 	// MailListAutorepliesV1 request
 	MailListAutorepliesV1(ctx context.Context, orderId MailOrderIdPath, params *MailListAutorepliesV1Params, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MailListCatchAllsV1 request
+	MailListCatchAllsV1(ctx context.Context, orderId MailOrderIdPath, params *MailListCatchAllsV1Params, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MailListForwardersV1 request
 	MailListForwardersV1(ctx context.Context, orderId MailOrderIdPath, params *MailListForwardersV1Params, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -11261,8 +11379,8 @@ func (c *Client) HostingCreateAccountDatabaseV1(ctx context.Context, username Us
 	return c.Client.Do(req)
 }
 
-func (c *Client) HostingListAccountDatabaseRemoteConnectionsV1(ctx context.Context, username UsernamePath, params *HostingListAccountDatabaseRemoteConnectionsV1Params, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewHostingListAccountDatabaseRemoteConnectionsV1Request(c.Server, username, params)
+func (c *Client) HostingListDatabaseRemoteConnectionsV1(ctx context.Context, username UsernamePath, params *HostingListDatabaseRemoteConnectionsV1Params, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewHostingListDatabaseRemoteConnectionsV1Request(c.Server, username, params)
 	if err != nil {
 		return nil, err
 	}
@@ -11321,8 +11439,8 @@ func (c *Client) HostingGetPhpMyAdminLinkV1(ctx context.Context, username Userna
 	return c.Client.Do(req)
 }
 
-func (c *Client) HostingDeleteAccountDatabaseRemoteConnectionV1(ctx context.Context, username UsernamePath, name DatabaseNamePath, params *HostingDeleteAccountDatabaseRemoteConnectionV1Params, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewHostingDeleteAccountDatabaseRemoteConnectionV1Request(c.Server, username, name, params)
+func (c *Client) HostingDeleteDatabaseRemoteConnectionV1(ctx context.Context, username UsernamePath, name DatabaseNamePath, params *HostingDeleteDatabaseRemoteConnectionV1Params, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewHostingDeleteDatabaseRemoteConnectionV1Request(c.Server, username, name, params)
 	if err != nil {
 		return nil, err
 	}
@@ -11333,8 +11451,8 @@ func (c *Client) HostingDeleteAccountDatabaseRemoteConnectionV1(ctx context.Cont
 	return c.Client.Do(req)
 }
 
-func (c *Client) HostingCreateAccountDatabaseRemoteConnectionV1WithBody(ctx context.Context, username UsernamePath, name DatabaseNamePath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewHostingCreateAccountDatabaseRemoteConnectionV1RequestWithBody(c.Server, username, name, contentType, body)
+func (c *Client) HostingCreateDatabaseRemoteConnectionV1WithBody(ctx context.Context, username UsernamePath, name DatabaseNamePath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewHostingCreateDatabaseRemoteConnectionV1RequestWithBody(c.Server, username, name, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -11345,8 +11463,8 @@ func (c *Client) HostingCreateAccountDatabaseRemoteConnectionV1WithBody(ctx cont
 	return c.Client.Do(req)
 }
 
-func (c *Client) HostingCreateAccountDatabaseRemoteConnectionV1(ctx context.Context, username UsernamePath, name DatabaseNamePath, body HostingCreateAccountDatabaseRemoteConnectionV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewHostingCreateAccountDatabaseRemoteConnectionV1Request(c.Server, username, name, body)
+func (c *Client) HostingCreateDatabaseRemoteConnectionV1(ctx context.Context, username UsernamePath, name DatabaseNamePath, body HostingCreateDatabaseRemoteConnectionV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewHostingCreateDatabaseRemoteConnectionV1Request(c.Server, username, name, body)
 	if err != nil {
 		return nil, err
 	}
@@ -12473,6 +12591,18 @@ func (c *Client) HostingListWordPressThemesV1(ctx context.Context, params *Hosti
 	return c.Client.Do(req)
 }
 
+func (c *Client) MailDeleteAliasV1(ctx context.Context, aliasId MailAliasIdPath, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMailDeleteAliasV1Request(c.Server, aliasId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MailListAPITokensV1(ctx context.Context, params *MailListAPITokensV1Params, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMailListAPITokensV1Request(c.Server, params)
 	if err != nil {
@@ -12523,6 +12653,30 @@ func (c *Client) MailUpdateAutoreplyV1WithBody(ctx context.Context, autoreplyId 
 
 func (c *Client) MailUpdateAutoreplyV1(ctx context.Context, autoreplyId MailAutoreplyIdPath, body MailUpdateAutoreplyV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMailUpdateAutoreplyV1Request(c.Server, autoreplyId, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MailDeleteCatchAllV1(ctx context.Context, catchallId MailCatchallIdPath, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMailDeleteCatchAllV1Request(c.Server, catchallId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MailResendCatchAllConfirmationV1(ctx context.Context, catchallId MailCatchallIdPath, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMailResendCatchAllConfirmationV1Request(c.Server, catchallId)
 	if err != nil {
 		return nil, err
 	}
@@ -12593,6 +12747,30 @@ func (c *Client) MailDeleteMailboxV1(ctx context.Context, mailboxId MailMailboxI
 	return c.Client.Do(req)
 }
 
+func (c *Client) MailCreateAliasV1WithBody(ctx context.Context, mailboxId MailMailboxIdPath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMailCreateAliasV1RequestWithBody(c.Server, mailboxId, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MailCreateAliasV1(ctx context.Context, mailboxId MailMailboxIdPath, body MailCreateAliasV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMailCreateAliasV1Request(c.Server, mailboxId, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MailCreateAutoreplyV1WithBody(ctx context.Context, mailboxId MailMailboxIdPath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMailCreateAutoreplyV1RequestWithBody(c.Server, mailboxId, contentType, body)
 	if err != nil {
@@ -12607,6 +12785,18 @@ func (c *Client) MailCreateAutoreplyV1WithBody(ctx context.Context, mailboxId Ma
 
 func (c *Client) MailCreateAutoreplyV1(ctx context.Context, mailboxId MailMailboxIdPath, body MailCreateAutoreplyV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMailCreateAutoreplyV1Request(c.Server, mailboxId, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MailCreateCatchAllV1(ctx context.Context, mailboxId MailMailboxIdPath, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMailCreateCatchAllV1Request(c.Server, mailboxId)
 	if err != nil {
 		return nil, err
 	}
@@ -12701,6 +12891,18 @@ func (c *Client) MailListOrdersV1(ctx context.Context, params *MailListOrdersV1P
 	return c.Client.Do(req)
 }
 
+func (c *Client) MailListAliasesV1(ctx context.Context, orderId MailOrderIdPath, params *MailListAliasesV1Params, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMailListAliasesV1Request(c.Server, orderId, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MailCreateAPITokenV1WithBody(ctx context.Context, orderId MailOrderIdPath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMailCreateAPITokenV1RequestWithBody(c.Server, orderId, contentType, body)
 	if err != nil {
@@ -12727,6 +12929,18 @@ func (c *Client) MailCreateAPITokenV1(ctx context.Context, orderId MailOrderIdPa
 
 func (c *Client) MailListAutorepliesV1(ctx context.Context, orderId MailOrderIdPath, params *MailListAutorepliesV1Params, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMailListAutorepliesV1Request(c.Server, orderId, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MailListCatchAllsV1(ctx context.Context, orderId MailOrderIdPath, params *MailListCatchAllsV1Params, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMailListCatchAllsV1Request(c.Server, orderId, params)
 	if err != nil {
 		return nil, err
 	}
@@ -17625,8 +17839,8 @@ func NewHostingCreateAccountDatabaseV1RequestWithBody(server string, username Us
 	return req, nil
 }
 
-// NewHostingListAccountDatabaseRemoteConnectionsV1Request generates requests for HostingListAccountDatabaseRemoteConnectionsV1
-func NewHostingListAccountDatabaseRemoteConnectionsV1Request(server string, username UsernamePath, params *HostingListAccountDatabaseRemoteConnectionsV1Params) (*http.Request, error) {
+// NewHostingListDatabaseRemoteConnectionsV1Request generates requests for HostingListDatabaseRemoteConnectionsV1
+func NewHostingListDatabaseRemoteConnectionsV1Request(server string, username UsernamePath, params *HostingListDatabaseRemoteConnectionsV1Params) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -17822,8 +18036,8 @@ func NewHostingGetPhpMyAdminLinkV1Request(server string, username UsernamePath, 
 	return req, nil
 }
 
-// NewHostingDeleteAccountDatabaseRemoteConnectionV1Request generates requests for HostingDeleteAccountDatabaseRemoteConnectionV1
-func NewHostingDeleteAccountDatabaseRemoteConnectionV1Request(server string, username UsernamePath, name DatabaseNamePath, params *HostingDeleteAccountDatabaseRemoteConnectionV1Params) (*http.Request, error) {
+// NewHostingDeleteDatabaseRemoteConnectionV1Request generates requests for HostingDeleteDatabaseRemoteConnectionV1
+func NewHostingDeleteDatabaseRemoteConnectionV1Request(server string, username UsernamePath, name DatabaseNamePath, params *HostingDeleteDatabaseRemoteConnectionV1Params) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -17886,19 +18100,19 @@ func NewHostingDeleteAccountDatabaseRemoteConnectionV1Request(server string, use
 	return req, nil
 }
 
-// NewHostingCreateAccountDatabaseRemoteConnectionV1Request calls the generic HostingCreateAccountDatabaseRemoteConnectionV1 builder with application/json body
-func NewHostingCreateAccountDatabaseRemoteConnectionV1Request(server string, username UsernamePath, name DatabaseNamePath, body HostingCreateAccountDatabaseRemoteConnectionV1JSONRequestBody) (*http.Request, error) {
+// NewHostingCreateDatabaseRemoteConnectionV1Request calls the generic HostingCreateDatabaseRemoteConnectionV1 builder with application/json body
+func NewHostingCreateDatabaseRemoteConnectionV1Request(server string, username UsernamePath, name DatabaseNamePath, body HostingCreateDatabaseRemoteConnectionV1JSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewHostingCreateAccountDatabaseRemoteConnectionV1RequestWithBody(server, username, name, "application/json", bodyReader)
+	return NewHostingCreateDatabaseRemoteConnectionV1RequestWithBody(server, username, name, "application/json", bodyReader)
 }
 
-// NewHostingCreateAccountDatabaseRemoteConnectionV1RequestWithBody generates requests for HostingCreateAccountDatabaseRemoteConnectionV1 with any type of body
-func NewHostingCreateAccountDatabaseRemoteConnectionV1RequestWithBody(server string, username UsernamePath, name DatabaseNamePath, contentType string, body io.Reader) (*http.Request, error) {
+// NewHostingCreateDatabaseRemoteConnectionV1RequestWithBody generates requests for HostingCreateDatabaseRemoteConnectionV1 with any type of body
+func NewHostingCreateDatabaseRemoteConnectionV1RequestWithBody(server string, username UsernamePath, name DatabaseNamePath, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -21306,6 +21520,40 @@ func NewHostingListWordPressThemesV1Request(server string, params *HostingListWo
 	return req, nil
 }
 
+// NewMailDeleteAliasV1Request generates requests for MailDeleteAliasV1
+func NewMailDeleteAliasV1Request(server string, aliasId MailAliasIdPath) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "aliasId", aliasId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/mail/v1/aliases/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMailListAPITokensV1Request generates requests for MailListAPITokensV1
 func NewMailListAPITokensV1Request(server string, params *MailListAPITokensV1Params) (*http.Request, error) {
 	var err error
@@ -21499,6 +21747,74 @@ func NewMailUpdateAutoreplyV1RequestWithBody(server string, autoreplyId MailAuto
 	return req, nil
 }
 
+// NewMailDeleteCatchAllV1Request generates requests for MailDeleteCatchAllV1
+func NewMailDeleteCatchAllV1Request(server string, catchallId MailCatchallIdPath) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "catchallId", catchallId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/mail/v1/catchalls/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMailResendCatchAllConfirmationV1Request generates requests for MailResendCatchAllConfirmationV1
+func NewMailResendCatchAllConfirmationV1Request(server string, catchallId MailCatchallIdPath) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "catchallId", catchallId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/mail/v1/catchalls/%s/confirmation/resend", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMailDeleteForwarderV1Request generates requests for MailDeleteForwarderV1
 func NewMailDeleteForwarderV1Request(server string, forwarderId MailForwarderIdPath) (*http.Request, error) {
 	var err error
@@ -21648,6 +21964,53 @@ func NewMailDeleteMailboxV1Request(server string, mailboxId MailMailboxIdPath) (
 	return req, nil
 }
 
+// NewMailCreateAliasV1Request calls the generic MailCreateAliasV1 builder with application/json body
+func NewMailCreateAliasV1Request(server string, mailboxId MailMailboxIdPath, body MailCreateAliasV1JSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMailCreateAliasV1RequestWithBody(server, mailboxId, "application/json", bodyReader)
+}
+
+// NewMailCreateAliasV1RequestWithBody generates requests for MailCreateAliasV1 with any type of body
+func NewMailCreateAliasV1RequestWithBody(server string, mailboxId MailMailboxIdPath, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "mailboxId", mailboxId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/mail/v1/mailboxes/%s/aliases", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewMailCreateAutoreplyV1Request calls the generic MailCreateAutoreplyV1 builder with application/json body
 func NewMailCreateAutoreplyV1Request(server string, mailboxId MailMailboxIdPath, body MailCreateAutoreplyV1JSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -21691,6 +22054,40 @@ func NewMailCreateAutoreplyV1RequestWithBody(server string, mailboxId MailMailbo
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMailCreateCatchAllV1Request generates requests for MailCreateCatchAllV1
+func NewMailCreateCatchAllV1Request(server string, mailboxId MailMailboxIdPath) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "mailboxId", mailboxId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/mail/v1/mailboxes/%s/catchalls", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -21950,6 +22347,79 @@ func NewMailListOrdersV1Request(server string, params *MailListOrdersV1Params) (
 	return req, nil
 }
 
+// NewMailListAliasesV1Request generates requests for MailListAliasesV1
+func NewMailListAliasesV1Request(server string, orderId MailOrderIdPath, params *MailListAliasesV1Params) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "orderId", orderId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/mail/v1/orders/%s/aliases", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PerPage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "per_page", *params.PerPage, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMailCreateAPITokenV1Request calls the generic MailCreateAPITokenV1 builder with application/json body
 func NewMailCreateAPITokenV1Request(server string, orderId MailOrderIdPath, body MailCreateAPITokenV1JSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -22014,6 +22484,79 @@ func NewMailListAutorepliesV1Request(server string, orderId MailOrderIdPath, par
 	}
 
 	operationPath := fmt.Sprintf("/api/mail/v1/orders/%s/autoreplies", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PerPage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "per_page", *params.PerPage, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMailListCatchAllsV1Request generates requests for MailListCatchAllsV1
+func NewMailListCatchAllsV1Request(server string, orderId MailOrderIdPath, params *MailListCatchAllsV1Params) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "orderId", orderId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/mail/v1/orders/%s/catchalls", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -26923,8 +27466,8 @@ type ClientWithResponsesInterface interface {
 
 	HostingCreateAccountDatabaseV1WithResponse(ctx context.Context, username UsernamePath, body HostingCreateAccountDatabaseV1JSONRequestBody, reqEditors ...RequestEditorFn) (*HostingCreateAccountDatabaseV1Response, error)
 
-	// HostingListAccountDatabaseRemoteConnectionsV1WithResponse request
-	HostingListAccountDatabaseRemoteConnectionsV1WithResponse(ctx context.Context, username UsernamePath, params *HostingListAccountDatabaseRemoteConnectionsV1Params, reqEditors ...RequestEditorFn) (*HostingListAccountDatabaseRemoteConnectionsV1Response, error)
+	// HostingListDatabaseRemoteConnectionsV1WithResponse request
+	HostingListDatabaseRemoteConnectionsV1WithResponse(ctx context.Context, username UsernamePath, params *HostingListDatabaseRemoteConnectionsV1Params, reqEditors ...RequestEditorFn) (*HostingListDatabaseRemoteConnectionsV1Response, error)
 
 	// HostingDeleteAccountDatabaseV1WithResponse request
 	HostingDeleteAccountDatabaseV1WithResponse(ctx context.Context, username UsernamePath, name DatabaseNamePath, reqEditors ...RequestEditorFn) (*HostingDeleteAccountDatabaseV1Response, error)
@@ -26937,13 +27480,13 @@ type ClientWithResponsesInterface interface {
 	// HostingGetPhpMyAdminLinkV1WithResponse request
 	HostingGetPhpMyAdminLinkV1WithResponse(ctx context.Context, username UsernamePath, name DatabaseNamePath, reqEditors ...RequestEditorFn) (*HostingGetPhpMyAdminLinkV1Response, error)
 
-	// HostingDeleteAccountDatabaseRemoteConnectionV1WithResponse request
-	HostingDeleteAccountDatabaseRemoteConnectionV1WithResponse(ctx context.Context, username UsernamePath, name DatabaseNamePath, params *HostingDeleteAccountDatabaseRemoteConnectionV1Params, reqEditors ...RequestEditorFn) (*HostingDeleteAccountDatabaseRemoteConnectionV1Response, error)
+	// HostingDeleteDatabaseRemoteConnectionV1WithResponse request
+	HostingDeleteDatabaseRemoteConnectionV1WithResponse(ctx context.Context, username UsernamePath, name DatabaseNamePath, params *HostingDeleteDatabaseRemoteConnectionV1Params, reqEditors ...RequestEditorFn) (*HostingDeleteDatabaseRemoteConnectionV1Response, error)
 
-	// HostingCreateAccountDatabaseRemoteConnectionV1WithBodyWithResponse request with any body
-	HostingCreateAccountDatabaseRemoteConnectionV1WithBodyWithResponse(ctx context.Context, username UsernamePath, name DatabaseNamePath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*HostingCreateAccountDatabaseRemoteConnectionV1Response, error)
+	// HostingCreateDatabaseRemoteConnectionV1WithBodyWithResponse request with any body
+	HostingCreateDatabaseRemoteConnectionV1WithBodyWithResponse(ctx context.Context, username UsernamePath, name DatabaseNamePath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*HostingCreateDatabaseRemoteConnectionV1Response, error)
 
-	HostingCreateAccountDatabaseRemoteConnectionV1WithResponse(ctx context.Context, username UsernamePath, name DatabaseNamePath, body HostingCreateAccountDatabaseRemoteConnectionV1JSONRequestBody, reqEditors ...RequestEditorFn) (*HostingCreateAccountDatabaseRemoteConnectionV1Response, error)
+	HostingCreateDatabaseRemoteConnectionV1WithResponse(ctx context.Context, username UsernamePath, name DatabaseNamePath, body HostingCreateDatabaseRemoteConnectionV1JSONRequestBody, reqEditors ...RequestEditorFn) (*HostingCreateDatabaseRemoteConnectionV1Response, error)
 
 	// HostingRepairDatabaseV1WithResponse request
 	HostingRepairDatabaseV1WithResponse(ctx context.Context, username UsernamePath, name DatabaseNamePath, reqEditors ...RequestEditorFn) (*HostingRepairDatabaseV1Response, error)
@@ -27195,6 +27738,9 @@ type ClientWithResponsesInterface interface {
 	// HostingListWordPressThemesV1WithResponse request
 	HostingListWordPressThemesV1WithResponse(ctx context.Context, params *HostingListWordPressThemesV1Params, reqEditors ...RequestEditorFn) (*HostingListWordPressThemesV1Response, error)
 
+	// MailDeleteAliasV1WithResponse request
+	MailDeleteAliasV1WithResponse(ctx context.Context, aliasId MailAliasIdPath, reqEditors ...RequestEditorFn) (*MailDeleteAliasV1Response, error)
+
 	// MailListAPITokensV1WithResponse request
 	MailListAPITokensV1WithResponse(ctx context.Context, params *MailListAPITokensV1Params, reqEditors ...RequestEditorFn) (*MailListAPITokensV1Response, error)
 
@@ -27208,6 +27754,12 @@ type ClientWithResponsesInterface interface {
 	MailUpdateAutoreplyV1WithBodyWithResponse(ctx context.Context, autoreplyId MailAutoreplyIdPath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MailUpdateAutoreplyV1Response, error)
 
 	MailUpdateAutoreplyV1WithResponse(ctx context.Context, autoreplyId MailAutoreplyIdPath, body MailUpdateAutoreplyV1JSONRequestBody, reqEditors ...RequestEditorFn) (*MailUpdateAutoreplyV1Response, error)
+
+	// MailDeleteCatchAllV1WithResponse request
+	MailDeleteCatchAllV1WithResponse(ctx context.Context, catchallId MailCatchallIdPath, reqEditors ...RequestEditorFn) (*MailDeleteCatchAllV1Response, error)
+
+	// MailResendCatchAllConfirmationV1WithResponse request
+	MailResendCatchAllConfirmationV1WithResponse(ctx context.Context, catchallId MailCatchallIdPath, reqEditors ...RequestEditorFn) (*MailResendCatchAllConfirmationV1Response, error)
 
 	// MailDeleteForwarderV1WithResponse request
 	MailDeleteForwarderV1WithResponse(ctx context.Context, forwarderId MailForwarderIdPath, reqEditors ...RequestEditorFn) (*MailDeleteForwarderV1Response, error)
@@ -27223,10 +27775,18 @@ type ClientWithResponsesInterface interface {
 	// MailDeleteMailboxV1WithResponse request
 	MailDeleteMailboxV1WithResponse(ctx context.Context, mailboxId MailMailboxIdPath, reqEditors ...RequestEditorFn) (*MailDeleteMailboxV1Response, error)
 
+	// MailCreateAliasV1WithBodyWithResponse request with any body
+	MailCreateAliasV1WithBodyWithResponse(ctx context.Context, mailboxId MailMailboxIdPath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MailCreateAliasV1Response, error)
+
+	MailCreateAliasV1WithResponse(ctx context.Context, mailboxId MailMailboxIdPath, body MailCreateAliasV1JSONRequestBody, reqEditors ...RequestEditorFn) (*MailCreateAliasV1Response, error)
+
 	// MailCreateAutoreplyV1WithBodyWithResponse request with any body
 	MailCreateAutoreplyV1WithBodyWithResponse(ctx context.Context, mailboxId MailMailboxIdPath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MailCreateAutoreplyV1Response, error)
 
 	MailCreateAutoreplyV1WithResponse(ctx context.Context, mailboxId MailMailboxIdPath, body MailCreateAutoreplyV1JSONRequestBody, reqEditors ...RequestEditorFn) (*MailCreateAutoreplyV1Response, error)
+
+	// MailCreateCatchAllV1WithResponse request
+	MailCreateCatchAllV1WithResponse(ctx context.Context, mailboxId MailMailboxIdPath, reqEditors ...RequestEditorFn) (*MailCreateCatchAllV1Response, error)
 
 	// MailCreateForwarderV1WithBodyWithResponse request with any body
 	MailCreateForwarderV1WithBodyWithResponse(ctx context.Context, mailboxId MailMailboxIdPath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MailCreateForwarderV1Response, error)
@@ -27246,6 +27806,9 @@ type ClientWithResponsesInterface interface {
 	// MailListOrdersV1WithResponse request
 	MailListOrdersV1WithResponse(ctx context.Context, params *MailListOrdersV1Params, reqEditors ...RequestEditorFn) (*MailListOrdersV1Response, error)
 
+	// MailListAliasesV1WithResponse request
+	MailListAliasesV1WithResponse(ctx context.Context, orderId MailOrderIdPath, params *MailListAliasesV1Params, reqEditors ...RequestEditorFn) (*MailListAliasesV1Response, error)
+
 	// MailCreateAPITokenV1WithBodyWithResponse request with any body
 	MailCreateAPITokenV1WithBodyWithResponse(ctx context.Context, orderId MailOrderIdPath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MailCreateAPITokenV1Response, error)
 
@@ -27253,6 +27816,9 @@ type ClientWithResponsesInterface interface {
 
 	// MailListAutorepliesV1WithResponse request
 	MailListAutorepliesV1WithResponse(ctx context.Context, orderId MailOrderIdPath, params *MailListAutorepliesV1Params, reqEditors ...RequestEditorFn) (*MailListAutorepliesV1Response, error)
+
+	// MailListCatchAllsV1WithResponse request
+	MailListCatchAllsV1WithResponse(ctx context.Context, orderId MailOrderIdPath, params *MailListCatchAllsV1Params, reqEditors ...RequestEditorFn) (*MailListCatchAllsV1Response, error)
 
 	// MailListForwardersV1WithResponse request
 	MailListForwardersV1WithResponse(ctx context.Context, orderId MailOrderIdPath, params *MailListForwardersV1Params, reqEditors ...RequestEditorFn) (*MailListForwardersV1Response, error)
@@ -30284,7 +30850,7 @@ func (r HostingCreateAccountDatabaseV1Response) ContentType() string {
 	return ""
 }
 
-type HostingListAccountDatabaseRemoteConnectionsV1Response struct {
+type HostingListDatabaseRemoteConnectionsV1Response struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *HostingV1DatabasesRemoteConnectionsRemoteConnectionCollection
@@ -30293,7 +30859,7 @@ type HostingListAccountDatabaseRemoteConnectionsV1Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r HostingListAccountDatabaseRemoteConnectionsV1Response) Status() string {
+func (r HostingListDatabaseRemoteConnectionsV1Response) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -30301,7 +30867,7 @@ func (r HostingListAccountDatabaseRemoteConnectionsV1Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r HostingListAccountDatabaseRemoteConnectionsV1Response) StatusCode() int {
+func (r HostingListDatabaseRemoteConnectionsV1Response) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -30309,7 +30875,7 @@ func (r HostingListAccountDatabaseRemoteConnectionsV1Response) StatusCode() int 
 }
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r HostingListAccountDatabaseRemoteConnectionsV1Response) ContentType() string {
+func (r HostingListDatabaseRemoteConnectionsV1Response) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -30413,7 +30979,7 @@ func (r HostingGetPhpMyAdminLinkV1Response) ContentType() string {
 	return ""
 }
 
-type HostingDeleteAccountDatabaseRemoteConnectionV1Response struct {
+type HostingDeleteDatabaseRemoteConnectionV1Response struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *CommonSuccessEmptyResource
@@ -30422,7 +30988,7 @@ type HostingDeleteAccountDatabaseRemoteConnectionV1Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r HostingDeleteAccountDatabaseRemoteConnectionV1Response) Status() string {
+func (r HostingDeleteDatabaseRemoteConnectionV1Response) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -30430,7 +30996,7 @@ func (r HostingDeleteAccountDatabaseRemoteConnectionV1Response) Status() string 
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r HostingDeleteAccountDatabaseRemoteConnectionV1Response) StatusCode() int {
+func (r HostingDeleteDatabaseRemoteConnectionV1Response) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -30438,14 +31004,14 @@ func (r HostingDeleteAccountDatabaseRemoteConnectionV1Response) StatusCode() int
 }
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r HostingDeleteAccountDatabaseRemoteConnectionV1Response) ContentType() string {
+func (r HostingDeleteDatabaseRemoteConnectionV1Response) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
 	return ""
 }
 
-type HostingCreateAccountDatabaseRemoteConnectionV1Response struct {
+type HostingCreateDatabaseRemoteConnectionV1Response struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *CommonSuccessEmptyResource
@@ -30455,7 +31021,7 @@ type HostingCreateAccountDatabaseRemoteConnectionV1Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r HostingCreateAccountDatabaseRemoteConnectionV1Response) Status() string {
+func (r HostingCreateDatabaseRemoteConnectionV1Response) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -30463,7 +31029,7 @@ func (r HostingCreateAccountDatabaseRemoteConnectionV1Response) Status() string 
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r HostingCreateAccountDatabaseRemoteConnectionV1Response) StatusCode() int {
+func (r HostingCreateDatabaseRemoteConnectionV1Response) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -30471,7 +31037,7 @@ func (r HostingCreateAccountDatabaseRemoteConnectionV1Response) StatusCode() int
 }
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r HostingCreateAccountDatabaseRemoteConnectionV1Response) ContentType() string {
+func (r HostingCreateDatabaseRemoteConnectionV1Response) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -32568,6 +33134,40 @@ func (r HostingListWordPressThemesV1Response) ContentType() string {
 	return ""
 }
 
+type MailDeleteAliasV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CommonSuccessEmptyResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON404      *CommonResponseErrorResponse
+	JSON422      *CommonResponseErrorResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MailDeleteAliasV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MailDeleteAliasV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MailDeleteAliasV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type MailListAPITokensV1Response struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -32701,6 +33301,75 @@ func (r MailUpdateAutoreplyV1Response) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MailUpdateAutoreplyV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MailDeleteCatchAllV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CommonSuccessEmptyResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON404      *CommonResponseErrorResponse
+	JSON422      *CommonResponseErrorResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MailDeleteCatchAllV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MailDeleteCatchAllV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MailDeleteCatchAllV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MailResendCatchAllConfirmationV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CommonSuccessEmptyResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON404      *CommonResponseErrorResponse
+	JSON409      *CommonResponseErrorResponse
+	JSON422      *CommonResponseErrorResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MailResendCatchAllConfirmationV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MailResendCatchAllConfirmationV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MailResendCatchAllConfirmationV1Response) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -32844,6 +33513,41 @@ func (r MailDeleteMailboxV1Response) ContentType() string {
 	return ""
 }
 
+type MailCreateAliasV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *MailV1AliasesAliasResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON404      *CommonResponseErrorResponse
+	JSON409      *CommonResponseErrorResponse
+	JSON422      *CommonResponseErrorResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MailCreateAliasV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MailCreateAliasV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MailCreateAliasV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type MailCreateAutoreplyV1Response struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -32873,6 +33577,41 @@ func (r MailCreateAutoreplyV1Response) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MailCreateAutoreplyV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MailCreateCatchAllV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *MailV1CatchallsCatchallResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON404      *CommonResponseErrorResponse
+	JSON409      *CommonResponseErrorResponse
+	JSON422      *CommonResponseErrorResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MailCreateCatchAllV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MailCreateCatchAllV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MailCreateCatchAllV1Response) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -33023,6 +33762,44 @@ func (r MailListOrdersV1Response) ContentType() string {
 	return ""
 }
 
+type MailListAliasesV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		// Data Array of [`Mail.V1.Aliases.AliasResource`](#model/mailv1aliasesaliasresource)
+		Data *MailV1AliasesAliasCollection     `json:"data,omitempty"`
+		Meta *CommonSchemaPaginationMetaSchema `json:"meta,omitempty"`
+	}
+	JSON401 *CommonResponseUnauthorizedResponse
+	JSON404 *CommonResponseErrorResponse
+	JSON422 *CommonResponseErrorResponse
+	JSON500 *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MailListAliasesV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MailListAliasesV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MailListAliasesV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type MailCreateAPITokenV1Response struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -33090,6 +33867,44 @@ func (r MailListAutorepliesV1Response) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MailListAutorepliesV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MailListCatchAllsV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		// Data Array of [`Mail.V1.Catchalls.CatchallResource`](#model/mailv1catchallscatchallresource)
+		Data *MailV1CatchallsCatchallCollection `json:"data,omitempty"`
+		Meta *CommonSchemaPaginationMetaSchema  `json:"meta,omitempty"`
+	}
+	JSON401 *CommonResponseUnauthorizedResponse
+	JSON404 *CommonResponseErrorResponse
+	JSON422 *CommonResponseErrorResponse
+	JSON500 *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MailListCatchAllsV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MailListCatchAllsV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MailListCatchAllsV1Response) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -37138,13 +37953,13 @@ func (c *ClientWithResponses) HostingCreateAccountDatabaseV1WithResponse(ctx con
 	return ParseHostingCreateAccountDatabaseV1Response(rsp)
 }
 
-// HostingListAccountDatabaseRemoteConnectionsV1WithResponse request returning *HostingListAccountDatabaseRemoteConnectionsV1Response
-func (c *ClientWithResponses) HostingListAccountDatabaseRemoteConnectionsV1WithResponse(ctx context.Context, username UsernamePath, params *HostingListAccountDatabaseRemoteConnectionsV1Params, reqEditors ...RequestEditorFn) (*HostingListAccountDatabaseRemoteConnectionsV1Response, error) {
-	rsp, err := c.HostingListAccountDatabaseRemoteConnectionsV1(ctx, username, params, reqEditors...)
+// HostingListDatabaseRemoteConnectionsV1WithResponse request returning *HostingListDatabaseRemoteConnectionsV1Response
+func (c *ClientWithResponses) HostingListDatabaseRemoteConnectionsV1WithResponse(ctx context.Context, username UsernamePath, params *HostingListDatabaseRemoteConnectionsV1Params, reqEditors ...RequestEditorFn) (*HostingListDatabaseRemoteConnectionsV1Response, error) {
+	rsp, err := c.HostingListDatabaseRemoteConnectionsV1(ctx, username, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseHostingListAccountDatabaseRemoteConnectionsV1Response(rsp)
+	return ParseHostingListDatabaseRemoteConnectionsV1Response(rsp)
 }
 
 // HostingDeleteAccountDatabaseV1WithResponse request returning *HostingDeleteAccountDatabaseV1Response
@@ -37182,30 +37997,30 @@ func (c *ClientWithResponses) HostingGetPhpMyAdminLinkV1WithResponse(ctx context
 	return ParseHostingGetPhpMyAdminLinkV1Response(rsp)
 }
 
-// HostingDeleteAccountDatabaseRemoteConnectionV1WithResponse request returning *HostingDeleteAccountDatabaseRemoteConnectionV1Response
-func (c *ClientWithResponses) HostingDeleteAccountDatabaseRemoteConnectionV1WithResponse(ctx context.Context, username UsernamePath, name DatabaseNamePath, params *HostingDeleteAccountDatabaseRemoteConnectionV1Params, reqEditors ...RequestEditorFn) (*HostingDeleteAccountDatabaseRemoteConnectionV1Response, error) {
-	rsp, err := c.HostingDeleteAccountDatabaseRemoteConnectionV1(ctx, username, name, params, reqEditors...)
+// HostingDeleteDatabaseRemoteConnectionV1WithResponse request returning *HostingDeleteDatabaseRemoteConnectionV1Response
+func (c *ClientWithResponses) HostingDeleteDatabaseRemoteConnectionV1WithResponse(ctx context.Context, username UsernamePath, name DatabaseNamePath, params *HostingDeleteDatabaseRemoteConnectionV1Params, reqEditors ...RequestEditorFn) (*HostingDeleteDatabaseRemoteConnectionV1Response, error) {
+	rsp, err := c.HostingDeleteDatabaseRemoteConnectionV1(ctx, username, name, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseHostingDeleteAccountDatabaseRemoteConnectionV1Response(rsp)
+	return ParseHostingDeleteDatabaseRemoteConnectionV1Response(rsp)
 }
 
-// HostingCreateAccountDatabaseRemoteConnectionV1WithBodyWithResponse request with arbitrary body returning *HostingCreateAccountDatabaseRemoteConnectionV1Response
-func (c *ClientWithResponses) HostingCreateAccountDatabaseRemoteConnectionV1WithBodyWithResponse(ctx context.Context, username UsernamePath, name DatabaseNamePath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*HostingCreateAccountDatabaseRemoteConnectionV1Response, error) {
-	rsp, err := c.HostingCreateAccountDatabaseRemoteConnectionV1WithBody(ctx, username, name, contentType, body, reqEditors...)
+// HostingCreateDatabaseRemoteConnectionV1WithBodyWithResponse request with arbitrary body returning *HostingCreateDatabaseRemoteConnectionV1Response
+func (c *ClientWithResponses) HostingCreateDatabaseRemoteConnectionV1WithBodyWithResponse(ctx context.Context, username UsernamePath, name DatabaseNamePath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*HostingCreateDatabaseRemoteConnectionV1Response, error) {
+	rsp, err := c.HostingCreateDatabaseRemoteConnectionV1WithBody(ctx, username, name, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseHostingCreateAccountDatabaseRemoteConnectionV1Response(rsp)
+	return ParseHostingCreateDatabaseRemoteConnectionV1Response(rsp)
 }
 
-func (c *ClientWithResponses) HostingCreateAccountDatabaseRemoteConnectionV1WithResponse(ctx context.Context, username UsernamePath, name DatabaseNamePath, body HostingCreateAccountDatabaseRemoteConnectionV1JSONRequestBody, reqEditors ...RequestEditorFn) (*HostingCreateAccountDatabaseRemoteConnectionV1Response, error) {
-	rsp, err := c.HostingCreateAccountDatabaseRemoteConnectionV1(ctx, username, name, body, reqEditors...)
+func (c *ClientWithResponses) HostingCreateDatabaseRemoteConnectionV1WithResponse(ctx context.Context, username UsernamePath, name DatabaseNamePath, body HostingCreateDatabaseRemoteConnectionV1JSONRequestBody, reqEditors ...RequestEditorFn) (*HostingCreateDatabaseRemoteConnectionV1Response, error) {
+	rsp, err := c.HostingCreateDatabaseRemoteConnectionV1(ctx, username, name, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseHostingCreateAccountDatabaseRemoteConnectionV1Response(rsp)
+	return ParseHostingCreateDatabaseRemoteConnectionV1Response(rsp)
 }
 
 // HostingRepairDatabaseV1WithResponse request returning *HostingRepairDatabaseV1Response
@@ -38016,6 +38831,15 @@ func (c *ClientWithResponses) HostingListWordPressThemesV1WithResponse(ctx conte
 	return ParseHostingListWordPressThemesV1Response(rsp)
 }
 
+// MailDeleteAliasV1WithResponse request returning *MailDeleteAliasV1Response
+func (c *ClientWithResponses) MailDeleteAliasV1WithResponse(ctx context.Context, aliasId MailAliasIdPath, reqEditors ...RequestEditorFn) (*MailDeleteAliasV1Response, error) {
+	rsp, err := c.MailDeleteAliasV1(ctx, aliasId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMailDeleteAliasV1Response(rsp)
+}
+
 // MailListAPITokensV1WithResponse request returning *MailListAPITokensV1Response
 func (c *ClientWithResponses) MailListAPITokensV1WithResponse(ctx context.Context, params *MailListAPITokensV1Params, reqEditors ...RequestEditorFn) (*MailListAPITokensV1Response, error) {
 	rsp, err := c.MailListAPITokensV1(ctx, params, reqEditors...)
@@ -38058,6 +38882,24 @@ func (c *ClientWithResponses) MailUpdateAutoreplyV1WithResponse(ctx context.Cont
 		return nil, err
 	}
 	return ParseMailUpdateAutoreplyV1Response(rsp)
+}
+
+// MailDeleteCatchAllV1WithResponse request returning *MailDeleteCatchAllV1Response
+func (c *ClientWithResponses) MailDeleteCatchAllV1WithResponse(ctx context.Context, catchallId MailCatchallIdPath, reqEditors ...RequestEditorFn) (*MailDeleteCatchAllV1Response, error) {
+	rsp, err := c.MailDeleteCatchAllV1(ctx, catchallId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMailDeleteCatchAllV1Response(rsp)
+}
+
+// MailResendCatchAllConfirmationV1WithResponse request returning *MailResendCatchAllConfirmationV1Response
+func (c *ClientWithResponses) MailResendCatchAllConfirmationV1WithResponse(ctx context.Context, catchallId MailCatchallIdPath, reqEditors ...RequestEditorFn) (*MailResendCatchAllConfirmationV1Response, error) {
+	rsp, err := c.MailResendCatchAllConfirmationV1(ctx, catchallId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMailResendCatchAllConfirmationV1Response(rsp)
 }
 
 // MailDeleteForwarderV1WithResponse request returning *MailDeleteForwarderV1Response
@@ -38104,6 +38946,23 @@ func (c *ClientWithResponses) MailDeleteMailboxV1WithResponse(ctx context.Contex
 	return ParseMailDeleteMailboxV1Response(rsp)
 }
 
+// MailCreateAliasV1WithBodyWithResponse request with arbitrary body returning *MailCreateAliasV1Response
+func (c *ClientWithResponses) MailCreateAliasV1WithBodyWithResponse(ctx context.Context, mailboxId MailMailboxIdPath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MailCreateAliasV1Response, error) {
+	rsp, err := c.MailCreateAliasV1WithBody(ctx, mailboxId, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMailCreateAliasV1Response(rsp)
+}
+
+func (c *ClientWithResponses) MailCreateAliasV1WithResponse(ctx context.Context, mailboxId MailMailboxIdPath, body MailCreateAliasV1JSONRequestBody, reqEditors ...RequestEditorFn) (*MailCreateAliasV1Response, error) {
+	rsp, err := c.MailCreateAliasV1(ctx, mailboxId, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMailCreateAliasV1Response(rsp)
+}
+
 // MailCreateAutoreplyV1WithBodyWithResponse request with arbitrary body returning *MailCreateAutoreplyV1Response
 func (c *ClientWithResponses) MailCreateAutoreplyV1WithBodyWithResponse(ctx context.Context, mailboxId MailMailboxIdPath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MailCreateAutoreplyV1Response, error) {
 	rsp, err := c.MailCreateAutoreplyV1WithBody(ctx, mailboxId, contentType, body, reqEditors...)
@@ -38119,6 +38978,15 @@ func (c *ClientWithResponses) MailCreateAutoreplyV1WithResponse(ctx context.Cont
 		return nil, err
 	}
 	return ParseMailCreateAutoreplyV1Response(rsp)
+}
+
+// MailCreateCatchAllV1WithResponse request returning *MailCreateCatchAllV1Response
+func (c *ClientWithResponses) MailCreateCatchAllV1WithResponse(ctx context.Context, mailboxId MailMailboxIdPath, reqEditors ...RequestEditorFn) (*MailCreateCatchAllV1Response, error) {
+	rsp, err := c.MailCreateCatchAllV1(ctx, mailboxId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMailCreateCatchAllV1Response(rsp)
 }
 
 // MailCreateForwarderV1WithBodyWithResponse request with arbitrary body returning *MailCreateForwarderV1Response
@@ -38181,6 +39049,15 @@ func (c *ClientWithResponses) MailListOrdersV1WithResponse(ctx context.Context, 
 	return ParseMailListOrdersV1Response(rsp)
 }
 
+// MailListAliasesV1WithResponse request returning *MailListAliasesV1Response
+func (c *ClientWithResponses) MailListAliasesV1WithResponse(ctx context.Context, orderId MailOrderIdPath, params *MailListAliasesV1Params, reqEditors ...RequestEditorFn) (*MailListAliasesV1Response, error) {
+	rsp, err := c.MailListAliasesV1(ctx, orderId, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMailListAliasesV1Response(rsp)
+}
+
 // MailCreateAPITokenV1WithBodyWithResponse request with arbitrary body returning *MailCreateAPITokenV1Response
 func (c *ClientWithResponses) MailCreateAPITokenV1WithBodyWithResponse(ctx context.Context, orderId MailOrderIdPath, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MailCreateAPITokenV1Response, error) {
 	rsp, err := c.MailCreateAPITokenV1WithBody(ctx, orderId, contentType, body, reqEditors...)
@@ -38205,6 +39082,15 @@ func (c *ClientWithResponses) MailListAutorepliesV1WithResponse(ctx context.Cont
 		return nil, err
 	}
 	return ParseMailListAutorepliesV1Response(rsp)
+}
+
+// MailListCatchAllsV1WithResponse request returning *MailListCatchAllsV1Response
+func (c *ClientWithResponses) MailListCatchAllsV1WithResponse(ctx context.Context, orderId MailOrderIdPath, params *MailListCatchAllsV1Params, reqEditors ...RequestEditorFn) (*MailListCatchAllsV1Response, error) {
+	rsp, err := c.MailListCatchAllsV1(ctx, orderId, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMailListCatchAllsV1Response(rsp)
 }
 
 // MailListForwardersV1WithResponse request returning *MailListForwardersV1Response
@@ -42764,15 +43650,15 @@ func ParseHostingCreateAccountDatabaseV1Response(rsp *http.Response) (*HostingCr
 	return response, nil
 }
 
-// ParseHostingListAccountDatabaseRemoteConnectionsV1Response parses an HTTP response from a HostingListAccountDatabaseRemoteConnectionsV1WithResponse call
-func ParseHostingListAccountDatabaseRemoteConnectionsV1Response(rsp *http.Response) (*HostingListAccountDatabaseRemoteConnectionsV1Response, error) {
+// ParseHostingListDatabaseRemoteConnectionsV1Response parses an HTTP response from a HostingListDatabaseRemoteConnectionsV1WithResponse call
+func ParseHostingListDatabaseRemoteConnectionsV1Response(rsp *http.Response) (*HostingListDatabaseRemoteConnectionsV1Response, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &HostingListAccountDatabaseRemoteConnectionsV1Response{
+	response := &HostingListDatabaseRemoteConnectionsV1Response{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -42931,15 +43817,15 @@ func ParseHostingGetPhpMyAdminLinkV1Response(rsp *http.Response) (*HostingGetPhp
 	return response, nil
 }
 
-// ParseHostingDeleteAccountDatabaseRemoteConnectionV1Response parses an HTTP response from a HostingDeleteAccountDatabaseRemoteConnectionV1WithResponse call
-func ParseHostingDeleteAccountDatabaseRemoteConnectionV1Response(rsp *http.Response) (*HostingDeleteAccountDatabaseRemoteConnectionV1Response, error) {
+// ParseHostingDeleteDatabaseRemoteConnectionV1Response parses an HTTP response from a HostingDeleteDatabaseRemoteConnectionV1WithResponse call
+func ParseHostingDeleteDatabaseRemoteConnectionV1Response(rsp *http.Response) (*HostingDeleteDatabaseRemoteConnectionV1Response, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &HostingDeleteAccountDatabaseRemoteConnectionV1Response{
+	response := &HostingDeleteDatabaseRemoteConnectionV1Response{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -42971,15 +43857,15 @@ func ParseHostingDeleteAccountDatabaseRemoteConnectionV1Response(rsp *http.Respo
 	return response, nil
 }
 
-// ParseHostingCreateAccountDatabaseRemoteConnectionV1Response parses an HTTP response from a HostingCreateAccountDatabaseRemoteConnectionV1WithResponse call
-func ParseHostingCreateAccountDatabaseRemoteConnectionV1Response(rsp *http.Response) (*HostingCreateAccountDatabaseRemoteConnectionV1Response, error) {
+// ParseHostingCreateDatabaseRemoteConnectionV1Response parses an HTTP response from a HostingCreateDatabaseRemoteConnectionV1WithResponse call
+func ParseHostingCreateDatabaseRemoteConnectionV1Response(rsp *http.Response) (*HostingCreateDatabaseRemoteConnectionV1Response, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &HostingCreateAccountDatabaseRemoteConnectionV1Response{
+	response := &HostingCreateDatabaseRemoteConnectionV1Response{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -45800,6 +46686,60 @@ func ParseHostingListWordPressThemesV1Response(rsp *http.Response) (*HostingList
 	return response, nil
 }
 
+// ParseMailDeleteAliasV1Response parses an HTTP response from a MailDeleteAliasV1WithResponse call
+func ParseMailDeleteAliasV1Response(rsp *http.Response) (*MailDeleteAliasV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MailDeleteAliasV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CommonSuccessEmptyResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseMailListAPITokensV1Response parses an HTTP response from a MailListAPITokensV1WithResponse call
 func ParseMailListAPITokensV1Response(rsp *http.Response) (*MailListAPITokensV1Response, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -45993,6 +46933,121 @@ func ParseMailUpdateAutoreplyV1Response(rsp *http.Response) (*MailUpdateAutorepl
 			return nil, err
 		}
 		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMailDeleteCatchAllV1Response parses an HTTP response from a MailDeleteCatchAllV1WithResponse call
+func ParseMailDeleteCatchAllV1Response(rsp *http.Response) (*MailDeleteCatchAllV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MailDeleteCatchAllV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CommonSuccessEmptyResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMailResendCatchAllConfirmationV1Response parses an HTTP response from a MailResendCatchAllConfirmationV1WithResponse call
+func ParseMailResendCatchAllConfirmationV1Response(rsp *http.Response) (*MailResendCatchAllConfirmationV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MailResendCatchAllConfirmationV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CommonSuccessEmptyResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest CommonResponseErrorResponse
@@ -46236,6 +47291,67 @@ func ParseMailDeleteMailboxV1Response(rsp *http.Response) (*MailDeleteMailboxV1R
 	return response, nil
 }
 
+// ParseMailCreateAliasV1Response parses an HTTP response from a MailCreateAliasV1WithResponse call
+func ParseMailCreateAliasV1Response(rsp *http.Response) (*MailCreateAliasV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MailCreateAliasV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest MailV1AliasesAliasResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseMailCreateAutoreplyV1Response parses an HTTP response from a MailCreateAutoreplyV1WithResponse call
 func ParseMailCreateAutoreplyV1Response(rsp *http.Response) (*MailCreateAutoreplyV1Response, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -46252,6 +47368,67 @@ func ParseMailCreateAutoreplyV1Response(rsp *http.Response) (*MailCreateAutorepl
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
 		var dest MailV1AutorepliesAutoreplyResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMailCreateCatchAllV1Response parses an HTTP response from a MailCreateCatchAllV1WithResponse call
+func ParseMailCreateCatchAllV1Response(rsp *http.Response) (*MailCreateCatchAllV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MailCreateCatchAllV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest MailV1CatchallsCatchallResource
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -46545,6 +47722,64 @@ func ParseMailListOrdersV1Response(rsp *http.Response) (*MailListOrdersV1Respons
 	return response, nil
 }
 
+// ParseMailListAliasesV1Response parses an HTTP response from a MailListAliasesV1WithResponse call
+func ParseMailListAliasesV1Response(rsp *http.Response) (*MailListAliasesV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MailListAliasesV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			// Data Array of [`Mail.V1.Aliases.AliasResource`](#model/mailv1aliasesaliasresource)
+			Data *MailV1AliasesAliasCollection     `json:"data,omitempty"`
+			Meta *CommonSchemaPaginationMetaSchema `json:"meta,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseMailCreateAPITokenV1Response parses an HTTP response from a MailCreateAPITokenV1WithResponse call
 func ParseMailCreateAPITokenV1Response(rsp *http.Response) (*MailCreateAPITokenV1Response, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -46625,6 +47860,64 @@ func ParseMailListAutorepliesV1Response(rsp *http.Response) (*MailListAutoreplie
 			// Data Array of [`Mail.V1.Autoreplies.AutoreplyResource`](#model/mailv1autorepliesautoreplyresource)
 			Data *MailV1AutorepliesAutoreplyCollection `json:"data,omitempty"`
 			Meta *CommonSchemaPaginationMetaSchema     `json:"meta,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMailListCatchAllsV1Response parses an HTTP response from a MailListCatchAllsV1WithResponse call
+func ParseMailListCatchAllsV1Response(rsp *http.Response) (*MailListCatchAllsV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MailListCatchAllsV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			// Data Array of [`Mail.V1.Catchalls.CatchallResource`](#model/mailv1catchallscatchallresource)
+			Data *MailV1CatchallsCatchallCollection `json:"data,omitempty"`
+			Meta *CommonSchemaPaginationMetaSchema  `json:"meta,omitempty"`
 		}
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
