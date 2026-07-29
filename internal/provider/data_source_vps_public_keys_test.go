@@ -22,23 +22,14 @@ func TestAccDataSourceVPSPublicKeys(t *testing.T) {
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
 						"data.hostinger_vps_public_keys.test",
-						tfjsonpath.New("name"),
-						knownvalue.StringExact("public key"),
-					),
-					statecheck.ExpectKnownValue(
-						"data.hostinger_vps_public_keys.test",
-						tfjsonpath.New("public_keys").AtSliceIndex(0).AtMapKey("id"),
-						knownvalue.Int64Exact(325),
-					),
-					statecheck.ExpectKnownValue(
-						"data.hostinger_vps_public_keys.test",
-						tfjsonpath.New("public_keys").AtSliceIndex(0).AtMapKey("name"),
-						knownvalue.StringExact("My public key"),
-					),
-					statecheck.ExpectKnownValue(
-						"data.hostinger_vps_public_keys.test",
-						tfjsonpath.New("public_keys").AtSliceIndex(0).AtMapKey("key"),
-						knownvalue.StringExact("ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD..."),
+						tfjsonpath.New("public_keys"),
+						knownvalue.ListExact([]knownvalue.Check{
+							knownvalue.ObjectExact(map[string]knownvalue.Check{
+								"id":   knownvalue.Int64Exact(325),
+								"name": knownvalue.StringExact("My public key"),
+								"key":  knownvalue.StringExact("ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD..."),
+							}),
+						}),
 					),
 				},
 			},
@@ -48,6 +39,5 @@ func TestAccDataSourceVPSPublicKeys(t *testing.T) {
 
 const testAccDataSourceVPSPublicKeysConfig = `
 data "hostinger_vps_public_keys" "test" {
-	name = "public key"
 }
 `
