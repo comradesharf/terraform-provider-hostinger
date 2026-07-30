@@ -3704,30 +3704,9 @@
       "operationId": "VPS_getFirewallDetailsV1",
       "specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
     },
-    "httpResponse": {
-      "statusCode": 200,
-      "headers": {
-        "content-type": [
-          "application/json"
-        ]
-      },
-      "body": {
-        "id": 65224,
-        "name": "HTTP and SSH only",
-        "is_synced": false,
-        "rules": [
-          {
-            "id": 24541,
-            "action": "accept",
-            "protocol": "TCP",
-            "port": "1024:2048",
-            "source": "any",
-            "source_detail": "any"
-          }
-        ],
-        "created_at": "2021-09-01T12:00:00Z",
-        "updated_at": "2021-09-01T12:00:00Z"
-      }
+    "httpResponseTemplate": {
+      "templateType": "VELOCITY",
+      "template": "{\n  \"statusCode\": 200,\n  \"headers\": {\n    \"content-type\": [\n      \"application/json\"\n    ]\n  },\n  \"body\": {\n    \"id\": $!request.pathParameters['firewallId'][0],\n    \"name\": \"HTTP and SSH only\",\n    \"is_synced\": false,\n    \"rules\": [\n      {\n        \"id\": 24541,\n        \"action\": \"accept\",\n        \"protocol\": \"TCP\",\n        \"port\": \"1024:2048\",\n        \"source\": \"any\",\n        \"source_detail\": \"any\"\n      }\n    ],\n    \"created_at\": \"2021-09-01T12:00:00Z\",\n    \"updated_at\": \"2021-09-01T12:00:00Z\"\n  }\n}"
     },
     "id": "openapi:hostinger_api_155edbb6d356a0f8:VPS_getFirewallDetailsV1",
     "priority": 0,
@@ -3816,30 +3795,9 @@
       "operationId": "VPS_createNewFirewallV1",
       "specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
     },
-    "httpResponse": {
-      "statusCode": 200,
-      "headers": {
-        "content-type": [
-          "application/json"
-        ]
-      },
-      "body": {
-        "id": 65224,
-        "name": "HTTP and SSH only",
-        "is_synced": false,
-        "rules": [
-          {
-            "id": 24541,
-            "action": "accept",
-            "protocol": "TCP",
-            "port": "1024:2048",
-            "source": "any",
-            "source_detail": "any"
-          }
-        ],
-        "created_at": "2021-09-01T12:00:00Z",
-        "updated_at": "2021-09-01T12:00:00Z"
-      }
+    "httpResponseTemplate": {
+      "templateType": "VELOCITY",
+      "template": "{\n  \"statusCode\": 200,\n  \"headers\": {\n    \"content-type\": [\n      \"application/json\"\n    ]\n  },\n  \"body\": {\n    \"id\": $calc.randomInt(10000, 90000),\n    \"name\": \"$jsonTransform.field($!request.body, \"name\")\",\n    \"is_synced\": false,\n    \"rules\": [],\n    \"created_at\": \"$!now_iso_8601\",\n    \"updated_at\": \"$!now_iso_8601\"\n  }\n}"
     },
     "id": "openapi:hostinger_api_155edbb6d356a0f8:VPS_createNewFirewallV1",
     "priority": 0,
@@ -3848,7 +3806,10 @@
     },
     "times": {
       "unlimited": true
-    }
+    },
+    "scenarioState": "Started",
+    "newScenarioState": "Created",
+    "scenarioName": "CRUDFirewall"
   },
   {
     "httpRequest": {

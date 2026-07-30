@@ -25,7 +25,12 @@ func TestAccResourceVPSFirewall(t *testing.T) {
 					statecheck.ExpectKnownValue(
 						"hostinger_vps_firewall.test",
 						tfjsonpath.New("id"),
-						knownvalue.Int64Exact(65224),
+						knownvalue.NotNull(),
+					),
+					statecheck.ExpectKnownValue(
+						"hostinger_vps_firewall.test",
+						tfjsonpath.New("name"),
+						knownvalue.StringExact("one"),
 					),
 				},
 			},
