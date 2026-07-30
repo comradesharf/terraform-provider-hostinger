@@ -29,7 +29,7 @@ type VPSFirewallModel struct {
 	UpdatedAt timetypes.RFC3339      `tfsdk:"updated_at"`
 }
 
-func (data *VPSFirewallModel) FromResponse(item *client.VPSV1FirewallFirewallResource) {
+func (data *VPSFirewallModel) Merge(item *client.VPSV1FirewallFirewallResource) {
 	data.ID = int64Value(item.Id)
 	data.Name = types.StringPointerValue(item.Name)
 	data.IsSynced = types.BoolPointerValue(item.IsSynced)

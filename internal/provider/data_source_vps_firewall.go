@@ -186,7 +186,7 @@ func (d *DataSourceVPSFirewall) Read(ctx context.Context, req datasource.ReadReq
 		return
 	}
 
-	data.FromResponse(response.JSON200)
+	data.Merge(response.JSON200)
 
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }

@@ -13,6 +13,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/int64planmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringplanmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 )
 
@@ -56,6 +57,9 @@ func (r *ResourceVPSFirewall) Schema(ctx context.Context, req resource.SchemaReq
 				MarkdownDescription: "Firewall name",
 				Validators: []validator.String{
 					stringvalidator.LengthAtLeast(1),
+				},
+				PlanModifiers: []planmodifier.String{
+					stringplanmodifier.RequiresReplace(),
 				},
 			},
 			"is_synced": schema.BoolAttribute{
@@ -183,7 +187,7 @@ func (r *ResourceVPSFirewall) Create(ctx context.Context, req resource.CreateReq
 		return
 	}
 
-	data.FromResponse(response.JSON200)
+	data.Merge(response.JSON200)
 
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
@@ -198,7 +202,7 @@ func (r *ResourceVPSFirewall) Read(ctx context.Context, req resource.ReadRequest
 	if data.ID.IsUnknown() {
 		resp.Diagnostics.AddError(
 			"Unknown ID",
-			"ID is unknown, unable to read VPS virtual machine.",
+			"ID is unknown, unable to read VPS firewall.",
 		)
 		return
 	}
@@ -206,7 +210,7 @@ func (r *ResourceVPSFirewall) Read(ctx context.Context, req resource.ReadRequest
 	if data.ID.IsNull() || data.ID.ValueInt64() == 0 {
 		resp.Diagnostics.AddError(
 			"Null ID",
-			"ID is null or zero, unable to read VPS virtual machine.",
+			"ID is null or zero, unable to read VPS firewall.",
 		)
 		return
 	}
@@ -234,7 +238,7 @@ func (r *ResourceVPSFirewall) Read(ctx context.Context, req resource.ReadRequest
 		return
 	}
 
-	data.FromResponse(response.JSON200)
+	data.Merge(response.JSON200)
 
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
@@ -263,23 +267,44 @@ func (r *ResourceVPSFirewall) Update(ctx context.Context, req resource.UpdateReq
 
 func (r *ResourceVPSFirewall) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
 	var data ResourceVPSFirewallModel
-
-	// Read Terraform prior state data into the model
 	resp.Diagnostics.Append(req.State.Get(ctx, &data)...)
-
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
-	// If applicable, this is a great opportunity to initialize any necessary
-	// provider client data and make a call using it.
-	// httpResp, err := r.client.Do(httpReq)
-	// if err != nil {
-	//     resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to delete example, got error: %s", err))
-	//     return
-	// }
+	if data.ID.IsUnknown() {
+		resp.Diagnostics.AddError(
+			"Unknown ID",
+			"ID is unknown, unable to read VPS firewall.",
+		)
+		return
+	}
+
+	if data.ID.IsNull() || data.ID.ValueInt64() == 0 {
+		resp.Diagnostics.AddError(
+			"Null ID",
+			"ID is null or zero, unable to read VPS firewall.",
+		)
+		return
+	}
+
+	response, err := r.client.VPSDeleteFirewallV1WithResponse(ctx, client.FirewallId(data.ID.ValueInt64()))
+	if err != nil {
+		resp.Diagnostics.AddError(
+			"Unable to Delete VPS Firewalls",
+			fmt.Sprintf("Got error: %s", err),
+		)
+		return
+	}
+	if response.StatusCode() != http.StatusOK {
+		resp.Diagnostics.AddError(
+			"Unable to Delete VPS Firewalls",
+			fmt.Sprintf("Unexpected status code: %d, response: %s", response.StatusCode(), string(response.Body)),
+		)
+		return
+	}
 }
 
 func (r *ResourceVPSFirewall) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
-	resource.ImportStatePassthroughID(ctx, path.Root("id"), req, resp)
+	importStatePassthroughInt64ID(ctx, path.Root("id"), req, resp)
 }

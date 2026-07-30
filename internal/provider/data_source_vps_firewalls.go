@@ -186,7 +186,7 @@ func (d *DataSourceVPSFirewalls) Read(ctx context.Context, req datasource.ReadRe
 
 		for _, item := range *response.JSON200.Data {
 			var d VPSFirewallModel
-			d.FromResponse(&item)
+			d.Merge(&item)
 			data.Firewalls = append(data.Firewalls, d)
 		}
 
