@@ -144,7 +144,9 @@ func (p *hostingerProvider) Configure(ctx context.Context, req provider.Configur
 }
 
 func (p *hostingerProvider) Resources(ctx context.Context) []func() resource.Resource {
-	return nil
+	return []func() resource.Resource{
+		NewResourceVPSFirewall,
+	}
 }
 
 func (p *hostingerProvider) DataSources(ctx context.Context) []func() datasource.DataSource {

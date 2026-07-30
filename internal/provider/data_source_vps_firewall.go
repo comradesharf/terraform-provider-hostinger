@@ -14,7 +14,6 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
-	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
 // Ensure provider defined types fully satisfy framework interfaces.
@@ -187,27 +186,7 @@ func (d *DataSourceVPSFirewall) Read(ctx context.Context, req datasource.ReadReq
 		return
 	}
 
-	item := response.JSON200
-
-	data.ID = int64Value(item.Id)
-	data.Name = types.StringPointerValue(item.Name)
-	data.IsSynced = types.BoolPointerValue(item.IsSynced)
-	data.CreatedAt = timetypes.NewRFC3339TimePointerValue(item.CreatedAt)
-	data.UpdatedAt = timetypes.NewRFC3339TimePointerValue(item.UpdatedAt)
-
-	if item.Rules != nil {
-		for _, rule := range *item.Rules {
-			var p VPSFirewallRuleModel
-			p.ID = int64Value(rule.Id)
-			p.Action = types.StringPointerValue((*string)(rule.Action))
-			p.Protocol = types.StringPointerValue((*string)(rule.Protocol))
-			p.Port = types.StringPointerValue(rule.Port)
-			p.Source = types.StringPointerValue(rule.Source)
-			p.SourceDetail = types.StringPointerValue(rule.SourceDetail)
-
-			data.Rules = append(data.Rules, p)
-		}
-	}
+	data.FromResponse(response.JSON200)
 
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
