@@ -77,7 +77,7 @@ func (r *ResourceVPSFirewall) Schema(ctx context.Context, req resource.SchemaReq
 				MarkdownDescription: "Timestamp when the firewall was updated (RFC3339).",
 			},
 			"rules": schema.ListNestedAttribute{
-				Computed: true,
+				Optional: true,
 				NestedObject: schema.NestedAttributeObject{
 					Attributes: map[string]schema.Attribute{
 						"id": schema.Int64Attribute{
@@ -98,7 +98,7 @@ func (r *ResourceVPSFirewall) Schema(ctx context.Context, req resource.SchemaReq
 							},
 						},
 						"protocol": schema.StringAttribute{
-							Computed:            true,
+							Required:            true,
 							MarkdownDescription: "Firewall rule protocol",
 							Validators: []validator.String{
 								stringvalidator.OneOf(
@@ -119,15 +119,21 @@ func (r *ResourceVPSFirewall) Schema(ctx context.Context, req resource.SchemaReq
 							},
 						},
 						"port": schema.StringAttribute{
-							Computed:            true,
+							Required:            true,
 							MarkdownDescription: "Firewall rule destination port: single or port range",
 						},
 						"source": schema.StringAttribute{
-							Computed:            true,
+							Required:            true,
 							MarkdownDescription: "Firewall rule source. Can be `any` or `custom`",
+							Validators: []validator.String{
+								stringvalidator.OneOf(
+									"any",
+									"custom",
+								),
+							},
 						},
 						"source_detail": schema.StringAttribute{
-							Computed:            true,
+							Required:            true,
 							MarkdownDescription: "Firewall rule source detail. Can be `any` or IP address, CIDR or range",
 						},
 					},
@@ -155,16 +161,17 @@ func (r *ResourceVPSFirewall) Configure(ctx context.Context, req resource.Config
 }
 
 func (r *ResourceVPSFirewall) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	var data ResourceVPSFirewallModel
-	resp.Diagnostics.Append(req.Config.Get(ctx, &data)...)
+	var state ResourceVPSFirewallModel
+	resp.Diagnostics.Append(req.Config.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
-	p := client.VPSCreateNewFirewallV1JSONRequestBody{}
-	p.Name = data.Name.ValueString()
+	p := client.VPSCreateNewFirewallV1JSONRequestBody{
+		Name: state.Name.ValueString(),
+	}
 
-	response, err := r.client.VPSCreateNewFirewallV1WithResponse(ctx, p)
+	createResp, err := r.client.VPSCreateNewFirewallV1WithResponse(ctx, p)
 	if err != nil {
 		resp.Diagnostics.AddError(
 			"Unable to Create VPS Firewall",
@@ -172,14 +179,14 @@ func (r *ResourceVPSFirewall) Create(ctx context.Context, req resource.CreateReq
 		)
 		return
 	}
-	if response.StatusCode() != http.StatusOK {
+	if createResp.StatusCode() != http.StatusOK {
 		resp.Diagnostics.AddError(
 			"Unable to Create VPS Firewall",
-			fmt.Sprintf("Unexpected status code: %d, response: %s", response.StatusCode(), string(response.Body)),
+			fmt.Sprintf("Unexpected status code: %d, response: %s", createResp.StatusCode(), string(createResp.Body)),
 		)
 		return
 	}
-	if response.JSON200 == nil {
+	if createResp.JSON200 == nil {
 		resp.Diagnostics.AddError(
 			"Unable to Create VPS Firewall",
 			"Response body is nil",
@@ -187,19 +194,74 @@ func (r *ResourceVPSFirewall) Create(ctx context.Context, req resource.CreateReq
 		return
 	}
 
-	data.Merge(response.JSON200)
+	for _, rule := range state.Rules {
+		param := client.VPSCreateFirewallRuleV1JSONRequestBody{
+			Source:       client.VPSV1FirewallRulesStoreRequestSource(rule.Source.ValueString()),
+			Port:         rule.Port.ValueString(),
+			Protocol:     client.VPSV1FirewallRulesStoreRequestProtocol(rule.Protocol.ValueString()),
+			SourceDetail: rule.SourceDetail.ValueString(),
+		}
 
-	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
+		response, err := r.client.VPSCreateFirewallRuleV1WithResponse(ctx, *createResp.JSON200.Id, param)
+		if err != nil {
+			resp.Diagnostics.AddError(
+				"Unable to Add Firewall Rule",
+				fmt.Sprintf("Got error: %s", err),
+			)
+			break
+		}
+		if response.StatusCode() != http.StatusOK {
+			resp.Diagnostics.AddError(
+				"Unable to Add Firewall Rule",
+				fmt.Sprintf("Unexpected status code: %d, response: %s", response.StatusCode(), string(response.Body)),
+			)
+			break
+		}
+		if response.JSON200 == nil {
+			resp.Diagnostics.AddError(
+				"Unable to Add Firewall Rule",
+				"Response body is nil",
+			)
+			break
+		}
+	}
+
+	getResp, err := r.client.VPSGetFirewallDetailsV1WithResponse(ctx, *createResp.JSON200.Id)
+	if err != nil {
+		resp.Diagnostics.AddError(
+			"Unable to Read VPS Firewalls",
+			fmt.Sprintf("Got error: %s", err),
+		)
+		return
+	}
+	if getResp.StatusCode() != http.StatusOK {
+		resp.Diagnostics.AddError(
+			"Unable to Read VPS Firewalls",
+			fmt.Sprintf("Unexpected status code: %d, response: %s", getResp.StatusCode(), string(getResp.Body)),
+		)
+		return
+	}
+	if getResp.JSON200 == nil {
+		resp.Diagnostics.AddError(
+			"Unable to Read VPS Firewalls",
+			"Response body is nil",
+		)
+		return
+	}
+
+	state.Merge(getResp.JSON200)
+
+	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 }
 
 func (r *ResourceVPSFirewall) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	var data ResourceVPSFirewallModel
-	resp.Diagnostics.Append(req.State.Get(ctx, &data)...)
+	var state ResourceVPSFirewallModel
+	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
-	if data.ID.IsUnknown() {
+	if state.ID.IsUnknown() {
 		resp.Diagnostics.AddError(
 			"Unknown ID",
 			"ID is unknown, unable to read VPS firewall.",
@@ -207,7 +269,7 @@ func (r *ResourceVPSFirewall) Read(ctx context.Context, req resource.ReadRequest
 		return
 	}
 
-	if data.ID.IsNull() || data.ID.ValueInt64() == 0 {
+	if state.ID.IsNull() || state.ID.ValueInt64() == 0 {
 		resp.Diagnostics.AddError(
 			"Null ID",
 			"ID is null or zero, unable to read VPS firewall.",
@@ -215,7 +277,7 @@ func (r *ResourceVPSFirewall) Read(ctx context.Context, req resource.ReadRequest
 		return
 	}
 
-	response, err := r.client.VPSGetFirewallDetailsV1WithResponse(ctx, client.FirewallId(data.ID.ValueInt64()))
+	response, err := r.client.VPSGetFirewallDetailsV1WithResponse(ctx, client.FirewallId(state.ID.ValueInt64()))
 	if err != nil {
 		resp.Diagnostics.AddError(
 			"Unable to Read VPS Firewalls",
@@ -238,41 +300,30 @@ func (r *ResourceVPSFirewall) Read(ctx context.Context, req resource.ReadRequest
 		return
 	}
 
-	data.Merge(response.JSON200)
+	state.Merge(response.JSON200)
 
-	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
+	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 }
 
 func (r *ResourceVPSFirewall) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	var data ResourceVPSFirewallModel
-
-	// Read Terraform plan data into the model
-	resp.Diagnostics.Append(req.Plan.Get(ctx, &data)...)
-
+	var plan, state ResourceVPSFirewallModel
+	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
+	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
-	// If applicable, this is a great opportunity to initialize any necessary
-	// provider client data and make a call using it.
-	// httpResp, err := r.client.Do(httpReq)
-	// if err != nil {
-	//     resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to update example, got error: %s", err))
-	//     return
-	// }
-
-	// Save updated data into Terraform state
-	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
+	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 }
 
 func (r *ResourceVPSFirewall) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-	var data ResourceVPSFirewallModel
-	resp.Diagnostics.Append(req.State.Get(ctx, &data)...)
+	var state ResourceVPSFirewallModel
+	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
-	if data.ID.IsUnknown() {
+	if state.ID.IsUnknown() {
 		resp.Diagnostics.AddError(
 			"Unknown ID",
 			"ID is unknown, unable to read VPS firewall.",
@@ -280,7 +331,7 @@ func (r *ResourceVPSFirewall) Delete(ctx context.Context, req resource.DeleteReq
 		return
 	}
 
-	if data.ID.IsNull() || data.ID.ValueInt64() == 0 {
+	if state.ID.IsNull() || state.ID.ValueInt64() == 0 {
 		resp.Diagnostics.AddError(
 			"Null ID",
 			"ID is null or zero, unable to read VPS firewall.",
@@ -288,7 +339,7 @@ func (r *ResourceVPSFirewall) Delete(ctx context.Context, req resource.DeleteReq
 		return
 	}
 
-	response, err := r.client.VPSDeleteFirewallV1WithResponse(ctx, client.FirewallId(data.ID.ValueInt64()))
+	response, err := r.client.VPSDeleteFirewallV1WithResponse(ctx, client.FirewallId(state.ID.ValueInt64()))
 	if err != nil {
 		resp.Diagnostics.AddError(
 			"Unable to Delete VPS Firewalls",

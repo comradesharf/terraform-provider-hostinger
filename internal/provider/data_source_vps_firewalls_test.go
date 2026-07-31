@@ -10,11 +10,28 @@ import (
 	"github.com/hashicorp/terraform-plugin-testing/knownvalue"
 	"github.com/hashicorp/terraform-plugin-testing/statecheck"
 	"github.com/hashicorp/terraform-plugin-testing/tfjsonpath"
+	"github.com/mock-server/mockserver-monorepo/mockserver-client-go/v7"
 )
 
 func TestAccDataSourceVPSFirewalls(t *testing.T) {
+	mockClient := newMockServerClient()
+
 	resource.Test(t, resource.TestCase{
-		PreCheck:                 func() { testAccPreCheck(t) },
+		PreCheck: func() {
+			testAccPreCheck(t)
+
+			if err := mockClient.Clear(nil, mockserver.ClearLog); err != nil {
+				t.Fatalf("failed to clear mock server logs: %v", err)
+			}
+
+			if err := mockClient.FreezeClock("2021-09-01T12:00:00Z"); err != nil {
+				t.Fatalf("failed to freeze mock server clock: %v", err)
+			}
+
+			if err := mockClient.Scenario("CRUDFirewall").Set("Started"); err != nil {
+				t.Fatalf("failed to set mock server scenario: %v", err)
+			}
+		},
 		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
 		Steps: []resource.TestStep{
 			{

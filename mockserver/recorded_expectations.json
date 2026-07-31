@@ -3737,7 +3737,6 @@
     "priority": 0,
     "newScenarioState": "Started",
     "scenarioName": "CRUDFirewall",
-    "scenarioState": "Created",
     "timeToLive": {
       "unlimited": true
     },
@@ -3881,22 +3880,40 @@
       "operationId": "VPS_createFirewallRuleV1",
       "specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json"
     },
-    "httpResponse": {
-      "statusCode": 200,
-      "headers": {
-        "content-type": [
-          "application/json"
-        ]
+    "httpResponses": [
+      {
+        "statusCode": 200,
+        "headers": {
+          "content-type": [
+            "application/json"
+          ]
+        },
+        "body": {
+          "id": 24541,
+          "action": "accept",
+          "protocol": "TCP",
+          "port": "1024:2048",
+          "source": "any",
+          "source_detail": "any"
+        }
       },
-      "body": {
-        "id": 24541,
-        "action": "accept",
-        "protocol": "TCP",
-        "port": "1024:2048",
-        "source": "any",
-        "source_detail": "any"
+      {
+        "statusCode": 200,
+        "headers": {
+          "content-type": [
+            "application/json"
+          ]
+        },
+        "body": {
+          "id": 24542,
+          "action": "accept",
+          "protocol": "TCP",
+          "port": "8080:8090",
+          "source": "any",
+          "source_detail": "any"
+        }
       }
-    },
+    ],
     "id": "openapi:hostinger_api_155edbb6d356a0f8:VPS_createFirewallRuleV1",
     "priority": 0,
     "timeToLive": {
@@ -3904,7 +3921,9 @@
     },
     "times": {
       "unlimited": true
-    }
+    },
+    "newScenarioState": "RuleAdded",
+    "scenarioName": "CRUDFirewall"
   },
   {
     "httpRequest": {

@@ -4,6 +4,8 @@
 package provider
 
 import (
+	"slices"
+
 	"github.com/comradesharf/terraform-provider-hostinger/internal/client"
 	"github.com/hashicorp/terraform-plugin-framework-timetypes/timetypes"
 	"github.com/hashicorp/terraform-plugin-framework/types"
@@ -17,6 +19,15 @@ type VPSFirewallRuleModel struct {
 	Port         types.String `tfsdk:"port"`
 	Source       types.String `tfsdk:"source"`
 	SourceDetail types.String `tfsdk:"source_detail"`
+}
+
+func (data *VPSFirewallRuleModel) Merge(item *client.VPSV1FirewallFirewallRuleResource) {
+	data.ID = int64Value(item.Id)
+	data.Action = types.StringPointerValue((*string)(item.Action))
+	data.Protocol = types.StringPointerValue((*string)(item.Protocol))
+	data.Port = types.StringPointerValue(item.Port)
+	data.Source = types.StringPointerValue(item.Source)
+	data.SourceDetail = types.StringPointerValue(item.SourceDetail)
 }
 
 // VPSFirewallModel maps a single firewall from the API response.
@@ -36,17 +47,19 @@ func (data *VPSFirewallModel) Merge(item *client.VPSV1FirewallFirewallResource) 
 	data.CreatedAt = timetypes.NewRFC3339TimePointerValue(item.CreatedAt)
 	data.UpdatedAt = timetypes.NewRFC3339TimePointerValue(item.UpdatedAt)
 
-	if item.Rules != nil {
-		for _, rule := range *item.Rules {
-			var p VPSFirewallRuleModel
-			p.ID = int64Value(rule.Id)
-			p.Action = types.StringPointerValue((*string)(rule.Action))
-			p.Protocol = types.StringPointerValue((*string)(rule.Protocol))
-			p.Port = types.StringPointerValue(rule.Port)
-			p.Source = types.StringPointerValue(rule.Source)
-			p.SourceDetail = types.StringPointerValue(rule.SourceDetail)
+	if item.Rules == nil || len(*item.Rules) == 0 {
+		return
+	}
 
-			data.Rules = append(data.Rules, p)
-		}
+	slices.SortFunc(*item.Rules, func(a, b client.VPSV1FirewallFirewallRuleResource) int {
+		return *a.Id - *b.Id
+	})
+
+	data.Rules = make([]VPSFirewallRuleModel, len(*item.Rules))
+
+	for i, rule := range *item.Rules {
+		var p VPSFirewallRuleModel
+		p.Merge(&rule)
+		data.Rules[i] = p
 	}
 }
