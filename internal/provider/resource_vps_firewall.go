@@ -76,69 +76,6 @@ func (r *ResourceVPSFirewall) Schema(ctx context.Context, req resource.SchemaReq
 				CustomType:          timetypes.RFC3339Type{},
 				MarkdownDescription: "Timestamp when the firewall was updated (RFC3339).",
 			},
-			"rules": schema.ListNestedAttribute{
-				Optional: true,
-				NestedObject: schema.NestedAttributeObject{
-					Attributes: map[string]schema.Attribute{
-						"id": schema.Int64Attribute{
-							Computed:            true,
-							MarkdownDescription: "Firewall rule ID",
-							PlanModifiers: []planmodifier.Int64{
-								int64planmodifier.UseStateForUnknown(),
-							},
-						},
-						"action": schema.StringAttribute{
-							Computed:            true,
-							MarkdownDescription: "Firewall rule action",
-							Validators: []validator.String{
-								stringvalidator.OneOf(
-									"accept",
-									"drop",
-								),
-							},
-						},
-						"protocol": schema.StringAttribute{
-							Required:            true,
-							MarkdownDescription: "Firewall rule protocol",
-							Validators: []validator.String{
-								stringvalidator.OneOf(
-									"TCP",
-									"UDP",
-									"ICMP",
-									"GRE",
-									"any",
-									"ESP",
-									"AH",
-									"ICMPv6",
-									"SSH",
-									"HTTP",
-									"HTTPS",
-									"MySQL",
-									"PostgreSQL",
-								),
-							},
-						},
-						"port": schema.StringAttribute{
-							Required:            true,
-							MarkdownDescription: "Firewall rule destination port: single or port range",
-						},
-						"source": schema.StringAttribute{
-							Required:            true,
-							MarkdownDescription: "Firewall rule source. Can be `any` or `custom`",
-							Validators: []validator.String{
-								stringvalidator.OneOf(
-									"any",
-									"custom",
-								),
-							},
-						},
-						"source_detail": schema.StringAttribute{
-							Required:            true,
-							MarkdownDescription: "Firewall rule source detail. Can be `any` or IP address, CIDR or range",
-						},
-					},
-				},
-			},
 		},
 	}
 }
@@ -171,7 +108,7 @@ func (r *ResourceVPSFirewall) Create(ctx context.Context, req resource.CreateReq
 		Name: state.Name.ValueString(),
 	}
 
-	createResp, err := r.client.VPSCreateNewFirewallV1WithResponse(ctx, p)
+	response, err := r.client.VPSCreateNewFirewallV1WithResponse(ctx, p)
 	if err != nil {
 		resp.Diagnostics.AddError(
 			"Unable to Create VPS Firewall",
@@ -179,14 +116,14 @@ func (r *ResourceVPSFirewall) Create(ctx context.Context, req resource.CreateReq
 		)
 		return
 	}
-	if createResp.StatusCode() != http.StatusOK {
+	if response.StatusCode() != http.StatusOK {
 		resp.Diagnostics.AddError(
 			"Unable to Create VPS Firewall",
-			fmt.Sprintf("Unexpected status code: %d, response: %s", createResp.StatusCode(), string(createResp.Body)),
+			fmt.Sprintf("Unexpected status code: %d, response: %s", response.StatusCode(), string(response.Body)),
 		)
 		return
 	}
-	if createResp.JSON200 == nil {
+	if response.JSON200 == nil {
 		resp.Diagnostics.AddError(
 			"Unable to Create VPS Firewall",
 			"Response body is nil",
@@ -194,62 +131,7 @@ func (r *ResourceVPSFirewall) Create(ctx context.Context, req resource.CreateReq
 		return
 	}
 
-	for _, rule := range state.Rules {
-		param := client.VPSCreateFirewallRuleV1JSONRequestBody{
-			Source:       client.VPSV1FirewallRulesStoreRequestSource(rule.Source.ValueString()),
-			Port:         rule.Port.ValueString(),
-			Protocol:     client.VPSV1FirewallRulesStoreRequestProtocol(rule.Protocol.ValueString()),
-			SourceDetail: rule.SourceDetail.ValueString(),
-		}
-
-		response, err := r.client.VPSCreateFirewallRuleV1WithResponse(ctx, *createResp.JSON200.Id, param)
-		if err != nil {
-			resp.Diagnostics.AddError(
-				"Unable to Add Firewall Rule",
-				fmt.Sprintf("Got error: %s", err),
-			)
-			break
-		}
-		if response.StatusCode() != http.StatusOK {
-			resp.Diagnostics.AddError(
-				"Unable to Add Firewall Rule",
-				fmt.Sprintf("Unexpected status code: %d, response: %s", response.StatusCode(), string(response.Body)),
-			)
-			break
-		}
-		if response.JSON200 == nil {
-			resp.Diagnostics.AddError(
-				"Unable to Add Firewall Rule",
-				"Response body is nil",
-			)
-			break
-		}
-	}
-
-	getResp, err := r.client.VPSGetFirewallDetailsV1WithResponse(ctx, *createResp.JSON200.Id)
-	if err != nil {
-		resp.Diagnostics.AddError(
-			"Unable to Read VPS Firewalls",
-			fmt.Sprintf("Got error: %s", err),
-		)
-		return
-	}
-	if getResp.StatusCode() != http.StatusOK {
-		resp.Diagnostics.AddError(
-			"Unable to Read VPS Firewalls",
-			fmt.Sprintf("Unexpected status code: %d, response: %s", getResp.StatusCode(), string(getResp.Body)),
-		)
-		return
-	}
-	if getResp.JSON200 == nil {
-		resp.Diagnostics.AddError(
-			"Unable to Read VPS Firewalls",
-			"Response body is nil",
-		)
-		return
-	}
-
-	state.Merge(getResp.JSON200)
+	state.Merge(response.JSON200)
 
 	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 }
