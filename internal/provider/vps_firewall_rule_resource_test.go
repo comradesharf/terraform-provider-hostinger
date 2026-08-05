@@ -4,10 +4,11 @@
 package provider
 
 import (
+	"bytes"
 	"fmt"
+	"net/http"
 	"testing"
 
-	"github.com/hashicorp/terraform-plugin-testing/compare"
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
 	"github.com/hashicorp/terraform-plugin-testing/knownvalue"
 	"github.com/hashicorp/terraform-plugin-testing/statecheck"
@@ -15,27 +16,27 @@ import (
 	"github.com/mock-server/mockserver-monorepo/mockserver-client-go/v7"
 )
 
-func TestAccResourceVPSFirewallRule(t *testing.T) {
-	compareValuesDiffer := statecheck.CompareValue(compare.ValuesDiffer())
-	compareValuesSame := statecheck.CompareValue(compare.ValuesSame())
+func TestAccVPSFirewallRuleResource(t *testing.T) {
 
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {
 			testAccPreCheck(t)
-			testAccResourceVPSFirewallRulePreCheck(t)
+			testAccVPSFirewallRuleResourcePreCheck(t)
 		},
 		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
 		Steps: []resource.TestStep{
 			{
-				Config: testAccResourceVPSFirewallRuleConfig("TCP"),
+				Config: testAccVPSFirewallRuleResourceConfig("test1", "TCP"),
 				ConfigStateChecks: []statecheck.StateCheck{
-					compareValuesSame.AddStateValue(
-						"hostinger_vps_firewall_rule.test",
-						tfjsonpath.New("firewall_id"),
-					),
-					compareValuesDiffer.AddStateValue(
+					statecheck.ExpectKnownValue(
 						"hostinger_vps_firewall_rule.test",
 						tfjsonpath.New("id"),
+						knownvalue.Int64Exact(24541),
+					),
+					statecheck.ExpectKnownValue(
+						"hostinger_vps_firewall_rule.test",
+						tfjsonpath.New("firewall_id"),
+						knownvalue.Int64Exact(65224),
 					),
 					statecheck.ExpectKnownValue(
 						"hostinger_vps_firewall_rule.test",
@@ -67,13 +68,94 @@ func TestAccResourceVPSFirewallRule(t *testing.T) {
 			{
 				ResourceName:      "hostinger_vps_firewall_rule.test",
 				ImportState:       true,
+				ImportStateId:     "65224/24541",
 				ImportStateVerify: true,
+			},
+			{
+				Config: testAccVPSFirewallRuleResourceConfig("test1", "UDP"),
+				ConfigStateChecks: []statecheck.StateCheck{
+					statecheck.ExpectKnownValue(
+						"hostinger_vps_firewall_rule.test",
+						tfjsonpath.New("id"),
+						knownvalue.Int64Exact(24541),
+					),
+					statecheck.ExpectKnownValue(
+						"hostinger_vps_firewall_rule.test",
+						tfjsonpath.New("firewall_id"),
+						knownvalue.Int64Exact(65224),
+					),
+					statecheck.ExpectKnownValue(
+						"hostinger_vps_firewall_rule.test",
+						tfjsonpath.New("protocol"),
+						knownvalue.StringExact("UDP"),
+					),
+					statecheck.ExpectKnownValue(
+						"hostinger_vps_firewall_rule.test",
+						tfjsonpath.New("action"),
+						knownvalue.StringExact("accept"),
+					),
+					statecheck.ExpectKnownValue(
+						"hostinger_vps_firewall_rule.test",
+						tfjsonpath.New("port"),
+						knownvalue.StringExact("80"),
+					),
+					statecheck.ExpectKnownValue(
+						"hostinger_vps_firewall_rule.test",
+						tfjsonpath.New("source"),
+						knownvalue.StringExact("custom"),
+					),
+					statecheck.ExpectKnownValue(
+						"hostinger_vps_firewall_rule.test",
+						tfjsonpath.New("source_detail"),
+						knownvalue.StringExact("any"),
+					),
+				},
+			},
+			{
+				Config: testAccVPSFirewallRuleResourceConfig("test2", "UDP"),
+				ConfigStateChecks: []statecheck.StateCheck{
+					statecheck.ExpectKnownValue(
+						"hostinger_vps_firewall_rule.test",
+						tfjsonpath.New("id"),
+						knownvalue.Int64Exact(24542),
+					),
+					statecheck.ExpectKnownValue(
+						"hostinger_vps_firewall_rule.test",
+						tfjsonpath.New("firewall_id"),
+						knownvalue.Int64Exact(65225),
+					),
+					statecheck.ExpectKnownValue(
+						"hostinger_vps_firewall_rule.test",
+						tfjsonpath.New("protocol"),
+						knownvalue.StringExact("UDP"),
+					),
+					statecheck.ExpectKnownValue(
+						"hostinger_vps_firewall_rule.test",
+						tfjsonpath.New("action"),
+						knownvalue.StringExact("accept"),
+					),
+					statecheck.ExpectKnownValue(
+						"hostinger_vps_firewall_rule.test",
+						tfjsonpath.New("port"),
+						knownvalue.StringExact("80"),
+					),
+					statecheck.ExpectKnownValue(
+						"hostinger_vps_firewall_rule.test",
+						tfjsonpath.New("source"),
+						knownvalue.StringExact("custom"),
+					),
+					statecheck.ExpectKnownValue(
+						"hostinger_vps_firewall_rule.test",
+						tfjsonpath.New("source_detail"),
+						knownvalue.StringExact("any"),
+					),
+				},
 			},
 		},
 	})
 }
 
-func testAccResourceVPSFirewallRulePreCheck(t *testing.T) {
+func testAccVPSFirewallRuleResourcePreCheck(t *testing.T) {
 	client := newMockServerClient()
 
 	if err := client.Clear(nil, mockserver.ClearAll); err != nil {
@@ -84,218 +166,282 @@ func testAccResourceVPSFirewallRulePreCheck(t *testing.T) {
 		t.Fatalf("failed to freeze mock server clock: %v", err)
 	}
 
-	if _, err := client.Upsert(
-		mockserver.Expectation{
-			HttpRequest: &mockserver.HttpRequest{
-				SpecUrlOrPayload: "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
-				OperationId:      "VPS_createNewFirewallV1",
-			},
-			HttpResponses: []*mockserver.HttpResponse{
-				mockserver.Response().
-					StatusCode(200).
-					JSONBody(
-						// language=json
-						`
-{
-    "id": 65224,
-	"name": "test",
-	"is_synced": false,
-	"rules": [],
-	"created_at": "2021-09-01T12:00:00Z",
-	"updated_at": "2021-09-01T12:00:00Z"
-}
-`).
-					BuildPtr(),
-			},
+	// language=json
+	body := []byte(`
+[
+	{
+		"httpRequest": {
+			"specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+			"operationId":      "VPS_createNewFirewallV1"
 		},
-		mockserver.Expectation{
-			HttpRequest: &mockserver.HttpRequest{
-				SpecUrlOrPayload: "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
-				OperationId:      "VPS_createFirewallRuleV1",
-			},
-			HttpResponses: []*mockserver.HttpResponse{
-				mockserver.Response().
-					StatusCode(200).
-					JSONBody(
-						// language=json
-						`
-{
-	"id": 24541,
-	"action": "accept",
-	"protocol": "TCP",
-	"port": "80",
-	"source": "custom",
-	"source_detail": "any"
-}
-`).
-					BuildPtr(),
-			},
+		"httpResponse": {
+			"statusCode": 200,
+			"body": {
+				"id": 65224,
+				"name": "test1",
+				"is_synced": false,
+				"rules": [],
+				"created_at": "2021-09-01T12:00:00Z",
+				"updated_at": "2021-09-01T12:00:00Z"
+			}			
 		},
-		mockserver.Expectation{
-			HttpRequest: &mockserver.HttpRequest{
-				SpecUrlOrPayload: "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
-				OperationId:      "VPS_deleteFirewallRuleV1",
-			},
-			HttpResponses: []*mockserver.HttpResponse{
-				mockserver.Response().
-					StatusCode(200).
-					JSONBody(
-						// language=json
-						`
-{
-	"message": "Request accepted"
-}
-`).
-					BuildPtr(),
-			},
-		},
-		mockserver.Expectation{
-			HttpRequest: &mockserver.HttpRequest{
-				SpecUrlOrPayload: "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
-				OperationId:      "VPS_deleteFirewallV1",
-			},
-			HttpResponses: []*mockserver.HttpResponse{
-				mockserver.Response().
-					StatusCode(200).
-					JSONBody(
-						// language=json
-						`
-{
-	"message": "Request accepted"
-}
-`).
-					BuildPtr(),
-			},
-		},
-		mockserver.Expectation{
-			HttpRequest: &mockserver.HttpRequest{
-				SpecUrlOrPayload: "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
-				OperationId:      "VPS_getFirewallDetailsV1",
-			},
-			HttpResponses: []*mockserver.HttpResponse{
-				mockserver.Response().
-					StatusCode(200).
-					JSONBody(
-						// language=json
-						`
-{
-    "id": 65224,
-	"name": "test",
-	"is_synced": false,
-	"rules": [],
-	"created_at": "2021-09-01T12:00:00Z",
-	"updated_at": "2021-09-01T12:00:00Z"
-}
-`).
-					BuildPtr(),
-				mockserver.Response().
-					StatusCode(200).
-					JSONBody(
-						// language=json
-						`
-{
-    "id": 65224,
-	"name": "one",
-	"is_synced": false,
-	"rules": [
-		{
-			"id": 24541,
-			"action": "accept",
-			"protocol": "TCP",
-			"port": "80",
-			"source": "custom",
-			"source_detail": "any"
+		"times": {
+			"remainingTimes": 1
 		}
-    ],
-	"created_at": "2021-09-01T12:00:00Z",
-	"updated_at": "2021-09-01T12:00:00Z"
-}
-`).
-					BuildPtr(),
-				mockserver.Response().
-					StatusCode(200).
-					JSONBody(
-						// language=json
-						`
-{
-    "id": 65224,
-	"name": "one",
-	"is_synced": false,
-	"rules": [
-		{
-			"id": 24542,
-			"action": "accept",
-			"protocol": "TCP",
-			"port": "8080:8090",
-			"source": "any",
-			"source_detail": "any"
+	},
+	{
+		"httpRequest": {
+			"specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+			"operationId":      "VPS_createFirewallRuleV1"
 		},
-		{
-	        "id": 24541,
-			"action": "accept",
-			"protocol": "TCP",
-			"port": "1024:2048",
-			"source": "any",
-			"source_detail": "any"
+		"httpResponse": {
+			"statusCode": 200,
+			"body": {
+				"id": 24541,
+				"action": "accept",
+				"protocol": "TCP",
+				"port": "80",
+				"source": "custom",
+				"source_detail": "any"
+			}			
+		},
+		"times": {
+			"remainingTimes": 1
 		}
-    ],
-	"created_at": "2021-09-01T12:00:00Z",
-	"updated_at": "2021-09-01T12:00:00Z"
-}
-`).
-					BuildPtr(),
-				mockserver.Response().
-					StatusCode(200).
-					JSONBody(
-						// language=json
-						`
-{
-    "id": 65225,
-	"name": "two",
-	"is_synced": false,
-	"rules": [
-		{
-			"id": 24543,
-			"action": "accept",
-			"protocol": "TCP",
-			"port": "8080:8090",
-			"source": "any",
-			"source_detail": "any"
+	},	
+	{
+		"httpRequest": {
+			"specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+			"operationId":      "VPS_getFirewallDetailsV1"
 		},
-		{
-	        "id": 24544,
-			"action": "accept",
-			"protocol": "TCP",
-			"port": "1024:2048",
-			"source": "any",
-			"source_detail": "any"
+		"httpResponse": {
+			"statusCode": 200,
+			"body": {
+				"id": 65224,
+				"name": "test1",
+				"is_synced": false,
+				"rules": [
+					{
+						"id": 24541,
+						"action": "accept",
+						"protocol": "TCP",
+						"port": "80",
+						"source": "custom",
+						"source_detail": "any"
+					}
+				],
+				"created_at": "2021-09-01T12:00:00Z",
+				"updated_at": "2021-09-01T12:00:00Z"
+			}			
+		},
+		"times": {
+			"remainingTimes": 5
 		}
-    ],
-	"created_at": "2021-09-01T12:00:00Z",
-	"updated_at": "2021-09-01T12:00:00Z"
-}
-`).
-					BuildPtr(),
-			},
+	},	
+	{
+		"httpRequest": {
+			"specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+			"operationId":      "VPS_updateFirewallRuleV1"
 		},
-	); err != nil {
-		t.Fatalf("failed to upsert mock server expectation: %v", err)
+		"httpResponse": {
+			"statusCode": 200,
+			"body": {
+				"id": 24541,
+				"action": "accept",
+				"protocol": "UDP",
+				"port": "80",
+				"source": "custom",
+				"source_detail": "any"
+			}
+		},
+		"times": {
+			"remainingTimes": 1
+		}
+	},
+	{
+		"httpRequest": {
+			"specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+			"operationId":      "VPS_getFirewallDetailsV1"
+		},
+		"httpResponse": {
+			"statusCode": 200,
+			"body": {
+				"id": 65224,
+				"name": "test1",
+				"is_synced": false,
+				"rules": [
+					{
+						"id": 24541,
+						"action": "accept",
+						"protocol": "UDP",
+						"port": "80",
+						"source": "custom",
+						"source_detail": "any"
+					}
+				],
+				"created_at": "2021-09-01T12:00:00Z",
+				"updated_at": "2021-09-01T12:00:00Z"
+			}			
+		},
+		"times": {
+			"remainingTimes": 4
+		}
+	},
+	{
+		"httpRequest": {
+			"specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+			"operationId":      "VPS_deleteFirewallRuleV1"
+		},
+		"httpResponse": {
+			"statusCode": 200,
+			"body": {
+				"message": "Request accepted"
+			}			
+		},
+		"times": {
+			"remainingTimes": 1
+		}
+	},
+	{
+		"httpRequest": {
+			"specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+			"operationId":      "VPS_deleteFirewallV1"
+		},
+		"httpResponse": {
+			"statusCode": 200,
+			"body": {
+				"message": "Request accepted"
+			}			
+		},
+		"times": {
+			"remainingTimes": 1
+		}
+	},
+	{
+		"httpRequest": {
+			"specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+			"operationId":      "VPS_createNewFirewallV1"
+		},
+		"httpResponse": {
+			"statusCode": 200,
+			"body": {
+				"id": 65225,
+				"name": "test2",
+				"is_synced": false,
+				"rules": [],
+				"created_at": "2021-09-01T12:00:00Z",
+				"updated_at": "2021-09-01T12:00:00Z"
+			}			
+		},
+		"times": {
+			"remainingTimes": 1
+		}
+	},
+	{
+		"httpRequest": {
+			"specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+			"operationId":      "VPS_createFirewallRuleV1"
+		},
+		"httpResponse": {
+			"statusCode": 200,
+			"body": {
+				"id": 24542,
+				"action": "accept",
+				"protocol": "UDP",
+				"port": "80",
+				"source": "custom",
+				"source_detail": "any"
+			}			
+		},
+		"times": {
+			"remainingTimes": 1
+		}
+	},	
+	{
+		"httpRequest": {
+			"specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+			"operationId":      "VPS_getFirewallDetailsV1"
+		},
+		"httpResponse": {
+			"statusCode": 200,
+			"body": {
+				"id": 65225,
+				"name": "test2",
+				"is_synced": false,
+				"rules": [
+					{
+						"id": 24542,
+						"action": "accept",
+						"protocol": "UDP",
+						"port": "80",
+						"source": "custom",
+						"source_detail": "any"
+					}
+				],
+				"created_at": "2021-09-01T12:00:00Z",
+				"updated_at": "2021-09-01T12:00:00Z"
+			}			
+		},
+		"times": {
+			"remainingTimes": 2
+		}
+	},	
+	{
+		"httpRequest": {
+			"specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+			"operationId":      "VPS_deleteFirewallRuleV1"
+		},
+		"httpResponse": {
+			"statusCode": 200,
+			"body": {
+				"message": "Request accepted"
+			}			
+		},
+		"times": {
+			"remainingTimes": 1
+		}
+	},
+	{
+		"httpRequest": {
+			"specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+			"operationId":      "VPS_deleteFirewallV1"
+		},
+		"httpResponse": {
+			"statusCode": 200,
+			"body": {
+				"message": "Request accepted"
+			}			
+		},
+		"times": {
+			"remainingTimes": 1
+		}
 	}
+]
+`)
 
+	req, _ := http.NewRequest(
+		"PUT",
+		"http://localhost:1234/mockserver/expectation",
+		bytes.NewReader(body),
+	)
+	req.Header.Set("Content-Type", "application/json")
+	if _, err := http.DefaultClient.Do(req); err != nil {
+		t.Fatalf("failed to create expectations %v", err)
+	}
 }
 
-func testAccResourceVPSFirewallRuleConfig(protocol string) string {
+func testAccVPSFirewallRuleResourceConfig(name, protocol string) string {
 	return fmt.Sprintf(`
 resource "hostinger_vps_firewall" "test" {
-  name = "test"
+  name = %[1]q
 }
 
 resource "hostinger_vps_firewall_rule" "test" {
-  protocol = %[1]q
+  protocol = %[2]q
   firewall_id = hostinger_vps_firewall.test.id
   port     = "80"
   source   = "custom"
   source_detail = "any"
 }
-`, protocol)
+`, name, protocol)
 }

@@ -15,18 +15,18 @@ import (
 	"github.com/mock-server/mockserver-monorepo/mockserver-client-go/v7"
 )
 
-func TestAccResourceVPSFirewall(t *testing.T) {
+func TestAccVPSFirewallResource(t *testing.T) {
 	compareValuesDiffer := statecheck.CompareValue(compare.ValuesDiffer())
 
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {
 			testAccPreCheck(t)
-			testAccResourceVPSFirewallPreCheck(t)
+			testAccVPSFirewallResourcePreCheck(t)
 		},
 		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
 		Steps: []resource.TestStep{
 			{
-				Config: testAccResourceVPSFirewallConfig("one"),
+				Config: testAccVPSFirewallResourceConfig("one"),
 				ConfigStateChecks: []statecheck.StateCheck{
 					compareValuesDiffer.AddStateValue(
 						"hostinger_vps_firewall.test",
@@ -60,7 +60,7 @@ func TestAccResourceVPSFirewall(t *testing.T) {
 				ImportStateVerify: true,
 			},
 			{
-				Config: testAccResourceVPSFirewallConfig("two"),
+				Config: testAccVPSFirewallResourceConfig("two"),
 				ConfigStateChecks: []statecheck.StateCheck{
 					compareValuesDiffer.AddStateValue(
 						"hostinger_vps_firewall.test",
@@ -92,7 +92,7 @@ func TestAccResourceVPSFirewall(t *testing.T) {
 	})
 }
 
-func testAccResourceVPSFirewallPreCheck(t *testing.T) {
+func testAccVPSFirewallResourcePreCheck(t *testing.T) {
 	client := newMockServerClient()
 
 	if err := client.Clear(nil, mockserver.ClearAll); err != nil {
@@ -301,7 +301,7 @@ func testAccResourceVPSFirewallPreCheck(t *testing.T) {
 
 }
 
-func testAccResourceVPSFirewallConfig(name string) string {
+func testAccVPSFirewallResourceConfig(name string) string {
 	return fmt.Sprintf(`
 resource "hostinger_vps_firewall" "test" {
   name = %[1]q

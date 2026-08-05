@@ -18,16 +18,16 @@ import (
 
 // Ensure provider defined types fully satisfy framework interfaces.
 var (
-	_ datasource.DataSource              = &DataSourceAgencyHostingDomains{}
-	_ datasource.DataSourceWithConfigure = &DataSourceAgencyHostingDomains{}
+	_ datasource.DataSource              = &AgencyHostingDomainsDataSource{}
+	_ datasource.DataSourceWithConfigure = &AgencyHostingDomainsDataSource{}
 )
 
-func NewDataSourceAgencyHostingDomains() datasource.DataSource {
-	return &DataSourceAgencyHostingDomains{}
+func NewAgencyHostingDomainsDataSource() datasource.DataSource {
+	return &AgencyHostingDomainsDataSource{}
 }
 
-// DataSourceAgencyHostingDomains defines the data source implementation.
-type DataSourceAgencyHostingDomains struct {
+// AgencyHostingDomainsDataSource defines the data source implementation.
+type AgencyHostingDomainsDataSource struct {
 	client *client.ClientWithResponses
 }
 
@@ -38,17 +38,17 @@ type AgencyHostingDomainsItemModel struct {
 	CreatedAt  timetypes.RFC3339 `tfsdk:"created_at"`
 }
 
-// DataSourceAgencyHostingDomainsModel describes the data source data model.
-type DataSourceAgencyHostingDomainsModel struct {
+// AgencyHostingDomainsDataSourceModel describes the data source data model.
+type AgencyHostingDomainsDataSourceModel struct {
 	WebsiteUIDs []types.String                  `tfsdk:"website_uids"`
 	Domains     []AgencyHostingDomainsItemModel `tfsdk:"domains"`
 }
 
-func (d *DataSourceAgencyHostingDomains) Metadata(ctx context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
+func (d *AgencyHostingDomainsDataSource) Metadata(ctx context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_agency_hosting_domains"
 }
 
-func (d *DataSourceAgencyHostingDomains) Schema(ctx context.Context, req datasource.SchemaRequest, resp *datasource.SchemaResponse) {
+func (d *AgencyHostingDomainsDataSource) Schema(ctx context.Context, req datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "Lists domains linked to Agency Plan websites.",
 		Attributes: map[string]schema.Attribute{
@@ -82,7 +82,7 @@ func (d *DataSourceAgencyHostingDomains) Schema(ctx context.Context, req datasou
 	}
 }
 
-func (d *DataSourceAgencyHostingDomains) Configure(ctx context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
+func (d *AgencyHostingDomainsDataSource) Configure(ctx context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
 	if req.ProviderData == nil {
 		return
 	}
@@ -99,8 +99,8 @@ func (d *DataSourceAgencyHostingDomains) Configure(ctx context.Context, req data
 	d.client = c
 }
 
-func (d *DataSourceAgencyHostingDomains) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var data DataSourceAgencyHostingDomainsModel
+func (d *AgencyHostingDomainsDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	var data AgencyHostingDomainsDataSourceModel
 	resp.Diagnostics.Append(req.Config.Get(ctx, &data)...)
 	if resp.Diagnostics.HasError() {
 		return

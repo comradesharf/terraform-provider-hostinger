@@ -18,29 +18,29 @@ import (
 
 // Ensure provider defined types fully satisfy framework interfaces.
 var (
-	_ datasource.DataSource              = &DataSourceVPSFirewall{}
-	_ datasource.DataSourceWithConfigure = &DataSourceVPSFirewall{}
+	_ datasource.DataSource              = &VPSFirewallDataSource{}
+	_ datasource.DataSourceWithConfigure = &VPSFirewallDataSource{}
 )
 
-func NewDataSourceVPSFirewall() datasource.DataSource {
-	return &DataSourceVPSFirewall{}
+func NewVPSFirewallDataSource() datasource.DataSource {
+	return &VPSFirewallDataSource{}
 }
 
-// DataSourceVPSFirewall defines the data source implementation.
-type DataSourceVPSFirewall struct {
+// VPSFirewallDataSource defines the data source implementation.
+type VPSFirewallDataSource struct {
 	client *client.ClientWithResponses
 }
 
-// DataSourceVPSFirewallModel describes the data source data model.
-type DataSourceVPSFirewallModel struct {
+// VPSFirewallDataSourceModel describes the data source data model.
+type VPSFirewallDataSourceModel struct {
 	VPSFirewallModel
 }
 
-func (d *DataSourceVPSFirewall) Metadata(ctx context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
+func (d *VPSFirewallDataSource) Metadata(ctx context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_vps_firewall"
 }
 
-func (d *DataSourceVPSFirewall) Schema(ctx context.Context, req datasource.SchemaRequest, resp *datasource.SchemaResponse) {
+func (d *VPSFirewallDataSource) Schema(ctx context.Context, req datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		Attributes: map[string]schema.Attribute{
 			"id": schema.Int64Attribute{
@@ -123,7 +123,7 @@ func (d *DataSourceVPSFirewall) Schema(ctx context.Context, req datasource.Schem
 	}
 }
 
-func (d *DataSourceVPSFirewall) Configure(ctx context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
+func (d *VPSFirewallDataSource) Configure(ctx context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
 	if req.ProviderData == nil {
 		return
 	}
@@ -140,8 +140,8 @@ func (d *DataSourceVPSFirewall) Configure(ctx context.Context, req datasource.Co
 	d.client = c
 }
 
-func (d *DataSourceVPSFirewall) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var data DataSourceVPSFirewallModel
+func (d *VPSFirewallDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	var data VPSFirewallDataSourceModel
 	resp.Diagnostics.Append(req.Config.Get(ctx, &data)...)
 	if resp.Diagnostics.HasError() {
 		return

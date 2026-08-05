@@ -8,14 +8,19 @@ import (
 	"fmt"
 	"net/http"
 	"slices"
+	"strconv"
+	"strings"
 
 	"github.com/comradesharf/terraform-provider-hostinger/internal/client"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/int64planmodifier"
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
+	"github.com/hashicorp/terraform-plugin-log/tflog"
 )
 
 // Ensure provider defined types fully satisfy framework interfaces.
@@ -50,10 +55,16 @@ func (r *VPSFirewallRuleResource) Schema(ctx context.Context, req resource.Schem
 			"id": schema.Int64Attribute{
 				Computed:            true,
 				MarkdownDescription: "Firewall rule ID",
+				PlanModifiers: []planmodifier.Int64{
+					int64planmodifier.UseStateForUnknown(),
+				},
 			},
 			"firewall_id": schema.Int64Attribute{
 				Required:            true,
 				MarkdownDescription: "ID of the firewall this rule belongs to",
+				PlanModifiers: []planmodifier.Int64{
+					int64planmodifier.RequiresReplace(),
+				},
 			},
 			"action": schema.StringAttribute{
 				Computed:            true,
@@ -187,7 +198,7 @@ func (r *VPSFirewallRuleResource) Read(ctx context.Context, req resource.ReadReq
 		return
 	}
 
-	response, err := r.client.VPSGetFirewallDetailsV1WithResponse(ctx, client.FirewallId(state.ID.ValueInt64()))
+	response, err := r.client.VPSGetFirewallDetailsV1WithResponse(ctx, client.FirewallId(state.FirewallID.ValueInt64()))
 	if err != nil {
 		resp.Diagnostics.AddError(
 			"Unable to Read VPS Firewalls",
@@ -220,7 +231,7 @@ func (r *VPSFirewallRuleResource) Read(ctx context.Context, req resource.ReadReq
 	rules := *response.JSON200.Rules
 
 	index := slices.IndexFunc(rules, func(rule client.VPSV1FirewallFirewallRuleResource) bool {
-		return int64(*rule.Id) == state.ID.ValueInt64()
+		return types.Int64Value(int64(*rule.Id)).Equal(state.ID)
 	})
 
 	if index == -1 {
@@ -237,14 +248,66 @@ func (r *VPSFirewallRuleResource) Read(ctx context.Context, req resource.ReadReq
 }
 
 func (r *VPSFirewallRuleResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	var plan, state VPSFirewallRuleResourceModel
+	var plan VPSFirewallRuleResourceModel
 	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
-	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
-	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
+	if plan.ID.IsUnknown() {
+		resp.Diagnostics.AddError(
+			"Unknown ID",
+			"ID is unknown, unable to read VPS firewall.",
+		)
+		return
+	}
+
+	if plan.ID.IsNull() || plan.ID.ValueInt64() == 0 {
+		resp.Diagnostics.AddError(
+			"Null ID",
+			"ID is null or zero, unable to read VPS firewall.",
+		)
+		return
+	}
+
+	params := client.VPSUpdateFirewallRuleV1JSONRequestBody{
+		Protocol:     client.VPSV1FirewallRulesStoreRequestProtocol(plan.Protocol.ValueString()),
+		Port:         plan.Port.ValueString(),
+		Source:       client.VPSV1FirewallRulesStoreRequestSource(plan.Source.ValueString()),
+		SourceDetail: plan.SourceDetail.ValueString(),
+	}
+
+	response, err := r.client.VPSUpdateFirewallRuleV1WithResponse(
+		ctx,
+		client.FirewallId(plan.FirewallID.ValueInt64()),
+		client.RuleId(plan.ID.ValueInt64()),
+		params,
+	)
+	if err != nil {
+		resp.Diagnostics.AddError(
+			"Unable to Update VPS Firewall Rule",
+			fmt.Sprintf("Got error: %s", err),
+		)
+		return
+	}
+	if response.StatusCode() != http.StatusOK {
+		resp.Diagnostics.AddError(
+			"Unable to Read VPS Firewalls",
+			fmt.Sprintf("Unexpected status code: %d, response: %s", response.StatusCode(), string(response.Body)),
+		)
+		return
+	}
+	if response.JSON200 == nil {
+		resp.Diagnostics.AddError(
+			"Unable to Read VPS Firewalls",
+			"Response body is nil",
+		)
+		return
+	}
+
+	plan.Merge(response.JSON200)
+
+	resp.Diagnostics.Append(resp.State.Set(ctx, &plan)...)
 }
 
 func (r *VPSFirewallRuleResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
@@ -271,7 +334,9 @@ func (r *VPSFirewallRuleResource) Delete(ctx context.Context, req resource.Delet
 	}
 
 	response, err := r.client.VPSDeleteFirewallRuleV1WithResponse(
-		ctx, client.FirewallId(state.FirewallID.ValueInt64()), client.RuleId(state.ID.ValueInt64()),
+		ctx,
+		client.FirewallId(state.FirewallID.ValueInt64()),
+		client.RuleId(state.ID.ValueInt64()),
 	)
 	if err != nil {
 		resp.Diagnostics.AddError(
@@ -290,5 +355,45 @@ func (r *VPSFirewallRuleResource) Delete(ctx context.Context, req resource.Delet
 }
 
 func (r *VPSFirewallRuleResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
-	importStatePassthroughInt64ID(ctx, path.Root("id"), req, resp)
+	tflog.Debug(ctx, "Importing VPS Firewall Rule resource state", map[string]any{"id": req.ID})
+
+	if req.ID == "" {
+		return
+	}
+
+	parts := strings.Split(req.ID, "/")
+	if len(parts) != 2 || parts[0] == "" || parts[1] == "" {
+		resp.Diagnostics.AddError(
+			"Resource Import Passthrough Invalid ID",
+			"Import ID must be in the format 'firewall_id/rule_id'",
+		)
+		return
+	}
+
+	firewallID, err := strconv.ParseInt(parts[0], 10, 64)
+	if err != nil {
+		resp.Diagnostics.AddError(
+			"Resource Import Passthrough Invalid ID",
+			fmt.Sprintf(
+				"Failed to parse import ID as int64: %s", err.Error(),
+			),
+		)
+	}
+
+	ruleID, err := strconv.ParseInt(parts[1], 10, 64)
+	if err != nil {
+		resp.Diagnostics.AddError(
+			"Resource Import Passthrough Invalid ID",
+			fmt.Sprintf(
+				"Failed to parse import ID as int64: %s", err.Error(),
+			),
+		)
+	}
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	resp.Diagnostics.Append(resp.State.SetAttribute(ctx, path.Root("id"), ruleID)...)
+	resp.Diagnostics.Append(resp.State.SetAttribute(ctx, path.Root("firewall_id"), firewallID)...)
 }

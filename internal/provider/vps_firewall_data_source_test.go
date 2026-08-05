@@ -12,13 +12,13 @@ import (
 	"github.com/hashicorp/terraform-plugin-testing/tfjsonpath"
 )
 
-func TestAccDataSourceVPSFirewall(t *testing.T) {
+func TestAccVPSFirewallDataSource(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck:                 func() { testAccPreCheck(t) },
 		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
 		Steps: []resource.TestStep{
 			{
-				Config: testAccDataSourceVPSFirewallConfig,
+				Config: testAccVPSFirewallDataSourceConfig,
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
 						"data.hostinger_vps_firewall.test",
@@ -65,7 +65,7 @@ func TestAccDataSourceVPSFirewall(t *testing.T) {
 	})
 }
 
-const testAccDataSourceVPSFirewallConfig = `
+const testAccVPSFirewallDataSourceConfig = `
 data "hostinger_vps_firewall" "test" {
 	id = 65224
 }

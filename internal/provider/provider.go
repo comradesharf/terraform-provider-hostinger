@@ -159,9 +159,9 @@ func (p *hostingerProvider) DataSources(ctx context.Context) []func() datasource
 		NewDataSourceReachContacts,
 		NewDataSourceReachSegments,
 		NewDataSourceAgencyHostingWebsite,
-		NewDataSourceAgencyHostingDomains,
+		NewAgencyHostingDomainsDataSource,
 		NewDataSourceVPSFirewalls,
-		NewDataSourceVPSFirewall,
+		NewVPSFirewallDataSource,
 	}
 }
 
