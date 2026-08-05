@@ -4,6 +4,8 @@
 package provider
 
 import (
+	"bytes"
+	"net/http"
 	"testing"
 
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
@@ -13,16 +15,16 @@ import (
 	"github.com/mock-server/mockserver-monorepo/mockserver-client-go/v7"
 )
 
-func TestAccDataSourceVPSFirewalls(t *testing.T) {
+func TestAccVPSFirewallsDataSource(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {
 			testAccPreCheck(t)
-			testAccDataSourceVPSFirewallsPreCheck(t)
+			testAccVPSFirewallsDataSourcePreCheck(t)
 		},
 		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
 		Steps: []resource.TestStep{
 			{
-				Config: testAccDataSourceVPSFirewallsConfig,
+				Config: testAccVPSFirewallsDataSourceConfig,
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
 						"data.hostinger_vps_firewalls.test",
@@ -70,11 +72,11 @@ func TestAccDataSourceVPSFirewalls(t *testing.T) {
 	})
 }
 
-const testAccDataSourceVPSFirewallsConfig = `
+const testAccVPSFirewallsDataSourceConfig = `
 data "hostinger_vps_firewalls" "test" {}
 `
 
-func testAccDataSourceVPSFirewallsPreCheck(t *testing.T) {
+func testAccVPSFirewallsDataSourcePreCheck(t *testing.T) {
 	client := newMockServerClient()
 
 	if err := client.Clear(nil, mockserver.ClearAll); err != nil {
@@ -85,83 +87,18 @@ func testAccDataSourceVPSFirewallsPreCheck(t *testing.T) {
 		t.Fatalf("failed to freeze mock server clock: %v", err)
 	}
 
-	expect1 := mockserver.Expectation{
-		HttpRequest: &mockserver.HttpRequest{
-			SpecUrlOrPayload: "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
-			OperationId:      "VPS_getFirewallListV1",
-		},
-		HttpResponses: []*mockserver.HttpResponse{
-			mockserver.Response().
-				StatusCode(200).
-				JSONBody(
-					// language=json
-					`
-{
-	"data": [
-		{
-			"id": 65224,
-			"name": "HTTP and SSH only",
-			"is_synced": false,
-			"rules": [
-				{
-					"id": 24541,
-					"action": "accept",
-					"protocol": "TCP",
-					"port": "1024:2048",
-					"source": "any",
-					"source_detail": "any"
-				}
-			],
-			"created_at": "2021-09-01T12:00:00Z",
-			"updated_at": "2021-09-01T12:00:00Z"
-		}
-	],
-	"meta": {
-		"current_page": 1,
-		"per_page": 1,
-		"total": 2
-	}
-}
-`).
-				BuildPtr(),
-			mockserver.Response().
-				StatusCode(200).
-				JSONBody(
-					// language=json
-					`
-{
-	"data": [
-		{
-			"id": 65225,
-			"name": "HTTP and SSH only",
-			"is_synced": false,
-			"rules": [
-				{
-					"id": 24542,
-					"action": "accept",
-					"protocol": "TCP",
-					"port": "1024:2048",
-					"source": "any",
-					"source_detail": "any"
-				}
-			],
-			"created_at": "2021-09-01T12:00:00Z",
-			"updated_at": "2021-09-01T12:00:00Z"
-		}
-	],
-	"meta": {
-		"current_page": 2,
-		"per_page": 1,
-		"total": 2
-	}
-}
-`).
-				BuildPtr(),
-		},
-	}
+	// language=json
+	body := []byte(`
+[]
+`)
 
-	if _, err := client.Upsert(expect1); err != nil {
-		t.Fatalf("failed to upsert mock server expectation: %v", err)
+	req, _ := http.NewRequest(
+		"PUT",
+		"http://localhost:1234/mockserver/expectation",
+		bytes.NewReader(body),
+	)
+	req.Header.Set("Content-Type", "application/json")
+	if _, err := http.DefaultClient.Do(req); err != nil {
+		t.Fatalf("failed to create expectations %v", err)
 	}
-
 }

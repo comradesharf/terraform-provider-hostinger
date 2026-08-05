@@ -27,6 +27,7 @@ import (
 var (
 	_ resource.Resource                = &VPSFirewallRuleResource{}
 	_ resource.ResourceWithImportState = &VPSFirewallRuleResource{}
+	_ resource.ResourceWithConfigure   = &VPSFirewallRuleResource{}
 )
 
 func NewVPSFirewallRuleResource() resource.Resource {
