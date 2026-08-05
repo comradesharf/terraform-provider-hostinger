@@ -34,6 +34,7 @@ type VPSFirewallDataSource struct {
 // VPSFirewallDataSourceModel describes the data source data model.
 type VPSFirewallDataSourceModel struct {
 	VPSFirewallModel
+	Rules []VPSFirewallRuleModel `tfsdk:"rules"`
 }
 
 func (d *VPSFirewallDataSource) Metadata(ctx context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
@@ -187,6 +188,13 @@ func (d *VPSFirewallDataSource) Read(ctx context.Context, req datasource.ReadReq
 	}
 
 	data.Merge(response.JSON200)
+
+	if response.JSON200.Rules != nil {
+		data.Rules = make([]VPSFirewallRuleModel, len(*response.JSON200.Rules))
+		for i, rule := range *response.JSON200.Rules {
+			data.Rules[i].Merge(&rule)
+		}
+	}
 
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
