@@ -22,29 +22,29 @@ import (
 
 // Ensure provider defined types fully satisfy framework interfaces.
 var (
-	_ resource.Resource                = &ResourceVPSFirewall{}
-	_ resource.ResourceWithImportState = &ResourceVPSFirewall{}
+	_ resource.Resource                = &VPSFirewallResource{}
+	_ resource.ResourceWithImportState = &VPSFirewallResource{}
 )
 
-func NewResourceVPSFirewall() resource.Resource {
-	return &ResourceVPSFirewall{}
+func NewVPSFirewallResource() resource.Resource {
+	return &VPSFirewallResource{}
 }
 
-// ResourceVPSFirewall defines the resource implementation.
-type ResourceVPSFirewall struct {
+// VPSFirewallResource defines the resource implementation.
+type VPSFirewallResource struct {
 	client *client.ClientWithResponses
 }
 
-// ResourceVPSFirewallModel describes the resource data model.
-type ResourceVPSFirewallModel struct {
+// VPSFirewallResourceModel describes the resource data model.
+type VPSFirewallResourceModel struct {
 	VPSFirewallModel
 }
 
-func (r *ResourceVPSFirewall) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (r *VPSFirewallResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_vps_firewall"
 }
 
-func (r *ResourceVPSFirewall) Schema(ctx context.Context, req resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (r *VPSFirewallResource) Schema(ctx context.Context, req resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "Example resource",
 		Attributes: map[string]schema.Attribute{
@@ -83,7 +83,7 @@ func (r *ResourceVPSFirewall) Schema(ctx context.Context, req resource.SchemaReq
 	}
 }
 
-func (r *ResourceVPSFirewall) Configure(ctx context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
+func (r *VPSFirewallResource) Configure(ctx context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
 	if req.ProviderData == nil {
 		return
 	}
@@ -100,8 +100,8 @@ func (r *ResourceVPSFirewall) Configure(ctx context.Context, req resource.Config
 	r.client = c
 }
 
-func (r *ResourceVPSFirewall) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	var state ResourceVPSFirewallModel
+func (r *VPSFirewallResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
+	var state VPSFirewallResourceModel
 	resp.Diagnostics.Append(req.Config.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -139,8 +139,8 @@ func (r *ResourceVPSFirewall) Create(ctx context.Context, req resource.CreateReq
 	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 }
 
-func (r *ResourceVPSFirewall) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	var state ResourceVPSFirewallModel
+func (r *VPSFirewallResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
+	var state VPSFirewallResourceModel
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -190,8 +190,8 @@ func (r *ResourceVPSFirewall) Read(ctx context.Context, req resource.ReadRequest
 	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 }
 
-func (r *ResourceVPSFirewall) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	var plan, state ResourceVPSFirewallModel
+func (r *VPSFirewallResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
+	var plan, state VPSFirewallResourceModel
 	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
@@ -201,8 +201,8 @@ func (r *ResourceVPSFirewall) Update(ctx context.Context, req resource.UpdateReq
 	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 }
 
-func (r *ResourceVPSFirewall) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-	var state ResourceVPSFirewallModel
+func (r *VPSFirewallResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
+	var state VPSFirewallResourceModel
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -241,6 +241,6 @@ func (r *ResourceVPSFirewall) Delete(ctx context.Context, req resource.DeleteReq
 	}
 }
 
-func (r *ResourceVPSFirewall) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
+func (r *VPSFirewallResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
 	importStatePassthroughInt64ID(ctx, path.Root("id"), req, resp)
 }

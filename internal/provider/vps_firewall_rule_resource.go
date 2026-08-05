@@ -20,30 +20,30 @@ import (
 
 // Ensure provider defined types fully satisfy framework interfaces.
 var (
-	_ resource.Resource                = &ResourceVPSFirewallRule{}
-	_ resource.ResourceWithImportState = &ResourceVPSFirewallRule{}
+	_ resource.Resource                = &VPSFirewallRuleResource{}
+	_ resource.ResourceWithImportState = &VPSFirewallRuleResource{}
 )
 
-func NewResourceVPSFirewallRule() resource.Resource {
-	return &ResourceVPSFirewallRule{}
+func NewVPSFirewallRuleResource() resource.Resource {
+	return &VPSFirewallRuleResource{}
 }
 
-// ResourceVPSFirewallRule defines the resource implementation.
-type ResourceVPSFirewallRule struct {
+// VPSFirewallRuleResource defines the resource implementation.
+type VPSFirewallRuleResource struct {
 	client *client.ClientWithResponses
 }
 
-// ResourceVPSFirewallRuleModel describes the resource data model.
-type ResourceVPSFirewallRuleModel struct {
+// VPSFirewallRuleResourceModel describes the resource data model.
+type VPSFirewallRuleResourceModel struct {
 	VPSFirewallRuleModel
 	FirewallID types.Int64 `tfsdk:"firewall_id"`
 }
 
-func (r *ResourceVPSFirewallRule) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (r *VPSFirewallRuleResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_vps_firewall_rule"
 }
 
-func (r *ResourceVPSFirewallRule) Schema(ctx context.Context, req resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (r *VPSFirewallRuleResource) Schema(ctx context.Context, req resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "Example resource",
 		Attributes: map[string]schema.Attribute{
@@ -105,7 +105,7 @@ func (r *ResourceVPSFirewallRule) Schema(ctx context.Context, req resource.Schem
 	}
 }
 
-func (r *ResourceVPSFirewallRule) Configure(ctx context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
+func (r *VPSFirewallRuleResource) Configure(ctx context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
 	if req.ProviderData == nil {
 		return
 	}
@@ -122,8 +122,8 @@ func (r *ResourceVPSFirewallRule) Configure(ctx context.Context, req resource.Co
 	r.client = c
 }
 
-func (r *ResourceVPSFirewallRule) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	var state ResourceVPSFirewallRuleModel
+func (r *VPSFirewallRuleResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
+	var state VPSFirewallRuleResourceModel
 	resp.Diagnostics.Append(req.Config.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -164,8 +164,8 @@ func (r *ResourceVPSFirewallRule) Create(ctx context.Context, req resource.Creat
 	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 }
 
-func (r *ResourceVPSFirewallRule) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	var state ResourceVPSFirewallRuleModel
+func (r *VPSFirewallRuleResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
+	var state VPSFirewallRuleResourceModel
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -236,8 +236,8 @@ func (r *ResourceVPSFirewallRule) Read(ctx context.Context, req resource.ReadReq
 	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 }
 
-func (r *ResourceVPSFirewallRule) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	var plan, state ResourceVPSFirewallRuleModel
+func (r *VPSFirewallRuleResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
+	var plan, state VPSFirewallRuleResourceModel
 	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
@@ -247,8 +247,8 @@ func (r *ResourceVPSFirewallRule) Update(ctx context.Context, req resource.Updat
 	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 }
 
-func (r *ResourceVPSFirewallRule) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-	var state ResourceVPSFirewallRuleModel
+func (r *VPSFirewallRuleResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
+	var state VPSFirewallRuleResourceModel
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -289,6 +289,6 @@ func (r *ResourceVPSFirewallRule) Delete(ctx context.Context, req resource.Delet
 	}
 }
 
-func (r *ResourceVPSFirewallRule) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
+func (r *VPSFirewallRuleResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
 	importStatePassthroughInt64ID(ctx, path.Root("id"), req, resp)
 }
