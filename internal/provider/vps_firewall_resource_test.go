@@ -4,10 +4,11 @@
 package provider
 
 import (
+	"bytes"
 	"fmt"
+	"net/http"
 	"testing"
 
-	"github.com/hashicorp/terraform-plugin-testing/compare"
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
 	"github.com/hashicorp/terraform-plugin-testing/knownvalue"
 	"github.com/hashicorp/terraform-plugin-testing/statecheck"
@@ -16,7 +17,6 @@ import (
 )
 
 func TestAccVPSFirewallResource(t *testing.T) {
-	compareValuesDiffer := statecheck.CompareValue(compare.ValuesDiffer())
 
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {
@@ -28,9 +28,10 @@ func TestAccVPSFirewallResource(t *testing.T) {
 			{
 				Config: testAccVPSFirewallResourceConfig("one"),
 				ConfigStateChecks: []statecheck.StateCheck{
-					compareValuesDiffer.AddStateValue(
+					statecheck.ExpectKnownValue(
 						"hostinger_vps_firewall.test",
 						tfjsonpath.New("id"),
+						knownvalue.Int64Exact(65224),
 					),
 					statecheck.ExpectKnownValue(
 						"hostinger_vps_firewall.test",
@@ -62,9 +63,10 @@ func TestAccVPSFirewallResource(t *testing.T) {
 			{
 				Config: testAccVPSFirewallResourceConfig("two"),
 				ConfigStateChecks: []statecheck.StateCheck{
-					compareValuesDiffer.AddStateValue(
+					statecheck.ExpectKnownValue(
 						"hostinger_vps_firewall.test",
 						tfjsonpath.New("id"),
+						knownvalue.Int64Exact(65225),
 					),
 					statecheck.ExpectKnownValue(
 						"hostinger_vps_firewall.test",
@@ -103,200 +105,130 @@ func testAccVPSFirewallResourcePreCheck(t *testing.T) {
 		t.Fatalf("failed to freeze mock server clock: %v", err)
 	}
 
-	if _, err := client.Upsert(mockserver.Expectation{
-		HttpRequest: &mockserver.HttpRequest{
-			SpecUrlOrPayload: "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
-			OperationId:      "VPS_createNewFirewallV1",
+	// language=json
+	body := []byte(`
+[
+	{
+		"httpRequest": {
+			"specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+			"operationId":      "VPS_createNewFirewallV1"
 		},
-		HttpResponses: []*mockserver.HttpResponse{
-			mockserver.Response().
-				StatusCode(200).
-				JSONBody(
-					// language=json
-					`
-{
-    "id": 65224,
-	"name": "one",
-	"is_synced": false,
-	"rules": [],
-	"created_at": "2021-09-01T12:00:00Z",
-	"updated_at": "2021-09-01T12:00:00Z"
-}
-`).
-				BuildPtr(),
-			mockserver.Response().
-				StatusCode(200).
-				JSONBody(
-					// language=json
-					`
-{
-    "id": 65225,
-	"name": "two",
-	"is_synced": false,
-	"rules": [],
-	"created_at": "2021-09-01T12:00:00Z",
-	"updated_at": "2021-09-01T12:00:00Z"
-}
-`).
-				BuildPtr(),
+		"httpResponse": {
+			"statusCode": 200,
+			"body": {
+				"id": 65224,
+				"name": "one",
+				"is_synced": false,
+				"rules": [],
+				"created_at": "2021-09-01T12:00:00Z",
+				"updated_at": "2021-09-01T12:00:00Z"
+			}			
 		},
+		"times": {
+			"remainingTimes": 1
+		}
 	},
-		mockserver.Expectation{
-			HttpRequest: &mockserver.HttpRequest{
-				SpecUrlOrPayload: "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
-				OperationId:      "VPS_getFirewallDetailsV1",
-			},
-			HttpResponses: []*mockserver.HttpResponse{
-				mockserver.Response().
-					StatusCode(200).
-					JSONBody(
-						// language=json
-						`
-{
-    "id": 65224,
-	"name": "one",
-	"is_synced": false,
-	"rules": [
-		{
-			"id": 24542,
-			"action": "accept",
-			"protocol": "TCP",
-			"port": "8080:8090",
-			"source": "any",
-			"source_detail": "any"
+	{
+		"httpRequest": {
+			"specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+			"operationId":      "VPS_getFirewallDetailsV1"
 		},
-		{
-	        "id": 24541,
-			"action": "accept",
-			"protocol": "TCP",
-			"port": "1024:2048",
-			"source": "any",
-			"source_detail": "any"
+		"httpResponse": {
+			"statusCode": 200,
+			"body": {
+				"id": 65224,
+				"name": "one",
+				"is_synced": false,
+				"rules": [],
+				"created_at": "2021-09-01T12:00:00Z",
+				"updated_at": "2021-09-01T12:00:00Z"
+			}			
+		},
+		"times": {
+			"remainingTimes": 3
 		}
-    ],
-	"created_at": "2021-09-01T12:00:00Z",
-	"updated_at": "2021-09-01T12:00:00Z"
-}
-`).
-					BuildPtr(),
-				mockserver.Response().
-					StatusCode(200).
-					JSONBody(
-						// language=json
-						`
-{
-    "id": 65224,
-	"name": "one",
-	"is_synced": false,
-	"rules": [
-		{
-			"id": 24542,
-			"action": "accept",
-			"protocol": "TCP",
-			"port": "8080:8090",
-			"source": "any",
-			"source_detail": "any"
+	},
+	{
+		"httpRequest": {
+			"specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+			"operationId":      "VPS_deleteFirewallV1"
 		},
-		{
-	        "id": 24541,
-			"action": "accept",
-			"protocol": "TCP",
-			"port": "1024:2048",
-			"source": "any",
-			"source_detail": "any"
+		"httpResponse": {
+			"statusCode": 200,
+			"body": {
+				"message": "Request accepted"
+			}			
+		},
+		"times": {
+			"remainingTimes": 1
 		}
-    ],
-	"created_at": "2021-09-01T12:00:00Z",
-	"updated_at": "2021-09-01T12:00:00Z"
-}
-`).
-					BuildPtr(),
-				mockserver.Response().
-					StatusCode(200).
-					JSONBody(
-						// language=json
-						`
-{
-    "id": 65224,
-	"name": "one",
-	"is_synced": false,
-	"rules": [
-		{
-			"id": 24542,
-			"action": "accept",
-			"protocol": "TCP",
-			"port": "8080:8090",
-			"source": "any",
-			"source_detail": "any"
+	},
+	{
+		"httpRequest": {
+			"specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+			"operationId":      "VPS_createNewFirewallV1"
 		},
-		{
-	        "id": 24541,
-			"action": "accept",
-			"protocol": "TCP",
-			"port": "1024:2048",
-			"source": "any",
-			"source_detail": "any"
+		"httpResponse": {
+			"statusCode": 200,
+			"body": {
+				"id": 65225,
+				"name": "two",
+				"is_synced": false,
+				"rules": [],
+				"created_at": "2021-09-01T12:00:00Z",
+				"updated_at": "2021-09-01T12:00:00Z"
+			}			
+		},
+		"times": {
+			"remainingTimes": 1
 		}
-    ],
-	"created_at": "2021-09-01T12:00:00Z",
-	"updated_at": "2021-09-01T12:00:00Z"
-}
-`).
-					BuildPtr(),
-				mockserver.Response().
-					StatusCode(200).
-					JSONBody(
-						// language=json
-						`
-{
-    "id": 65225,
-	"name": "two",
-	"is_synced": false,
-	"rules": [
-		{
-			"id": 24543,
-			"action": "accept",
-			"protocol": "TCP",
-			"port": "8080:8090",
-			"source": "any",
-			"source_detail": "any"
+	},
+	{
+		"httpRequest": {
+			"specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+			"operationId":      "VPS_getFirewallDetailsV1"
 		},
-		{
-	        "id": 24544,
-			"action": "accept",
-			"protocol": "TCP",
-			"port": "1024:2048",
-			"source": "any",
-			"source_detail": "any"
+		"httpResponse": {
+			"statusCode": 200,
+			"body": {
+				"id": 65225,
+				"name": "two",
+				"is_synced": false,
+				"rules": [],
+				"created_at": "2021-09-01T12:00:00Z",
+				"updated_at": "2021-09-01T12:00:00Z"
+			}			
+		},
+		"times": {
+			"remainingTimes": 1
 		}
-    ],
-	"created_at": "2021-09-01T12:00:00Z",
-	"updated_at": "2021-09-01T12:00:00Z"
-}
-`).
-					BuildPtr(),
-			},
+	},
+	{
+		"httpRequest": {
+			"specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+			"operationId":      "VPS_deleteFirewallV1"
 		},
-		mockserver.Expectation{
-			HttpRequest: &mockserver.HttpRequest{
-				SpecUrlOrPayload: "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
-				OperationId:      "VPS_deleteFirewallV1",
-			},
-			HttpResponses: []*mockserver.HttpResponse{
-				mockserver.Response().
-					StatusCode(200).
-					JSONBody(
-						// language=json
-						`
-{
-	"message": "Request accepted"
-}
-`).
-					BuildPtr(),
-			},
+		"httpResponse": {
+			"statusCode": 200,
+			"body": {
+				"message": "Request accepted"
+			}			
 		},
-	); err != nil {
-		t.Fatalf("failed to upsert mock server expectation: %v", err)
+		"times": {
+			"remainingTimes": 1
+		}
+	}
+]
+`)
+
+	req, _ := http.NewRequest(
+		"PUT",
+		"http://localhost:1234/mockserver/expectation",
+		bytes.NewReader(body),
+	)
+	req.Header.Set("Content-Type", "application/json")
+	if _, err := http.DefaultClient.Do(req); err != nil {
+		t.Fatalf("failed to create expectations %v", err)
 	}
 
 }
