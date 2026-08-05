@@ -475,6 +475,51 @@ func (e DomainsV1ForwardingUpdateRequestRedirectType) Valid() bool {
 	}
 }
 
+// Defines values for DomainsV1IRTPVerificationResourceStatus.
+const (
+	DomainsV1IRTPVerificationResourceStatusCanceled  DomainsV1IRTPVerificationResourceStatus = "canceled"
+	DomainsV1IRTPVerificationResourceStatusCompleted DomainsV1IRTPVerificationResourceStatus = "completed"
+	DomainsV1IRTPVerificationResourceStatusPending   DomainsV1IRTPVerificationResourceStatus = "pending"
+)
+
+// Valid indicates whether the value is a known member of the DomainsV1IRTPVerificationResourceStatus enum.
+func (e DomainsV1IRTPVerificationResourceStatus) Valid() bool {
+	switch e {
+	case DomainsV1IRTPVerificationResourceStatusCanceled:
+		return true
+	case DomainsV1IRTPVerificationResourceStatusCompleted:
+		return true
+	case DomainsV1IRTPVerificationResourceStatusPending:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for DomainsV1WHOISChangeUpdateRequestChangeFor.
+const (
+	Admin   DomainsV1WHOISChangeUpdateRequestChangeFor = "admin"
+	Billing DomainsV1WHOISChangeUpdateRequestChangeFor = "billing"
+	Owner   DomainsV1WHOISChangeUpdateRequestChangeFor = "owner"
+	Tech    DomainsV1WHOISChangeUpdateRequestChangeFor = "tech"
+)
+
+// Valid indicates whether the value is a known member of the DomainsV1WHOISChangeUpdateRequestChangeFor enum.
+func (e DomainsV1WHOISChangeUpdateRequestChangeFor) Valid() bool {
+	switch e {
+	case Admin:
+		return true
+	case Billing:
+		return true
+	case Owner:
+		return true
+	case Tech:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for DomainsV1WHOISProfileResourceEntityType.
 const (
 	DomainsV1WHOISProfileResourceEntityTypeIndividual   DomainsV1WHOISProfileResourceEntityType = "individual"
@@ -2598,16 +2643,16 @@ func (e MailListMailboxActionLogsV1ParamsEvent) Valid() bool {
 
 // Defines values for MailListOutboundLogsV1ParamsStatus.
 const (
-	MailListOutboundLogsV1ParamsStatusFailed     MailListOutboundLogsV1ParamsStatus = "Failed"
-	MailListOutboundLogsV1ParamsStatusSuccessful MailListOutboundLogsV1ParamsStatus = "Successful"
+	Failed     MailListOutboundLogsV1ParamsStatus = "Failed"
+	Successful MailListOutboundLogsV1ParamsStatus = "Successful"
 )
 
 // Valid indicates whether the value is a known member of the MailListOutboundLogsV1ParamsStatus enum.
 func (e MailListOutboundLogsV1ParamsStatus) Valid() bool {
 	switch e {
-	case MailListOutboundLogsV1ParamsStatusFailed:
+	case Failed:
 		return true
-	case MailListOutboundLogsV1ParamsStatusSuccessful:
+	case Successful:
 		return true
 	default:
 		return false
@@ -3388,6 +3433,15 @@ type BillingV1PaymentMethodPaymentMethodResource struct {
 	PaymentMethod *string `json:"payment_method,omitempty"`
 }
 
+// BillingV1SubscriptionRenewalRenewRequest defines model for Billing.V1.Subscription.Renewal.RenewRequest.
+type BillingV1SubscriptionRenewalRenewRequest struct {
+	// Coupons Discount coupon codes
+	Coupons *[]interface{} `json:"coupons,omitempty"`
+
+	// PaymentMethodId Payment method ID, default will be used if not provided
+	PaymentMethodId *int `json:"payment_method_id,omitempty"`
+}
+
 // BillingV1SubscriptionSubscriptionCollection Array of [`Billing.V1.Subscription.SubscriptionResource`](#model/billingv1subscriptionsubscriptionresource)
 type BillingV1SubscriptionSubscriptionCollection = []BillingV1SubscriptionSubscriptionResource
 
@@ -3744,6 +3798,33 @@ type DomainsV1ForwardingUpdateRequest struct {
 // DomainsV1ForwardingUpdateRequestRedirectType Redirect type
 type DomainsV1ForwardingUpdateRequestRedirectType string
 
+// DomainsV1IRTPVerificationResource defines model for Domains.V1.IRTP.VerificationResource.
+type DomainsV1IRTPVerificationResource struct {
+	// Domain Domain name
+	Domain *string `json:"domain,omitempty"`
+
+	// ExpiresAt When the verification auto-cancels if unconfirmed
+	ExpiresAt *time.Time `json:"expires_at,omitempty"`
+
+	// NewConfirmedAt When the new registrant confirmed the change
+	NewConfirmedAt *time.Time `json:"new_confirmed_at,omitempty"`
+
+	// NewWhoisProfileEmail Email the new registrant confirmation was sent to
+	NewWhoisProfileEmail *string `json:"new_whois_profile_email,omitempty"`
+
+	// OldConfirmedAt When the old registrant confirmed the change
+	OldConfirmedAt *time.Time `json:"old_confirmed_at,omitempty"`
+
+	// OldWhoisProfileEmail Email the old registrant confirmation was sent to
+	OldWhoisProfileEmail *string `json:"old_whois_profile_email,omitempty"`
+
+	// Status IRTP verification status
+	Status *DomainsV1IRTPVerificationResourceStatus `json:"status,omitempty"`
+}
+
+// DomainsV1IRTPVerificationResourceStatus IRTP verification status
+type DomainsV1IRTPVerificationResourceStatus string
+
 // DomainsV1PortfolioAuthCodeAuthCodeResource defines model for Domains.V1.Portfolio.AuthCode.AuthCodeResource.
 type DomainsV1PortfolioAuthCodeAuthCodeResource struct {
 	// AuthCode Domain authorization code used to transfer the domain to another registrar.
@@ -3827,6 +3908,21 @@ type DomainsV1TransferTransferResource struct {
 	// Status Transfer status
 	Status *string `json:"status,omitempty"`
 }
+
+// DomainsV1WHOISChangeUpdateRequest defines model for Domains.V1.WHOIS.Change.UpdateRequest.
+type DomainsV1WHOISChangeUpdateRequest struct {
+	// ChangeFor Contact roles to repoint to the new WHOIS profile
+	ChangeFor []DomainsV1WHOISChangeUpdateRequestChangeFor `json:"change_for"`
+
+	// Domain Domain name
+	Domain string `json:"domain"`
+
+	// NewWhoisId WHOIS profile ID to assign to the domain
+	NewWhoisId int `json:"new_whois_id"`
+}
+
+// DomainsV1WHOISChangeUpdateRequestChangeFor defines model for DomainsV1WHOISChangeUpdateRequest.ChangeFor.
+type DomainsV1WHOISChangeUpdateRequestChangeFor string
 
 // DomainsV1WHOISProfileCollection Array of [`Domains.V1.WHOIS.ProfileResource`](#model/domainsv1whoisprofileresource)
 type DomainsV1WHOISProfileCollection = []DomainsV1WHOISProfileResource
@@ -7841,6 +7937,9 @@ type AgencyHostingChangeAgencyPlanWebsiteWordPressCoreVersionV1JSONRequestBody =
 // BillingCreatePurchaseOrderV1JSONRequestBody defines body for BillingCreatePurchaseOrderV1 for application/json ContentType.
 type BillingCreatePurchaseOrderV1JSONRequestBody = BillingV1OrderPurchaseRequest
 
+// BillingRenewSubscriptionV1JSONRequestBody defines body for BillingRenewSubscriptionV1 for application/json ContentType.
+type BillingRenewSubscriptionV1JSONRequestBody = BillingV1SubscriptionRenewalRenewRequest
+
 // DNSDeleteDNSRecordsV1JSONRequestBody defines body for DNSDeleteDNSRecordsV1 for application/json ContentType.
 type DNSDeleteDNSRecordsV1JSONRequestBody = DNSV1ZoneDestroyRequest
 
@@ -7870,6 +7969,9 @@ type DomainsUpdateDomainNameserversV1JSONRequestBody = DomainsV1PortfolioUpdateN
 
 // DomainsCreateWHOISProfileV1JSONRequestBody defines body for DomainsCreateWHOISProfileV1 for application/json ContentType.
 type DomainsCreateWHOISProfileV1JSONRequestBody = DomainsV1WHOISStoreRequest
+
+// DomainsChangeWHOISProfileForDomainV1JSONRequestBody defines body for DomainsChangeWHOISProfileForDomainV1 for application/json ContentType.
+type DomainsChangeWHOISProfileForDomainV1JSONRequestBody = DomainsV1WHOISChangeUpdateRequest
 
 // EcommerceCreateStoreV1JSONRequestBody defines body for EcommerceCreateStoreV1 for application/json ContentType.
 type EcommerceCreateStoreV1JSONRequestBody = EcommerceV1StoreStoreRequest
@@ -9159,6 +9261,11 @@ type ClientInterface interface {
 	// BillingEnableAutoRenewalV1 request
 	BillingEnableAutoRenewalV1(ctx context.Context, subscriptionId SubscriptionId, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// BillingRenewSubscriptionV1WithBody request with any body
+	BillingRenewSubscriptionV1WithBody(ctx context.Context, subscriptionId SubscriptionId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	BillingRenewSubscriptionV1(ctx context.Context, subscriptionId SubscriptionId, body BillingRenewSubscriptionV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// DNSGetDNSSnapshotListV1 request
 	DNSGetDNSSnapshotListV1(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -9212,6 +9319,12 @@ type ClientInterface interface {
 
 	DomainsUpdateDomainForwardingV1(ctx context.Context, domain Domain, body DomainsUpdateDomainForwardingV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// DomainsCancelPendingIRTPVerificationV1 request
+	DomainsCancelPendingIRTPVerificationV1(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DomainsGetPendingIRTPVerificationV1 request
+	DomainsGetPendingIRTPVerificationV1(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// DomainsGetDomainListV1 request
 	DomainsGetDomainListV1(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -9259,6 +9372,17 @@ type ClientInterface interface {
 	DomainsCreateWHOISProfileV1WithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	DomainsCreateWHOISProfileV1(ctx context.Context, body DomainsCreateWHOISProfileV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DomainsChangeWHOISProfileForDomainV1WithBody request with any body
+	DomainsChangeWHOISProfileForDomainV1WithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	DomainsChangeWHOISProfileForDomainV1(ctx context.Context, body DomainsChangeWHOISProfileForDomainV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DomainsUnsetDefaultWHOISProfileV1 request
+	DomainsUnsetDefaultWHOISProfileV1(ctx context.Context, whoisId WhoisId, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DomainsSetWHOISProfileAsDefaultV1 request
+	DomainsSetWHOISProfileAsDefaultV1(ctx context.Context, whoisId WhoisId, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DomainsDeleteWHOISProfileV1 request
 	DomainsDeleteWHOISProfileV1(ctx context.Context, whoisId WhoisId, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -10539,6 +10663,30 @@ func (c *Client) BillingEnableAutoRenewalV1(ctx context.Context, subscriptionId 
 	return c.Client.Do(req)
 }
 
+func (c *Client) BillingRenewSubscriptionV1WithBody(ctx context.Context, subscriptionId SubscriptionId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewBillingRenewSubscriptionV1RequestWithBody(c.Server, subscriptionId, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) BillingRenewSubscriptionV1(ctx context.Context, subscriptionId SubscriptionId, body BillingRenewSubscriptionV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewBillingRenewSubscriptionV1Request(c.Server, subscriptionId, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) DNSGetDNSSnapshotListV1(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewDNSGetDNSSnapshotListV1Request(c.Server, domain)
 	if err != nil {
@@ -10779,6 +10927,30 @@ func (c *Client) DomainsUpdateDomainForwardingV1(ctx context.Context, domain Dom
 	return c.Client.Do(req)
 }
 
+func (c *Client) DomainsCancelPendingIRTPVerificationV1(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDomainsCancelPendingIRTPVerificationV1Request(c.Server, domain)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DomainsGetPendingIRTPVerificationV1(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDomainsGetPendingIRTPVerificationV1Request(c.Server, domain)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) DomainsGetDomainListV1(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewDomainsGetDomainListV1Request(c.Server)
 	if err != nil {
@@ -10973,6 +11145,54 @@ func (c *Client) DomainsCreateWHOISProfileV1WithBody(ctx context.Context, conten
 
 func (c *Client) DomainsCreateWHOISProfileV1(ctx context.Context, body DomainsCreateWHOISProfileV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewDomainsCreateWHOISProfileV1Request(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DomainsChangeWHOISProfileForDomainV1WithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDomainsChangeWHOISProfileForDomainV1RequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DomainsChangeWHOISProfileForDomainV1(ctx context.Context, body DomainsChangeWHOISProfileForDomainV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDomainsChangeWHOISProfileForDomainV1Request(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DomainsUnsetDefaultWHOISProfileV1(ctx context.Context, whoisId WhoisId, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDomainsUnsetDefaultWHOISProfileV1Request(c.Server, whoisId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DomainsSetWHOISProfileAsDefaultV1(ctx context.Context, whoisId WhoisId, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDomainsSetWHOISProfileAsDefaultV1Request(c.Server, whoisId)
 	if err != nil {
 		return nil, err
 	}
@@ -15792,6 +16012,53 @@ func NewBillingEnableAutoRenewalV1Request(server string, subscriptionId Subscrip
 	return req, nil
 }
 
+// NewBillingRenewSubscriptionV1Request calls the generic BillingRenewSubscriptionV1 builder with application/json body
+func NewBillingRenewSubscriptionV1Request(server string, subscriptionId SubscriptionId, body BillingRenewSubscriptionV1JSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewBillingRenewSubscriptionV1RequestWithBody(server, subscriptionId, "application/json", bodyReader)
+}
+
+// NewBillingRenewSubscriptionV1RequestWithBody generates requests for BillingRenewSubscriptionV1 with any type of body
+func NewBillingRenewSubscriptionV1RequestWithBody(server string, subscriptionId SubscriptionId, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "subscriptionId", subscriptionId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/billing/v1/subscriptions/%s/renew", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewDNSGetDNSSnapshotListV1Request generates requests for DNSGetDNSSnapshotListV1
 func NewDNSGetDNSSnapshotListV1Request(server string, domain Domain) (*http.Request, error) {
 	var err error
@@ -16325,6 +16592,74 @@ func NewDomainsUpdateDomainForwardingV1RequestWithBody(server string, domain Dom
 	return req, nil
 }
 
+// NewDomainsCancelPendingIRTPVerificationV1Request generates requests for DomainsCancelPendingIRTPVerificationV1
+func NewDomainsCancelPendingIRTPVerificationV1Request(server string, domain Domain) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "domain", domain, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/domains/v1/irtp/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewDomainsGetPendingIRTPVerificationV1Request generates requests for DomainsGetPendingIRTPVerificationV1
+func NewDomainsGetPendingIRTPVerificationV1Request(server string, domain Domain) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "domain", domain, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/domains/v1/irtp/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewDomainsGetDomainListV1Request generates requests for DomainsGetDomainListV1
 func NewDomainsGetDomainListV1Request(server string) (*http.Request, error) {
 	var err error
@@ -16828,6 +17163,114 @@ func NewDomainsCreateWHOISProfileV1RequestWithBody(server string, contentType st
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewDomainsChangeWHOISProfileForDomainV1Request calls the generic DomainsChangeWHOISProfileForDomainV1 builder with application/json body
+func NewDomainsChangeWHOISProfileForDomainV1Request(server string, body DomainsChangeWHOISProfileForDomainV1JSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewDomainsChangeWHOISProfileForDomainV1RequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewDomainsChangeWHOISProfileForDomainV1RequestWithBody generates requests for DomainsChangeWHOISProfileForDomainV1 with any type of body
+func NewDomainsChangeWHOISProfileForDomainV1RequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/domains/v1/whois/change")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPut, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewDomainsUnsetDefaultWHOISProfileV1Request generates requests for DomainsUnsetDefaultWHOISProfileV1
+func NewDomainsUnsetDefaultWHOISProfileV1Request(server string, whoisId WhoisId) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "whoisId", whoisId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "integer", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/domains/v1/whois/default/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewDomainsSetWHOISProfileAsDefaultV1Request generates requests for DomainsSetWHOISProfileAsDefaultV1
+func NewDomainsSetWHOISProfileAsDefaultV1Request(server string, whoisId WhoisId) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "whoisId", whoisId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "integer", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/domains/v1/whois/default/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPut, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -27276,6 +27719,11 @@ type ClientWithResponsesInterface interface {
 	// BillingEnableAutoRenewalV1WithResponse request
 	BillingEnableAutoRenewalV1WithResponse(ctx context.Context, subscriptionId SubscriptionId, reqEditors ...RequestEditorFn) (*BillingEnableAutoRenewalV1Response, error)
 
+	// BillingRenewSubscriptionV1WithBodyWithResponse request with any body
+	BillingRenewSubscriptionV1WithBodyWithResponse(ctx context.Context, subscriptionId SubscriptionId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*BillingRenewSubscriptionV1Response, error)
+
+	BillingRenewSubscriptionV1WithResponse(ctx context.Context, subscriptionId SubscriptionId, body BillingRenewSubscriptionV1JSONRequestBody, reqEditors ...RequestEditorFn) (*BillingRenewSubscriptionV1Response, error)
+
 	// DNSGetDNSSnapshotListV1WithResponse request
 	DNSGetDNSSnapshotListV1WithResponse(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*DNSGetDNSSnapshotListV1Response, error)
 
@@ -27329,6 +27777,12 @@ type ClientWithResponsesInterface interface {
 
 	DomainsUpdateDomainForwardingV1WithResponse(ctx context.Context, domain Domain, body DomainsUpdateDomainForwardingV1JSONRequestBody, reqEditors ...RequestEditorFn) (*DomainsUpdateDomainForwardingV1Response, error)
 
+	// DomainsCancelPendingIRTPVerificationV1WithResponse request
+	DomainsCancelPendingIRTPVerificationV1WithResponse(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*DomainsCancelPendingIRTPVerificationV1Response, error)
+
+	// DomainsGetPendingIRTPVerificationV1WithResponse request
+	DomainsGetPendingIRTPVerificationV1WithResponse(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*DomainsGetPendingIRTPVerificationV1Response, error)
+
 	// DomainsGetDomainListV1WithResponse request
 	DomainsGetDomainListV1WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DomainsGetDomainListV1Response, error)
 
@@ -27376,6 +27830,17 @@ type ClientWithResponsesInterface interface {
 	DomainsCreateWHOISProfileV1WithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DomainsCreateWHOISProfileV1Response, error)
 
 	DomainsCreateWHOISProfileV1WithResponse(ctx context.Context, body DomainsCreateWHOISProfileV1JSONRequestBody, reqEditors ...RequestEditorFn) (*DomainsCreateWHOISProfileV1Response, error)
+
+	// DomainsChangeWHOISProfileForDomainV1WithBodyWithResponse request with any body
+	DomainsChangeWHOISProfileForDomainV1WithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DomainsChangeWHOISProfileForDomainV1Response, error)
+
+	DomainsChangeWHOISProfileForDomainV1WithResponse(ctx context.Context, body DomainsChangeWHOISProfileForDomainV1JSONRequestBody, reqEditors ...RequestEditorFn) (*DomainsChangeWHOISProfileForDomainV1Response, error)
+
+	// DomainsUnsetDefaultWHOISProfileV1WithResponse request
+	DomainsUnsetDefaultWHOISProfileV1WithResponse(ctx context.Context, whoisId WhoisId, reqEditors ...RequestEditorFn) (*DomainsUnsetDefaultWHOISProfileV1Response, error)
+
+	// DomainsSetWHOISProfileAsDefaultV1WithResponse request
+	DomainsSetWHOISProfileAsDefaultV1WithResponse(ctx context.Context, whoisId WhoisId, reqEditors ...RequestEditorFn) (*DomainsSetWHOISProfileAsDefaultV1Response, error)
 
 	// DomainsDeleteWHOISProfileV1WithResponse request
 	DomainsDeleteWHOISProfileV1WithResponse(ctx context.Context, whoisId WhoisId, reqEditors ...RequestEditorFn) (*DomainsDeleteWHOISProfileV1Response, error)
@@ -29222,6 +29687,39 @@ func (r BillingEnableAutoRenewalV1Response) ContentType() string {
 	return ""
 }
 
+type BillingRenewSubscriptionV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *BillingV1OrderOrderResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON422      *CommonResponseUnprocessableContentResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r BillingRenewSubscriptionV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r BillingRenewSubscriptionV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r BillingRenewSubscriptionV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type DNSGetDNSSnapshotListV1Response struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -29639,6 +30137,70 @@ func (r DomainsUpdateDomainForwardingV1Response) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r DomainsUpdateDomainForwardingV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type DomainsCancelPendingIRTPVerificationV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CommonSuccessEmptyResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r DomainsCancelPendingIRTPVerificationV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DomainsCancelPendingIRTPVerificationV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r DomainsCancelPendingIRTPVerificationV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type DomainsGetPendingIRTPVerificationV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *DomainsV1IRTPVerificationResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r DomainsGetPendingIRTPVerificationV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DomainsGetPendingIRTPVerificationV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r DomainsGetPendingIRTPVerificationV1Response) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -30090,6 +30652,103 @@ func (r DomainsCreateWHOISProfileV1Response) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r DomainsCreateWHOISProfileV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type DomainsChangeWHOISProfileForDomainV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CommonSuccessEmptyResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON422      *CommonResponseUnprocessableContentResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r DomainsChangeWHOISProfileForDomainV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DomainsChangeWHOISProfileForDomainV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r DomainsChangeWHOISProfileForDomainV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type DomainsUnsetDefaultWHOISProfileV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CommonSuccessEmptyResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r DomainsUnsetDefaultWHOISProfileV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DomainsUnsetDefaultWHOISProfileV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r DomainsUnsetDefaultWHOISProfileV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type DomainsSetWHOISProfileAsDefaultV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CommonSuccessEmptyResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r DomainsSetWHOISProfileAsDefaultV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DomainsSetWHOISProfileAsDefaultV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r DomainsSetWHOISProfileAsDefaultV1Response) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -37343,6 +38002,23 @@ func (c *ClientWithResponses) BillingEnableAutoRenewalV1WithResponse(ctx context
 	return ParseBillingEnableAutoRenewalV1Response(rsp)
 }
 
+// BillingRenewSubscriptionV1WithBodyWithResponse request with arbitrary body returning *BillingRenewSubscriptionV1Response
+func (c *ClientWithResponses) BillingRenewSubscriptionV1WithBodyWithResponse(ctx context.Context, subscriptionId SubscriptionId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*BillingRenewSubscriptionV1Response, error) {
+	rsp, err := c.BillingRenewSubscriptionV1WithBody(ctx, subscriptionId, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseBillingRenewSubscriptionV1Response(rsp)
+}
+
+func (c *ClientWithResponses) BillingRenewSubscriptionV1WithResponse(ctx context.Context, subscriptionId SubscriptionId, body BillingRenewSubscriptionV1JSONRequestBody, reqEditors ...RequestEditorFn) (*BillingRenewSubscriptionV1Response, error) {
+	rsp, err := c.BillingRenewSubscriptionV1(ctx, subscriptionId, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseBillingRenewSubscriptionV1Response(rsp)
+}
+
 // DNSGetDNSSnapshotListV1WithResponse request returning *DNSGetDNSSnapshotListV1Response
 func (c *ClientWithResponses) DNSGetDNSSnapshotListV1WithResponse(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*DNSGetDNSSnapshotListV1Response, error) {
 	rsp, err := c.DNSGetDNSSnapshotListV1(ctx, domain, reqEditors...)
@@ -37516,6 +38192,24 @@ func (c *ClientWithResponses) DomainsUpdateDomainForwardingV1WithResponse(ctx co
 	return ParseDomainsUpdateDomainForwardingV1Response(rsp)
 }
 
+// DomainsCancelPendingIRTPVerificationV1WithResponse request returning *DomainsCancelPendingIRTPVerificationV1Response
+func (c *ClientWithResponses) DomainsCancelPendingIRTPVerificationV1WithResponse(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*DomainsCancelPendingIRTPVerificationV1Response, error) {
+	rsp, err := c.DomainsCancelPendingIRTPVerificationV1(ctx, domain, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDomainsCancelPendingIRTPVerificationV1Response(rsp)
+}
+
+// DomainsGetPendingIRTPVerificationV1WithResponse request returning *DomainsGetPendingIRTPVerificationV1Response
+func (c *ClientWithResponses) DomainsGetPendingIRTPVerificationV1WithResponse(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*DomainsGetPendingIRTPVerificationV1Response, error) {
+	rsp, err := c.DomainsGetPendingIRTPVerificationV1(ctx, domain, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDomainsGetPendingIRTPVerificationV1Response(rsp)
+}
+
 // DomainsGetDomainListV1WithResponse request returning *DomainsGetDomainListV1Response
 func (c *ClientWithResponses) DomainsGetDomainListV1WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DomainsGetDomainListV1Response, error) {
 	rsp, err := c.DomainsGetDomainListV1(ctx, reqEditors...)
@@ -37664,6 +38358,41 @@ func (c *ClientWithResponses) DomainsCreateWHOISProfileV1WithResponse(ctx contex
 		return nil, err
 	}
 	return ParseDomainsCreateWHOISProfileV1Response(rsp)
+}
+
+// DomainsChangeWHOISProfileForDomainV1WithBodyWithResponse request with arbitrary body returning *DomainsChangeWHOISProfileForDomainV1Response
+func (c *ClientWithResponses) DomainsChangeWHOISProfileForDomainV1WithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DomainsChangeWHOISProfileForDomainV1Response, error) {
+	rsp, err := c.DomainsChangeWHOISProfileForDomainV1WithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDomainsChangeWHOISProfileForDomainV1Response(rsp)
+}
+
+func (c *ClientWithResponses) DomainsChangeWHOISProfileForDomainV1WithResponse(ctx context.Context, body DomainsChangeWHOISProfileForDomainV1JSONRequestBody, reqEditors ...RequestEditorFn) (*DomainsChangeWHOISProfileForDomainV1Response, error) {
+	rsp, err := c.DomainsChangeWHOISProfileForDomainV1(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDomainsChangeWHOISProfileForDomainV1Response(rsp)
+}
+
+// DomainsUnsetDefaultWHOISProfileV1WithResponse request returning *DomainsUnsetDefaultWHOISProfileV1Response
+func (c *ClientWithResponses) DomainsUnsetDefaultWHOISProfileV1WithResponse(ctx context.Context, whoisId WhoisId, reqEditors ...RequestEditorFn) (*DomainsUnsetDefaultWHOISProfileV1Response, error) {
+	rsp, err := c.DomainsUnsetDefaultWHOISProfileV1(ctx, whoisId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDomainsUnsetDefaultWHOISProfileV1Response(rsp)
+}
+
+// DomainsSetWHOISProfileAsDefaultV1WithResponse request returning *DomainsSetWHOISProfileAsDefaultV1Response
+func (c *ClientWithResponses) DomainsSetWHOISProfileAsDefaultV1WithResponse(ctx context.Context, whoisId WhoisId, reqEditors ...RequestEditorFn) (*DomainsSetWHOISProfileAsDefaultV1Response, error) {
+	rsp, err := c.DomainsSetWHOISProfileAsDefaultV1(ctx, whoisId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDomainsSetWHOISProfileAsDefaultV1Response(rsp)
 }
 
 // DomainsDeleteWHOISProfileV1WithResponse request returning *DomainsDeleteWHOISProfileV1Response
@@ -41502,6 +42231,53 @@ func ParseBillingEnableAutoRenewalV1Response(rsp *http.Response) (*BillingEnable
 	return response, nil
 }
 
+// ParseBillingRenewSubscriptionV1Response parses an HTTP response from a BillingRenewSubscriptionV1WithResponse call
+func ParseBillingRenewSubscriptionV1Response(rsp *http.Response) (*BillingRenewSubscriptionV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &BillingRenewSubscriptionV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest BillingV1OrderOrderResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseUnprocessableContentResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseDNSGetDNSSnapshotListV1Response parses an HTTP response from a DNSGetDNSSnapshotListV1WithResponse call
 func ParseDNSGetDNSSnapshotListV1Response(rsp *http.Response) (*DNSGetDNSSnapshotListV1Response, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -42058,6 +42834,86 @@ func ParseDomainsUpdateDomainForwardingV1Response(rsp *http.Response) (*DomainsU
 			return nil, err
 		}
 		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDomainsCancelPendingIRTPVerificationV1Response parses an HTTP response from a DomainsCancelPendingIRTPVerificationV1WithResponse call
+func ParseDomainsCancelPendingIRTPVerificationV1Response(rsp *http.Response) (*DomainsCancelPendingIRTPVerificationV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DomainsCancelPendingIRTPVerificationV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CommonSuccessEmptyResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDomainsGetPendingIRTPVerificationV1Response parses an HTTP response from a DomainsGetPendingIRTPVerificationV1WithResponse call
+func ParseDomainsGetPendingIRTPVerificationV1Response(rsp *http.Response) (*DomainsGetPendingIRTPVerificationV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DomainsGetPendingIRTPVerificationV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest DomainsV1IRTPVerificationResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
 		var dest CommonResponseErrorResponse
@@ -42639,6 +43495,133 @@ func ParseDomainsCreateWHOISProfileV1Response(rsp *http.Response) (*DomainsCreat
 			return nil, err
 		}
 		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDomainsChangeWHOISProfileForDomainV1Response parses an HTTP response from a DomainsChangeWHOISProfileForDomainV1WithResponse call
+func ParseDomainsChangeWHOISProfileForDomainV1Response(rsp *http.Response) (*DomainsChangeWHOISProfileForDomainV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DomainsChangeWHOISProfileForDomainV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CommonSuccessEmptyResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseUnprocessableContentResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDomainsUnsetDefaultWHOISProfileV1Response parses an HTTP response from a DomainsUnsetDefaultWHOISProfileV1WithResponse call
+func ParseDomainsUnsetDefaultWHOISProfileV1Response(rsp *http.Response) (*DomainsUnsetDefaultWHOISProfileV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DomainsUnsetDefaultWHOISProfileV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CommonSuccessEmptyResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDomainsSetWHOISProfileAsDefaultV1Response parses an HTTP response from a DomainsSetWHOISProfileAsDefaultV1WithResponse call
+func ParseDomainsSetWHOISProfileAsDefaultV1Response(rsp *http.Response) (*DomainsSetWHOISProfileAsDefaultV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DomainsSetWHOISProfileAsDefaultV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CommonSuccessEmptyResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
 		var dest CommonResponseErrorResponse

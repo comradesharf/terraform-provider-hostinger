@@ -1,0 +1,294 @@
+// Copyright (c) HashiCorp, Inc.
+// SPDX-License-Identifier: MPL-2.0
+
+package provider
+
+import (
+	"context"
+	"fmt"
+	"net/http"
+	"slices"
+
+	"github.com/comradesharf/terraform-provider-hostinger/internal/client"
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+	"github.com/hashicorp/terraform-plugin-framework/path"
+	"github.com/hashicorp/terraform-plugin-framework/resource"
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
+	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
+	"github.com/hashicorp/terraform-plugin-framework/types"
+)
+
+// Ensure provider defined types fully satisfy framework interfaces.
+var (
+	_ resource.Resource                = &ResourceVPSFirewallRule{}
+	_ resource.ResourceWithImportState = &ResourceVPSFirewallRule{}
+)
+
+func NewResourceVPSFirewallRule() resource.Resource {
+	return &ResourceVPSFirewallRule{}
+}
+
+// ResourceVPSFirewallRule defines the resource implementation.
+type ResourceVPSFirewallRule struct {
+	client *client.ClientWithResponses
+}
+
+// ResourceVPSFirewallRuleModel describes the resource data model.
+type ResourceVPSFirewallRuleModel struct {
+	VPSFirewallRuleModel
+	FirewallID types.Int64 `tfsdk:"firewall_id"`
+}
+
+func (r *ResourceVPSFirewallRule) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+	resp.TypeName = req.ProviderTypeName + "_vps_firewall_rule"
+}
+
+func (r *ResourceVPSFirewallRule) Schema(ctx context.Context, req resource.SchemaRequest, resp *resource.SchemaResponse) {
+	resp.Schema = schema.Schema{
+		MarkdownDescription: "Example resource",
+		Attributes: map[string]schema.Attribute{
+			"id": schema.Int64Attribute{
+				Computed:            true,
+				MarkdownDescription: "Firewall rule ID",
+			},
+			"firewall_id": schema.Int64Attribute{
+				Required:            true,
+				MarkdownDescription: "ID of the firewall this rule belongs to",
+			},
+			"action": schema.StringAttribute{
+				Computed:            true,
+				MarkdownDescription: "Firewall rule action",
+				Validators: []validator.String{
+					stringvalidator.OneOf(
+						"accept",
+						"drop",
+					),
+				},
+			},
+			"protocol": schema.StringAttribute{
+				Required:            true,
+				MarkdownDescription: "Firewall rule protocol",
+				Validators: []validator.String{
+					stringvalidator.OneOf(
+						"TCP",
+						"UDP",
+						"ICMP",
+						"GRE",
+						"any",
+						"ESP",
+						"AH",
+						"ICMPv6",
+						"SSH",
+						"HTTP",
+						"HTTPS",
+						"MySQL",
+						"PostgreSQL",
+					),
+				},
+			},
+			"port": schema.StringAttribute{
+				Required:            true,
+				MarkdownDescription: "Firewall rule destination port: single or port range",
+			},
+			"source": schema.StringAttribute{
+				Required:            true,
+				MarkdownDescription: "Firewall rule source. Can be `any` or `custom`",
+				Validators: []validator.String{
+					stringvalidator.OneOf("any", "custom"),
+				},
+			},
+			"source_detail": schema.StringAttribute{
+				Optional:            true,
+				MarkdownDescription: "Firewall rule source detail. Can be `any` or IP address, CIDR or range",
+			},
+		},
+	}
+}
+
+func (r *ResourceVPSFirewallRule) Configure(ctx context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
+	if req.ProviderData == nil {
+		return
+	}
+
+	c, ok := req.ProviderData.(*client.ClientWithResponses)
+	if !ok {
+		resp.Diagnostics.AddError(
+			"Unexpected Data Source Configure Type",
+			fmt.Sprintf("Expected *client.ClientWithResponses, got: %T. Please report this issue to the provider developers.", req.ProviderData),
+		)
+		return
+	}
+
+	r.client = c
+}
+
+func (r *ResourceVPSFirewallRule) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
+	var state ResourceVPSFirewallRuleModel
+	resp.Diagnostics.Append(req.Config.Get(ctx, &state)...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	p := client.VPSCreateFirewallRuleV1JSONRequestBody{
+		Protocol:     client.VPSV1FirewallRulesStoreRequestProtocol(state.Protocol.ValueString()),
+		Port:         state.Port.ValueString(),
+		Source:       client.VPSV1FirewallRulesStoreRequestSource(state.Source.ValueString()),
+		SourceDetail: state.SourceDetail.ValueString(),
+	}
+
+	response, err := r.client.VPSCreateFirewallRuleV1WithResponse(ctx, client.FirewallId(state.FirewallID.ValueInt64()), p)
+	if err != nil {
+		resp.Diagnostics.AddError(
+			"Unable to Create VPS Firewall Rule",
+			fmt.Sprintf("Got error: %s", err),
+		)
+		return
+	}
+	if response.StatusCode() != http.StatusOK {
+		resp.Diagnostics.AddError(
+			"Unable to Create VPS Firewall Rule",
+			fmt.Sprintf("Unexpected status code: %d, response: %s", response.StatusCode(), string(response.Body)),
+		)
+		return
+	}
+	if response.JSON200 == nil {
+		resp.Diagnostics.AddError(
+			"Unable to Create VPS Firewall Rule",
+			"Response body is nil",
+		)
+		return
+	}
+
+	state.Merge(response.JSON200)
+
+	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
+}
+
+func (r *ResourceVPSFirewallRule) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
+	var state ResourceVPSFirewallRuleModel
+	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	if state.ID.IsUnknown() {
+		resp.Diagnostics.AddError(
+			"Unknown ID",
+			"ID is unknown, unable to read VPS firewall.",
+		)
+		return
+	}
+
+	if state.ID.IsNull() || state.ID.ValueInt64() == 0 {
+		resp.Diagnostics.AddError(
+			"Null ID",
+			"ID is null or zero, unable to read VPS firewall.",
+		)
+		return
+	}
+
+	response, err := r.client.VPSGetFirewallDetailsV1WithResponse(ctx, client.FirewallId(state.ID.ValueInt64()))
+	if err != nil {
+		resp.Diagnostics.AddError(
+			"Unable to Read VPS Firewalls",
+			fmt.Sprintf("Got error: %s", err),
+		)
+		return
+	}
+	if response.StatusCode() != http.StatusOK {
+		resp.Diagnostics.AddError(
+			"Unable to Read VPS Firewalls",
+			fmt.Sprintf("Unexpected status code: %d, response: %s", response.StatusCode(), string(response.Body)),
+		)
+		return
+	}
+	if response.JSON200 == nil {
+		resp.Diagnostics.AddError(
+			"Unable to Read VPS Firewalls",
+			"Response body is nil",
+		)
+		return
+	}
+	if response.JSON200.Rules == nil {
+		resp.Diagnostics.AddError(
+			"VPS Firewall Rules Is empty",
+			"Response body rules is nil",
+		)
+		return
+	}
+
+	rules := *response.JSON200.Rules
+
+	index := slices.IndexFunc(rules, func(rule client.VPSV1FirewallFirewallRuleResource) bool {
+		return int64(*rule.Id) == state.ID.ValueInt64()
+	})
+
+	if index == -1 {
+		resp.Diagnostics.AddError(
+			"Unable to Read VPS Firewall Rule",
+			fmt.Sprintf("Firewall rule with ID %d not found in firewall %d", state.ID.ValueInt64(), state.FirewallID.ValueInt64()),
+		)
+		return
+	}
+
+	state.Merge(&rules[index])
+
+	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
+}
+
+func (r *ResourceVPSFirewallRule) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
+	var plan, state ResourceVPSFirewallRuleModel
+	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
+	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
+}
+
+func (r *ResourceVPSFirewallRule) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
+	var state ResourceVPSFirewallRuleModel
+	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	if state.ID.IsUnknown() {
+		resp.Diagnostics.AddError(
+			"Unknown ID",
+			"ID is unknown, unable to read VPS firewall.",
+		)
+		return
+	}
+
+	if state.ID.IsNull() || state.ID.ValueInt64() == 0 {
+		resp.Diagnostics.AddError(
+			"Null ID",
+			"ID is null or zero, unable to read VPS firewall.",
+		)
+		return
+	}
+
+	response, err := r.client.VPSDeleteFirewallRuleV1WithResponse(
+		ctx, client.FirewallId(state.FirewallID.ValueInt64()), client.RuleId(state.ID.ValueInt64()),
+	)
+	if err != nil {
+		resp.Diagnostics.AddError(
+			"Unable to Delete VPS Firewall Rule",
+			fmt.Sprintf("Got error: %s", err),
+		)
+		return
+	}
+	if response.StatusCode() != http.StatusOK {
+		resp.Diagnostics.AddError(
+			"Unable to Delete VPS Firewalls",
+			fmt.Sprintf("Unexpected status code: %d, response: %s", response.StatusCode(), string(response.Body)),
+		)
+		return
+	}
+}
+
+func (r *ResourceVPSFirewallRule) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
+	importStatePassthroughInt64ID(ctx, path.Root("id"), req, resp)
+}
