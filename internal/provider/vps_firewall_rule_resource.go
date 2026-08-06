@@ -10,8 +10,10 @@ import (
 	"slices"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/comradesharf/terraform-provider-hostinger/internal/client"
+	"github.com/hashicorp/terraform-plugin-framework-timeouts/resource/timeouts"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
@@ -42,7 +44,8 @@ type VPSFirewallRuleResource struct {
 // VPSFirewallRuleResourceModel describes the resource data model.
 type VPSFirewallRuleResourceModel struct {
 	VPSFirewallRuleModel
-	FirewallID types.Int64 `tfsdk:"firewall_id"`
+	FirewallID types.Int64    `tfsdk:"firewall_id"`
+	Timeouts   timeouts.Value `tfsdk:"timeouts"`
 }
 
 func (r *VPSFirewallRuleResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
@@ -113,6 +116,7 @@ func (r *VPSFirewallRuleResource) Schema(ctx context.Context, req resource.Schem
 				Optional:            true,
 				MarkdownDescription: "Firewall rule source detail. Can be `any` or IP address, CIDR or range",
 			},
+			"timeouts": timeouts.AttributesAll(ctx),
 		},
 	}
 }
@@ -140,6 +144,15 @@ func (r *VPSFirewallRuleResource) Create(ctx context.Context, req resource.Creat
 	if resp.Diagnostics.HasError() {
 		return
 	}
+
+	createTimeout, diags := state.Timeouts.Create(ctx, 20*time.Minute)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	ctx, cancel := context.WithTimeout(ctx, createTimeout)
+	defer cancel()
 
 	p := client.VPSCreateFirewallRuleV1JSONRequestBody{
 		Protocol:     client.VPSV1FirewallRulesStoreRequestProtocol(state.Protocol.ValueString()),
@@ -198,6 +211,15 @@ func (r *VPSFirewallRuleResource) Read(ctx context.Context, req resource.ReadReq
 		)
 		return
 	}
+
+	readTimeout, diags := state.Timeouts.Read(ctx, 20*time.Minute)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	ctx, cancel := context.WithTimeout(ctx, readTimeout)
+	defer cancel()
 
 	response, err := r.client.VPSGetFirewallDetailsV1WithResponse(ctx, client.FirewallId(state.FirewallID.ValueInt64()))
 	if err != nil {
@@ -271,6 +293,15 @@ func (r *VPSFirewallRuleResource) Update(ctx context.Context, req resource.Updat
 		return
 	}
 
+	updateTimeout, diags := plan.Timeouts.Update(ctx, 20*time.Minute)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	ctx, cancel := context.WithTimeout(ctx, updateTimeout)
+	defer cancel()
+
 	params := client.VPSUpdateFirewallRuleV1JSONRequestBody{
 		Protocol:     client.VPSV1FirewallRulesStoreRequestProtocol(plan.Protocol.ValueString()),
 		Port:         plan.Port.ValueString(),
@@ -333,6 +364,15 @@ func (r *VPSFirewallRuleResource) Delete(ctx context.Context, req resource.Delet
 		)
 		return
 	}
+
+	deleteTimeout, diags := state.Timeouts.Delete(ctx, 20*time.Minute)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	ctx, cancel := context.WithTimeout(ctx, deleteTimeout)
+	defer cancel()
 
 	response, err := r.client.VPSDeleteFirewallRuleV1WithResponse(
 		ctx,

@@ -7,8 +7,10 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"time"
 
 	"github.com/comradesharf/terraform-provider-hostinger/internal/client"
+	"github.com/hashicorp/terraform-plugin-framework-timeouts/resource/timeouts"
 	"github.com/hashicorp/terraform-plugin-framework-timetypes/timetypes"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/path"
@@ -18,6 +20,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringplanmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
+	"github.com/hashicorp/terraform-plugin-log/tflog"
 )
 
 // Ensure provider defined types fully satisfy framework interfaces.
@@ -38,6 +41,7 @@ type VPSFirewallResource struct {
 // VPSFirewallResourceModel describes the resource data model.
 type VPSFirewallResourceModel struct {
 	VPSFirewallModel
+	Timeouts timeouts.Value `tfsdk:"timeouts"`
 }
 
 func (r *VPSFirewallResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
@@ -79,6 +83,7 @@ func (r *VPSFirewallResource) Schema(ctx context.Context, req resource.SchemaReq
 				CustomType:          timetypes.RFC3339Type{},
 				MarkdownDescription: "Timestamp when the firewall was updated (RFC3339).",
 			},
+			"timeouts": timeouts.AttributesAll(ctx),
 		},
 	}
 }
@@ -106,6 +111,17 @@ func (r *VPSFirewallResource) Create(ctx context.Context, req resource.CreateReq
 	if resp.Diagnostics.HasError() {
 		return
 	}
+
+	createTimeout, diags := state.Timeouts.Create(ctx, 20*time.Minute)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	ctx, cancel := context.WithTimeout(ctx, createTimeout)
+	defer cancel()
+
+	ctx = tflog.SetField(ctx, "name", state.Name.ValueString())
 
 	p := client.VPSCreateNewFirewallV1JSONRequestBody{
 		Name: state.Name.ValueString(),
@@ -161,6 +177,15 @@ func (r *VPSFirewallResource) Read(ctx context.Context, req resource.ReadRequest
 		)
 		return
 	}
+
+	readTimeout, diags := state.Timeouts.Read(ctx, 20*time.Minute)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	ctx, cancel := context.WithTimeout(ctx, readTimeout)
+	defer cancel()
 
 	response, err := r.client.VPSGetFirewallDetailsV1WithResponse(ctx, client.FirewallId(state.ID.ValueInt64()))
 	if err != nil {
@@ -223,6 +248,15 @@ func (r *VPSFirewallResource) Delete(ctx context.Context, req resource.DeleteReq
 		)
 		return
 	}
+
+	deleteTimeout, diags := state.Timeouts.Delete(ctx, 20*time.Minute)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	ctx, cancel := context.WithTimeout(ctx, deleteTimeout)
+	defer cancel()
 
 	response, err := r.client.VPSDeleteFirewallV1WithResponse(ctx, client.FirewallId(state.ID.ValueInt64()))
 	if err != nil {
