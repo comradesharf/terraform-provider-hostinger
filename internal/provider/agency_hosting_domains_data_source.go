@@ -7,8 +7,10 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"time"
 
 	"github.com/comradesharf/terraform-provider-hostinger/internal/client"
+	"github.com/hashicorp/terraform-plugin-framework-timeouts/datasource/timeouts"
 	"github.com/hashicorp/terraform-plugin-framework-timetypes/timetypes"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,17 +33,11 @@ type AgencyHostingDomainsDataSource struct {
 	client *client.ClientWithResponses
 }
 
-// AgencyHostingDomainsItemModel maps a single domain from the API response.
-type AgencyHostingDomainsItemModel struct {
-	FQDN       types.String      `tfsdk:"fqdn"`
-	WebsiteUID types.String      `tfsdk:"website_uid"`
-	CreatedAt  timetypes.RFC3339 `tfsdk:"created_at"`
-}
-
 // AgencyHostingDomainsDataSourceModel describes the data source data model.
 type AgencyHostingDomainsDataSourceModel struct {
-	WebsiteUIDs []types.String                  `tfsdk:"website_uids"`
-	Domains     []AgencyHostingDomainsItemModel `tfsdk:"domains"`
+	WebsiteUIDs []types.String             `tfsdk:"website_uids"`
+	Domains     []AgencyHostingDomainModel `tfsdk:"domains"`
+	Timeouts    timeouts.Value             `tfsdk:"timeouts"`
 }
 
 func (d *AgencyHostingDomainsDataSource) Metadata(ctx context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
@@ -78,6 +74,7 @@ func (d *AgencyHostingDomainsDataSource) Schema(ctx context.Context, req datasou
 					},
 				},
 			},
+			"timeouts": timeouts.Attributes(ctx),
 		},
 	}
 }
@@ -121,6 +118,15 @@ func (d *AgencyHostingDomainsDataSource) Read(ctx context.Context, req datasourc
 		return
 	}
 
+	readTimeout, diags := data.Timeouts.Read(ctx, 20*time.Minute)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	ctx, cancel := context.WithTimeout(ctx, readTimeout)
+	defer cancel()
+
 	page := 1
 	for {
 		params.Page = &page
@@ -148,17 +154,13 @@ func (d *AgencyHostingDomainsDataSource) Read(ctx context.Context, req datasourc
 			return
 		}
 
-		domains := response.JSON200.Data
-		if domains == nil || len(*domains) == 0 {
+		if response.JSON200.Data == nil || len(*response.JSON200.Data) == 0 {
 			break
 		}
 
-		for _, item := range *domains {
-			var m AgencyHostingDomainsItemModel
-			m.FQDN = types.StringPointerValue(item.Fqdn)
-			m.WebsiteUID = types.StringPointerValue(item.WebsiteUid)
-			m.CreatedAt = timetypes.NewRFC3339TimePointerValue(item.CreatedAt)
-
+		for _, item := range *response.JSON200.Data {
+			var m AgencyHostingDomainModel
+			m.Merge(&item)
 			data.Domains = append(data.Domains, m)
 		}
 

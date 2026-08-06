@@ -243,7 +243,7 @@ func (r *VPSFirewallRuleResource) Read(ctx context.Context, req resource.ReadReq
 		)
 		return
 	}
-	if response.JSON200.Rules == nil {
+	if response.JSON200.Rules == nil || len(*response.JSON200.Rules) == 0 {
 		resp.Diagnostics.AddError(
 			"VPS Firewall Rules Is empty",
 			"Response body rules is nil",

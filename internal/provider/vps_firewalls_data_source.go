@@ -201,12 +201,8 @@ func (d *VPSFirewallsDataSource) Read(ctx context.Context, req datasource.ReadRe
 			)
 			return
 		}
-		if response.JSON200.Data == nil {
-			resp.Diagnostics.AddError(
-				"Unable to Read VPS Firewalls",
-				"Response data is nil",
-			)
-			return
+		if response.JSON200.Data == nil || len(*response.JSON200.Data) == 0 {
+			break
 		}
 
 		for _, item := range *response.JSON200.Data {
