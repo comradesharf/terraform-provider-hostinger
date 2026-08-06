@@ -496,6 +496,63 @@ func (e DomainsV1IRTPVerificationResourceStatus) Valid() bool {
 	}
 }
 
+// Defines values for DomainsV1MoveMoveResourceStatus.
+const (
+	DomainsV1MoveMoveResourceStatusActivating DomainsV1MoveMoveResourceStatus = "activating"
+	DomainsV1MoveMoveResourceStatusCompleted  DomainsV1MoveMoveResourceStatus = "completed"
+	DomainsV1MoveMoveResourceStatusInitiated  DomainsV1MoveMoveResourceStatus = "initiated"
+)
+
+// Valid indicates whether the value is a known member of the DomainsV1MoveMoveResourceStatus enum.
+func (e DomainsV1MoveMoveResourceStatus) Valid() bool {
+	switch e {
+	case DomainsV1MoveMoveResourceStatusActivating:
+		return true
+	case DomainsV1MoveMoveResourceStatusCompleted:
+		return true
+	case DomainsV1MoveMoveResourceStatusInitiated:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for DomainsV1PortfolioClaimResourceStatus.
+const (
+	DomainsV1PortfolioClaimResourceStatusActive              DomainsV1PortfolioClaimResourceStatus = "active"
+	DomainsV1PortfolioClaimResourceStatusDeleted             DomainsV1PortfolioClaimResourceStatus = "deleted"
+	DomainsV1PortfolioClaimResourceStatusExpired             DomainsV1PortfolioClaimResourceStatus = "expired"
+	DomainsV1PortfolioClaimResourceStatusFailed              DomainsV1PortfolioClaimResourceStatus = "failed"
+	DomainsV1PortfolioClaimResourceStatusPendingSetup        DomainsV1PortfolioClaimResourceStatus = "pending_setup"
+	DomainsV1PortfolioClaimResourceStatusPendingVerification DomainsV1PortfolioClaimResourceStatus = "pending_verification"
+	DomainsV1PortfolioClaimResourceStatusRequested           DomainsV1PortfolioClaimResourceStatus = "requested"
+	DomainsV1PortfolioClaimResourceStatusSuspended           DomainsV1PortfolioClaimResourceStatus = "suspended"
+)
+
+// Valid indicates whether the value is a known member of the DomainsV1PortfolioClaimResourceStatus enum.
+func (e DomainsV1PortfolioClaimResourceStatus) Valid() bool {
+	switch e {
+	case DomainsV1PortfolioClaimResourceStatusActive:
+		return true
+	case DomainsV1PortfolioClaimResourceStatusDeleted:
+		return true
+	case DomainsV1PortfolioClaimResourceStatusExpired:
+		return true
+	case DomainsV1PortfolioClaimResourceStatusFailed:
+		return true
+	case DomainsV1PortfolioClaimResourceStatusPendingSetup:
+		return true
+	case DomainsV1PortfolioClaimResourceStatusPendingVerification:
+		return true
+	case DomainsV1PortfolioClaimResourceStatusRequested:
+		return true
+	case DomainsV1PortfolioClaimResourceStatusSuspended:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for DomainsV1WHOISChangeUpdateRequestChangeFor.
 const (
 	Admin   DomainsV1WHOISChangeUpdateRequestChangeFor = "admin"
@@ -726,13 +783,13 @@ func (e EcommerceV1StoreStoreRequestSalesChannelType) Valid() bool {
 
 // Defines values for HorizonsV1WebsitesCreateWebsiteRequestMessageType.
 const (
-	Text HorizonsV1WebsitesCreateWebsiteRequestMessageType = "text"
+	HorizonsV1WebsitesCreateWebsiteRequestMessageTypeText HorizonsV1WebsitesCreateWebsiteRequestMessageType = "text"
 )
 
 // Valid indicates whether the value is a known member of the HorizonsV1WebsitesCreateWebsiteRequestMessageType enum.
 func (e HorizonsV1WebsitesCreateWebsiteRequestMessageType) Valid() bool {
 	switch e {
-	case Text:
+	case HorizonsV1WebsitesCreateWebsiteRequestMessageTypeText:
 		return true
 	default:
 		return false
@@ -1303,16 +1360,85 @@ func (e MailV1WebhooksWebhookSecretResourceStatus) Valid() bool {
 	}
 }
 
+// Defines values for ReachV1ContactsContactDetailsResourceSource.
+const (
+	ReachV1ContactsContactDetailsResourceSourceApi      ReachV1ContactsContactDetailsResourceSource = "api"
+	ReachV1ContactsContactDetailsResourceSourceCheckout ReachV1ContactsContactDetailsResourceSource = "checkout"
+	ReachV1ContactsContactDetailsResourceSourceForm     ReachV1ContactsContactDetailsResourceSource = "form"
+	ReachV1ContactsContactDetailsResourceSourceHorizons ReachV1ContactsContactDetailsResourceSource = "horizons"
+	ReachV1ContactsContactDetailsResourceSourceImport   ReachV1ContactsContactDetailsResourceSource = "import"
+	ReachV1ContactsContactDetailsResourceSourceManual   ReachV1ContactsContactDetailsResourceSource = "manual"
+	ReachV1ContactsContactDetailsResourceSourceSync     ReachV1ContactsContactDetailsResourceSource = "sync"
+)
+
+// Valid indicates whether the value is a known member of the ReachV1ContactsContactDetailsResourceSource enum.
+func (e ReachV1ContactsContactDetailsResourceSource) Valid() bool {
+	switch e {
+	case ReachV1ContactsContactDetailsResourceSourceApi:
+		return true
+	case ReachV1ContactsContactDetailsResourceSourceCheckout:
+		return true
+	case ReachV1ContactsContactDetailsResourceSourceForm:
+		return true
+	case ReachV1ContactsContactDetailsResourceSourceHorizons:
+		return true
+	case ReachV1ContactsContactDetailsResourceSourceImport:
+		return true
+	case ReachV1ContactsContactDetailsResourceSourceManual:
+		return true
+	case ReachV1ContactsContactDetailsResourceSourceSync:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ReachV1ContactsContactDetailsResourceSubscriptionStatus.
+const (
+	ReachV1ContactsContactDetailsResourceSubscriptionStatusConfirmed    ReachV1ContactsContactDetailsResourceSubscriptionStatus = "confirmed"
+	ReachV1ContactsContactDetailsResourceSubscriptionStatusPending      ReachV1ContactsContactDetailsResourceSubscriptionStatus = "pending"
+	ReachV1ContactsContactDetailsResourceSubscriptionStatusSubscribed   ReachV1ContactsContactDetailsResourceSubscriptionStatus = "subscribed"
+	ReachV1ContactsContactDetailsResourceSubscriptionStatusUnsubscribed ReachV1ContactsContactDetailsResourceSubscriptionStatus = "unsubscribed"
+)
+
+// Valid indicates whether the value is a known member of the ReachV1ContactsContactDetailsResourceSubscriptionStatus enum.
+func (e ReachV1ContactsContactDetailsResourceSubscriptionStatus) Valid() bool {
+	switch e {
+	case ReachV1ContactsContactDetailsResourceSubscriptionStatusConfirmed:
+		return true
+	case ReachV1ContactsContactDetailsResourceSubscriptionStatusPending:
+		return true
+	case ReachV1ContactsContactDetailsResourceSubscriptionStatusSubscribed:
+		return true
+	case ReachV1ContactsContactDetailsResourceSubscriptionStatusUnsubscribed:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for ReachV1ContactsContactResourceSource.
 const (
-	ReachV1ContactsContactResourceSourceImport ReachV1ContactsContactResourceSource = "import"
-	ReachV1ContactsContactResourceSourceManual ReachV1ContactsContactResourceSource = "manual"
-	ReachV1ContactsContactResourceSourceSync   ReachV1ContactsContactResourceSource = "sync"
+	ReachV1ContactsContactResourceSourceApi      ReachV1ContactsContactResourceSource = "api"
+	ReachV1ContactsContactResourceSourceCheckout ReachV1ContactsContactResourceSource = "checkout"
+	ReachV1ContactsContactResourceSourceForm     ReachV1ContactsContactResourceSource = "form"
+	ReachV1ContactsContactResourceSourceHorizons ReachV1ContactsContactResourceSource = "horizons"
+	ReachV1ContactsContactResourceSourceImport   ReachV1ContactsContactResourceSource = "import"
+	ReachV1ContactsContactResourceSourceManual   ReachV1ContactsContactResourceSource = "manual"
+	ReachV1ContactsContactResourceSourceSync     ReachV1ContactsContactResourceSource = "sync"
 )
 
 // Valid indicates whether the value is a known member of the ReachV1ContactsContactResourceSource enum.
 func (e ReachV1ContactsContactResourceSource) Valid() bool {
 	switch e {
+	case ReachV1ContactsContactResourceSourceApi:
+		return true
+	case ReachV1ContactsContactResourceSourceCheckout:
+		return true
+	case ReachV1ContactsContactResourceSourceForm:
+		return true
+	case ReachV1ContactsContactResourceSourceHorizons:
+		return true
 	case ReachV1ContactsContactResourceSourceImport:
 		return true
 	case ReachV1ContactsContactResourceSourceManual:
@@ -1326,6 +1452,8 @@ func (e ReachV1ContactsContactResourceSource) Valid() bool {
 
 // Defines values for ReachV1ContactsContactResourceSubscriptionStatus.
 const (
+	ReachV1ContactsContactResourceSubscriptionStatusConfirmed    ReachV1ContactsContactResourceSubscriptionStatus = "confirmed"
+	ReachV1ContactsContactResourceSubscriptionStatusPending      ReachV1ContactsContactResourceSubscriptionStatus = "pending"
 	ReachV1ContactsContactResourceSubscriptionStatusSubscribed   ReachV1ContactsContactResourceSubscriptionStatus = "subscribed"
 	ReachV1ContactsContactResourceSubscriptionStatusUnsubscribed ReachV1ContactsContactResourceSubscriptionStatus = "unsubscribed"
 )
@@ -1333,6 +1461,10 @@ const (
 // Valid indicates whether the value is a known member of the ReachV1ContactsContactResourceSubscriptionStatus enum.
 func (e ReachV1ContactsContactResourceSubscriptionStatus) Valid() bool {
 	switch e {
+	case ReachV1ContactsContactResourceSubscriptionStatusConfirmed:
+		return true
+	case ReachV1ContactsContactResourceSubscriptionStatusPending:
+		return true
 	case ReachV1ContactsContactResourceSubscriptionStatusSubscribed:
 		return true
 	case ReachV1ContactsContactResourceSubscriptionStatusUnsubscribed:
@@ -1342,16 +1474,190 @@ func (e ReachV1ContactsContactResourceSubscriptionStatus) Valid() bool {
 	}
 }
 
+// Defines values for ReachV1ContactsFieldsContactFieldResourceType.
+const (
+	ReachV1ContactsFieldsContactFieldResourceTypeDate         ReachV1ContactsFieldsContactFieldResourceType = "date"
+	ReachV1ContactsFieldsContactFieldResourceTypeMultiChoice  ReachV1ContactsFieldsContactFieldResourceType = "multi_choice"
+	ReachV1ContactsFieldsContactFieldResourceTypeNumber       ReachV1ContactsFieldsContactFieldResourceType = "number"
+	ReachV1ContactsFieldsContactFieldResourceTypeSingleChoice ReachV1ContactsFieldsContactFieldResourceType = "single_choice"
+	ReachV1ContactsFieldsContactFieldResourceTypeText         ReachV1ContactsFieldsContactFieldResourceType = "text"
+)
+
+// Valid indicates whether the value is a known member of the ReachV1ContactsFieldsContactFieldResourceType enum.
+func (e ReachV1ContactsFieldsContactFieldResourceType) Valid() bool {
+	switch e {
+	case ReachV1ContactsFieldsContactFieldResourceTypeDate:
+		return true
+	case ReachV1ContactsFieldsContactFieldResourceTypeMultiChoice:
+		return true
+	case ReachV1ContactsFieldsContactFieldResourceTypeNumber:
+		return true
+	case ReachV1ContactsFieldsContactFieldResourceTypeSingleChoice:
+		return true
+	case ReachV1ContactsFieldsContactFieldResourceTypeText:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ReachV1ContactsFieldsContactFieldValueResourceType.
+const (
+	ReachV1ContactsFieldsContactFieldValueResourceTypeDate         ReachV1ContactsFieldsContactFieldValueResourceType = "date"
+	ReachV1ContactsFieldsContactFieldValueResourceTypeMultiChoice  ReachV1ContactsFieldsContactFieldValueResourceType = "multi_choice"
+	ReachV1ContactsFieldsContactFieldValueResourceTypeNumber       ReachV1ContactsFieldsContactFieldValueResourceType = "number"
+	ReachV1ContactsFieldsContactFieldValueResourceTypeSingleChoice ReachV1ContactsFieldsContactFieldValueResourceType = "single_choice"
+	ReachV1ContactsFieldsContactFieldValueResourceTypeText         ReachV1ContactsFieldsContactFieldValueResourceType = "text"
+)
+
+// Valid indicates whether the value is a known member of the ReachV1ContactsFieldsContactFieldValueResourceType enum.
+func (e ReachV1ContactsFieldsContactFieldValueResourceType) Valid() bool {
+	switch e {
+	case ReachV1ContactsFieldsContactFieldValueResourceTypeDate:
+		return true
+	case ReachV1ContactsFieldsContactFieldValueResourceTypeMultiChoice:
+		return true
+	case ReachV1ContactsFieldsContactFieldValueResourceTypeNumber:
+		return true
+	case ReachV1ContactsFieldsContactFieldValueResourceTypeSingleChoice:
+		return true
+	case ReachV1ContactsFieldsContactFieldValueResourceTypeText:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ReachV1ContactsFieldsStoreRequestType.
+const (
+	ReachV1ContactsFieldsStoreRequestTypeDate         ReachV1ContactsFieldsStoreRequestType = "date"
+	ReachV1ContactsFieldsStoreRequestTypeMultiChoice  ReachV1ContactsFieldsStoreRequestType = "multi_choice"
+	ReachV1ContactsFieldsStoreRequestTypeNumber       ReachV1ContactsFieldsStoreRequestType = "number"
+	ReachV1ContactsFieldsStoreRequestTypeSingleChoice ReachV1ContactsFieldsStoreRequestType = "single_choice"
+	ReachV1ContactsFieldsStoreRequestTypeText         ReachV1ContactsFieldsStoreRequestType = "text"
+)
+
+// Valid indicates whether the value is a known member of the ReachV1ContactsFieldsStoreRequestType enum.
+func (e ReachV1ContactsFieldsStoreRequestType) Valid() bool {
+	switch e {
+	case ReachV1ContactsFieldsStoreRequestTypeDate:
+		return true
+	case ReachV1ContactsFieldsStoreRequestTypeMultiChoice:
+		return true
+	case ReachV1ContactsFieldsStoreRequestTypeNumber:
+		return true
+	case ReachV1ContactsFieldsStoreRequestTypeSingleChoice:
+		return true
+	case ReachV1ContactsFieldsStoreRequestTypeText:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ReachV1ContactsProfileContactResourceSource.
+const (
+	ReachV1ContactsProfileContactResourceSourceApi      ReachV1ContactsProfileContactResourceSource = "api"
+	ReachV1ContactsProfileContactResourceSourceCheckout ReachV1ContactsProfileContactResourceSource = "checkout"
+	ReachV1ContactsProfileContactResourceSourceForm     ReachV1ContactsProfileContactResourceSource = "form"
+	ReachV1ContactsProfileContactResourceSourceHorizons ReachV1ContactsProfileContactResourceSource = "horizons"
+	ReachV1ContactsProfileContactResourceSourceImport   ReachV1ContactsProfileContactResourceSource = "import"
+	ReachV1ContactsProfileContactResourceSourceManual   ReachV1ContactsProfileContactResourceSource = "manual"
+	ReachV1ContactsProfileContactResourceSourceSync     ReachV1ContactsProfileContactResourceSource = "sync"
+)
+
+// Valid indicates whether the value is a known member of the ReachV1ContactsProfileContactResourceSource enum.
+func (e ReachV1ContactsProfileContactResourceSource) Valid() bool {
+	switch e {
+	case ReachV1ContactsProfileContactResourceSourceApi:
+		return true
+	case ReachV1ContactsProfileContactResourceSourceCheckout:
+		return true
+	case ReachV1ContactsProfileContactResourceSourceForm:
+		return true
+	case ReachV1ContactsProfileContactResourceSourceHorizons:
+		return true
+	case ReachV1ContactsProfileContactResourceSourceImport:
+		return true
+	case ReachV1ContactsProfileContactResourceSourceManual:
+		return true
+	case ReachV1ContactsProfileContactResourceSourceSync:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ReachV1ContactsProfileContactResourceSubscriptionStatus.
+const (
+	ReachV1ContactsProfileContactResourceSubscriptionStatusConfirmed    ReachV1ContactsProfileContactResourceSubscriptionStatus = "confirmed"
+	ReachV1ContactsProfileContactResourceSubscriptionStatusPending      ReachV1ContactsProfileContactResourceSubscriptionStatus = "pending"
+	ReachV1ContactsProfileContactResourceSubscriptionStatusSubscribed   ReachV1ContactsProfileContactResourceSubscriptionStatus = "subscribed"
+	ReachV1ContactsProfileContactResourceSubscriptionStatusUnsubscribed ReachV1ContactsProfileContactResourceSubscriptionStatus = "unsubscribed"
+)
+
+// Valid indicates whether the value is a known member of the ReachV1ContactsProfileContactResourceSubscriptionStatus enum.
+func (e ReachV1ContactsProfileContactResourceSubscriptionStatus) Valid() bool {
+	switch e {
+	case ReachV1ContactsProfileContactResourceSubscriptionStatusConfirmed:
+		return true
+	case ReachV1ContactsProfileContactResourceSubscriptionStatusPending:
+		return true
+	case ReachV1ContactsProfileContactResourceSubscriptionStatusSubscribed:
+		return true
+	case ReachV1ContactsProfileContactResourceSubscriptionStatusUnsubscribed:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ReachV1ContactsProfileContactUpdateResourceSubscriptionStatus.
+const (
+	ReachV1ContactsProfileContactUpdateResourceSubscriptionStatusConfirmed    ReachV1ContactsProfileContactUpdateResourceSubscriptionStatus = "confirmed"
+	ReachV1ContactsProfileContactUpdateResourceSubscriptionStatusPending      ReachV1ContactsProfileContactUpdateResourceSubscriptionStatus = "pending"
+	ReachV1ContactsProfileContactUpdateResourceSubscriptionStatusSubscribed   ReachV1ContactsProfileContactUpdateResourceSubscriptionStatus = "subscribed"
+	ReachV1ContactsProfileContactUpdateResourceSubscriptionStatusUnsubscribed ReachV1ContactsProfileContactUpdateResourceSubscriptionStatus = "unsubscribed"
+)
+
+// Valid indicates whether the value is a known member of the ReachV1ContactsProfileContactUpdateResourceSubscriptionStatus enum.
+func (e ReachV1ContactsProfileContactUpdateResourceSubscriptionStatus) Valid() bool {
+	switch e {
+	case ReachV1ContactsProfileContactUpdateResourceSubscriptionStatusConfirmed:
+		return true
+	case ReachV1ContactsProfileContactUpdateResourceSubscriptionStatusPending:
+		return true
+	case ReachV1ContactsProfileContactUpdateResourceSubscriptionStatusSubscribed:
+		return true
+	case ReachV1ContactsProfileContactUpdateResourceSubscriptionStatusUnsubscribed:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for ReachV1ContactsSegmentsSegmentationContactResourceSource.
 const (
-	ReachV1ContactsSegmentsSegmentationContactResourceSourceImport ReachV1ContactsSegmentsSegmentationContactResourceSource = "import"
-	ReachV1ContactsSegmentsSegmentationContactResourceSourceManual ReachV1ContactsSegmentsSegmentationContactResourceSource = "manual"
-	ReachV1ContactsSegmentsSegmentationContactResourceSourceSync   ReachV1ContactsSegmentsSegmentationContactResourceSource = "sync"
+	ReachV1ContactsSegmentsSegmentationContactResourceSourceApi      ReachV1ContactsSegmentsSegmentationContactResourceSource = "api"
+	ReachV1ContactsSegmentsSegmentationContactResourceSourceCheckout ReachV1ContactsSegmentsSegmentationContactResourceSource = "checkout"
+	ReachV1ContactsSegmentsSegmentationContactResourceSourceForm     ReachV1ContactsSegmentsSegmentationContactResourceSource = "form"
+	ReachV1ContactsSegmentsSegmentationContactResourceSourceHorizons ReachV1ContactsSegmentsSegmentationContactResourceSource = "horizons"
+	ReachV1ContactsSegmentsSegmentationContactResourceSourceImport   ReachV1ContactsSegmentsSegmentationContactResourceSource = "import"
+	ReachV1ContactsSegmentsSegmentationContactResourceSourceManual   ReachV1ContactsSegmentsSegmentationContactResourceSource = "manual"
+	ReachV1ContactsSegmentsSegmentationContactResourceSourceSync     ReachV1ContactsSegmentsSegmentationContactResourceSource = "sync"
 )
 
 // Valid indicates whether the value is a known member of the ReachV1ContactsSegmentsSegmentationContactResourceSource enum.
 func (e ReachV1ContactsSegmentsSegmentationContactResourceSource) Valid() bool {
 	switch e {
+	case ReachV1ContactsSegmentsSegmentationContactResourceSourceApi:
+		return true
+	case ReachV1ContactsSegmentsSegmentationContactResourceSourceCheckout:
+		return true
+	case ReachV1ContactsSegmentsSegmentationContactResourceSourceForm:
+		return true
+	case ReachV1ContactsSegmentsSegmentationContactResourceSourceHorizons:
+		return true
 	case ReachV1ContactsSegmentsSegmentationContactResourceSourceImport:
 		return true
 	case ReachV1ContactsSegmentsSegmentationContactResourceSourceManual:
@@ -1365,6 +1671,8 @@ func (e ReachV1ContactsSegmentsSegmentationContactResourceSource) Valid() bool {
 
 // Defines values for ReachV1ContactsSegmentsSegmentationContactResourceSubscriptionStatus.
 const (
+	ReachV1ContactsSegmentsSegmentationContactResourceSubscriptionStatusConfirmed    ReachV1ContactsSegmentsSegmentationContactResourceSubscriptionStatus = "confirmed"
+	ReachV1ContactsSegmentsSegmentationContactResourceSubscriptionStatusPending      ReachV1ContactsSegmentsSegmentationContactResourceSubscriptionStatus = "pending"
 	ReachV1ContactsSegmentsSegmentationContactResourceSubscriptionStatusSubscribed   ReachV1ContactsSegmentsSegmentationContactResourceSubscriptionStatus = "subscribed"
 	ReachV1ContactsSegmentsSegmentationContactResourceSubscriptionStatusUnsubscribed ReachV1ContactsSegmentsSegmentationContactResourceSubscriptionStatus = "unsubscribed"
 )
@@ -1372,6 +1680,10 @@ const (
 // Valid indicates whether the value is a known member of the ReachV1ContactsSegmentsSegmentationContactResourceSubscriptionStatus enum.
 func (e ReachV1ContactsSegmentsSegmentationContactResourceSubscriptionStatus) Valid() bool {
 	switch e {
+	case ReachV1ContactsSegmentsSegmentationContactResourceSubscriptionStatusConfirmed:
+		return true
+	case ReachV1ContactsSegmentsSegmentationContactResourceSubscriptionStatusPending:
+		return true
 	case ReachV1ContactsSegmentsSegmentationContactResourceSubscriptionStatusSubscribed:
 		return true
 	case ReachV1ContactsSegmentsSegmentationContactResourceSubscriptionStatusUnsubscribed:
@@ -1549,6 +1861,48 @@ func (e ReachV1ContactsSegmentsStoreRequestLogic) Valid() bool {
 	case AND:
 		return true
 	case OR:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ReachV1ContactsTagsTagResourceType.
+const (
+	ReachV1ContactsTagsTagResourceTypeCustom ReachV1ContactsTagsTagResourceType = "custom"
+	ReachV1ContactsTagsTagResourceTypeForm   ReachV1ContactsTagsTagResourceType = "form"
+)
+
+// Valid indicates whether the value is a known member of the ReachV1ContactsTagsTagResourceType enum.
+func (e ReachV1ContactsTagsTagResourceType) Valid() bool {
+	switch e {
+	case ReachV1ContactsTagsTagResourceTypeCustom:
+		return true
+	case ReachV1ContactsTagsTagResourceTypeForm:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ReachV1ContactsUpdateRequestSubscriptionStatus.
+const (
+	ReachV1ContactsUpdateRequestSubscriptionStatusConfirmed    ReachV1ContactsUpdateRequestSubscriptionStatus = "confirmed"
+	ReachV1ContactsUpdateRequestSubscriptionStatusPending      ReachV1ContactsUpdateRequestSubscriptionStatus = "pending"
+	ReachV1ContactsUpdateRequestSubscriptionStatusSubscribed   ReachV1ContactsUpdateRequestSubscriptionStatus = "subscribed"
+	ReachV1ContactsUpdateRequestSubscriptionStatusUnsubscribed ReachV1ContactsUpdateRequestSubscriptionStatus = "unsubscribed"
+)
+
+// Valid indicates whether the value is a known member of the ReachV1ContactsUpdateRequestSubscriptionStatus enum.
+func (e ReachV1ContactsUpdateRequestSubscriptionStatus) Valid() bool {
+	switch e {
+	case ReachV1ContactsUpdateRequestSubscriptionStatusConfirmed:
+		return true
+	case ReachV1ContactsUpdateRequestSubscriptionStatusPending:
+		return true
+	case ReachV1ContactsUpdateRequestSubscriptionStatusSubscribed:
+		return true
+	case ReachV1ContactsUpdateRequestSubscriptionStatusUnsubscribed:
 		return true
 	default:
 		return false
@@ -1830,16 +2184,16 @@ func (e VPSV1FirewallRulesStoreRequestProtocol) Valid() bool {
 
 // Defines values for VPSV1FirewallRulesStoreRequestSource.
 const (
-	VPSV1FirewallRulesStoreRequestSourceAny    VPSV1FirewallRulesStoreRequestSource = "any"
-	VPSV1FirewallRulesStoreRequestSourceCustom VPSV1FirewallRulesStoreRequestSource = "custom"
+	Any    VPSV1FirewallRulesStoreRequestSource = "any"
+	Custom VPSV1FirewallRulesStoreRequestSource = "custom"
 )
 
 // Valid indicates whether the value is a known member of the VPSV1FirewallRulesStoreRequestSource enum.
 func (e VPSV1FirewallRulesStoreRequestSource) Valid() bool {
 	switch e {
-	case VPSV1FirewallRulesStoreRequestSourceAny:
+	case Any:
 		return true
-	case VPSV1FirewallRulesStoreRequestSourceCustom:
+	case Custom:
 		return true
 	default:
 		return false
@@ -2322,6 +2676,8 @@ func (e MailWebhookStatus) Valid() bool {
 
 // Defines values for SubscriptionStatus.
 const (
+	SubscriptionStatusConfirmed    SubscriptionStatus = "confirmed"
+	SubscriptionStatusPending      SubscriptionStatus = "pending"
 	SubscriptionStatusSubscribed   SubscriptionStatus = "subscribed"
 	SubscriptionStatusUnsubscribed SubscriptionStatus = "unsubscribed"
 )
@@ -2329,6 +2685,10 @@ const (
 // Valid indicates whether the value is a known member of the SubscriptionStatus enum.
 func (e SubscriptionStatus) Valid() bool {
 	switch e {
+	case SubscriptionStatusConfirmed:
+		return true
+	case SubscriptionStatusPending:
+		return true
 	case SubscriptionStatusSubscribed:
 		return true
 	case SubscriptionStatusUnsubscribed:
@@ -2643,16 +3003,16 @@ func (e MailListMailboxActionLogsV1ParamsEvent) Valid() bool {
 
 // Defines values for MailListOutboundLogsV1ParamsStatus.
 const (
-	Failed     MailListOutboundLogsV1ParamsStatus = "Failed"
-	Successful MailListOutboundLogsV1ParamsStatus = "Successful"
+	MailListOutboundLogsV1ParamsStatusFailed     MailListOutboundLogsV1ParamsStatus = "Failed"
+	MailListOutboundLogsV1ParamsStatusSuccessful MailListOutboundLogsV1ParamsStatus = "Successful"
 )
 
 // Valid indicates whether the value is a known member of the MailListOutboundLogsV1ParamsStatus enum.
 func (e MailListOutboundLogsV1ParamsStatus) Valid() bool {
 	switch e {
-	case Failed:
+	case MailListOutboundLogsV1ParamsStatusFailed:
 		return true
-	case Successful:
+	case MailListOutboundLogsV1ParamsStatusSuccessful:
 		return true
 	default:
 		return false
@@ -2700,6 +3060,8 @@ func (e MailListWebhooksV1ParamsStatus) Valid() bool {
 
 // Defines values for ReachListContactsV1ParamsSubscriptionStatus.
 const (
+	ReachListContactsV1ParamsSubscriptionStatusConfirmed    ReachListContactsV1ParamsSubscriptionStatus = "confirmed"
+	ReachListContactsV1ParamsSubscriptionStatusPending      ReachListContactsV1ParamsSubscriptionStatus = "pending"
 	ReachListContactsV1ParamsSubscriptionStatusSubscribed   ReachListContactsV1ParamsSubscriptionStatus = "subscribed"
 	ReachListContactsV1ParamsSubscriptionStatusUnsubscribed ReachListContactsV1ParamsSubscriptionStatus = "unsubscribed"
 )
@@ -2707,9 +3069,37 @@ const (
 // Valid indicates whether the value is a known member of the ReachListContactsV1ParamsSubscriptionStatus enum.
 func (e ReachListContactsV1ParamsSubscriptionStatus) Valid() bool {
 	switch e {
+	case ReachListContactsV1ParamsSubscriptionStatusConfirmed:
+		return true
+	case ReachListContactsV1ParamsSubscriptionStatusPending:
+		return true
 	case ReachListContactsV1ParamsSubscriptionStatusSubscribed:
 		return true
 	case ReachListContactsV1ParamsSubscriptionStatusUnsubscribed:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ReachListProfileContactsV1ParamsSubscriptionStatus.
+const (
+	ReachListProfileContactsV1ParamsSubscriptionStatusConfirmed    ReachListProfileContactsV1ParamsSubscriptionStatus = "confirmed"
+	ReachListProfileContactsV1ParamsSubscriptionStatusPending      ReachListProfileContactsV1ParamsSubscriptionStatus = "pending"
+	ReachListProfileContactsV1ParamsSubscriptionStatusSubscribed   ReachListProfileContactsV1ParamsSubscriptionStatus = "subscribed"
+	ReachListProfileContactsV1ParamsSubscriptionStatusUnsubscribed ReachListProfileContactsV1ParamsSubscriptionStatus = "unsubscribed"
+)
+
+// Valid indicates whether the value is a known member of the ReachListProfileContactsV1ParamsSubscriptionStatus enum.
+func (e ReachListProfileContactsV1ParamsSubscriptionStatus) Valid() bool {
+	switch e {
+	case ReachListProfileContactsV1ParamsSubscriptionStatusConfirmed:
+		return true
+	case ReachListProfileContactsV1ParamsSubscriptionStatusPending:
+		return true
+	case ReachListProfileContactsV1ParamsSubscriptionStatusSubscribed:
+		return true
+	case ReachListProfileContactsV1ParamsSubscriptionStatusUnsubscribed:
 		return true
 	default:
 		return false
@@ -3825,11 +4215,91 @@ type DomainsV1IRTPVerificationResource struct {
 // DomainsV1IRTPVerificationResourceStatus IRTP verification status
 type DomainsV1IRTPVerificationResourceStatus string
 
+// DomainsV1MoveIncomingUpdateRequest defines model for Domains.V1.Move.Incoming.UpdateRequest.
+type DomainsV1MoveIncomingUpdateRequest struct {
+	// DomainContacts WHOIS profiles of the accepting account. Only the contact types required by the TLD are applied, but all four IDs must be provided.
+	DomainContacts struct {
+		// AdminId Administrative contact WHOIS record ID
+		AdminId int `json:"admin_id"`
+
+		// BillingId Billing contact WHOIS record ID
+		BillingId int `json:"billing_id"`
+
+		// OwnerId Owner contact WHOIS record ID
+		OwnerId int `json:"owner_id"`
+
+		// TechId Technical contact WHOIS record ID
+		TechId int `json:"tech_id"`
+	} `json:"domain_contacts"`
+}
+
+// DomainsV1MoveMoveCollection Array of [`Domains.V1.Move.MoveResource`](#model/domainsv1movemoveresource)
+type DomainsV1MoveMoveCollection = []DomainsV1MoveMoveResource
+
+// DomainsV1MoveMoveResource defines model for Domains.V1.Move.MoveResource.
+type DomainsV1MoveMoveResource struct {
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+
+	// Domain Domain name
+	Domain *string `json:"domain,omitempty"`
+
+	// Status Status of the move
+	Status    *DomainsV1MoveMoveResourceStatus `json:"status,omitempty"`
+	UpdatedAt *time.Time                       `json:"updated_at,omitempty"`
+}
+
+// DomainsV1MoveMoveResourceStatus Status of the move
+type DomainsV1MoveMoveResourceStatus string
+
+// DomainsV1MoveOutgoingStoreRequest defines model for Domains.V1.Move.Outgoing.StoreRequest.
+type DomainsV1MoveOutgoingStoreRequest struct {
+	// NewCustomerEmail Email address of the Hostinger account receiving the domain
+	NewCustomerEmail string `json:"new_customer_email"`
+}
+
 // DomainsV1PortfolioAuthCodeAuthCodeResource defines model for Domains.V1.Portfolio.AuthCode.AuthCodeResource.
 type DomainsV1PortfolioAuthCodeAuthCodeResource struct {
 	// AuthCode Domain authorization code used to transfer the domain to another registrar.
 	AuthCode *string `json:"auth_code,omitempty"`
 }
+
+// DomainsV1PortfolioClaimRequest defines model for Domains.V1.Portfolio.ClaimRequest.
+type DomainsV1PortfolioClaimRequest struct {
+	// AdditionalDetails Additional registration data, possible values depends on TLD
+	AdditionalDetails *map[string]interface{} `json:"additional_details,omitempty"`
+
+	// Domain Domain name
+	Domain string `json:"domain"`
+
+	// DomainContacts Domain contact information
+	DomainContacts *struct {
+		// AdminId Administrative contact WHOIS record ID
+		AdminId *int `json:"admin_id,omitempty"`
+
+		// BillingId Billing contact WHOIS record ID
+		BillingId *int `json:"billing_id,omitempty"`
+
+		// OwnerId Owner contact WHOIS record ID
+		OwnerId *int `json:"owner_id,omitempty"`
+
+		// TechId Technical contact WHOIS record ID
+		TechId *int `json:"tech_id,omitempty"`
+	} `json:"domain_contacts,omitempty"`
+}
+
+// DomainsV1PortfolioClaimResource defines model for Domains.V1.Portfolio.ClaimResource.
+type DomainsV1PortfolioClaimResource struct {
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+
+	// Domain Domain name
+	Domain *string `json:"domain,omitempty"`
+
+	// Status Domain status
+	Status *DomainsV1PortfolioClaimResourceStatus `json:"status,omitempty"`
+}
+
+// DomainsV1PortfolioClaimResourceStatus Domain status
+type DomainsV1PortfolioClaimResourceStatus string
 
 // DomainsV1PortfolioPurchaseRequest defines model for Domains.V1.Portfolio.PurchaseRequest.
 type DomainsV1PortfolioPurchaseRequest struct {
@@ -3889,6 +4359,33 @@ type DomainsV1PortfolioUpdateNameserversRequest struct {
 
 	// Ns4 Fourth name server
 	Ns4 *string `json:"ns4,omitempty"`
+}
+
+// DomainsV1TransferClaimRequest defines model for Domains.V1.Transfer.ClaimRequest.
+type DomainsV1TransferClaimRequest struct {
+	// AuthCode Authorization code from the current registrar
+	AuthCode string `json:"auth_code"`
+
+	// Domain Domain name
+	Domain string `json:"domain"`
+
+	// DomainContacts Domain contact information
+	DomainContacts *struct {
+		// AdminId Administrative contact WHOIS record ID
+		AdminId *int `json:"admin_id,omitempty"`
+
+		// BillingId Billing contact WHOIS record ID
+		BillingId *int `json:"billing_id,omitempty"`
+
+		// OwnerId Owner contact WHOIS record ID
+		OwnerId *int `json:"owner_id,omitempty"`
+
+		// TechId Technical contact WHOIS record ID
+		TechId *int `json:"tech_id,omitempty"`
+	} `json:"domain_contacts,omitempty"`
+
+	// ShouldKeepNs Keep the existing nameservers of the domain
+	ShouldKeepNs *bool `json:"should_keep_ns,omitempty"`
 }
 
 // DomainsV1TransferTransferCollection Array of [`Domains.V1.Transfer.TransferResource`](#model/domainsv1transfertransferresource)
@@ -5692,8 +6189,52 @@ type MailV1WebhooksWebhookTestResultResource struct {
 	IsSuccessful *bool `json:"is_successful,omitempty"`
 }
 
+// ReachV1ContactsBulkStoreRequest Create many contacts in one call
+type ReachV1ContactsBulkStoreRequest struct {
+	Contacts []struct {
+		Email string  `json:"email"`
+		Name  *string `json:"name,omitempty"`
+
+		// Phone Phone number in E.164 format (leading "+" then 7-15 digits)
+		Phone   *string `json:"phone,omitempty"`
+		Surname *string `json:"surname,omitempty"`
+	} `json:"contacts"`
+
+	// Note Note applied to every created contact
+	Note *string `json:"note,omitempty"`
+
+	// TagUuids Existing tags to attach to every created contact
+	TagUuids *[]string `json:"tag_uuids,omitempty"`
+}
+
 // ReachV1ContactsContactCollection Array of [`Reach.V1.Contacts.ContactResource`](#model/reachv1contactscontactresource)
 type ReachV1ContactsContactCollection = []ReachV1ContactsContactResource
+
+// ReachV1ContactsContactDetailsResource defines model for Reach.V1.Contacts.ContactDetailsResource.
+type ReachV1ContactsContactDetailsResource struct {
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+	Domain    *string    `json:"domain,omitempty"`
+	Email     *string    `json:"email,omitempty"`
+
+	// Fields Custom field values held by this contact
+	Fields             *[]ReachV1ContactsFieldsContactFieldValueResource        `json:"fields,omitempty"`
+	Name               *string                                                  `json:"name,omitempty"`
+	Note               *string                                                  `json:"note,omitempty"`
+	Phone              *string                                                  `json:"phone,omitempty"`
+	Source             *ReachV1ContactsContactDetailsResourceSource             `json:"source,omitempty"`
+	SubscribedAt       *time.Time                                               `json:"subscribed_at,omitempty"`
+	SubscriptionStatus *ReachV1ContactsContactDetailsResourceSubscriptionStatus `json:"subscription_status,omitempty"`
+	Surname            *string                                                  `json:"surname,omitempty"`
+	Tags               *[]ReachV1ContactsTagsTagResource                        `json:"tags,omitempty"`
+	UnsubscribedAt     *time.Time                                               `json:"unsubscribed_at,omitempty"`
+	Uuid               *string                                                  `json:"uuid,omitempty"`
+}
+
+// ReachV1ContactsContactDetailsResourceSource defines model for ReachV1ContactsContactDetailsResource.Source.
+type ReachV1ContactsContactDetailsResourceSource string
+
+// ReachV1ContactsContactDetailsResourceSubscriptionStatus defines model for ReachV1ContactsContactDetailsResource.SubscriptionStatus.
+type ReachV1ContactsContactDetailsResourceSubscriptionStatus string
 
 // ReachV1ContactsContactResource defines model for Reach.V1.Contacts.ContactResource.
 type ReachV1ContactsContactResource struct {
@@ -5713,6 +6254,78 @@ type ReachV1ContactsContactResourceSource string
 // ReachV1ContactsContactResourceSubscriptionStatus defines model for ReachV1ContactsContactResource.SubscriptionStatus.
 type ReachV1ContactsContactResourceSubscriptionStatus string
 
+// ReachV1ContactsFieldsContactFieldCollection Array of [`Reach.V1.Contacts.Fields.ContactFieldResource`](#model/reachv1contactsfieldscontactfieldresource)
+type ReachV1ContactsFieldsContactFieldCollection = []ReachV1ContactsFieldsContactFieldResource
+
+// ReachV1ContactsFieldsContactFieldOptionResource defines model for Reach.V1.Contacts.Fields.ContactFieldOptionResource.
+type ReachV1ContactsFieldsContactFieldOptionResource struct {
+	Label     *string `json:"label,omitempty"`
+	SortOrder *int    `json:"sort_order,omitempty"`
+	Uuid      *string `json:"uuid,omitempty"`
+}
+
+// ReachV1ContactsFieldsContactFieldResource defines model for Reach.V1.Contacts.Fields.ContactFieldResource.
+type ReachV1ContactsFieldsContactFieldResource struct {
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+	Label     *string    `json:"label,omitempty"`
+
+	// Options Available choices. Always empty for the scalar field types.
+	Options *[]ReachV1ContactsFieldsContactFieldOptionResource `json:"options,omitempty"`
+
+	// Slug Derived from the label on creation and immutable afterwards
+	Slug *string                                        `json:"slug,omitempty"`
+	Type *ReachV1ContactsFieldsContactFieldResourceType `json:"type,omitempty"`
+	Uuid *string                                        `json:"uuid,omitempty"`
+}
+
+// ReachV1ContactsFieldsContactFieldResourceType defines model for ReachV1ContactsFieldsContactFieldResource.Type.
+type ReachV1ContactsFieldsContactFieldResourceType string
+
+// ReachV1ContactsFieldsContactFieldValueResource A custom contact field together with the value held by one contact
+type ReachV1ContactsFieldsContactFieldValueResource struct {
+	Label *string `json:"label,omitempty"`
+
+	// Options Every option the field offers, not only the selected ones
+	Options *[]ReachV1ContactsFieldsContactFieldOptionResource `json:"options,omitempty"`
+
+	// SelectedOptionUuids Chosen options for the choice field types, empty for the scalar types
+	SelectedOptionUuids *[]string                                           `json:"selected_option_uuids,omitempty"`
+	Slug                *string                                             `json:"slug,omitempty"`
+	Type                *ReachV1ContactsFieldsContactFieldValueResourceType `json:"type,omitempty"`
+	Uuid                *string                                             `json:"uuid,omitempty"`
+
+	// Value Set for the scalar field types, null for the choice types
+	Value *string `json:"value,omitempty"`
+}
+
+// ReachV1ContactsFieldsContactFieldValueResourceType defines model for ReachV1ContactsFieldsContactFieldValueResource.Type.
+type ReachV1ContactsFieldsContactFieldValueResourceType string
+
+// ReachV1ContactsFieldsStoreRequest Define a custom contact field for the profile
+type ReachV1ContactsFieldsStoreRequest struct {
+	Label string `json:"label"`
+
+	// Options Required for single_choice and multi_choice, ignored for the scalar types. Labels must be unique regardless of casing.
+	Options *[]string `json:"options,omitempty"`
+
+	// Type Immutable once the field exists
+	Type ReachV1ContactsFieldsStoreRequestType `json:"type"`
+}
+
+// ReachV1ContactsFieldsStoreRequestType Immutable once the field exists
+type ReachV1ContactsFieldsStoreRequestType string
+
+// ReachV1ContactsFieldsUpdateRequest Rename a custom contact field and, for the choice types, replace its option set. The field type and slug are immutable.
+type ReachV1ContactsFieldsUpdateRequest struct {
+	Label string `json:"label"`
+
+	// Options Replaces the option set when provided. Entries carrying a uuid are kept and relabelled, entries without one are created, and any existing option missing from the list is deleted along with the values contacts hold for it.
+	Options *[]struct {
+		Label string  `json:"label"`
+		Uuid  *string `json:"uuid,omitempty"`
+	} `json:"options,omitempty"`
+}
+
 // ReachV1ContactsGroupsContactGroupCollection Array of [`Reach.V1.Contacts.Groups.ContactGroupResource`](#model/reachv1contactsgroupscontactgroupresource)
 type ReachV1ContactsGroupsContactGroupCollection = []ReachV1ContactsGroupsContactGroupResource
 
@@ -5721,6 +6334,44 @@ type ReachV1ContactsGroupsContactGroupResource struct {
 	Title *string `json:"title,omitempty"`
 	Uuid  *string `json:"uuid,omitempty"`
 }
+
+// ReachV1ContactsProfileContactCollection Array of [`Reach.V1.Contacts.ProfileContactResource`](#model/reachv1contactsprofilecontactresource)
+type ReachV1ContactsProfileContactCollection = []ReachV1ContactsProfileContactResource
+
+// ReachV1ContactsProfileContactResource defines model for Reach.V1.Contacts.ProfileContactResource.
+type ReachV1ContactsProfileContactResource struct {
+	Email              *string                                                  `json:"email,omitempty"`
+	Name               *string                                                  `json:"name,omitempty"`
+	Note               *string                                                  `json:"note,omitempty"`
+	Phone              *string                                                  `json:"phone,omitempty"`
+	Source             *ReachV1ContactsProfileContactResourceSource             `json:"source,omitempty"`
+	SubscribedAt       *time.Time                                               `json:"subscribed_at,omitempty"`
+	SubscriptionStatus *ReachV1ContactsProfileContactResourceSubscriptionStatus `json:"subscription_status,omitempty"`
+	Surname            *string                                                  `json:"surname,omitempty"`
+	UnsubscribedAt     *time.Time                                               `json:"unsubscribed_at,omitempty"`
+	Uuid               *string                                                  `json:"uuid,omitempty"`
+}
+
+// ReachV1ContactsProfileContactResourceSource defines model for ReachV1ContactsProfileContactResource.Source.
+type ReachV1ContactsProfileContactResourceSource string
+
+// ReachV1ContactsProfileContactResourceSubscriptionStatus defines model for ReachV1ContactsProfileContactResource.SubscriptionStatus.
+type ReachV1ContactsProfileContactResourceSubscriptionStatus string
+
+// ReachV1ContactsProfileContactUpdateResource defines model for Reach.V1.Contacts.ProfileContactUpdateResource.
+type ReachV1ContactsProfileContactUpdateResource struct {
+	Email              *string                                                        `json:"email,omitempty"`
+	Name               *string                                                        `json:"name,omitempty"`
+	Phone              *string                                                        `json:"phone,omitempty"`
+	SubscribedAt       *time.Time                                                     `json:"subscribed_at,omitempty"`
+	SubscriptionStatus *ReachV1ContactsProfileContactUpdateResourceSubscriptionStatus `json:"subscription_status,omitempty"`
+	Surname            *string                                                        `json:"surname,omitempty"`
+	UnsubscribedAt     *time.Time                                                     `json:"unsubscribed_at,omitempty"`
+	Uuid               *string                                                        `json:"uuid,omitempty"`
+}
+
+// ReachV1ContactsProfileContactUpdateResourceSubscriptionStatus defines model for ReachV1ContactsProfileContactUpdateResource.SubscriptionStatus.
+type ReachV1ContactsProfileContactUpdateResourceSubscriptionStatus string
 
 // ReachV1ContactsSegmentsContactSegmentCollection Array of [`Reach.V1.Contacts.Segments.ContactSegmentResource`](#model/reachv1contactssegmentscontactsegmentresource)
 type ReachV1ContactsSegmentsContactSegmentCollection = []ReachV1ContactsSegmentsContactSegmentResource
@@ -5804,6 +6455,67 @@ type ReachV1ContactsStoreRequest struct {
 	Phone   *string `json:"phone,omitempty"`
 	Surname *string `json:"surname,omitempty"`
 }
+
+// ReachV1ContactsTagsManageContactsRequest Contacts to assign to, or remove from, a tag
+type ReachV1ContactsTagsManageContactsRequest struct {
+	// AllContacts Apply to every contact in the profile
+	AllContacts *bool `json:"all_contacts,omitempty"`
+
+	// ContactUuids Contacts to apply the change to. Required unless all_contacts is true.
+	ContactUuids *[]string `json:"contact_uuids,omitempty"`
+}
+
+// ReachV1ContactsTagsStoreRequest Names to create. Names that already exist in the profile are returned as they are.
+type ReachV1ContactsTagsStoreRequest struct {
+	Names []string `json:"names"`
+}
+
+// ReachV1ContactsTagsTagCollection Array of [`Reach.V1.Contacts.Tags.TagResource`](#model/reachv1contactstagstagresource)
+type ReachV1ContactsTagsTagCollection = []ReachV1ContactsTagsTagResource
+
+// ReachV1ContactsTagsTagResource defines model for Reach.V1.Contacts.Tags.TagResource.
+type ReachV1ContactsTagsTagResource struct {
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+
+	// Type How the tag came about. `custom` covers the tags you create yourself, `form` covers the ones Reach creates for its forms.
+	Type  *ReachV1ContactsTagsTagResourceType `json:"type,omitempty"`
+	Uuid  *string                             `json:"uuid,omitempty"`
+	Value *string                             `json:"value,omitempty"`
+}
+
+// ReachV1ContactsTagsTagResourceType How the tag came about. `custom` covers the tags you create yourself, `form` covers the ones Reach creates for its forms.
+type ReachV1ContactsTagsTagResourceType string
+
+// ReachV1ContactsTagsUpdateRequest Rename a tag
+type ReachV1ContactsTagsUpdateRequest struct {
+	// Value New tag name
+	Value string `json:"value"`
+}
+
+// ReachV1ContactsUpdateRequest Fields to change on a contact. Omitted properties are left untouched.
+type ReachV1ContactsUpdateRequest struct {
+	Email *string `json:"email,omitempty"`
+
+	// Fields Set custom field values. Omit to leave untouched, send an empty array to clear them all.
+	Fields *[]struct {
+		// SelectedOptionUuids For the choice field types
+		SelectedOptionUuids *[]string `json:"selected_option_uuids,omitempty"`
+		Uuid                string    `json:"uuid"`
+
+		// Value For the scalar field types
+		Value *string `json:"value,omitempty"`
+	} `json:"fields,omitempty"`
+	Name *string `json:"name,omitempty"`
+	Note *string `json:"note,omitempty"`
+
+	// Phone Phone number in E.164 format (leading "+" then 7-15 digits)
+	Phone              *string                                         `json:"phone,omitempty"`
+	SubscriptionStatus *ReachV1ContactsUpdateRequestSubscriptionStatus `json:"subscription_status,omitempty"`
+	Surname            *string                                         `json:"surname,omitempty"`
+}
+
+// ReachV1ContactsUpdateRequestSubscriptionStatus defines model for ReachV1ContactsUpdateRequest.SubscriptionStatus.
+type ReachV1ContactsUpdateRequestSubscriptionStatus string
 
 // ReachV1ProfilesDomainsDnsRecordStatus defines model for Reach.V1.Profiles.Domains.DnsRecordStatus.
 type ReachV1ProfilesDomainsDnsRecordStatus struct {
@@ -7067,6 +7779,9 @@ type BuildUuidPath = openapi_types.UUID
 // Category defines model for category.
 type Category string
 
+// ContactUuid defines model for contactUuid.
+type ContactUuid = openapi_types.UUID
+
 // CronJobUidPath defines model for cron_job_uid_path.
 type CronJobUidPath = string
 
@@ -7085,8 +7800,14 @@ type Domain = string
 // DomainFilter defines model for domain_filter.
 type DomainFilter = string
 
+// FieldUuid defines model for fieldUuid.
+type FieldUuid = openapi_types.UUID
+
 // FirewallId defines model for firewallId.
 type FirewallId = int
+
+// ForceSync defines model for force_sync.
+type ForceSync = bool
 
 // FromDomain defines model for from_domain.
 type FromDomain = string
@@ -7226,6 +7947,9 @@ type PublicKeyId = int
 // RuleId defines model for ruleId.
 type RuleId = int
 
+// Search defines model for search.
+type Search = string
+
 // SegmentUuid defines model for segmentUuid.
 type SegmentUuid = string
 
@@ -7249,6 +7973,9 @@ type SubscriptionId = string
 
 // SubscriptionStatus defines model for subscription_status.
 type SubscriptionStatus string
+
+// TagUuid defines model for tagUuid.
+type TagUuid = openapi_types.UUID
 
 // TemplateId defines model for templateId.
 type TemplateId = int
@@ -7366,6 +8093,12 @@ type BillingGetCatalogItemListV1Params struct {
 
 // BillingGetCatalogItemListV1ParamsCategory defines parameters for BillingGetCatalogItemListV1.
 type BillingGetCatalogItemListV1ParamsCategory string
+
+// DomainsGetIncomingDomainMoveV1Params defines parameters for DomainsGetIncomingDomainMoveV1.
+type DomainsGetIncomingDomainMoveV1Params struct {
+	// ForceSync Re-check the move against the registry before responding. Only has an effect while the move is in the `activating` status.
+	ForceSync *ForceSync `form:"force_sync,omitempty" json:"force_sync,omitempty"`
+}
 
 // DomainsGetWHOISProfileListV1Params defines parameters for DomainsGetWHOISProfileListV1.
 type DomainsGetWHOISProfileListV1Params struct {
@@ -7847,6 +8580,27 @@ type ReachListContactsV1Params struct {
 // ReachListContactsV1ParamsSubscriptionStatus defines parameters for ReachListContactsV1.
 type ReachListContactsV1ParamsSubscriptionStatus string
 
+// ReachListProfileContactsV1Params defines parameters for ReachListProfileContactsV1.
+type ReachListProfileContactsV1Params struct {
+	// SubscriptionStatus Filter contacts by subscription status
+	SubscriptionStatus *ReachListProfileContactsV1ParamsSubscriptionStatus `form:"subscription_status,omitempty" json:"subscription_status,omitempty"`
+
+	// TagUuid Filter contacts by tag UUID
+	TagUuid *TagUuid `form:"tag_uuid,omitempty" json:"tag_uuid,omitempty"`
+
+	// Search Search contacts by email
+	Search *Search `form:"search,omitempty" json:"search,omitempty"`
+
+	// Page Page number
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PerPage Number of items per page
+	PerPage *PerPage `form:"per_page,omitempty" json:"per_page,omitempty"`
+}
+
+// ReachListProfileContactsV1ParamsSubscriptionStatus defines parameters for ReachListProfileContactsV1.
+type ReachListProfileContactsV1ParamsSubscriptionStatus string
+
 // ReachListProfileSegmentContactsV1Params defines parameters for ReachListProfileSegmentContactsV1.
 type ReachListProfileSegmentContactsV1Params struct {
 	// Page Page number
@@ -7961,11 +8715,23 @@ type DomainsCreateDomainForwardingV1JSONRequestBody = DomainsV1ForwardingStoreRe
 // DomainsUpdateDomainForwardingV1JSONRequestBody defines body for DomainsUpdateDomainForwardingV1 for application/json ContentType.
 type DomainsUpdateDomainForwardingV1JSONRequestBody = DomainsV1ForwardingUpdateRequest
 
+// DomainsAcceptIncomingDomainMoveV1JSONRequestBody defines body for DomainsAcceptIncomingDomainMoveV1 for application/json ContentType.
+type DomainsAcceptIncomingDomainMoveV1JSONRequestBody = DomainsV1MoveIncomingUpdateRequest
+
+// DomainsStartOutgoingDomainMoveV1JSONRequestBody defines body for DomainsStartOutgoingDomainMoveV1 for application/json ContentType.
+type DomainsStartOutgoingDomainMoveV1JSONRequestBody = DomainsV1MoveOutgoingStoreRequest
+
 // DomainsPurchaseNewDomainV1JSONRequestBody defines body for DomainsPurchaseNewDomainV1 for application/json ContentType.
 type DomainsPurchaseNewDomainV1JSONRequestBody = DomainsV1PortfolioPurchaseRequest
 
+// DomainsClaimFreeDomainV1JSONRequestBody defines body for DomainsClaimFreeDomainV1 for application/json ContentType.
+type DomainsClaimFreeDomainV1JSONRequestBody = DomainsV1PortfolioClaimRequest
+
 // DomainsUpdateDomainNameserversV1JSONRequestBody defines body for DomainsUpdateDomainNameserversV1 for application/json ContentType.
 type DomainsUpdateDomainNameserversV1JSONRequestBody = DomainsV1PortfolioUpdateNameserversRequest
+
+// DomainsClaimFreeDomainTransferV1JSONRequestBody defines body for DomainsClaimFreeDomainTransferV1 for application/json ContentType.
+type DomainsClaimFreeDomainTransferV1JSONRequestBody = DomainsV1TransferClaimRequest
 
 // DomainsCreateWHOISProfileV1JSONRequestBody defines body for DomainsCreateWHOISProfileV1 for application/json ContentType.
 type DomainsCreateWHOISProfileV1JSONRequestBody = DomainsV1WHOISStoreRequest
@@ -8131,6 +8897,30 @@ type ReachCreateANewContactV1JSONRequestBody = ReachV1ContactsStoreRequest
 
 // ReachCreateNewContactsV1JSONRequestBody defines body for ReachCreateNewContactsV1 for application/json ContentType.
 type ReachCreateNewContactsV1JSONRequestBody = ReachV1ContactsStoreRequest
+
+// ReachCreateContactsInBulkV1JSONRequestBody defines body for ReachCreateContactsInBulkV1 for application/json ContentType.
+type ReachCreateContactsInBulkV1JSONRequestBody = ReachV1ContactsBulkStoreRequest
+
+// ReachCreateAContactFieldV1JSONRequestBody defines body for ReachCreateAContactFieldV1 for application/json ContentType.
+type ReachCreateAContactFieldV1JSONRequestBody = ReachV1ContactsFieldsStoreRequest
+
+// ReachUpdateAContactFieldV1JSONRequestBody defines body for ReachUpdateAContactFieldV1 for application/json ContentType.
+type ReachUpdateAContactFieldV1JSONRequestBody = ReachV1ContactsFieldsUpdateRequest
+
+// ReachUpdateAContactV1JSONRequestBody defines body for ReachUpdateAContactV1 for application/json ContentType.
+type ReachUpdateAContactV1JSONRequestBody = ReachV1ContactsUpdateRequest
+
+// ReachCreateOrFindTagsV1JSONRequestBody defines body for ReachCreateOrFindTagsV1 for application/json ContentType.
+type ReachCreateOrFindTagsV1JSONRequestBody = ReachV1ContactsTagsStoreRequest
+
+// ReachRenameATagV1JSONRequestBody defines body for ReachRenameATagV1 for application/json ContentType.
+type ReachRenameATagV1JSONRequestBody = ReachV1ContactsTagsUpdateRequest
+
+// ReachRemoveContactsFromATagV1JSONRequestBody defines body for ReachRemoveContactsFromATagV1 for application/json ContentType.
+type ReachRemoveContactsFromATagV1JSONRequestBody = ReachV1ContactsTagsManageContactsRequest
+
+// ReachAssignContactsToATagV1JSONRequestBody defines body for ReachAssignContactsToATagV1 for application/json ContentType.
+type ReachAssignContactsToATagV1JSONRequestBody = ReachV1ContactsTagsManageContactsRequest
 
 // ReachCreateANewContactSegmentV1JSONRequestBody defines body for ReachCreateANewContactSegmentV1 for application/json ContentType.
 type ReachCreateANewContactSegmentV1JSONRequestBody = ReachV1ContactsSegmentsStoreRequest
@@ -9325,6 +10115,34 @@ type ClientInterface interface {
 	// DomainsGetPendingIRTPVerificationV1 request
 	DomainsGetPendingIRTPVerificationV1(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// DomainsGetIncomingDomainMoveListV1 request
+	DomainsGetIncomingDomainMoveListV1(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DomainsRejectIncomingDomainMoveV1 request
+	DomainsRejectIncomingDomainMoveV1(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DomainsGetIncomingDomainMoveV1 request
+	DomainsGetIncomingDomainMoveV1(ctx context.Context, domain Domain, params *DomainsGetIncomingDomainMoveV1Params, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DomainsAcceptIncomingDomainMoveV1WithBody request with any body
+	DomainsAcceptIncomingDomainMoveV1WithBody(ctx context.Context, domain Domain, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	DomainsAcceptIncomingDomainMoveV1(ctx context.Context, domain Domain, body DomainsAcceptIncomingDomainMoveV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DomainsGetOutgoingDomainMoveListV1 request
+	DomainsGetOutgoingDomainMoveListV1(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DomainsCancelOutgoingDomainMoveV1 request
+	DomainsCancelOutgoingDomainMoveV1(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DomainsGetOutgoingDomainMoveV1 request
+	DomainsGetOutgoingDomainMoveV1(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DomainsStartOutgoingDomainMoveV1WithBody request with any body
+	DomainsStartOutgoingDomainMoveV1WithBody(ctx context.Context, domain Domain, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	DomainsStartOutgoingDomainMoveV1(ctx context.Context, domain Domain, body DomainsStartOutgoingDomainMoveV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// DomainsGetDomainListV1 request
 	DomainsGetDomainListV1(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -9332,6 +10150,11 @@ type ClientInterface interface {
 	DomainsPurchaseNewDomainV1WithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	DomainsPurchaseNewDomainV1(ctx context.Context, body DomainsPurchaseNewDomainV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DomainsClaimFreeDomainV1WithBody request with any body
+	DomainsClaimFreeDomainV1WithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	DomainsClaimFreeDomainV1(ctx context.Context, body DomainsClaimFreeDomainV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DomainsGetDomainDetailsV1 request
 	DomainsGetDomainDetailsV1(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -9361,6 +10184,11 @@ type ClientInterface interface {
 
 	// DomainsGetTransferListV1 request
 	DomainsGetTransferListV1(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DomainsClaimFreeDomainTransferV1WithBody request with any body
+	DomainsClaimFreeDomainTransferV1WithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	DomainsClaimFreeDomainTransferV1(ctx context.Context, body DomainsClaimFreeDomainTransferV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DomainsGetTransferV1 request
 	DomainsGetTransferV1(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -9896,16 +10724,83 @@ type ClientInterface interface {
 	// ReachListProfilesV1 request
 	ReachListProfilesV1(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ReachListProfileContactsV1 request
+	ReachListProfileContactsV1(ctx context.Context, profileUuid ProfileUuid, params *ReachListProfileContactsV1Params, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ReachCreateNewContactsV1WithBody request with any body
 	ReachCreateNewContactsV1WithBody(ctx context.Context, profileUuid ProfileUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	ReachCreateNewContactsV1(ctx context.Context, profileUuid ProfileUuid, body ReachCreateNewContactsV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ReachCreateContactsInBulkV1WithBody request with any body
+	ReachCreateContactsInBulkV1WithBody(ctx context.Context, profileUuid ProfileUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ReachCreateContactsInBulkV1(ctx context.Context, profileUuid ProfileUuid, body ReachCreateContactsInBulkV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ReachListContactFieldsV1 request
+	ReachListContactFieldsV1(ctx context.Context, profileUuid ProfileUuid, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ReachCreateAContactFieldV1WithBody request with any body
+	ReachCreateAContactFieldV1WithBody(ctx context.Context, profileUuid ProfileUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ReachCreateAContactFieldV1(ctx context.Context, profileUuid ProfileUuid, body ReachCreateAContactFieldV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ReachDeleteAContactFieldV1 request
+	ReachDeleteAContactFieldV1(ctx context.Context, profileUuid ProfileUuid, fieldUuid FieldUuid, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ReachUpdateAContactFieldV1WithBody request with any body
+	ReachUpdateAContactFieldV1WithBody(ctx context.Context, profileUuid ProfileUuid, fieldUuid FieldUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ReachUpdateAContactFieldV1(ctx context.Context, profileUuid ProfileUuid, fieldUuid FieldUuid, body ReachUpdateAContactFieldV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ReachDeleteAProfileContactV1 request
+	ReachDeleteAProfileContactV1(ctx context.Context, profileUuid ProfileUuid, contactUuid ContactUuid, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ReachGetContactDetailsV1 request
+	ReachGetContactDetailsV1(ctx context.Context, profileUuid ProfileUuid, contactUuid ContactUuid, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ReachUpdateAContactV1WithBody request with any body
+	ReachUpdateAContactV1WithBody(ctx context.Context, profileUuid ProfileUuid, contactUuid ContactUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ReachUpdateAContactV1(ctx context.Context, profileUuid ProfileUuid, contactUuid ContactUuid, body ReachUpdateAContactV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ReachGetProfileDomainDNSStatusV1 request
 	ReachGetProfileDomainDNSStatusV1(ctx context.Context, profileUuid ProfileUuid, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ReachListProfileSegmentContactsV1 request
 	ReachListProfileSegmentContactsV1(ctx context.Context, profileUuid ProfileUuid, segmentUuid SegmentUuid, params *ReachListProfileSegmentContactsV1Params, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ReachListProfileTagsV1 request
+	ReachListProfileTagsV1(ctx context.Context, profileUuid ProfileUuid, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ReachCreateOrFindTagsV1WithBody request with any body
+	ReachCreateOrFindTagsV1WithBody(ctx context.Context, profileUuid ProfileUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ReachCreateOrFindTagsV1(ctx context.Context, profileUuid ProfileUuid, body ReachCreateOrFindTagsV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ReachDeleteATagV1 request
+	ReachDeleteATagV1(ctx context.Context, profileUuid ProfileUuid, tagUuid TagUuid, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ReachRenameATagV1WithBody request with any body
+	ReachRenameATagV1WithBody(ctx context.Context, profileUuid ProfileUuid, tagUuid TagUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ReachRenameATagV1(ctx context.Context, profileUuid ProfileUuid, tagUuid TagUuid, body ReachRenameATagV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ReachRemoveContactsFromATagV1WithBody request with any body
+	ReachRemoveContactsFromATagV1WithBody(ctx context.Context, profileUuid ProfileUuid, tagUuid TagUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ReachRemoveContactsFromATagV1(ctx context.Context, profileUuid ProfileUuid, tagUuid TagUuid, body ReachRemoveContactsFromATagV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ReachAssignContactsToATagV1WithBody request with any body
+	ReachAssignContactsToATagV1WithBody(ctx context.Context, profileUuid ProfileUuid, tagUuid TagUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ReachAssignContactsToATagV1(ctx context.Context, profileUuid ProfileUuid, tagUuid TagUuid, body ReachAssignContactsToATagV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ReachRemoveAContactFromATagV1 request
+	ReachRemoveAContactFromATagV1(ctx context.Context, profileUuid ProfileUuid, tagUuid TagUuid, contactUuid ContactUuid, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ReachAssignAContactToATagV1 request
+	ReachAssignAContactToATagV1(ctx context.Context, profileUuid ProfileUuid, tagUuid TagUuid, contactUuid ContactUuid, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ReachListSegmentsV1 request
 	ReachListSegmentsV1(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -10951,6 +11846,126 @@ func (c *Client) DomainsGetPendingIRTPVerificationV1(ctx context.Context, domain
 	return c.Client.Do(req)
 }
 
+func (c *Client) DomainsGetIncomingDomainMoveListV1(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDomainsGetIncomingDomainMoveListV1Request(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DomainsRejectIncomingDomainMoveV1(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDomainsRejectIncomingDomainMoveV1Request(c.Server, domain)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DomainsGetIncomingDomainMoveV1(ctx context.Context, domain Domain, params *DomainsGetIncomingDomainMoveV1Params, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDomainsGetIncomingDomainMoveV1Request(c.Server, domain, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DomainsAcceptIncomingDomainMoveV1WithBody(ctx context.Context, domain Domain, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDomainsAcceptIncomingDomainMoveV1RequestWithBody(c.Server, domain, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DomainsAcceptIncomingDomainMoveV1(ctx context.Context, domain Domain, body DomainsAcceptIncomingDomainMoveV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDomainsAcceptIncomingDomainMoveV1Request(c.Server, domain, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DomainsGetOutgoingDomainMoveListV1(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDomainsGetOutgoingDomainMoveListV1Request(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DomainsCancelOutgoingDomainMoveV1(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDomainsCancelOutgoingDomainMoveV1Request(c.Server, domain)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DomainsGetOutgoingDomainMoveV1(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDomainsGetOutgoingDomainMoveV1Request(c.Server, domain)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DomainsStartOutgoingDomainMoveV1WithBody(ctx context.Context, domain Domain, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDomainsStartOutgoingDomainMoveV1RequestWithBody(c.Server, domain, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DomainsStartOutgoingDomainMoveV1(ctx context.Context, domain Domain, body DomainsStartOutgoingDomainMoveV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDomainsStartOutgoingDomainMoveV1Request(c.Server, domain, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) DomainsGetDomainListV1(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewDomainsGetDomainListV1Request(c.Server)
 	if err != nil {
@@ -10977,6 +11992,30 @@ func (c *Client) DomainsPurchaseNewDomainV1WithBody(ctx context.Context, content
 
 func (c *Client) DomainsPurchaseNewDomainV1(ctx context.Context, body DomainsPurchaseNewDomainV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewDomainsPurchaseNewDomainV1Request(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DomainsClaimFreeDomainV1WithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDomainsClaimFreeDomainV1RequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DomainsClaimFreeDomainV1(ctx context.Context, body DomainsClaimFreeDomainV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDomainsClaimFreeDomainV1Request(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -11097,6 +12136,30 @@ func (c *Client) DomainsGetDomainRenewalInformationV1(ctx context.Context, domai
 
 func (c *Client) DomainsGetTransferListV1(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewDomainsGetTransferListV1Request(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DomainsClaimFreeDomainTransferV1WithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDomainsClaimFreeDomainTransferV1RequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DomainsClaimFreeDomainTransferV1(ctx context.Context, body DomainsClaimFreeDomainTransferV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDomainsClaimFreeDomainTransferV1Request(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -13459,6 +14522,18 @@ func (c *Client) ReachListProfilesV1(ctx context.Context, reqEditors ...RequestE
 	return c.Client.Do(req)
 }
 
+func (c *Client) ReachListProfileContactsV1(ctx context.Context, profileUuid ProfileUuid, params *ReachListProfileContactsV1Params, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReachListProfileContactsV1Request(c.Server, profileUuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) ReachCreateNewContactsV1WithBody(ctx context.Context, profileUuid ProfileUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewReachCreateNewContactsV1RequestWithBody(c.Server, profileUuid, contentType, body)
 	if err != nil {
@@ -13483,6 +14558,150 @@ func (c *Client) ReachCreateNewContactsV1(ctx context.Context, profileUuid Profi
 	return c.Client.Do(req)
 }
 
+func (c *Client) ReachCreateContactsInBulkV1WithBody(ctx context.Context, profileUuid ProfileUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReachCreateContactsInBulkV1RequestWithBody(c.Server, profileUuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ReachCreateContactsInBulkV1(ctx context.Context, profileUuid ProfileUuid, body ReachCreateContactsInBulkV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReachCreateContactsInBulkV1Request(c.Server, profileUuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ReachListContactFieldsV1(ctx context.Context, profileUuid ProfileUuid, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReachListContactFieldsV1Request(c.Server, profileUuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ReachCreateAContactFieldV1WithBody(ctx context.Context, profileUuid ProfileUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReachCreateAContactFieldV1RequestWithBody(c.Server, profileUuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ReachCreateAContactFieldV1(ctx context.Context, profileUuid ProfileUuid, body ReachCreateAContactFieldV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReachCreateAContactFieldV1Request(c.Server, profileUuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ReachDeleteAContactFieldV1(ctx context.Context, profileUuid ProfileUuid, fieldUuid FieldUuid, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReachDeleteAContactFieldV1Request(c.Server, profileUuid, fieldUuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ReachUpdateAContactFieldV1WithBody(ctx context.Context, profileUuid ProfileUuid, fieldUuid FieldUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReachUpdateAContactFieldV1RequestWithBody(c.Server, profileUuid, fieldUuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ReachUpdateAContactFieldV1(ctx context.Context, profileUuid ProfileUuid, fieldUuid FieldUuid, body ReachUpdateAContactFieldV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReachUpdateAContactFieldV1Request(c.Server, profileUuid, fieldUuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ReachDeleteAProfileContactV1(ctx context.Context, profileUuid ProfileUuid, contactUuid ContactUuid, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReachDeleteAProfileContactV1Request(c.Server, profileUuid, contactUuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ReachGetContactDetailsV1(ctx context.Context, profileUuid ProfileUuid, contactUuid ContactUuid, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReachGetContactDetailsV1Request(c.Server, profileUuid, contactUuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ReachUpdateAContactV1WithBody(ctx context.Context, profileUuid ProfileUuid, contactUuid ContactUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReachUpdateAContactV1RequestWithBody(c.Server, profileUuid, contactUuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ReachUpdateAContactV1(ctx context.Context, profileUuid ProfileUuid, contactUuid ContactUuid, body ReachUpdateAContactV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReachUpdateAContactV1Request(c.Server, profileUuid, contactUuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) ReachGetProfileDomainDNSStatusV1(ctx context.Context, profileUuid ProfileUuid, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewReachGetProfileDomainDNSStatusV1Request(c.Server, profileUuid)
 	if err != nil {
@@ -13497,6 +14716,150 @@ func (c *Client) ReachGetProfileDomainDNSStatusV1(ctx context.Context, profileUu
 
 func (c *Client) ReachListProfileSegmentContactsV1(ctx context.Context, profileUuid ProfileUuid, segmentUuid SegmentUuid, params *ReachListProfileSegmentContactsV1Params, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewReachListProfileSegmentContactsV1Request(c.Server, profileUuid, segmentUuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ReachListProfileTagsV1(ctx context.Context, profileUuid ProfileUuid, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReachListProfileTagsV1Request(c.Server, profileUuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ReachCreateOrFindTagsV1WithBody(ctx context.Context, profileUuid ProfileUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReachCreateOrFindTagsV1RequestWithBody(c.Server, profileUuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ReachCreateOrFindTagsV1(ctx context.Context, profileUuid ProfileUuid, body ReachCreateOrFindTagsV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReachCreateOrFindTagsV1Request(c.Server, profileUuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ReachDeleteATagV1(ctx context.Context, profileUuid ProfileUuid, tagUuid TagUuid, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReachDeleteATagV1Request(c.Server, profileUuid, tagUuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ReachRenameATagV1WithBody(ctx context.Context, profileUuid ProfileUuid, tagUuid TagUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReachRenameATagV1RequestWithBody(c.Server, profileUuid, tagUuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ReachRenameATagV1(ctx context.Context, profileUuid ProfileUuid, tagUuid TagUuid, body ReachRenameATagV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReachRenameATagV1Request(c.Server, profileUuid, tagUuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ReachRemoveContactsFromATagV1WithBody(ctx context.Context, profileUuid ProfileUuid, tagUuid TagUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReachRemoveContactsFromATagV1RequestWithBody(c.Server, profileUuid, tagUuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ReachRemoveContactsFromATagV1(ctx context.Context, profileUuid ProfileUuid, tagUuid TagUuid, body ReachRemoveContactsFromATagV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReachRemoveContactsFromATagV1Request(c.Server, profileUuid, tagUuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ReachAssignContactsToATagV1WithBody(ctx context.Context, profileUuid ProfileUuid, tagUuid TagUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReachAssignContactsToATagV1RequestWithBody(c.Server, profileUuid, tagUuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ReachAssignContactsToATagV1(ctx context.Context, profileUuid ProfileUuid, tagUuid TagUuid, body ReachAssignContactsToATagV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReachAssignContactsToATagV1Request(c.Server, profileUuid, tagUuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ReachRemoveAContactFromATagV1(ctx context.Context, profileUuid ProfileUuid, tagUuid TagUuid, contactUuid ContactUuid, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReachRemoveAContactFromATagV1Request(c.Server, profileUuid, tagUuid, contactUuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ReachAssignAContactToATagV1(ctx context.Context, profileUuid ProfileUuid, tagUuid TagUuid, contactUuid ContactUuid, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReachAssignAContactToATagV1Request(c.Server, profileUuid, tagUuid, contactUuid)
 	if err != nil {
 		return nil, err
 	}
@@ -16660,6 +18023,317 @@ func NewDomainsGetPendingIRTPVerificationV1Request(server string, domain Domain)
 	return req, nil
 }
 
+// NewDomainsGetIncomingDomainMoveListV1Request generates requests for DomainsGetIncomingDomainMoveListV1
+func NewDomainsGetIncomingDomainMoveListV1Request(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/domains/v1/move/incoming")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewDomainsRejectIncomingDomainMoveV1Request generates requests for DomainsRejectIncomingDomainMoveV1
+func NewDomainsRejectIncomingDomainMoveV1Request(server string, domain Domain) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "domain", domain, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/domains/v1/move/incoming/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewDomainsGetIncomingDomainMoveV1Request generates requests for DomainsGetIncomingDomainMoveV1
+func NewDomainsGetIncomingDomainMoveV1Request(server string, domain Domain, params *DomainsGetIncomingDomainMoveV1Params) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "domain", domain, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/domains/v1/move/incoming/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.ForceSync != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "force_sync", *params.ForceSync, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewDomainsAcceptIncomingDomainMoveV1Request calls the generic DomainsAcceptIncomingDomainMoveV1 builder with application/json body
+func NewDomainsAcceptIncomingDomainMoveV1Request(server string, domain Domain, body DomainsAcceptIncomingDomainMoveV1JSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewDomainsAcceptIncomingDomainMoveV1RequestWithBody(server, domain, "application/json", bodyReader)
+}
+
+// NewDomainsAcceptIncomingDomainMoveV1RequestWithBody generates requests for DomainsAcceptIncomingDomainMoveV1 with any type of body
+func NewDomainsAcceptIncomingDomainMoveV1RequestWithBody(server string, domain Domain, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "domain", domain, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/domains/v1/move/incoming/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPut, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewDomainsGetOutgoingDomainMoveListV1Request generates requests for DomainsGetOutgoingDomainMoveListV1
+func NewDomainsGetOutgoingDomainMoveListV1Request(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/domains/v1/move/outgoing")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewDomainsCancelOutgoingDomainMoveV1Request generates requests for DomainsCancelOutgoingDomainMoveV1
+func NewDomainsCancelOutgoingDomainMoveV1Request(server string, domain Domain) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "domain", domain, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/domains/v1/move/outgoing/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewDomainsGetOutgoingDomainMoveV1Request generates requests for DomainsGetOutgoingDomainMoveV1
+func NewDomainsGetOutgoingDomainMoveV1Request(server string, domain Domain) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "domain", domain, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/domains/v1/move/outgoing/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewDomainsStartOutgoingDomainMoveV1Request calls the generic DomainsStartOutgoingDomainMoveV1 builder with application/json body
+func NewDomainsStartOutgoingDomainMoveV1Request(server string, domain Domain, body DomainsStartOutgoingDomainMoveV1JSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewDomainsStartOutgoingDomainMoveV1RequestWithBody(server, domain, "application/json", bodyReader)
+}
+
+// NewDomainsStartOutgoingDomainMoveV1RequestWithBody generates requests for DomainsStartOutgoingDomainMoveV1 with any type of body
+func NewDomainsStartOutgoingDomainMoveV1RequestWithBody(server string, domain Domain, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "domain", domain, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/domains/v1/move/outgoing/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewDomainsGetDomainListV1Request generates requests for DomainsGetDomainListV1
 func NewDomainsGetDomainListV1Request(server string) (*http.Request, error) {
 	var err error
@@ -16708,6 +18382,46 @@ func NewDomainsPurchaseNewDomainV1RequestWithBody(server string, contentType str
 	}
 
 	operationPath := fmt.Sprintf("/api/domains/v1/portfolio")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewDomainsClaimFreeDomainV1Request calls the generic DomainsClaimFreeDomainV1 builder with application/json body
+func NewDomainsClaimFreeDomainV1Request(server string, body DomainsClaimFreeDomainV1JSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewDomainsClaimFreeDomainV1RequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewDomainsClaimFreeDomainV1RequestWithBody generates requests for DomainsClaimFreeDomainV1 with any type of body
+func NewDomainsClaimFreeDomainV1RequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/domains/v1/portfolio/claim")
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -17035,6 +18749,46 @@ func NewDomainsGetTransferListV1Request(server string) (*http.Request, error) {
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewDomainsClaimFreeDomainTransferV1Request calls the generic DomainsClaimFreeDomainTransferV1 builder with application/json body
+func NewDomainsClaimFreeDomainTransferV1Request(server string, body DomainsClaimFreeDomainTransferV1JSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewDomainsClaimFreeDomainTransferV1RequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewDomainsClaimFreeDomainTransferV1RequestWithBody generates requests for DomainsClaimFreeDomainTransferV1 with any type of body
+func NewDomainsClaimFreeDomainTransferV1RequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/domains/v1/transfers/claim")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -24611,6 +26365,115 @@ func NewReachListProfilesV1Request(server string) (*http.Request, error) {
 	return req, nil
 }
 
+// NewReachListProfileContactsV1Request generates requests for ReachListProfileContactsV1
+func NewReachListProfileContactsV1Request(server string, profileUuid ProfileUuid, params *ReachListProfileContactsV1Params) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "profileUuid", profileUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/reach/v1/profiles/%s/contacts", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.SubscriptionStatus != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "subscription_status", *params.SubscriptionStatus, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.TagUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tag_uuid", *params.TagUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Search != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "search", *params.Search, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PerPage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "per_page", *params.PerPage, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewReachCreateNewContactsV1Request calls the generic ReachCreateNewContactsV1 builder with application/json body
 func NewReachCreateNewContactsV1Request(server string, profileUuid ProfileUuid, body ReachCreateNewContactsV1JSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -24649,6 +26512,365 @@ func NewReachCreateNewContactsV1RequestWithBody(server string, profileUuid Profi
 	}
 
 	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewReachCreateContactsInBulkV1Request calls the generic ReachCreateContactsInBulkV1 builder with application/json body
+func NewReachCreateContactsInBulkV1Request(server string, profileUuid ProfileUuid, body ReachCreateContactsInBulkV1JSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewReachCreateContactsInBulkV1RequestWithBody(server, profileUuid, "application/json", bodyReader)
+}
+
+// NewReachCreateContactsInBulkV1RequestWithBody generates requests for ReachCreateContactsInBulkV1 with any type of body
+func NewReachCreateContactsInBulkV1RequestWithBody(server string, profileUuid ProfileUuid, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "profileUuid", profileUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/reach/v1/profiles/%s/contacts/bulk", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewReachListContactFieldsV1Request generates requests for ReachListContactFieldsV1
+func NewReachListContactFieldsV1Request(server string, profileUuid ProfileUuid) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "profileUuid", profileUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/reach/v1/profiles/%s/contacts/fields", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewReachCreateAContactFieldV1Request calls the generic ReachCreateAContactFieldV1 builder with application/json body
+func NewReachCreateAContactFieldV1Request(server string, profileUuid ProfileUuid, body ReachCreateAContactFieldV1JSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewReachCreateAContactFieldV1RequestWithBody(server, profileUuid, "application/json", bodyReader)
+}
+
+// NewReachCreateAContactFieldV1RequestWithBody generates requests for ReachCreateAContactFieldV1 with any type of body
+func NewReachCreateAContactFieldV1RequestWithBody(server string, profileUuid ProfileUuid, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "profileUuid", profileUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/reach/v1/profiles/%s/contacts/fields", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewReachDeleteAContactFieldV1Request generates requests for ReachDeleteAContactFieldV1
+func NewReachDeleteAContactFieldV1Request(server string, profileUuid ProfileUuid, fieldUuid FieldUuid) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "profileUuid", profileUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "fieldUuid", fieldUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/reach/v1/profiles/%s/contacts/fields/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewReachUpdateAContactFieldV1Request calls the generic ReachUpdateAContactFieldV1 builder with application/json body
+func NewReachUpdateAContactFieldV1Request(server string, profileUuid ProfileUuid, fieldUuid FieldUuid, body ReachUpdateAContactFieldV1JSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewReachUpdateAContactFieldV1RequestWithBody(server, profileUuid, fieldUuid, "application/json", bodyReader)
+}
+
+// NewReachUpdateAContactFieldV1RequestWithBody generates requests for ReachUpdateAContactFieldV1 with any type of body
+func NewReachUpdateAContactFieldV1RequestWithBody(server string, profileUuid ProfileUuid, fieldUuid FieldUuid, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "profileUuid", profileUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "fieldUuid", fieldUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/reach/v1/profiles/%s/contacts/fields/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewReachDeleteAProfileContactV1Request generates requests for ReachDeleteAProfileContactV1
+func NewReachDeleteAProfileContactV1Request(server string, profileUuid ProfileUuid, contactUuid ContactUuid) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "profileUuid", profileUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "contactUuid", contactUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/reach/v1/profiles/%s/contacts/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewReachGetContactDetailsV1Request generates requests for ReachGetContactDetailsV1
+func NewReachGetContactDetailsV1Request(server string, profileUuid ProfileUuid, contactUuid ContactUuid) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "profileUuid", profileUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "contactUuid", contactUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/reach/v1/profiles/%s/contacts/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewReachUpdateAContactV1Request calls the generic ReachUpdateAContactV1 builder with application/json body
+func NewReachUpdateAContactV1Request(server string, profileUuid ProfileUuid, contactUuid ContactUuid, body ReachUpdateAContactV1JSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewReachUpdateAContactV1RequestWithBody(server, profileUuid, contactUuid, "application/json", bodyReader)
+}
+
+// NewReachUpdateAContactV1RequestWithBody generates requests for ReachUpdateAContactV1 with any type of body
+func NewReachUpdateAContactV1RequestWithBody(server string, profileUuid ProfileUuid, contactUuid ContactUuid, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "profileUuid", profileUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "contactUuid", contactUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/reach/v1/profiles/%s/contacts/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), body)
 	if err != nil {
 		return nil, err
 	}
@@ -24765,6 +26987,386 @@ func NewReachListProfileSegmentContactsV1Request(server string, profileUuid Prof
 	}
 
 	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewReachListProfileTagsV1Request generates requests for ReachListProfileTagsV1
+func NewReachListProfileTagsV1Request(server string, profileUuid ProfileUuid) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "profileUuid", profileUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/reach/v1/profiles/%s/tags", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewReachCreateOrFindTagsV1Request calls the generic ReachCreateOrFindTagsV1 builder with application/json body
+func NewReachCreateOrFindTagsV1Request(server string, profileUuid ProfileUuid, body ReachCreateOrFindTagsV1JSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewReachCreateOrFindTagsV1RequestWithBody(server, profileUuid, "application/json", bodyReader)
+}
+
+// NewReachCreateOrFindTagsV1RequestWithBody generates requests for ReachCreateOrFindTagsV1 with any type of body
+func NewReachCreateOrFindTagsV1RequestWithBody(server string, profileUuid ProfileUuid, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "profileUuid", profileUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/reach/v1/profiles/%s/tags", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewReachDeleteATagV1Request generates requests for ReachDeleteATagV1
+func NewReachDeleteATagV1Request(server string, profileUuid ProfileUuid, tagUuid TagUuid) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "profileUuid", profileUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "tagUuid", tagUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/reach/v1/profiles/%s/tags/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewReachRenameATagV1Request calls the generic ReachRenameATagV1 builder with application/json body
+func NewReachRenameATagV1Request(server string, profileUuid ProfileUuid, tagUuid TagUuid, body ReachRenameATagV1JSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewReachRenameATagV1RequestWithBody(server, profileUuid, tagUuid, "application/json", bodyReader)
+}
+
+// NewReachRenameATagV1RequestWithBody generates requests for ReachRenameATagV1 with any type of body
+func NewReachRenameATagV1RequestWithBody(server string, profileUuid ProfileUuid, tagUuid TagUuid, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "profileUuid", profileUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "tagUuid", tagUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/reach/v1/profiles/%s/tags/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewReachRemoveContactsFromATagV1Request calls the generic ReachRemoveContactsFromATagV1 builder with application/json body
+func NewReachRemoveContactsFromATagV1Request(server string, profileUuid ProfileUuid, tagUuid TagUuid, body ReachRemoveContactsFromATagV1JSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewReachRemoveContactsFromATagV1RequestWithBody(server, profileUuid, tagUuid, "application/json", bodyReader)
+}
+
+// NewReachRemoveContactsFromATagV1RequestWithBody generates requests for ReachRemoveContactsFromATagV1 with any type of body
+func NewReachRemoveContactsFromATagV1RequestWithBody(server string, profileUuid ProfileUuid, tagUuid TagUuid, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "profileUuid", profileUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "tagUuid", tagUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/reach/v1/profiles/%s/tags/%s/contacts", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewReachAssignContactsToATagV1Request calls the generic ReachAssignContactsToATagV1 builder with application/json body
+func NewReachAssignContactsToATagV1Request(server string, profileUuid ProfileUuid, tagUuid TagUuid, body ReachAssignContactsToATagV1JSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewReachAssignContactsToATagV1RequestWithBody(server, profileUuid, tagUuid, "application/json", bodyReader)
+}
+
+// NewReachAssignContactsToATagV1RequestWithBody generates requests for ReachAssignContactsToATagV1 with any type of body
+func NewReachAssignContactsToATagV1RequestWithBody(server string, profileUuid ProfileUuid, tagUuid TagUuid, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "profileUuid", profileUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "tagUuid", tagUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/reach/v1/profiles/%s/tags/%s/contacts", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewReachRemoveAContactFromATagV1Request generates requests for ReachRemoveAContactFromATagV1
+func NewReachRemoveAContactFromATagV1Request(server string, profileUuid ProfileUuid, tagUuid TagUuid, contactUuid ContactUuid) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "profileUuid", profileUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "tagUuid", tagUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam2 string
+
+	pathParam2, err = runtime.StyleParamWithOptions("simple", false, "contactUuid", contactUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/reach/v1/profiles/%s/tags/%s/contacts/%s", pathParam0, pathParam1, pathParam2)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewReachAssignAContactToATagV1Request generates requests for ReachAssignAContactToATagV1
+func NewReachAssignAContactToATagV1Request(server string, profileUuid ProfileUuid, tagUuid TagUuid, contactUuid ContactUuid) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "profileUuid", profileUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "tagUuid", tagUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam2 string
+
+	pathParam2, err = runtime.StyleParamWithOptions("simple", false, "contactUuid", contactUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/reach/v1/profiles/%s/tags/%s/contacts/%s", pathParam0, pathParam1, pathParam2)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -27783,6 +30385,34 @@ type ClientWithResponsesInterface interface {
 	// DomainsGetPendingIRTPVerificationV1WithResponse request
 	DomainsGetPendingIRTPVerificationV1WithResponse(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*DomainsGetPendingIRTPVerificationV1Response, error)
 
+	// DomainsGetIncomingDomainMoveListV1WithResponse request
+	DomainsGetIncomingDomainMoveListV1WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DomainsGetIncomingDomainMoveListV1Response, error)
+
+	// DomainsRejectIncomingDomainMoveV1WithResponse request
+	DomainsRejectIncomingDomainMoveV1WithResponse(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*DomainsRejectIncomingDomainMoveV1Response, error)
+
+	// DomainsGetIncomingDomainMoveV1WithResponse request
+	DomainsGetIncomingDomainMoveV1WithResponse(ctx context.Context, domain Domain, params *DomainsGetIncomingDomainMoveV1Params, reqEditors ...RequestEditorFn) (*DomainsGetIncomingDomainMoveV1Response, error)
+
+	// DomainsAcceptIncomingDomainMoveV1WithBodyWithResponse request with any body
+	DomainsAcceptIncomingDomainMoveV1WithBodyWithResponse(ctx context.Context, domain Domain, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DomainsAcceptIncomingDomainMoveV1Response, error)
+
+	DomainsAcceptIncomingDomainMoveV1WithResponse(ctx context.Context, domain Domain, body DomainsAcceptIncomingDomainMoveV1JSONRequestBody, reqEditors ...RequestEditorFn) (*DomainsAcceptIncomingDomainMoveV1Response, error)
+
+	// DomainsGetOutgoingDomainMoveListV1WithResponse request
+	DomainsGetOutgoingDomainMoveListV1WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DomainsGetOutgoingDomainMoveListV1Response, error)
+
+	// DomainsCancelOutgoingDomainMoveV1WithResponse request
+	DomainsCancelOutgoingDomainMoveV1WithResponse(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*DomainsCancelOutgoingDomainMoveV1Response, error)
+
+	// DomainsGetOutgoingDomainMoveV1WithResponse request
+	DomainsGetOutgoingDomainMoveV1WithResponse(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*DomainsGetOutgoingDomainMoveV1Response, error)
+
+	// DomainsStartOutgoingDomainMoveV1WithBodyWithResponse request with any body
+	DomainsStartOutgoingDomainMoveV1WithBodyWithResponse(ctx context.Context, domain Domain, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DomainsStartOutgoingDomainMoveV1Response, error)
+
+	DomainsStartOutgoingDomainMoveV1WithResponse(ctx context.Context, domain Domain, body DomainsStartOutgoingDomainMoveV1JSONRequestBody, reqEditors ...RequestEditorFn) (*DomainsStartOutgoingDomainMoveV1Response, error)
+
 	// DomainsGetDomainListV1WithResponse request
 	DomainsGetDomainListV1WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DomainsGetDomainListV1Response, error)
 
@@ -27790,6 +30420,11 @@ type ClientWithResponsesInterface interface {
 	DomainsPurchaseNewDomainV1WithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DomainsPurchaseNewDomainV1Response, error)
 
 	DomainsPurchaseNewDomainV1WithResponse(ctx context.Context, body DomainsPurchaseNewDomainV1JSONRequestBody, reqEditors ...RequestEditorFn) (*DomainsPurchaseNewDomainV1Response, error)
+
+	// DomainsClaimFreeDomainV1WithBodyWithResponse request with any body
+	DomainsClaimFreeDomainV1WithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DomainsClaimFreeDomainV1Response, error)
+
+	DomainsClaimFreeDomainV1WithResponse(ctx context.Context, body DomainsClaimFreeDomainV1JSONRequestBody, reqEditors ...RequestEditorFn) (*DomainsClaimFreeDomainV1Response, error)
 
 	// DomainsGetDomainDetailsV1WithResponse request
 	DomainsGetDomainDetailsV1WithResponse(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*DomainsGetDomainDetailsV1Response, error)
@@ -27819,6 +30454,11 @@ type ClientWithResponsesInterface interface {
 
 	// DomainsGetTransferListV1WithResponse request
 	DomainsGetTransferListV1WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DomainsGetTransferListV1Response, error)
+
+	// DomainsClaimFreeDomainTransferV1WithBodyWithResponse request with any body
+	DomainsClaimFreeDomainTransferV1WithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DomainsClaimFreeDomainTransferV1Response, error)
+
+	DomainsClaimFreeDomainTransferV1WithResponse(ctx context.Context, body DomainsClaimFreeDomainTransferV1JSONRequestBody, reqEditors ...RequestEditorFn) (*DomainsClaimFreeDomainTransferV1Response, error)
 
 	// DomainsGetTransferV1WithResponse request
 	DomainsGetTransferV1WithResponse(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*DomainsGetTransferV1Response, error)
@@ -28354,16 +30994,83 @@ type ClientWithResponsesInterface interface {
 	// ReachListProfilesV1WithResponse request
 	ReachListProfilesV1WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ReachListProfilesV1Response, error)
 
+	// ReachListProfileContactsV1WithResponse request
+	ReachListProfileContactsV1WithResponse(ctx context.Context, profileUuid ProfileUuid, params *ReachListProfileContactsV1Params, reqEditors ...RequestEditorFn) (*ReachListProfileContactsV1Response, error)
+
 	// ReachCreateNewContactsV1WithBodyWithResponse request with any body
 	ReachCreateNewContactsV1WithBodyWithResponse(ctx context.Context, profileUuid ProfileUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReachCreateNewContactsV1Response, error)
 
 	ReachCreateNewContactsV1WithResponse(ctx context.Context, profileUuid ProfileUuid, body ReachCreateNewContactsV1JSONRequestBody, reqEditors ...RequestEditorFn) (*ReachCreateNewContactsV1Response, error)
+
+	// ReachCreateContactsInBulkV1WithBodyWithResponse request with any body
+	ReachCreateContactsInBulkV1WithBodyWithResponse(ctx context.Context, profileUuid ProfileUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReachCreateContactsInBulkV1Response, error)
+
+	ReachCreateContactsInBulkV1WithResponse(ctx context.Context, profileUuid ProfileUuid, body ReachCreateContactsInBulkV1JSONRequestBody, reqEditors ...RequestEditorFn) (*ReachCreateContactsInBulkV1Response, error)
+
+	// ReachListContactFieldsV1WithResponse request
+	ReachListContactFieldsV1WithResponse(ctx context.Context, profileUuid ProfileUuid, reqEditors ...RequestEditorFn) (*ReachListContactFieldsV1Response, error)
+
+	// ReachCreateAContactFieldV1WithBodyWithResponse request with any body
+	ReachCreateAContactFieldV1WithBodyWithResponse(ctx context.Context, profileUuid ProfileUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReachCreateAContactFieldV1Response, error)
+
+	ReachCreateAContactFieldV1WithResponse(ctx context.Context, profileUuid ProfileUuid, body ReachCreateAContactFieldV1JSONRequestBody, reqEditors ...RequestEditorFn) (*ReachCreateAContactFieldV1Response, error)
+
+	// ReachDeleteAContactFieldV1WithResponse request
+	ReachDeleteAContactFieldV1WithResponse(ctx context.Context, profileUuid ProfileUuid, fieldUuid FieldUuid, reqEditors ...RequestEditorFn) (*ReachDeleteAContactFieldV1Response, error)
+
+	// ReachUpdateAContactFieldV1WithBodyWithResponse request with any body
+	ReachUpdateAContactFieldV1WithBodyWithResponse(ctx context.Context, profileUuid ProfileUuid, fieldUuid FieldUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReachUpdateAContactFieldV1Response, error)
+
+	ReachUpdateAContactFieldV1WithResponse(ctx context.Context, profileUuid ProfileUuid, fieldUuid FieldUuid, body ReachUpdateAContactFieldV1JSONRequestBody, reqEditors ...RequestEditorFn) (*ReachUpdateAContactFieldV1Response, error)
+
+	// ReachDeleteAProfileContactV1WithResponse request
+	ReachDeleteAProfileContactV1WithResponse(ctx context.Context, profileUuid ProfileUuid, contactUuid ContactUuid, reqEditors ...RequestEditorFn) (*ReachDeleteAProfileContactV1Response, error)
+
+	// ReachGetContactDetailsV1WithResponse request
+	ReachGetContactDetailsV1WithResponse(ctx context.Context, profileUuid ProfileUuid, contactUuid ContactUuid, reqEditors ...RequestEditorFn) (*ReachGetContactDetailsV1Response, error)
+
+	// ReachUpdateAContactV1WithBodyWithResponse request with any body
+	ReachUpdateAContactV1WithBodyWithResponse(ctx context.Context, profileUuid ProfileUuid, contactUuid ContactUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReachUpdateAContactV1Response, error)
+
+	ReachUpdateAContactV1WithResponse(ctx context.Context, profileUuid ProfileUuid, contactUuid ContactUuid, body ReachUpdateAContactV1JSONRequestBody, reqEditors ...RequestEditorFn) (*ReachUpdateAContactV1Response, error)
 
 	// ReachGetProfileDomainDNSStatusV1WithResponse request
 	ReachGetProfileDomainDNSStatusV1WithResponse(ctx context.Context, profileUuid ProfileUuid, reqEditors ...RequestEditorFn) (*ReachGetProfileDomainDNSStatusV1Response, error)
 
 	// ReachListProfileSegmentContactsV1WithResponse request
 	ReachListProfileSegmentContactsV1WithResponse(ctx context.Context, profileUuid ProfileUuid, segmentUuid SegmentUuid, params *ReachListProfileSegmentContactsV1Params, reqEditors ...RequestEditorFn) (*ReachListProfileSegmentContactsV1Response, error)
+
+	// ReachListProfileTagsV1WithResponse request
+	ReachListProfileTagsV1WithResponse(ctx context.Context, profileUuid ProfileUuid, reqEditors ...RequestEditorFn) (*ReachListProfileTagsV1Response, error)
+
+	// ReachCreateOrFindTagsV1WithBodyWithResponse request with any body
+	ReachCreateOrFindTagsV1WithBodyWithResponse(ctx context.Context, profileUuid ProfileUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReachCreateOrFindTagsV1Response, error)
+
+	ReachCreateOrFindTagsV1WithResponse(ctx context.Context, profileUuid ProfileUuid, body ReachCreateOrFindTagsV1JSONRequestBody, reqEditors ...RequestEditorFn) (*ReachCreateOrFindTagsV1Response, error)
+
+	// ReachDeleteATagV1WithResponse request
+	ReachDeleteATagV1WithResponse(ctx context.Context, profileUuid ProfileUuid, tagUuid TagUuid, reqEditors ...RequestEditorFn) (*ReachDeleteATagV1Response, error)
+
+	// ReachRenameATagV1WithBodyWithResponse request with any body
+	ReachRenameATagV1WithBodyWithResponse(ctx context.Context, profileUuid ProfileUuid, tagUuid TagUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReachRenameATagV1Response, error)
+
+	ReachRenameATagV1WithResponse(ctx context.Context, profileUuid ProfileUuid, tagUuid TagUuid, body ReachRenameATagV1JSONRequestBody, reqEditors ...RequestEditorFn) (*ReachRenameATagV1Response, error)
+
+	// ReachRemoveContactsFromATagV1WithBodyWithResponse request with any body
+	ReachRemoveContactsFromATagV1WithBodyWithResponse(ctx context.Context, profileUuid ProfileUuid, tagUuid TagUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReachRemoveContactsFromATagV1Response, error)
+
+	ReachRemoveContactsFromATagV1WithResponse(ctx context.Context, profileUuid ProfileUuid, tagUuid TagUuid, body ReachRemoveContactsFromATagV1JSONRequestBody, reqEditors ...RequestEditorFn) (*ReachRemoveContactsFromATagV1Response, error)
+
+	// ReachAssignContactsToATagV1WithBodyWithResponse request with any body
+	ReachAssignContactsToATagV1WithBodyWithResponse(ctx context.Context, profileUuid ProfileUuid, tagUuid TagUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReachAssignContactsToATagV1Response, error)
+
+	ReachAssignContactsToATagV1WithResponse(ctx context.Context, profileUuid ProfileUuid, tagUuid TagUuid, body ReachAssignContactsToATagV1JSONRequestBody, reqEditors ...RequestEditorFn) (*ReachAssignContactsToATagV1Response, error)
+
+	// ReachRemoveAContactFromATagV1WithResponse request
+	ReachRemoveAContactFromATagV1WithResponse(ctx context.Context, profileUuid ProfileUuid, tagUuid TagUuid, contactUuid ContactUuid, reqEditors ...RequestEditorFn) (*ReachRemoveAContactFromATagV1Response, error)
+
+	// ReachAssignAContactToATagV1WithResponse request
+	ReachAssignAContactToATagV1WithResponse(ctx context.Context, profileUuid ProfileUuid, tagUuid TagUuid, contactUuid ContactUuid, reqEditors ...RequestEditorFn) (*ReachAssignAContactToATagV1Response, error)
 
 	// ReachListSegmentsV1WithResponse request
 	ReachListSegmentsV1WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ReachListSegmentsV1Response, error)
@@ -30207,6 +32914,264 @@ func (r DomainsGetPendingIRTPVerificationV1Response) ContentType() string {
 	return ""
 }
 
+type DomainsGetIncomingDomainMoveListV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *DomainsV1MoveMoveCollection
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r DomainsGetIncomingDomainMoveListV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DomainsGetIncomingDomainMoveListV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r DomainsGetIncomingDomainMoveListV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type DomainsRejectIncomingDomainMoveV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CommonSuccessEmptyResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r DomainsRejectIncomingDomainMoveV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DomainsRejectIncomingDomainMoveV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r DomainsRejectIncomingDomainMoveV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type DomainsGetIncomingDomainMoveV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *DomainsV1MoveMoveResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r DomainsGetIncomingDomainMoveV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DomainsGetIncomingDomainMoveV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r DomainsGetIncomingDomainMoveV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type DomainsAcceptIncomingDomainMoveV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CommonSuccessEmptyResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON422      *CommonResponseUnprocessableContentResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r DomainsAcceptIncomingDomainMoveV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DomainsAcceptIncomingDomainMoveV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r DomainsAcceptIncomingDomainMoveV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type DomainsGetOutgoingDomainMoveListV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *DomainsV1MoveMoveCollection
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r DomainsGetOutgoingDomainMoveListV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DomainsGetOutgoingDomainMoveListV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r DomainsGetOutgoingDomainMoveListV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type DomainsCancelOutgoingDomainMoveV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CommonSuccessEmptyResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r DomainsCancelOutgoingDomainMoveV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DomainsCancelOutgoingDomainMoveV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r DomainsCancelOutgoingDomainMoveV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type DomainsGetOutgoingDomainMoveV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *DomainsV1MoveMoveResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r DomainsGetOutgoingDomainMoveV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DomainsGetOutgoingDomainMoveV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r DomainsGetOutgoingDomainMoveV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type DomainsStartOutgoingDomainMoveV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CommonSuccessEmptyResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON422      *CommonResponseUnprocessableContentResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r DomainsStartOutgoingDomainMoveV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DomainsStartOutgoingDomainMoveV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r DomainsStartOutgoingDomainMoveV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type DomainsGetDomainListV1Response struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -30266,6 +33231,39 @@ func (r DomainsPurchaseNewDomainV1Response) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r DomainsPurchaseNewDomainV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type DomainsClaimFreeDomainV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *DomainsV1PortfolioClaimResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON422      *CommonResponseUnprocessableContentResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r DomainsClaimFreeDomainV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DomainsClaimFreeDomainV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r DomainsClaimFreeDomainV1Response) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -30555,6 +33553,39 @@ func (r DomainsGetTransferListV1Response) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r DomainsGetTransferListV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type DomainsClaimFreeDomainTransferV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *DomainsV1TransferTransferResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON422      *CommonResponseUnprocessableContentResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r DomainsClaimFreeDomainTransferV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DomainsClaimFreeDomainTransferV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r DomainsClaimFreeDomainTransferV1Response) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -35317,6 +38348,42 @@ func (r ReachListProfilesV1Response) ContentType() string {
 	return ""
 }
 
+type ReachListProfileContactsV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		// Data Array of [`Reach.V1.Contacts.ProfileContactResource`](#model/reachv1contactsprofilecontactresource)
+		Data *ReachV1ContactsProfileContactCollection `json:"data,omitempty"`
+		Meta *CommonSchemaPaginationMetaSchema        `json:"meta,omitempty"`
+	}
+	JSON401 *CommonResponseUnauthorizedResponse
+	JSON500 *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r ReachListProfileContactsV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ReachListProfileContactsV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ReachListProfileContactsV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type ReachCreateNewContactsV1Response struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -35344,6 +38411,266 @@ func (r ReachCreateNewContactsV1Response) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r ReachCreateNewContactsV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ReachCreateContactsInBulkV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CommonSuccessEmptyResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON422      *CommonResponseUnprocessableContentResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r ReachCreateContactsInBulkV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ReachCreateContactsInBulkV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ReachCreateContactsInBulkV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ReachListContactFieldsV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ReachV1ContactsFieldsContactFieldCollection
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r ReachListContactFieldsV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ReachListContactFieldsV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ReachListContactFieldsV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ReachCreateAContactFieldV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ReachV1ContactsFieldsContactFieldResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON422      *CommonResponseUnprocessableContentResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r ReachCreateAContactFieldV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ReachCreateAContactFieldV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ReachCreateAContactFieldV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ReachDeleteAContactFieldV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CommonSuccessEmptyResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r ReachDeleteAContactFieldV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ReachDeleteAContactFieldV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ReachDeleteAContactFieldV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ReachUpdateAContactFieldV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ReachV1ContactsFieldsContactFieldResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON422      *CommonResponseUnprocessableContentResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r ReachUpdateAContactFieldV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ReachUpdateAContactFieldV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ReachUpdateAContactFieldV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ReachDeleteAProfileContactV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CommonSuccessEmptyResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r ReachDeleteAProfileContactV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ReachDeleteAProfileContactV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ReachDeleteAProfileContactV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ReachGetContactDetailsV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ReachV1ContactsContactDetailsResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r ReachGetContactDetailsV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ReachGetContactDetailsV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ReachGetContactDetailsV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ReachUpdateAContactV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ReachV1ContactsProfileContactUpdateResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON422      *CommonResponseUnprocessableContentResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r ReachUpdateAContactV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ReachUpdateAContactV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ReachUpdateAContactV1Response) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -35412,6 +38739,266 @@ func (r ReachListProfileSegmentContactsV1Response) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r ReachListProfileSegmentContactsV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ReachListProfileTagsV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ReachV1ContactsTagsTagCollection
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r ReachListProfileTagsV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ReachListProfileTagsV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ReachListProfileTagsV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ReachCreateOrFindTagsV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ReachV1ContactsTagsTagCollection
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON422      *CommonResponseUnprocessableContentResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r ReachCreateOrFindTagsV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ReachCreateOrFindTagsV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ReachCreateOrFindTagsV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ReachDeleteATagV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CommonSuccessEmptyResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r ReachDeleteATagV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ReachDeleteATagV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ReachDeleteATagV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ReachRenameATagV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ReachV1ContactsTagsTagResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON422      *CommonResponseUnprocessableContentResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r ReachRenameATagV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ReachRenameATagV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ReachRenameATagV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ReachRemoveContactsFromATagV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CommonSuccessEmptyResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON422      *CommonResponseUnprocessableContentResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r ReachRemoveContactsFromATagV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ReachRemoveContactsFromATagV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ReachRemoveContactsFromATagV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ReachAssignContactsToATagV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CommonSuccessEmptyResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON422      *CommonResponseUnprocessableContentResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r ReachAssignContactsToATagV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ReachAssignContactsToATagV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ReachAssignContactsToATagV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ReachRemoveAContactFromATagV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CommonSuccessEmptyResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r ReachRemoveAContactFromATagV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ReachRemoveAContactFromATagV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ReachRemoveAContactFromATagV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ReachAssignAContactToATagV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ReachV1ContactsTagsTagResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r ReachAssignAContactToATagV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ReachAssignAContactToATagV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ReachAssignAContactToATagV1Response) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -38210,6 +41797,94 @@ func (c *ClientWithResponses) DomainsGetPendingIRTPVerificationV1WithResponse(ct
 	return ParseDomainsGetPendingIRTPVerificationV1Response(rsp)
 }
 
+// DomainsGetIncomingDomainMoveListV1WithResponse request returning *DomainsGetIncomingDomainMoveListV1Response
+func (c *ClientWithResponses) DomainsGetIncomingDomainMoveListV1WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DomainsGetIncomingDomainMoveListV1Response, error) {
+	rsp, err := c.DomainsGetIncomingDomainMoveListV1(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDomainsGetIncomingDomainMoveListV1Response(rsp)
+}
+
+// DomainsRejectIncomingDomainMoveV1WithResponse request returning *DomainsRejectIncomingDomainMoveV1Response
+func (c *ClientWithResponses) DomainsRejectIncomingDomainMoveV1WithResponse(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*DomainsRejectIncomingDomainMoveV1Response, error) {
+	rsp, err := c.DomainsRejectIncomingDomainMoveV1(ctx, domain, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDomainsRejectIncomingDomainMoveV1Response(rsp)
+}
+
+// DomainsGetIncomingDomainMoveV1WithResponse request returning *DomainsGetIncomingDomainMoveV1Response
+func (c *ClientWithResponses) DomainsGetIncomingDomainMoveV1WithResponse(ctx context.Context, domain Domain, params *DomainsGetIncomingDomainMoveV1Params, reqEditors ...RequestEditorFn) (*DomainsGetIncomingDomainMoveV1Response, error) {
+	rsp, err := c.DomainsGetIncomingDomainMoveV1(ctx, domain, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDomainsGetIncomingDomainMoveV1Response(rsp)
+}
+
+// DomainsAcceptIncomingDomainMoveV1WithBodyWithResponse request with arbitrary body returning *DomainsAcceptIncomingDomainMoveV1Response
+func (c *ClientWithResponses) DomainsAcceptIncomingDomainMoveV1WithBodyWithResponse(ctx context.Context, domain Domain, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DomainsAcceptIncomingDomainMoveV1Response, error) {
+	rsp, err := c.DomainsAcceptIncomingDomainMoveV1WithBody(ctx, domain, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDomainsAcceptIncomingDomainMoveV1Response(rsp)
+}
+
+func (c *ClientWithResponses) DomainsAcceptIncomingDomainMoveV1WithResponse(ctx context.Context, domain Domain, body DomainsAcceptIncomingDomainMoveV1JSONRequestBody, reqEditors ...RequestEditorFn) (*DomainsAcceptIncomingDomainMoveV1Response, error) {
+	rsp, err := c.DomainsAcceptIncomingDomainMoveV1(ctx, domain, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDomainsAcceptIncomingDomainMoveV1Response(rsp)
+}
+
+// DomainsGetOutgoingDomainMoveListV1WithResponse request returning *DomainsGetOutgoingDomainMoveListV1Response
+func (c *ClientWithResponses) DomainsGetOutgoingDomainMoveListV1WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DomainsGetOutgoingDomainMoveListV1Response, error) {
+	rsp, err := c.DomainsGetOutgoingDomainMoveListV1(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDomainsGetOutgoingDomainMoveListV1Response(rsp)
+}
+
+// DomainsCancelOutgoingDomainMoveV1WithResponse request returning *DomainsCancelOutgoingDomainMoveV1Response
+func (c *ClientWithResponses) DomainsCancelOutgoingDomainMoveV1WithResponse(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*DomainsCancelOutgoingDomainMoveV1Response, error) {
+	rsp, err := c.DomainsCancelOutgoingDomainMoveV1(ctx, domain, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDomainsCancelOutgoingDomainMoveV1Response(rsp)
+}
+
+// DomainsGetOutgoingDomainMoveV1WithResponse request returning *DomainsGetOutgoingDomainMoveV1Response
+func (c *ClientWithResponses) DomainsGetOutgoingDomainMoveV1WithResponse(ctx context.Context, domain Domain, reqEditors ...RequestEditorFn) (*DomainsGetOutgoingDomainMoveV1Response, error) {
+	rsp, err := c.DomainsGetOutgoingDomainMoveV1(ctx, domain, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDomainsGetOutgoingDomainMoveV1Response(rsp)
+}
+
+// DomainsStartOutgoingDomainMoveV1WithBodyWithResponse request with arbitrary body returning *DomainsStartOutgoingDomainMoveV1Response
+func (c *ClientWithResponses) DomainsStartOutgoingDomainMoveV1WithBodyWithResponse(ctx context.Context, domain Domain, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DomainsStartOutgoingDomainMoveV1Response, error) {
+	rsp, err := c.DomainsStartOutgoingDomainMoveV1WithBody(ctx, domain, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDomainsStartOutgoingDomainMoveV1Response(rsp)
+}
+
+func (c *ClientWithResponses) DomainsStartOutgoingDomainMoveV1WithResponse(ctx context.Context, domain Domain, body DomainsStartOutgoingDomainMoveV1JSONRequestBody, reqEditors ...RequestEditorFn) (*DomainsStartOutgoingDomainMoveV1Response, error) {
+	rsp, err := c.DomainsStartOutgoingDomainMoveV1(ctx, domain, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDomainsStartOutgoingDomainMoveV1Response(rsp)
+}
+
 // DomainsGetDomainListV1WithResponse request returning *DomainsGetDomainListV1Response
 func (c *ClientWithResponses) DomainsGetDomainListV1WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DomainsGetDomainListV1Response, error) {
 	rsp, err := c.DomainsGetDomainListV1(ctx, reqEditors...)
@@ -38234,6 +41909,23 @@ func (c *ClientWithResponses) DomainsPurchaseNewDomainV1WithResponse(ctx context
 		return nil, err
 	}
 	return ParseDomainsPurchaseNewDomainV1Response(rsp)
+}
+
+// DomainsClaimFreeDomainV1WithBodyWithResponse request with arbitrary body returning *DomainsClaimFreeDomainV1Response
+func (c *ClientWithResponses) DomainsClaimFreeDomainV1WithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DomainsClaimFreeDomainV1Response, error) {
+	rsp, err := c.DomainsClaimFreeDomainV1WithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDomainsClaimFreeDomainV1Response(rsp)
+}
+
+func (c *ClientWithResponses) DomainsClaimFreeDomainV1WithResponse(ctx context.Context, body DomainsClaimFreeDomainV1JSONRequestBody, reqEditors ...RequestEditorFn) (*DomainsClaimFreeDomainV1Response, error) {
+	rsp, err := c.DomainsClaimFreeDomainV1(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDomainsClaimFreeDomainV1Response(rsp)
 }
 
 // DomainsGetDomainDetailsV1WithResponse request returning *DomainsGetDomainDetailsV1Response
@@ -38323,6 +42015,23 @@ func (c *ClientWithResponses) DomainsGetTransferListV1WithResponse(ctx context.C
 		return nil, err
 	}
 	return ParseDomainsGetTransferListV1Response(rsp)
+}
+
+// DomainsClaimFreeDomainTransferV1WithBodyWithResponse request with arbitrary body returning *DomainsClaimFreeDomainTransferV1Response
+func (c *ClientWithResponses) DomainsClaimFreeDomainTransferV1WithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DomainsClaimFreeDomainTransferV1Response, error) {
+	rsp, err := c.DomainsClaimFreeDomainTransferV1WithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDomainsClaimFreeDomainTransferV1Response(rsp)
+}
+
+func (c *ClientWithResponses) DomainsClaimFreeDomainTransferV1WithResponse(ctx context.Context, body DomainsClaimFreeDomainTransferV1JSONRequestBody, reqEditors ...RequestEditorFn) (*DomainsClaimFreeDomainTransferV1Response, error) {
+	rsp, err := c.DomainsClaimFreeDomainTransferV1(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDomainsClaimFreeDomainTransferV1Response(rsp)
 }
 
 // DomainsGetTransferV1WithResponse request returning *DomainsGetTransferV1Response
@@ -40035,6 +43744,15 @@ func (c *ClientWithResponses) ReachListProfilesV1WithResponse(ctx context.Contex
 	return ParseReachListProfilesV1Response(rsp)
 }
 
+// ReachListProfileContactsV1WithResponse request returning *ReachListProfileContactsV1Response
+func (c *ClientWithResponses) ReachListProfileContactsV1WithResponse(ctx context.Context, profileUuid ProfileUuid, params *ReachListProfileContactsV1Params, reqEditors ...RequestEditorFn) (*ReachListProfileContactsV1Response, error) {
+	rsp, err := c.ReachListProfileContactsV1(ctx, profileUuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReachListProfileContactsV1Response(rsp)
+}
+
 // ReachCreateNewContactsV1WithBodyWithResponse request with arbitrary body returning *ReachCreateNewContactsV1Response
 func (c *ClientWithResponses) ReachCreateNewContactsV1WithBodyWithResponse(ctx context.Context, profileUuid ProfileUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReachCreateNewContactsV1Response, error) {
 	rsp, err := c.ReachCreateNewContactsV1WithBody(ctx, profileUuid, contentType, body, reqEditors...)
@@ -40050,6 +43768,110 @@ func (c *ClientWithResponses) ReachCreateNewContactsV1WithResponse(ctx context.C
 		return nil, err
 	}
 	return ParseReachCreateNewContactsV1Response(rsp)
+}
+
+// ReachCreateContactsInBulkV1WithBodyWithResponse request with arbitrary body returning *ReachCreateContactsInBulkV1Response
+func (c *ClientWithResponses) ReachCreateContactsInBulkV1WithBodyWithResponse(ctx context.Context, profileUuid ProfileUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReachCreateContactsInBulkV1Response, error) {
+	rsp, err := c.ReachCreateContactsInBulkV1WithBody(ctx, profileUuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReachCreateContactsInBulkV1Response(rsp)
+}
+
+func (c *ClientWithResponses) ReachCreateContactsInBulkV1WithResponse(ctx context.Context, profileUuid ProfileUuid, body ReachCreateContactsInBulkV1JSONRequestBody, reqEditors ...RequestEditorFn) (*ReachCreateContactsInBulkV1Response, error) {
+	rsp, err := c.ReachCreateContactsInBulkV1(ctx, profileUuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReachCreateContactsInBulkV1Response(rsp)
+}
+
+// ReachListContactFieldsV1WithResponse request returning *ReachListContactFieldsV1Response
+func (c *ClientWithResponses) ReachListContactFieldsV1WithResponse(ctx context.Context, profileUuid ProfileUuid, reqEditors ...RequestEditorFn) (*ReachListContactFieldsV1Response, error) {
+	rsp, err := c.ReachListContactFieldsV1(ctx, profileUuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReachListContactFieldsV1Response(rsp)
+}
+
+// ReachCreateAContactFieldV1WithBodyWithResponse request with arbitrary body returning *ReachCreateAContactFieldV1Response
+func (c *ClientWithResponses) ReachCreateAContactFieldV1WithBodyWithResponse(ctx context.Context, profileUuid ProfileUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReachCreateAContactFieldV1Response, error) {
+	rsp, err := c.ReachCreateAContactFieldV1WithBody(ctx, profileUuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReachCreateAContactFieldV1Response(rsp)
+}
+
+func (c *ClientWithResponses) ReachCreateAContactFieldV1WithResponse(ctx context.Context, profileUuid ProfileUuid, body ReachCreateAContactFieldV1JSONRequestBody, reqEditors ...RequestEditorFn) (*ReachCreateAContactFieldV1Response, error) {
+	rsp, err := c.ReachCreateAContactFieldV1(ctx, profileUuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReachCreateAContactFieldV1Response(rsp)
+}
+
+// ReachDeleteAContactFieldV1WithResponse request returning *ReachDeleteAContactFieldV1Response
+func (c *ClientWithResponses) ReachDeleteAContactFieldV1WithResponse(ctx context.Context, profileUuid ProfileUuid, fieldUuid FieldUuid, reqEditors ...RequestEditorFn) (*ReachDeleteAContactFieldV1Response, error) {
+	rsp, err := c.ReachDeleteAContactFieldV1(ctx, profileUuid, fieldUuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReachDeleteAContactFieldV1Response(rsp)
+}
+
+// ReachUpdateAContactFieldV1WithBodyWithResponse request with arbitrary body returning *ReachUpdateAContactFieldV1Response
+func (c *ClientWithResponses) ReachUpdateAContactFieldV1WithBodyWithResponse(ctx context.Context, profileUuid ProfileUuid, fieldUuid FieldUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReachUpdateAContactFieldV1Response, error) {
+	rsp, err := c.ReachUpdateAContactFieldV1WithBody(ctx, profileUuid, fieldUuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReachUpdateAContactFieldV1Response(rsp)
+}
+
+func (c *ClientWithResponses) ReachUpdateAContactFieldV1WithResponse(ctx context.Context, profileUuid ProfileUuid, fieldUuid FieldUuid, body ReachUpdateAContactFieldV1JSONRequestBody, reqEditors ...RequestEditorFn) (*ReachUpdateAContactFieldV1Response, error) {
+	rsp, err := c.ReachUpdateAContactFieldV1(ctx, profileUuid, fieldUuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReachUpdateAContactFieldV1Response(rsp)
+}
+
+// ReachDeleteAProfileContactV1WithResponse request returning *ReachDeleteAProfileContactV1Response
+func (c *ClientWithResponses) ReachDeleteAProfileContactV1WithResponse(ctx context.Context, profileUuid ProfileUuid, contactUuid ContactUuid, reqEditors ...RequestEditorFn) (*ReachDeleteAProfileContactV1Response, error) {
+	rsp, err := c.ReachDeleteAProfileContactV1(ctx, profileUuid, contactUuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReachDeleteAProfileContactV1Response(rsp)
+}
+
+// ReachGetContactDetailsV1WithResponse request returning *ReachGetContactDetailsV1Response
+func (c *ClientWithResponses) ReachGetContactDetailsV1WithResponse(ctx context.Context, profileUuid ProfileUuid, contactUuid ContactUuid, reqEditors ...RequestEditorFn) (*ReachGetContactDetailsV1Response, error) {
+	rsp, err := c.ReachGetContactDetailsV1(ctx, profileUuid, contactUuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReachGetContactDetailsV1Response(rsp)
+}
+
+// ReachUpdateAContactV1WithBodyWithResponse request with arbitrary body returning *ReachUpdateAContactV1Response
+func (c *ClientWithResponses) ReachUpdateAContactV1WithBodyWithResponse(ctx context.Context, profileUuid ProfileUuid, contactUuid ContactUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReachUpdateAContactV1Response, error) {
+	rsp, err := c.ReachUpdateAContactV1WithBody(ctx, profileUuid, contactUuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReachUpdateAContactV1Response(rsp)
+}
+
+func (c *ClientWithResponses) ReachUpdateAContactV1WithResponse(ctx context.Context, profileUuid ProfileUuid, contactUuid ContactUuid, body ReachUpdateAContactV1JSONRequestBody, reqEditors ...RequestEditorFn) (*ReachUpdateAContactV1Response, error) {
+	rsp, err := c.ReachUpdateAContactV1(ctx, profileUuid, contactUuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReachUpdateAContactV1Response(rsp)
 }
 
 // ReachGetProfileDomainDNSStatusV1WithResponse request returning *ReachGetProfileDomainDNSStatusV1Response
@@ -40068,6 +43890,110 @@ func (c *ClientWithResponses) ReachListProfileSegmentContactsV1WithResponse(ctx 
 		return nil, err
 	}
 	return ParseReachListProfileSegmentContactsV1Response(rsp)
+}
+
+// ReachListProfileTagsV1WithResponse request returning *ReachListProfileTagsV1Response
+func (c *ClientWithResponses) ReachListProfileTagsV1WithResponse(ctx context.Context, profileUuid ProfileUuid, reqEditors ...RequestEditorFn) (*ReachListProfileTagsV1Response, error) {
+	rsp, err := c.ReachListProfileTagsV1(ctx, profileUuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReachListProfileTagsV1Response(rsp)
+}
+
+// ReachCreateOrFindTagsV1WithBodyWithResponse request with arbitrary body returning *ReachCreateOrFindTagsV1Response
+func (c *ClientWithResponses) ReachCreateOrFindTagsV1WithBodyWithResponse(ctx context.Context, profileUuid ProfileUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReachCreateOrFindTagsV1Response, error) {
+	rsp, err := c.ReachCreateOrFindTagsV1WithBody(ctx, profileUuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReachCreateOrFindTagsV1Response(rsp)
+}
+
+func (c *ClientWithResponses) ReachCreateOrFindTagsV1WithResponse(ctx context.Context, profileUuid ProfileUuid, body ReachCreateOrFindTagsV1JSONRequestBody, reqEditors ...RequestEditorFn) (*ReachCreateOrFindTagsV1Response, error) {
+	rsp, err := c.ReachCreateOrFindTagsV1(ctx, profileUuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReachCreateOrFindTagsV1Response(rsp)
+}
+
+// ReachDeleteATagV1WithResponse request returning *ReachDeleteATagV1Response
+func (c *ClientWithResponses) ReachDeleteATagV1WithResponse(ctx context.Context, profileUuid ProfileUuid, tagUuid TagUuid, reqEditors ...RequestEditorFn) (*ReachDeleteATagV1Response, error) {
+	rsp, err := c.ReachDeleteATagV1(ctx, profileUuid, tagUuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReachDeleteATagV1Response(rsp)
+}
+
+// ReachRenameATagV1WithBodyWithResponse request with arbitrary body returning *ReachRenameATagV1Response
+func (c *ClientWithResponses) ReachRenameATagV1WithBodyWithResponse(ctx context.Context, profileUuid ProfileUuid, tagUuid TagUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReachRenameATagV1Response, error) {
+	rsp, err := c.ReachRenameATagV1WithBody(ctx, profileUuid, tagUuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReachRenameATagV1Response(rsp)
+}
+
+func (c *ClientWithResponses) ReachRenameATagV1WithResponse(ctx context.Context, profileUuid ProfileUuid, tagUuid TagUuid, body ReachRenameATagV1JSONRequestBody, reqEditors ...RequestEditorFn) (*ReachRenameATagV1Response, error) {
+	rsp, err := c.ReachRenameATagV1(ctx, profileUuid, tagUuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReachRenameATagV1Response(rsp)
+}
+
+// ReachRemoveContactsFromATagV1WithBodyWithResponse request with arbitrary body returning *ReachRemoveContactsFromATagV1Response
+func (c *ClientWithResponses) ReachRemoveContactsFromATagV1WithBodyWithResponse(ctx context.Context, profileUuid ProfileUuid, tagUuid TagUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReachRemoveContactsFromATagV1Response, error) {
+	rsp, err := c.ReachRemoveContactsFromATagV1WithBody(ctx, profileUuid, tagUuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReachRemoveContactsFromATagV1Response(rsp)
+}
+
+func (c *ClientWithResponses) ReachRemoveContactsFromATagV1WithResponse(ctx context.Context, profileUuid ProfileUuid, tagUuid TagUuid, body ReachRemoveContactsFromATagV1JSONRequestBody, reqEditors ...RequestEditorFn) (*ReachRemoveContactsFromATagV1Response, error) {
+	rsp, err := c.ReachRemoveContactsFromATagV1(ctx, profileUuid, tagUuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReachRemoveContactsFromATagV1Response(rsp)
+}
+
+// ReachAssignContactsToATagV1WithBodyWithResponse request with arbitrary body returning *ReachAssignContactsToATagV1Response
+func (c *ClientWithResponses) ReachAssignContactsToATagV1WithBodyWithResponse(ctx context.Context, profileUuid ProfileUuid, tagUuid TagUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReachAssignContactsToATagV1Response, error) {
+	rsp, err := c.ReachAssignContactsToATagV1WithBody(ctx, profileUuid, tagUuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReachAssignContactsToATagV1Response(rsp)
+}
+
+func (c *ClientWithResponses) ReachAssignContactsToATagV1WithResponse(ctx context.Context, profileUuid ProfileUuid, tagUuid TagUuid, body ReachAssignContactsToATagV1JSONRequestBody, reqEditors ...RequestEditorFn) (*ReachAssignContactsToATagV1Response, error) {
+	rsp, err := c.ReachAssignContactsToATagV1(ctx, profileUuid, tagUuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReachAssignContactsToATagV1Response(rsp)
+}
+
+// ReachRemoveAContactFromATagV1WithResponse request returning *ReachRemoveAContactFromATagV1Response
+func (c *ClientWithResponses) ReachRemoveAContactFromATagV1WithResponse(ctx context.Context, profileUuid ProfileUuid, tagUuid TagUuid, contactUuid ContactUuid, reqEditors ...RequestEditorFn) (*ReachRemoveAContactFromATagV1Response, error) {
+	rsp, err := c.ReachRemoveAContactFromATagV1(ctx, profileUuid, tagUuid, contactUuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReachRemoveAContactFromATagV1Response(rsp)
+}
+
+// ReachAssignAContactToATagV1WithResponse request returning *ReachAssignAContactToATagV1Response
+func (c *ClientWithResponses) ReachAssignAContactToATagV1WithResponse(ctx context.Context, profileUuid ProfileUuid, tagUuid TagUuid, contactUuid ContactUuid, reqEditors ...RequestEditorFn) (*ReachAssignAContactToATagV1Response, error) {
+	rsp, err := c.ReachAssignAContactToATagV1(ctx, profileUuid, tagUuid, contactUuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReachAssignAContactToATagV1Response(rsp)
 }
 
 // ReachListSegmentsV1WithResponse request returning *ReachListSegmentsV1Response
@@ -42927,6 +46853,340 @@ func ParseDomainsGetPendingIRTPVerificationV1Response(rsp *http.Response) (*Doma
 	return response, nil
 }
 
+// ParseDomainsGetIncomingDomainMoveListV1Response parses an HTTP response from a DomainsGetIncomingDomainMoveListV1WithResponse call
+func ParseDomainsGetIncomingDomainMoveListV1Response(rsp *http.Response) (*DomainsGetIncomingDomainMoveListV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DomainsGetIncomingDomainMoveListV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest DomainsV1MoveMoveCollection
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDomainsRejectIncomingDomainMoveV1Response parses an HTTP response from a DomainsRejectIncomingDomainMoveV1WithResponse call
+func ParseDomainsRejectIncomingDomainMoveV1Response(rsp *http.Response) (*DomainsRejectIncomingDomainMoveV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DomainsRejectIncomingDomainMoveV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CommonSuccessEmptyResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDomainsGetIncomingDomainMoveV1Response parses an HTTP response from a DomainsGetIncomingDomainMoveV1WithResponse call
+func ParseDomainsGetIncomingDomainMoveV1Response(rsp *http.Response) (*DomainsGetIncomingDomainMoveV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DomainsGetIncomingDomainMoveV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest DomainsV1MoveMoveResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDomainsAcceptIncomingDomainMoveV1Response parses an HTTP response from a DomainsAcceptIncomingDomainMoveV1WithResponse call
+func ParseDomainsAcceptIncomingDomainMoveV1Response(rsp *http.Response) (*DomainsAcceptIncomingDomainMoveV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DomainsAcceptIncomingDomainMoveV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CommonSuccessEmptyResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseUnprocessableContentResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDomainsGetOutgoingDomainMoveListV1Response parses an HTTP response from a DomainsGetOutgoingDomainMoveListV1WithResponse call
+func ParseDomainsGetOutgoingDomainMoveListV1Response(rsp *http.Response) (*DomainsGetOutgoingDomainMoveListV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DomainsGetOutgoingDomainMoveListV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest DomainsV1MoveMoveCollection
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDomainsCancelOutgoingDomainMoveV1Response parses an HTTP response from a DomainsCancelOutgoingDomainMoveV1WithResponse call
+func ParseDomainsCancelOutgoingDomainMoveV1Response(rsp *http.Response) (*DomainsCancelOutgoingDomainMoveV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DomainsCancelOutgoingDomainMoveV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CommonSuccessEmptyResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDomainsGetOutgoingDomainMoveV1Response parses an HTTP response from a DomainsGetOutgoingDomainMoveV1WithResponse call
+func ParseDomainsGetOutgoingDomainMoveV1Response(rsp *http.Response) (*DomainsGetOutgoingDomainMoveV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DomainsGetOutgoingDomainMoveV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest DomainsV1MoveMoveResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDomainsStartOutgoingDomainMoveV1Response parses an HTTP response from a DomainsStartOutgoingDomainMoveV1WithResponse call
+func ParseDomainsStartOutgoingDomainMoveV1Response(rsp *http.Response) (*DomainsStartOutgoingDomainMoveV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DomainsStartOutgoingDomainMoveV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CommonSuccessEmptyResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseUnprocessableContentResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseDomainsGetDomainListV1Response parses an HTTP response from a DomainsGetDomainListV1WithResponse call
 func ParseDomainsGetDomainListV1Response(rsp *http.Response) (*DomainsGetDomainListV1Response, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -42983,6 +47243,53 @@ func ParseDomainsPurchaseNewDomainV1Response(rsp *http.Response) (*DomainsPurcha
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest BillingV1OrderOrderResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseUnprocessableContentResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDomainsClaimFreeDomainV1Response parses an HTTP response from a DomainsClaimFreeDomainV1WithResponse call
+func ParseDomainsClaimFreeDomainV1Response(rsp *http.Response) (*DomainsClaimFreeDomainV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DomainsClaimFreeDomainV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest DomainsV1PortfolioClaimResource
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -43368,6 +47675,53 @@ func ParseDomainsGetTransferListV1Response(rsp *http.Response) (*DomainsGetTrans
 			return nil, err
 		}
 		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDomainsClaimFreeDomainTransferV1Response parses an HTTP response from a DomainsClaimFreeDomainTransferV1WithResponse call
+func ParseDomainsClaimFreeDomainTransferV1Response(rsp *http.Response) (*DomainsClaimFreeDomainTransferV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DomainsClaimFreeDomainTransferV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest DomainsV1TransferTransferResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseUnprocessableContentResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
 		var dest CommonResponseErrorResponse
@@ -50065,6 +54419,50 @@ func ParseReachListProfilesV1Response(rsp *http.Response) (*ReachListProfilesV1R
 	return response, nil
 }
 
+// ParseReachListProfileContactsV1Response parses an HTTP response from a ReachListProfileContactsV1WithResponse call
+func ParseReachListProfileContactsV1Response(rsp *http.Response) (*ReachListProfileContactsV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ReachListProfileContactsV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			// Data Array of [`Reach.V1.Contacts.ProfileContactResource`](#model/reachv1contactsprofilecontactresource)
+			Data *ReachV1ContactsProfileContactCollection `json:"data,omitempty"`
+			Meta *CommonSchemaPaginationMetaSchema        `json:"meta,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseReachCreateNewContactsV1Response parses an HTTP response from a ReachCreateNewContactsV1WithResponse call
 func ParseReachCreateNewContactsV1Response(rsp *http.Response) (*ReachCreateNewContactsV1Response, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -50081,6 +54479,354 @@ func ParseReachCreateNewContactsV1Response(rsp *http.Response) (*ReachCreateNewC
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest CommonSuccessEmptyResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseUnprocessableContentResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseReachCreateContactsInBulkV1Response parses an HTTP response from a ReachCreateContactsInBulkV1WithResponse call
+func ParseReachCreateContactsInBulkV1Response(rsp *http.Response) (*ReachCreateContactsInBulkV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ReachCreateContactsInBulkV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CommonSuccessEmptyResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseUnprocessableContentResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseReachListContactFieldsV1Response parses an HTTP response from a ReachListContactFieldsV1WithResponse call
+func ParseReachListContactFieldsV1Response(rsp *http.Response) (*ReachListContactFieldsV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ReachListContactFieldsV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ReachV1ContactsFieldsContactFieldCollection
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseReachCreateAContactFieldV1Response parses an HTTP response from a ReachCreateAContactFieldV1WithResponse call
+func ParseReachCreateAContactFieldV1Response(rsp *http.Response) (*ReachCreateAContactFieldV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ReachCreateAContactFieldV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ReachV1ContactsFieldsContactFieldResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseUnprocessableContentResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseReachDeleteAContactFieldV1Response parses an HTTP response from a ReachDeleteAContactFieldV1WithResponse call
+func ParseReachDeleteAContactFieldV1Response(rsp *http.Response) (*ReachDeleteAContactFieldV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ReachDeleteAContactFieldV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CommonSuccessEmptyResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseReachUpdateAContactFieldV1Response parses an HTTP response from a ReachUpdateAContactFieldV1WithResponse call
+func ParseReachUpdateAContactFieldV1Response(rsp *http.Response) (*ReachUpdateAContactFieldV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ReachUpdateAContactFieldV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ReachV1ContactsFieldsContactFieldResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseUnprocessableContentResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseReachDeleteAProfileContactV1Response parses an HTTP response from a ReachDeleteAProfileContactV1WithResponse call
+func ParseReachDeleteAProfileContactV1Response(rsp *http.Response) (*ReachDeleteAProfileContactV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ReachDeleteAProfileContactV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CommonSuccessEmptyResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseReachGetContactDetailsV1Response parses an HTTP response from a ReachGetContactDetailsV1WithResponse call
+func ParseReachGetContactDetailsV1Response(rsp *http.Response) (*ReachGetContactDetailsV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ReachGetContactDetailsV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ReachV1ContactsContactDetailsResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseReachUpdateAContactV1Response parses an HTTP response from a ReachUpdateAContactV1WithResponse call
+func ParseReachUpdateAContactV1Response(rsp *http.Response) (*ReachUpdateAContactV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ReachUpdateAContactV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ReachV1ContactsProfileContactUpdateResource
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -50172,6 +54918,354 @@ func ParseReachListProfileSegmentContactsV1Response(rsp *http.Response) (*ReachL
 			Data *ReachV1ContactsSegmentsSegmentationContactCollection `json:"data,omitempty"`
 			Meta *CommonSchemaPaginationMetaSchema                     `json:"meta,omitempty"`
 		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseReachListProfileTagsV1Response parses an HTTP response from a ReachListProfileTagsV1WithResponse call
+func ParseReachListProfileTagsV1Response(rsp *http.Response) (*ReachListProfileTagsV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ReachListProfileTagsV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ReachV1ContactsTagsTagCollection
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseReachCreateOrFindTagsV1Response parses an HTTP response from a ReachCreateOrFindTagsV1WithResponse call
+func ParseReachCreateOrFindTagsV1Response(rsp *http.Response) (*ReachCreateOrFindTagsV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ReachCreateOrFindTagsV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ReachV1ContactsTagsTagCollection
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseUnprocessableContentResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseReachDeleteATagV1Response parses an HTTP response from a ReachDeleteATagV1WithResponse call
+func ParseReachDeleteATagV1Response(rsp *http.Response) (*ReachDeleteATagV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ReachDeleteATagV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CommonSuccessEmptyResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseReachRenameATagV1Response parses an HTTP response from a ReachRenameATagV1WithResponse call
+func ParseReachRenameATagV1Response(rsp *http.Response) (*ReachRenameATagV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ReachRenameATagV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ReachV1ContactsTagsTagResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseUnprocessableContentResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseReachRemoveContactsFromATagV1Response parses an HTTP response from a ReachRemoveContactsFromATagV1WithResponse call
+func ParseReachRemoveContactsFromATagV1Response(rsp *http.Response) (*ReachRemoveContactsFromATagV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ReachRemoveContactsFromATagV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CommonSuccessEmptyResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseUnprocessableContentResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseReachAssignContactsToATagV1Response parses an HTTP response from a ReachAssignContactsToATagV1WithResponse call
+func ParseReachAssignContactsToATagV1Response(rsp *http.Response) (*ReachAssignContactsToATagV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ReachAssignContactsToATagV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CommonSuccessEmptyResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseUnprocessableContentResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseReachRemoveAContactFromATagV1Response parses an HTTP response from a ReachRemoveAContactFromATagV1WithResponse call
+func ParseReachRemoveAContactFromATagV1Response(rsp *http.Response) (*ReachRemoveAContactFromATagV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ReachRemoveAContactFromATagV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CommonSuccessEmptyResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseReachAssignAContactToATagV1Response parses an HTTP response from a ReachAssignAContactToATagV1WithResponse call
+func ParseReachAssignAContactToATagV1Response(rsp *http.Response) (*ReachAssignAContactToATagV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ReachAssignAContactToATagV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ReachV1ContactsTagsTagResource
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}

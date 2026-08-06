@@ -40,7 +40,7 @@ func TestAccVPSFirewallsDataSource(t *testing.T) {
 										"action":        knownvalue.StringExact("accept"),
 										"protocol":      knownvalue.StringExact("TCP"),
 										"port":          knownvalue.StringExact("1024:2048"),
-										"source":        knownvalue.StringExact("any"),
+										"source":        knownvalue.StringExact("custom"),
 										"source_detail": knownvalue.StringExact("any"),
 									}),
 								}),
@@ -48,19 +48,10 @@ func TestAccVPSFirewallsDataSource(t *testing.T) {
 								"updated_at": knownvalue.StringExact("2021-09-01T12:00:00Z"),
 							}),
 							knownvalue.ObjectExact(map[string]knownvalue.Check{
-								"id":        knownvalue.Int64Exact(65225),
-								"name":      knownvalue.StringExact("HTTP and SSH only"),
-								"is_synced": knownvalue.Bool(false),
-								"rules": knownvalue.ListExact([]knownvalue.Check{
-									knownvalue.ObjectExact(map[string]knownvalue.Check{
-										"id":            knownvalue.Int64Exact(24542),
-										"action":        knownvalue.StringExact("accept"),
-										"protocol":      knownvalue.StringExact("TCP"),
-										"port":          knownvalue.StringExact("1024:2048"),
-										"source":        knownvalue.StringExact("any"),
-										"source_detail": knownvalue.StringExact("any"),
-									}),
-								}),
+								"id":         knownvalue.Int64Exact(65225),
+								"name":       knownvalue.StringExact("HTTP and SSH only"),
+								"is_synced":  knownvalue.Bool(false),
+								"rules":      knownvalue.Null(),
 								"created_at": knownvalue.StringExact("2021-09-01T12:00:00Z"),
 								"updated_at": knownvalue.StringExact("2021-09-01T12:00:00Z"),
 							}),
@@ -88,8 +79,209 @@ func testAccVPSFirewallsDataSourcePreCheck(t *testing.T) {
 	}
 
 	// language=json
-	body := []byte(`
-[]
+	body := []byte(`[
+  {
+    "httpRequest": {
+      "specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+      "operationId": "VPS_getFirewallListV1"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": {
+        "data": [
+          {
+            "id": 65224,
+            "name": "HTTP and SSH only",
+            "is_synced": false,
+            "created_at": "2021-09-01T12:00:00Z",
+            "updated_at": "2021-09-01T12:00:00Z",
+            "rules": [
+              {
+                "id": 24541,
+                "action": "accept",
+                "protocol": "TCP",
+                "port": "1024:2048",
+                "source": "custom",
+                "source_detail": "any"
+              }
+            ]
+          }
+        ],
+        "meta": {
+          "total": 2,
+          "current_page": 1,
+          "per_page": 1
+        }
+      }
+    },
+    "times": {
+      "remainingTimes": 1
+    }
+  },
+  {
+    "httpRequest": {
+      "specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+      "operationId": "VPS_getFirewallListV1"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": {
+        "data": [
+          {
+            "id": 65225,
+            "name": "HTTP and SSH only",
+            "is_synced": false,
+            "created_at": "2021-09-01T12:00:00Z",
+            "updated_at": "2021-09-01T12:00:00Z",
+            "rules": []
+          }
+        ],
+        "meta": {
+          "total": 2,
+          "current_page": 2,
+          "per_page": 1
+        }
+      }
+    },
+    "times": {
+      "remainingTimes": 1
+    }
+  },
+  {
+    "httpRequest": {
+      "specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+      "operationId": "VPS_getFirewallListV1"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": {
+        "data": [
+          {
+            "id": 65224,
+            "name": "HTTP and SSH only",
+            "is_synced": false,
+            "created_at": "2021-09-01T12:00:00Z",
+            "updated_at": "2021-09-01T12:00:00Z",
+            "rules": [
+              {
+                "id": 24541,
+                "action": "accept",
+                "protocol": "TCP",
+                "port": "1024:2048",
+                "source": "custom",
+                "source_detail": "any"
+              }
+            ]
+          }
+        ],
+        "meta": {
+          "total": 2,
+          "current_page": 1,
+          "per_page": 1
+        }
+      }
+    },
+    "times": {
+      "remainingTimes": 1
+    }
+  },
+  {
+    "httpRequest": {
+      "specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+      "operationId": "VPS_getFirewallListV1"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": {
+        "data": [
+          {
+            "id": 65225,
+            "name": "HTTP and SSH only",
+            "is_synced": false,
+            "created_at": "2021-09-01T12:00:00Z",
+            "updated_at": "2021-09-01T12:00:00Z",
+            "rules": []
+          }
+        ],
+        "meta": {
+          "total": 2,
+          "current_page": 2,
+          "per_page": 1
+        }
+      }
+    },
+    "times": {
+      "remainingTimes": 1
+    }
+  },
+  {
+    "httpRequest": {
+      "specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+      "operationId": "VPS_getFirewallListV1"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": {
+        "data": [
+          {
+            "id": 65224,
+            "name": "HTTP and SSH only",
+            "is_synced": false,
+            "created_at": "2021-09-01T12:00:00Z",
+            "updated_at": "2021-09-01T12:00:00Z",
+            "rules": [
+              {
+                "id": 24541,
+                "action": "accept",
+                "protocol": "TCP",
+                "port": "1024:2048",
+                "source": "custom",
+                "source_detail": "any"
+              }
+            ]
+          }
+        ],
+        "meta": {
+          "total": 2,
+          "current_page": 1,
+          "per_page": 1
+        }
+      }
+    },
+    "times": {
+      "remainingTimes": 1
+    }
+  },
+  {
+    "httpRequest": {
+      "specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+      "operationId": "VPS_getFirewallListV1"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": {
+        "data": [
+          {
+            "id": 65225,
+            "name": "HTTP and SSH only",
+            "is_synced": false,
+            "created_at": "2021-09-01T12:00:00Z",
+            "updated_at": "2021-09-01T12:00:00Z",
+            "rules": []
+          }
+        ],
+        "meta": {
+          "total": 2,
+          "current_page": 2,
+          "per_page": 1
+        }
+      }
+    },
+    "times": {
+      "remainingTimes": 1
+    }
+  }
+]
 `)
 
 	req, _ := http.NewRequest(

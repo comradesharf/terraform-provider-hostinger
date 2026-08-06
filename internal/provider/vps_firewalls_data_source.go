@@ -7,13 +7,16 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"time"
 
 	"github.com/comradesharf/terraform-provider-hostinger/internal/client"
+	"github.com/hashicorp/terraform-plugin-framework-timeouts/datasource/timeouts"
 	"github.com/hashicorp/terraform-plugin-framework-timetypes/timetypes"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
+	"github.com/hashicorp/terraform-plugin-log/tflog"
 )
 
 // Ensure provider defined types fully satisfy framework interfaces.
@@ -37,6 +40,7 @@ type VPSFirewallsDataSourceModel struct {
 		VPSFirewallModel
 		Rules []VPSFirewallRuleModel `tfsdk:"rules"`
 	} `tfsdk:"firewalls"`
+	Timeouts timeouts.Value `tfsdk:"timeouts"`
 }
 
 func (d *VPSFirewallsDataSource) Metadata(ctx context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
@@ -130,6 +134,7 @@ func (d *VPSFirewallsDataSource) Schema(ctx context.Context, req datasource.Sche
 					},
 				},
 			},
+			"timeouts": timeouts.Attributes(ctx),
 		},
 	}
 }
@@ -158,10 +163,20 @@ func (d *VPSFirewallsDataSource) Read(ctx context.Context, req datasource.ReadRe
 		return
 	}
 
+	readTimeout, diags := data.Timeouts.Read(ctx, 20*time.Minute)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	ctx, cancel := context.WithTimeout(ctx, readTimeout)
+	defer cancel()
+
 	params := &client.VPSGetFirewallListV1Params{}
 
 	page := 1
 	for {
+		ctx = tflog.SetField(ctx, "page", page)
 		params.Page = &page
 
 		response, err := d.client.VPSGetFirewallListV1WithResponse(ctx, params)
@@ -183,6 +198,13 @@ func (d *VPSFirewallsDataSource) Read(ctx context.Context, req datasource.ReadRe
 			resp.Diagnostics.AddError(
 				"Unable to Read VPS Firewalls",
 				"Response body is nil",
+			)
+			return
+		}
+		if response.JSON200.Data == nil {
+			resp.Diagnostics.AddError(
+				"Unable to Read VPS Firewalls",
+				"Response data is nil",
 			)
 			return
 		}
