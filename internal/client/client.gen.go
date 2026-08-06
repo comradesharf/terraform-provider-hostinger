@@ -3435,34 +3435,37 @@ type AgencyHostingV1WebsitesWebsiteOrderPlanResource struct {
 	Name *string `json:"name,omitempty"`
 
 	// Parameters Plan parameters
-	Parameters *struct {
-		// CpuCores CPU cores
-		CpuCores *int `json:"cpu_cores,omitempty"`
+	Parameters *AgencyHostingV1WebsitesWebsiteOrderPlanParametersResource `json:"parameters,omitempty"`
+}
 
-		// DiskIopsQuota Disk IOPs quota
-		DiskIopsQuota *int `json:"disk_iops_quota,omitempty"`
+// AgencyHostingV1WebsitesWebsiteOrderPlanParametersResource Plan parameters
+type AgencyHostingV1WebsitesWebsiteOrderPlanParametersResource struct {
+	// CpuCores CPU cores
+	CpuCores *int `json:"cpu_cores,omitempty"`
 
-		// DiskQuotaBytes Disk quota in bytes
-		DiskQuotaBytes *int `json:"disk_quota_bytes,omitempty"`
+	// DiskIopsQuota Disk IOPs quota
+	DiskIopsQuota *int `json:"disk_iops_quota,omitempty"`
 
-		// InodeQuota Inode quota
-		InodeQuota *int `json:"inode_quota,omitempty"`
+	// DiskQuotaBytes Disk quota in bytes
+	DiskQuotaBytes *int `json:"disk_quota_bytes,omitempty"`
 
-		// IsCdnAvailable Is CDN available
-		IsCdnAvailable *bool `json:"is_cdn_available,omitempty"`
+	// InodeQuota Inode quota
+	InodeQuota *int `json:"inode_quota,omitempty"`
 
-		// MaxDatabasesPerWebsite Maximum number of databases per website
-		MaxDatabasesPerWebsite *int `json:"max_databases_per_website,omitempty"`
+	// IsCdnAvailable Is CDN available
+	IsCdnAvailable *bool `json:"is_cdn_available,omitempty"`
 
-		// MemoryQuotaBytes Memory quota in bytes
-		MemoryQuotaBytes *int `json:"memory_quota_bytes,omitempty"`
+	// MaxDatabasesPerWebsite Maximum number of databases per website
+	MaxDatabasesPerWebsite *int `json:"max_databases_per_website,omitempty"`
 
-		// ProcessQuota Process quota
-		ProcessQuota *int `json:"process_quota,omitempty"`
+	// MemoryQuotaBytes Memory quota in bytes
+	MemoryQuotaBytes *int `json:"memory_quota_bytes,omitempty"`
 
-		// WebsiteQuota Website quota
-		WebsiteQuota *int `json:"website_quota,omitempty"`
-	} `json:"parameters,omitempty"`
+	// ProcessQuota Process quota
+	ProcessQuota *int `json:"process_quota,omitempty"`
+
+	// WebsiteQuota Website quota
+	WebsiteQuota *int `json:"website_quota,omitempty"`
 }
 
 // AgencyHostingV1WebsitesWebsiteOrderResource defines model for AgencyHosting.V1.Websites.WebsiteOrderResource.
