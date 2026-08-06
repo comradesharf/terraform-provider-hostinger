@@ -7,8 +7,10 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"time"
 
 	"github.com/comradesharf/terraform-provider-hostinger/internal/client"
+	"github.com/hashicorp/terraform-plugin-framework-timeouts/datasource/timeouts"
 	"github.com/hashicorp/terraform-plugin-framework-timetypes/timetypes"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -34,7 +36,8 @@ type VPSFirewallDataSource struct {
 // VPSFirewallDataSourceModel describes the data source data model.
 type VPSFirewallDataSourceModel struct {
 	VPSFirewallModel
-	Rules []VPSFirewallRuleModel `tfsdk:"rules"`
+	Rules    []VPSFirewallRuleModel `tfsdk:"rules"`
+	Timeouts timeouts.Value         `tfsdk:"timeouts"`
 }
 
 func (d *VPSFirewallDataSource) Metadata(ctx context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
@@ -120,6 +123,7 @@ func (d *VPSFirewallDataSource) Schema(ctx context.Context, req datasource.Schem
 					},
 				},
 			},
+			"timeouts": timeouts.Attributes(ctx),
 		},
 	}
 }
@@ -163,6 +167,15 @@ func (d *VPSFirewallDataSource) Read(ctx context.Context, req datasource.ReadReq
 		)
 		return
 	}
+
+	readTimeout, diags := data.Timeouts.Read(ctx, 20*time.Minute)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	ctx, cancel := context.WithTimeout(ctx, readTimeout)
+	defer cancel()
 
 	response, err := d.client.VPSGetFirewallDetailsV1WithResponse(ctx, client.FirewallId(data.ID.ValueInt64()))
 	if err != nil {
