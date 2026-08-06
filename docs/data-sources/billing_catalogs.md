@@ -19,10 +19,19 @@ description: |-
 
 - `category` (String)
 - `name` (String)
+- `timeouts` (Attributes) (see [below for nested schema](#nestedatt--timeouts))
 
 ### Read-Only
 
 - `billing_catalogs` (Attributes List) (see [below for nested schema](#nestedatt--billing_catalogs))
+
+<a id="nestedatt--timeouts"></a>
+### Nested Schema for `timeouts`
+
+Optional:
+
+- `read` (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+
 
 <a id="nestedatt--billing_catalogs"></a>
 ### Nested Schema for `billing_catalogs`
