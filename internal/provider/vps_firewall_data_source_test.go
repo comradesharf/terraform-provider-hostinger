@@ -83,37 +83,36 @@ func testAccVPSFirewallDataSourcePreCheck(t *testing.T) {
 	}
 
 	// language=json
-	body := []byte(`
-[
-	{
-		"httpRequest": {
-			"specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
-			"operationId":      "VPS_getFirewallDetailsV1"
-		},
-		"httpResponse": {
-			"statusCode": 200,
-			"body": {
-				"id": 65224,
-				"name": "HTTP and SSH only",
-				"is_synced": false,
-				"rules": [
-					{
-						"id": 24541,
-						"action": "accept",
-						"protocol": "TCP",
-						"port": "1024:2048",
-						"source": "any",
-						"source_detail": "any"
-					}
-				],
-				"created_at": "2021-09-01T12:00:00Z",
-				"updated_at": "2021-09-01T12:00:00Z"
-			}			
-		},
-		"times": {
-			"remainingTimes": 3
-		}
-	}
+	body := []byte(`[
+  {
+    "httpRequest": {
+      "specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+      "operationId": "VPS_getFirewallDetailsV1"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": {
+        "id": 65224,
+        "name": "HTTP and SSH only",
+        "is_synced": false,
+        "rules": [
+          {
+            "id": 24541,
+            "action": "accept",
+            "protocol": "TCP",
+            "port": "1024:2048",
+            "source": "any",
+            "source_detail": "any"
+          }
+        ],
+        "created_at": "2021-09-01T12:00:00Z",
+        "updated_at": "2021-09-01T12:00:00Z"
+      }
+    },
+    "times": {
+      "remainingTimes": 3
+    }
+  }
 ]
 `)
 

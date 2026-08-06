@@ -106,118 +106,117 @@ func testAccVPSFirewallResourcePreCheck(t *testing.T) {
 	}
 
 	// language=json
-	body := []byte(`
-[
-	{
-		"httpRequest": {
-			"specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
-			"operationId":      "VPS_createNewFirewallV1"
-		},
-		"httpResponse": {
-			"statusCode": 200,
-			"body": {
-				"id": 65224,
-				"name": "one",
-				"is_synced": false,
-				"rules": [],
-				"created_at": "2021-09-01T12:00:00Z",
-				"updated_at": "2021-09-01T12:00:00Z"
-			}			
-		},
-		"times": {
-			"remainingTimes": 1
-		}
-	},
-	{
-		"httpRequest": {
-			"specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
-			"operationId":      "VPS_getFirewallDetailsV1"
-		},
-		"httpResponse": {
-			"statusCode": 200,
-			"body": {
-				"id": 65224,
-				"name": "one",
-				"is_synced": false,
-				"rules": [],
-				"created_at": "2021-09-01T12:00:00Z",
-				"updated_at": "2021-09-01T12:00:00Z"
-			}			
-		},
-		"times": {
-			"remainingTimes": 3
-		}
-	},
-	{
-		"httpRequest": {
-			"specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
-			"operationId":      "VPS_deleteFirewallV1"
-		},
-		"httpResponse": {
-			"statusCode": 200,
-			"body": {
-				"message": "Request accepted"
-			}			
-		},
-		"times": {
-			"remainingTimes": 1
-		}
-	},
-	{
-		"httpRequest": {
-			"specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
-			"operationId":      "VPS_createNewFirewallV1"
-		},
-		"httpResponse": {
-			"statusCode": 200,
-			"body": {
-				"id": 65225,
-				"name": "two",
-				"is_synced": false,
-				"rules": [],
-				"created_at": "2021-09-01T12:00:00Z",
-				"updated_at": "2021-09-01T12:00:00Z"
-			}			
-		},
-		"times": {
-			"remainingTimes": 1
-		}
-	},
-	{
-		"httpRequest": {
-			"specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
-			"operationId":      "VPS_getFirewallDetailsV1"
-		},
-		"httpResponse": {
-			"statusCode": 200,
-			"body": {
-				"id": 65225,
-				"name": "two",
-				"is_synced": false,
-				"rules": [],
-				"created_at": "2021-09-01T12:00:00Z",
-				"updated_at": "2021-09-01T12:00:00Z"
-			}			
-		},
-		"times": {
-			"remainingTimes": 1
-		}
-	},
-	{
-		"httpRequest": {
-			"specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
-			"operationId":      "VPS_deleteFirewallV1"
-		},
-		"httpResponse": {
-			"statusCode": 200,
-			"body": {
-				"message": "Request accepted"
-			}			
-		},
-		"times": {
-			"remainingTimes": 1
-		}
-	}
+	body := []byte(`[
+  {
+    "httpRequest": {
+      "specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+      "operationId": "VPS_createNewFirewallV1"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": {
+        "id": 65224,
+        "name": "one",
+        "is_synced": false,
+        "rules": [],
+        "created_at": "2021-09-01T12:00:00Z",
+        "updated_at": "2021-09-01T12:00:00Z"
+      }
+    },
+    "times": {
+      "remainingTimes": 1
+    }
+  },
+  {
+    "httpRequest": {
+      "specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+      "operationId": "VPS_getFirewallDetailsV1"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": {
+        "id": 65224,
+        "name": "one",
+        "is_synced": false,
+        "rules": [],
+        "created_at": "2021-09-01T12:00:00Z",
+        "updated_at": "2021-09-01T12:00:00Z"
+      }
+    },
+    "times": {
+      "remainingTimes": 3
+    }
+  },
+  {
+    "httpRequest": {
+      "specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+      "operationId": "VPS_deleteFirewallV1"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": {
+        "message": "Request accepted"
+      }
+    },
+    "times": {
+      "remainingTimes": 1
+    }
+  },
+  {
+    "httpRequest": {
+      "specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+      "operationId": "VPS_createNewFirewallV1"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": {
+        "id": 65225,
+        "name": "two",
+        "is_synced": false,
+        "rules": [],
+        "created_at": "2021-09-01T12:00:00Z",
+        "updated_at": "2021-09-01T12:00:00Z"
+      }
+    },
+    "times": {
+      "remainingTimes": 1
+    }
+  },
+  {
+    "httpRequest": {
+      "specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+      "operationId": "VPS_getFirewallDetailsV1"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": {
+        "id": 65225,
+        "name": "two",
+        "is_synced": false,
+        "rules": [],
+        "created_at": "2021-09-01T12:00:00Z",
+        "updated_at": "2021-09-01T12:00:00Z"
+      }
+    },
+    "times": {
+      "remainingTimes": 1
+    }
+  },
+  {
+    "httpRequest": {
+      "specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+      "operationId": "VPS_deleteFirewallV1"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": {
+        "message": "Request accepted"
+      }
+    },
+    "times": {
+      "remainingTimes": 1
+    }
+  }
 ]
 `)
 
