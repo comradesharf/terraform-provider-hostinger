@@ -54,7 +54,7 @@ func (r *VPSFirewallRuleResource) Metadata(ctx context.Context, req resource.Met
 
 func (r *VPSFirewallRuleResource) Schema(ctx context.Context, req resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
-		MarkdownDescription: "Example resource",
+		MarkdownDescription: "Manages a VPS firewall rule.",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.Int64Attribute{
 				Computed:            true,
@@ -244,24 +244,21 @@ func (r *VPSFirewallRuleResource) Read(ctx context.Context, req resource.ReadReq
 		return
 	}
 	if response.JSON200.Rules == nil || len(*response.JSON200.Rules) == 0 {
-		resp.Diagnostics.AddError(
-			"VPS Firewall Rules Is empty",
-			"Response body rules is nil",
-		)
+		resp.State.RemoveResource(ctx)
 		return
 	}
 
 	rules := *response.JSON200.Rules
 
 	index := slices.IndexFunc(rules, func(rule client.VPSV1FirewallFirewallRuleResource) bool {
+		if rule.Id == nil {
+			return false
+		}
 		return types.Int64Value(int64(*rule.Id)).Equal(state.ID)
 	})
 
 	if index == -1 {
-		resp.Diagnostics.AddError(
-			"Unable to Read VPS Firewall Rule",
-			fmt.Sprintf("Firewall rule with ID %d not found in firewall %d", state.ID.ValueInt64(), state.FirewallID.ValueInt64()),
-		)
+		resp.State.RemoveResource(ctx)
 		return
 	}
 
