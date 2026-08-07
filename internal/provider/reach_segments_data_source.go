@@ -33,8 +33,8 @@ type ReachSegmentsDataSource struct {
 
 // ReachSegmentsDataSourceModel describes the data source data model.
 type ReachSegmentsDataSourceModel struct {
-	Segments []ReachSegmentsSegmentModel `tfsdk:"segments"`
-	Timeouts timeouts.Value              `tfsdk:"timeouts"`
+	Segments []ReachSegmentModel `tfsdk:"segments"`
+	Timeouts timeouts.Value      `tfsdk:"timeouts"`
 }
 
 func (d *ReachSegmentsDataSource) Metadata(ctx context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
@@ -133,7 +133,7 @@ func (d *ReachSegmentsDataSource) Read(ctx context.Context, req datasource.ReadR
 	}
 
 	for _, item := range *response.JSON200 {
-		var m ReachSegmentsSegmentModel
+		var m ReachSegmentModel
 		m.Merge(item)
 		data.Segments = append(data.Segments, m)
 	}

@@ -36,10 +36,10 @@ type BillingCatalogsDataSource struct {
 
 // BillingCatalogsDataSourceModel describes the data source data model.
 type BillingCatalogsDataSourceModel struct {
-	BillingCatalogs []BillingCatalogsCatalogModel `tfsdk:"billing_catalogs"`
-	Name            types.String                  `tfsdk:"name"`
-	Category        types.String                  `tfsdk:"category"`
-	Timeouts        timeouts.Value                `tfsdk:"timeouts"`
+	BillingCatalogs []BillingCatalogModel `tfsdk:"billing_catalogs"`
+	Name            types.String          `tfsdk:"name"`
+	Category        types.String          `tfsdk:"category"`
+	Timeouts        timeouts.Value        `tfsdk:"timeouts"`
 }
 
 func (d *BillingCatalogsDataSource) Metadata(ctx context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
@@ -199,7 +199,7 @@ func (d *BillingCatalogsDataSource) Read(ctx context.Context, req datasource.Rea
 	}
 
 	for _, item := range *response.JSON200 {
-		var d BillingCatalogsCatalogModel
+		var d BillingCatalogModel
 		d.Merge(item)
 		data.BillingCatalogs = append(data.BillingCatalogs, d)
 	}

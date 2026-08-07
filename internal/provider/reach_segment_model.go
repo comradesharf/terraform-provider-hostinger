@@ -9,15 +9,15 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
-// ReachSegmentsSegmentModel maps a single segment from the API response.
-type ReachSegmentsSegmentModel struct {
+// ReachSegmentModel maps a single segment from the API response.
+type ReachSegmentModel struct {
 	Uuid      types.String      `tfsdk:"uuid"`
 	Name      types.String      `tfsdk:"name"`
 	CreatedAt timetypes.RFC3339 `tfsdk:"created_at"`
 	UpdatedAt timetypes.RFC3339 `tfsdk:"updated_at"`
 }
 
-func (d *ReachSegmentsSegmentModel) Merge(item client.ReachV1ContactsSegmentsContactSegmentResource) {
+func (d *ReachSegmentModel) Merge(item client.ReachV1ContactsSegmentsContactSegmentResource) {
 	d.Uuid = types.StringPointerValue(item.Uuid)
 	d.Name = types.StringPointerValue(item.Name)
 	d.CreatedAt = timetypes.NewRFC3339TimePointerValue(item.CreatedAt)

@@ -9,8 +9,8 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
-// ReachContactsContactModel maps a single contact from the API response.
-type ReachContactsContactModel struct {
+// ReachContactModel maps a single contact from the API response.
+type ReachContactModel struct {
 	Uuid               types.String      `tfsdk:"uuid"`
 	Email              types.String      `tfsdk:"email"`
 	Name               types.String      `tfsdk:"name"`
@@ -21,7 +21,7 @@ type ReachContactsContactModel struct {
 	Note               types.String      `tfsdk:"note"`
 }
 
-func (d *ReachContactsContactModel) Merge(item client.ReachV1ContactsContactResource) {
+func (d *ReachContactModel) Merge(item client.ReachV1ContactsContactResource) {
 	d.Uuid = types.StringPointerValue(item.Uuid)
 	d.Email = types.StringPointerValue(item.Email)
 	d.Name = types.StringPointerValue(item.Name)

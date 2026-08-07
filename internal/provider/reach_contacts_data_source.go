@@ -37,10 +37,10 @@ type ReachContactsDataSource struct {
 
 // ReachContactsDataSourceModel describes the data source data model.
 type ReachContactsDataSourceModel struct {
-	GroupUuid          types.String                `tfsdk:"group_uuid"`
-	SubscriptionStatus types.String                `tfsdk:"subscription_status"`
-	Contacts           []ReachContactsContactModel `tfsdk:"contacts"`
-	Timeouts           timeouts.Value              `tfsdk:"timeouts"`
+	GroupUuid          types.String        `tfsdk:"group_uuid"`
+	SubscriptionStatus types.String        `tfsdk:"subscription_status"`
+	Contacts           []ReachContactModel `tfsdk:"contacts"`
+	Timeouts           timeouts.Value      `tfsdk:"timeouts"`
 }
 
 func (d *ReachContactsDataSource) Metadata(ctx context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
@@ -203,7 +203,7 @@ func (d *ReachContactsDataSource) Read(ctx context.Context, req datasource.ReadR
 		}
 
 		for _, item := range *response.JSON200.Data {
-			var m ReachContactsContactModel
+			var m ReachContactModel
 			m.Merge(item)
 			data.Contacts = append(data.Contacts, m)
 		}

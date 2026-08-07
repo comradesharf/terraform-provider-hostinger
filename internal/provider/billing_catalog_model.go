@@ -8,7 +8,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
-type BillingCatalogsCatalogPriceModel struct {
+type BillingCatalogPriceModel struct {
 	Currency         types.String `tfsdk:"currency"`
 	FirstPeriodPrice types.Int32  `tfsdk:"first_period_price"`
 	ID               types.String `tfsdk:"id"`
@@ -18,7 +18,7 @@ type BillingCatalogsCatalogPriceModel struct {
 	Price            types.Int32  `tfsdk:"price"`
 }
 
-func (d *BillingCatalogsCatalogPriceModel) Merge(item client.BillingV1CatalogCatalogItemPriceResource) {
+func (d *BillingCatalogPriceModel) Merge(item client.BillingV1CatalogCatalogItemPriceResource) {
 	d.ID = types.StringPointerValue(item.Id)
 	d.Currency = types.StringPointerValue(item.Currency)
 	d.FirstPeriodPrice = int32Value(item.FirstPeriodPrice)
@@ -28,15 +28,15 @@ func (d *BillingCatalogsCatalogPriceModel) Merge(item client.BillingV1CatalogCat
 	d.Price = int32Value(item.Price)
 }
 
-type BillingCatalogsCatalogModel struct {
-	ID       types.String                       `tfsdk:"id"`
-	Category types.String                       `tfsdk:"category"`
-	Name     types.String                       `tfsdk:"name"`
-	Metadata map[string]types.String            `tfsdk:"metadata"`
-	Prices   []BillingCatalogsCatalogPriceModel `tfsdk:"prices"`
+type BillingCatalogModel struct {
+	ID       types.String               `tfsdk:"id"`
+	Category types.String               `tfsdk:"category"`
+	Name     types.String               `tfsdk:"name"`
+	Metadata map[string]types.String    `tfsdk:"metadata"`
+	Prices   []BillingCatalogPriceModel `tfsdk:"prices"`
 }
 
-func (d *BillingCatalogsCatalogModel) Merge(item client.BillingV1CatalogCatalogItemResource) {
+func (d *BillingCatalogModel) Merge(item client.BillingV1CatalogCatalogItemResource) {
 	d.ID = types.StringPointerValue(item.Id)
 	d.Category = types.StringPointerValue(item.Category)
 	d.Name = types.StringPointerValue(item.Name)
@@ -52,7 +52,7 @@ func (d *BillingCatalogsCatalogModel) Merge(item client.BillingV1CatalogCatalogI
 
 	if item.Prices != nil {
 		for _, price := range *item.Prices {
-			var p BillingCatalogsCatalogPriceModel
+			var p BillingCatalogPriceModel
 			p.Merge(price)
 			d.Prices = append(d.Prices, p)
 		}
