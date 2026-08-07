@@ -1,0 +1,7 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
+interface:
+  display_name: "Resource Creation"
+  short_description: "Create Hostinger Terraform resources"
+  default_prompt: "Use $resource-creation to add a Terraform resource to the Hostinger provider."

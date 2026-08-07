@@ -147,6 +147,7 @@ func (p *hostingerProvider) Resources(ctx context.Context) []func() resource.Res
 	return []func() resource.Resource{
 		NewVPSFirewallResource,
 		NewVPSFirewallRuleResource,
+		NewVPSPublicKeyResource,
 	}
 }
 
