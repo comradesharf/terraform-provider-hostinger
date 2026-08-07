@@ -10,6 +10,7 @@ import (
 
 	"github.com/comradesharf/terraform-provider-hostinger/internal/client"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/list"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/provider"
 	"github.com/hashicorp/terraform-plugin-framework/provider/schema"
@@ -19,7 +20,8 @@ import (
 )
 
 var (
-	_ provider.Provider = &hostingerProvider{}
+	_ provider.Provider                  = &hostingerProvider{}
+	_ provider.ProviderWithListResources = &hostingerProvider{}
 )
 
 // hostingerProvider defines the provider implementation.
@@ -141,6 +143,7 @@ func (p *hostingerProvider) Configure(ctx context.Context, req provider.Configur
 
 	resp.DataSourceData = c
 	resp.ResourceData = c
+	resp.ListResourceData = c
 }
 
 func (p *hostingerProvider) Resources(ctx context.Context) []func() resource.Resource {
@@ -166,6 +169,12 @@ func (p *hostingerProvider) DataSources(ctx context.Context) []func() datasource
 		NewVPSFirewallDataSource,
 		NewVPSPostInstallScriptsDataSource,
 		NewVPSPostInstallScriptDataSource,
+	}
+}
+
+func (p *hostingerProvider) ListResources(ctx context.Context) []func() list.ListResource {
+	return []func() list.ListResource{
+		NewVPSFirewallList,
 	}
 }
 
