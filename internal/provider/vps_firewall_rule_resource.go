@@ -113,7 +113,7 @@ func (r *VPSFirewallRuleResource) Schema(ctx context.Context, req resource.Schem
 				},
 			},
 			"source_detail": schema.StringAttribute{
-				Optional:            true,
+				Required:            true,
 				MarkdownDescription: "Firewall rule source detail. Can be `any` or IP address, CIDR or range",
 			},
 			"timeouts": timeouts.AttributesAll(ctx),

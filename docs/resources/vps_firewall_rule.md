@@ -21,10 +21,10 @@ Example resource
 - `port` (String) Firewall rule destination port: single or port range
 - `protocol` (String) Firewall rule protocol
 - `source` (String) Firewall rule source. Can be `any` or `custom`
+- `source_detail` (String) Firewall rule source detail. Can be `any` or IP address, CIDR or range
 
 ### Optional
 
-- `source_detail` (String) Firewall rule source detail. Can be `any` or IP address, CIDR or range
 - `timeouts` (Attributes) (see [below for nested schema](#nestedatt--timeouts))
 
 ### Read-Only
