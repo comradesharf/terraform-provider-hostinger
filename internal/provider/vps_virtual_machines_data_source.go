@@ -7,40 +7,42 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"time"
 
 	"github.com/comradesharf/terraform-provider-hostinger/internal/client"
 	"github.com/hashicorp/terraform-plugin-framework-nettypes/iptypes"
+	"github.com/hashicorp/terraform-plugin-framework-timeouts/datasource/timeouts"
 	"github.com/hashicorp/terraform-plugin-framework-timetypes/timetypes"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
-	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
 // Ensure provider defined types fully satisfy framework interfaces.
 var (
-	_ datasource.DataSource              = &DataSourceVPSVirtualMachines{}
-	_ datasource.DataSourceWithConfigure = &DataSourceVPSVirtualMachines{}
+	_ datasource.DataSource              = &VPSVirtualMachinesDataSource{}
+	_ datasource.DataSourceWithConfigure = &VPSVirtualMachinesDataSource{}
 )
 
-func NewDataSourceVPSVirtualMachines() datasource.DataSource {
-	return &DataSourceVPSVirtualMachines{}
+func NewVPSVirtualMachinesDataSource() datasource.DataSource {
+	return &VPSVirtualMachinesDataSource{}
 }
 
-// DataSourceVPSVirtualMachines defines the data source implementation.
-type DataSourceVPSVirtualMachines struct {
+// VPSVirtualMachinesDataSource defines the data source implementation.
+type VPSVirtualMachinesDataSource struct {
 	client *client.ClientWithResponses
 }
 
-// DataSourceVPSVirtualMachinesModel describes the data source data model.
-type DataSourceVPSVirtualMachinesModel struct {
+// VPSVirtualMachinesDataSourceModel describes the data source data model.
+type VPSVirtualMachinesDataSourceModel struct {
 	VirtualMachines []VPSVirtualMachineModel `tfsdk:"virtual_machines"`
+	Timeouts        timeouts.Value           `tfsdk:"timeouts"`
 }
 
-func (d *DataSourceVPSVirtualMachines) Metadata(ctx context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
+func (d *VPSVirtualMachinesDataSource) Metadata(ctx context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_vps_virtual_machines"
 }
 
-func (d *DataSourceVPSVirtualMachines) Schema(ctx context.Context, req datasource.SchemaRequest, resp *datasource.SchemaResponse) {
+func (d *VPSVirtualMachinesDataSource) Schema(ctx context.Context, req datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		Attributes: map[string]schema.Attribute{
 			"virtual_machines": schema.ListNestedAttribute{
@@ -149,11 +151,12 @@ func (d *DataSourceVPSVirtualMachines) Schema(ctx context.Context, req datasourc
 					},
 				},
 			},
+			"timeouts": timeouts.Attributes(ctx),
 		},
 	}
 }
 
-func (d *DataSourceVPSVirtualMachines) Configure(ctx context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
+func (d *VPSVirtualMachinesDataSource) Configure(ctx context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
 	if req.ProviderData == nil {
 		return
 	}
@@ -170,12 +173,21 @@ func (d *DataSourceVPSVirtualMachines) Configure(ctx context.Context, req dataso
 	d.client = c
 }
 
-func (d *DataSourceVPSVirtualMachines) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var data DataSourceVPSVirtualMachinesModel
+func (d *VPSVirtualMachinesDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	var data VPSVirtualMachinesDataSourceModel
 	resp.Diagnostics.Append(req.Config.Get(ctx, &data)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
+
+	readTimeout, diags := data.Timeouts.Read(ctx, 20*time.Minute)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	ctx, cancel := context.WithTimeout(ctx, readTimeout)
+	defer cancel()
 
 	response, err := d.client.VPSGetVirtualMachinesV1WithResponse(ctx)
 	if err != nil {
@@ -202,64 +214,7 @@ func (d *DataSourceVPSVirtualMachines) Read(ctx context.Context, req datasource.
 
 	for _, item := range *response.JSON200 {
 		var d VPSVirtualMachineModel
-		d.ID = int64Value(item.Id)
-		d.FirewallGroupID = int64Value(item.FirewallGroupId)
-		d.SubscriptionID = types.StringPointerValue(item.SubscriptionId)
-		d.DataCenterID = int64Value(item.DataCenterId)
-		d.Plan = types.StringPointerValue(item.Plan)
-		d.Hostname = types.StringPointerValue(item.Hostname)
-		d.State = types.StringPointerValue((*string)(item.State))
-		d.ActionsLock = types.StringPointerValue((*string)(item.ActionsLock))
-		d.Cpus = int64Value(item.Cpus)
-		d.Memory = int64Value(item.Memory)
-		d.Disk = int64Value(item.Disk)
-		d.Bandwidth = int64Value(item.Bandwidth)
-		d.NS1 = iptypes.NewIPAddressPointerValue(item.Ns1)
-		d.NS2 = iptypes.NewIPAddressPointerValue(item.Ns2)
-
-		if item.Ipv4 != nil {
-			v, err := item.Ipv4.AsVPSV1IPAddressIPAddressCollection()
-			if err == nil {
-				for _, ip := range v {
-					p := VPSVirtualMachineIPAddressModel{}
-					p.ID = int64Value(ip.Id)
-					p.Address = iptypes.NewIPAddressPointerValue(ip.Address)
-					p.Ptr = types.StringPointerValue(ip.Ptr)
-
-					d.Ipv4 = append(d.Ipv4, p)
-				}
-			}
-		}
-
-		if item.Ipv6 != nil {
-			v, err := item.Ipv6.AsVPSV1IPAddressIPAddressCollection()
-			if err == nil {
-				for _, ip := range v {
-					p := VPSVirtualMachineIPAddressModel{}
-					p.ID = int64Value(ip.Id)
-					p.Address = iptypes.NewIPAddressPointerValue(ip.Address)
-					p.Ptr = types.StringPointerValue(ip.Ptr)
-
-					d.Ipv6 = append(d.Ipv6, p)
-				}
-			}
-		}
-
-		if item.Template != nil {
-			v, err := item.Template.AsVPSV1TemplateTemplateResource()
-			if err == nil {
-				p := &VPSVirtualMachineTemplateModel{}
-				p.ID = int64Value(v.Id)
-				p.Name = types.StringPointerValue(v.Name)
-				p.Description = types.StringPointerValue(v.Description)
-				p.Documentation = types.StringPointerValue(v.Documentation)
-
-				d.Template = p
-			}
-		}
-
-		d.CreatedAt = timetypes.NewRFC3339TimePointerValue(item.CreatedAt)
-
+		d.Merge(item)
 		data.VirtualMachines = append(data.VirtualMachines, d)
 	}
 

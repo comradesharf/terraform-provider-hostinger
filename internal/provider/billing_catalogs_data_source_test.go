@@ -4,21 +4,27 @@
 package provider
 
 import (
+	"bytes"
+	"net/http"
 	"testing"
 
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
 	"github.com/hashicorp/terraform-plugin-testing/knownvalue"
 	"github.com/hashicorp/terraform-plugin-testing/statecheck"
 	"github.com/hashicorp/terraform-plugin-testing/tfjsonpath"
+	"github.com/mock-server/mockserver-monorepo/mockserver-client-go/v7"
 )
 
-func TestAccDataSourceBillingCatalogs(t *testing.T) {
+func TestAccBillingCatalogsDataSource(t *testing.T) {
 	resource.Test(t, resource.TestCase{
-		PreCheck:                 func() { testAccPreCheck(t) },
+		PreCheck: func() {
+			testAccPreCheck(t)
+			testAccBillingCatalogsDataSourcePreCheck(t)
+		},
 		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
 		Steps: []resource.TestStep{
 			{
-				Config: testAccDataSourceBillingCatalogsConfig,
+				Config: testAccBillingCatalogsDataSourceConfig,
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
 						"data.hostinger_billing_catalogs.test",
@@ -59,7 +65,67 @@ func TestAccDataSourceBillingCatalogs(t *testing.T) {
 	})
 }
 
-const testAccDataSourceBillingCatalogsConfig = `
+func testAccBillingCatalogsDataSourcePreCheck(t *testing.T) {
+	client := newMockServerClient()
+
+	if err := client.Clear(nil, mockserver.ClearAll); err != nil {
+		t.Fatalf("failed to clear mock server: %v", err)
+	}
+
+	if err := client.FreezeClock("2021-09-01T12:00:00Z"); err != nil {
+		t.Fatalf("failed to freeze mock server clock: %v", err)
+	}
+
+	// language=json
+	body := []byte(`[
+  {
+    "httpRequest": {
+      "specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+      "operationId": "billing_getCatalogItemListV1"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": [
+        {
+          "id": "hostingercom-vps-kvm2",
+          "name": "KVM 2",
+          "category": "VPS",
+          "metadata": {
+            "field": "value"
+          },
+          "prices": [
+            {
+              "id": "hostingercom-vps-kvm2-usd-1m",
+              "name": "KVM 2 (billed every month)",
+              "currency": "USD",
+              "price": 1799,
+              "first_period_price": 899,
+              "period": 1,
+              "period_unit": "day"
+            }
+          ]
+        }
+      ]
+    },
+    "times": {
+      "remainingTimes": 3
+    }
+  }
+]
+`)
+
+	req, _ := http.NewRequest(
+		"PUT",
+		"http://localhost:1234/mockserver/expectation",
+		bytes.NewReader(body),
+	)
+	req.Header.Set("Content-Type", "application/json")
+	if _, err := http.DefaultClient.Do(req); err != nil {
+		t.Fatalf("failed to create expectations %v", err)
+	}
+}
+
+const testAccBillingCatalogsDataSourceConfig = `
 data "hostinger_billing_catalogs" "test" {
 	name = "KVM 2"
 	category = "VPS"

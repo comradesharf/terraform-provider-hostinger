@@ -19,6 +19,10 @@ description: |-
 
 - `id` (Number) Firewall ID
 
+### Optional
+
+- `timeouts` (Attributes) (see [below for nested schema](#nestedatt--timeouts))
+
 ### Read-Only
 
 - `created_at` (String) Timestamp when the firewall was created (RFC3339).
@@ -26,6 +30,14 @@ description: |-
 - `name` (String) Firewall name
 - `rules` (Attributes List) (see [below for nested schema](#nestedatt--rules))
 - `updated_at` (String) Timestamp when the firewall was updated (RFC3339).
+
+<a id="nestedatt--timeouts"></a>
+### Nested Schema for `timeouts`
+
+Optional:
+
+- `read` (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+
 
 <a id="nestedatt--rules"></a>
 ### Nested Schema for `rules`

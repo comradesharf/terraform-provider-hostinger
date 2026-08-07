@@ -7,41 +7,44 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"time"
 
 	"github.com/comradesharf/terraform-provider-hostinger/internal/client"
+	"github.com/hashicorp/terraform-plugin-framework-timeouts/datasource/timeouts"
 	"github.com/hashicorp/terraform-plugin-framework-timetypes/timetypes"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
-	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
 // Ensure provider defined types fully satisfy framework interfaces.
 var (
-	_ datasource.DataSource              = &DataSourceVPSFirewall{}
-	_ datasource.DataSourceWithConfigure = &DataSourceVPSFirewall{}
+	_ datasource.DataSource              = &VPSFirewallDataSource{}
+	_ datasource.DataSourceWithConfigure = &VPSFirewallDataSource{}
 )
 
-func NewDataSourceVPSFirewall() datasource.DataSource {
-	return &DataSourceVPSFirewall{}
+func NewVPSFirewallDataSource() datasource.DataSource {
+	return &VPSFirewallDataSource{}
 }
 
-// DataSourceVPSFirewall defines the data source implementation.
-type DataSourceVPSFirewall struct {
+// VPSFirewallDataSource defines the data source implementation.
+type VPSFirewallDataSource struct {
 	client *client.ClientWithResponses
 }
 
-// DataSourceVPSFirewallModel describes the data source data model.
-type DataSourceVPSFirewallModel struct {
+// VPSFirewallDataSourceModel describes the data source data model.
+type VPSFirewallDataSourceModel struct {
 	VPSFirewallModel
+	Rules    []VPSFirewallRuleModel `tfsdk:"rules"`
+	Timeouts timeouts.Value         `tfsdk:"timeouts"`
 }
 
-func (d *DataSourceVPSFirewall) Metadata(ctx context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
+func (d *VPSFirewallDataSource) Metadata(ctx context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_vps_firewall"
 }
 
-func (d *DataSourceVPSFirewall) Schema(ctx context.Context, req datasource.SchemaRequest, resp *datasource.SchemaResponse) {
+func (d *VPSFirewallDataSource) Schema(ctx context.Context, req datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		Attributes: map[string]schema.Attribute{
 			"id": schema.Int64Attribute{
@@ -120,11 +123,12 @@ func (d *DataSourceVPSFirewall) Schema(ctx context.Context, req datasource.Schem
 					},
 				},
 			},
+			"timeouts": timeouts.Attributes(ctx),
 		},
 	}
 }
 
-func (d *DataSourceVPSFirewall) Configure(ctx context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
+func (d *VPSFirewallDataSource) Configure(ctx context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
 	if req.ProviderData == nil {
 		return
 	}
@@ -141,8 +145,8 @@ func (d *DataSourceVPSFirewall) Configure(ctx context.Context, req datasource.Co
 	d.client = c
 }
 
-func (d *DataSourceVPSFirewall) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var data DataSourceVPSFirewallModel
+func (d *VPSFirewallDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	var data VPSFirewallDataSourceModel
 	resp.Diagnostics.Append(req.Config.Get(ctx, &data)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -163,6 +167,15 @@ func (d *DataSourceVPSFirewall) Read(ctx context.Context, req datasource.ReadReq
 		)
 		return
 	}
+
+	readTimeout, diags := data.Timeouts.Read(ctx, 20*time.Minute)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	ctx, cancel := context.WithTimeout(ctx, readTimeout)
+	defer cancel()
 
 	response, err := d.client.VPSGetFirewallDetailsV1WithResponse(ctx, client.FirewallId(data.ID.ValueInt64()))
 	if err != nil {
@@ -187,25 +200,12 @@ func (d *DataSourceVPSFirewall) Read(ctx context.Context, req datasource.ReadReq
 		return
 	}
 
-	item := response.JSON200
+	data.Merge(*response.JSON200)
 
-	data.ID = int64Value(item.Id)
-	data.Name = types.StringPointerValue(item.Name)
-	data.IsSynced = types.BoolPointerValue(item.IsSynced)
-	data.CreatedAt = timetypes.NewRFC3339TimePointerValue(item.CreatedAt)
-	data.UpdatedAt = timetypes.NewRFC3339TimePointerValue(item.UpdatedAt)
-
-	if item.Rules != nil {
-		for _, rule := range *item.Rules {
-			var p VPSFirewallRuleModel
-			p.ID = int64Value(rule.Id)
-			p.Action = types.StringPointerValue((*string)(rule.Action))
-			p.Protocol = types.StringPointerValue((*string)(rule.Protocol))
-			p.Port = types.StringPointerValue(rule.Port)
-			p.Source = types.StringPointerValue(rule.Source)
-			p.SourceDetail = types.StringPointerValue(rule.SourceDetail)
-
-			data.Rules = append(data.Rules, p)
+	if response.JSON200.Rules != nil {
+		data.Rules = make([]VPSFirewallRuleModel, len(*response.JSON200.Rules))
+		for i, rule := range *response.JSON200.Rules {
+			data.Rules[i].Merge(rule)
 		}
 	}
 

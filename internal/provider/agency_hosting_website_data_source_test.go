@@ -4,17 +4,23 @@
 package provider
 
 import (
+	"bytes"
+	"net/http"
 	"testing"
 
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
 	"github.com/hashicorp/terraform-plugin-testing/knownvalue"
 	"github.com/hashicorp/terraform-plugin-testing/statecheck"
 	"github.com/hashicorp/terraform-plugin-testing/tfjsonpath"
+	"github.com/mock-server/mockserver-monorepo/mockserver-client-go/v7"
 )
 
-func TestAccDataSourceAgencyHostingWebsite(t *testing.T) {
+func TestAccAgencyHostingWebsiteDataSource(t *testing.T) {
 	resource.Test(t, resource.TestCase{
-		PreCheck:                 func() { testAccPreCheck(t) },
+		PreCheck: func() {
+			testAccPreCheck(t)
+			testAccAgencyHostingWebsiteDataSourcePreCheck(t)
+		},
 		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
 		Steps: []resource.TestStep{
 			{
@@ -183,6 +189,142 @@ func TestAccDataSourceAgencyHostingWebsite(t *testing.T) {
 			},
 		},
 	})
+}
+
+func testAccAgencyHostingWebsiteDataSourcePreCheck(t *testing.T) {
+	client := newMockServerClient()
+
+	if err := client.Clear(nil, mockserver.ClearAll); err != nil {
+		t.Fatalf("failed to clear mock server: %v", err)
+	}
+
+	if err := client.FreezeClock("2021-09-01T12:00:00Z"); err != nil {
+		t.Fatalf("failed to freeze mock server clock: %v", err)
+	}
+
+	// language=json
+	body := []byte(`[
+  {
+    "httpRequest": {
+      "specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+      "operationId": "agency-hosting_getAgencyPlanWebsiteDetailsV1"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": {
+        "uid": "zpwlGlp19",
+        "ipv4": "192.161.10.1",
+        "flavor": "wp-6.2.0",
+        "type": "node-static",
+        "description": "Very awesome website",
+        "state": "active",
+        "created_at": "2024-05-29T05:49:49Z",
+        "domains": [
+          {
+            "fqdn": "test.com",
+            "parent_fqdn": "test.com",
+            "ipv6": "2001:db8::1",
+            "created_at": "2024-05-29T05:49:49Z",
+            "nameservers": [
+              "a.dns-parking.com",
+              "b.dns-parking.com"
+            ],
+            "ssl_cert": {
+              "created_at": "2024-05-29T05:49:49Z",
+              "expires_at": "2024-05-29T05:49:49Z",
+              "names": [
+                "test.com",
+                "www.test.com"
+              ]
+            },
+            "custom_ssl_cert": {
+              "is_expired": false,
+              "created_at": "2024-05-29T05:49:49Z",
+              "expires_at": "2024-05-29T05:49:49Z"
+            }
+          }
+        ],
+        "preview_domain": {
+          "fqdn": "plum-bee-184082.hostingersite.com",
+          "created_at": "2024-05-29T05:49:49Z"
+        },
+        "settings": {
+          "php": {
+            "version": "8.3",
+            "workers": 4
+          }
+        },
+        "wordpress": {
+          "domain": "test.com",
+          "title": "My Blog",
+          "language": "en_US",
+          "is_config_locked": true,
+          "created_at": "2024-05-29T05:49:49Z"
+        },
+        "remote_access": {
+          "mode": "ssh_and_sftp",
+          "ssh": {
+            "username": "u123456789_abcDeFg",
+            "host": "192.161.10.1",
+            "port": 65002,
+            "is_enabled": true,
+            "is_password_enabled": true
+          },
+          "sftp": {
+            "username": "u123456789_abcDeFg",
+            "host": "192.161.10.1",
+            "port": 65002,
+            "is_enabled": true
+          }
+        },
+        "server": {
+          "hostname": "us-west-1.hstgr.io",
+          "country_code": "us"
+        },
+        "order": {
+          "id": 123456,
+          "status": "active",
+          "created_at": "2024-05-29T05:49:49Z",
+          "plan": {
+            "name": "Hosting Single",
+            "parameters": {
+              "disk_quota_bytes": 21474836480,
+              "inode_quota": 10000,
+              "cpu_cores": 2,
+              "memory_quota_bytes": 1073741824,
+              "disk_iops_quota": 100000,
+              "process_quota": 10000,
+              "website_quota": 10,
+              "max_databases_per_website": 5,
+              "is_cdn_available": true
+            }
+          }
+        },
+        "user": {
+          "username": "u123456789",
+          "state": "active"
+        },
+        "staging_root": {
+          "uid": "zpwlGlp19"
+        }
+      }
+    },
+    "times": {
+      "remainingTimes": 3
+    }
+  }
+]
+`)
+
+	req, _ := http.NewRequest(
+		"PUT",
+		"http://localhost:1234/mockserver/expectation",
+		bytes.NewReader(body),
+	)
+	req.Header.Set("Content-Type", "application/json")
+	if _, err := http.DefaultClient.Do(req); err != nil {
+		t.Fatalf("failed to create expectations %v", err)
+	}
 }
 
 const testAccDataSourceAgencyHostingWebsiteConfig = `

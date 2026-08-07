@@ -9,3 +9,6 @@ generate:
   models: true
   client: true
   server-urls: true
+output-options:
+  overlay:
+    path: ./overlay.yaml
