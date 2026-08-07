@@ -19,30 +19,30 @@ import (
 
 // Ensure provider defined types fully satisfy framework interfaces.
 var (
-	_ datasource.DataSource              = &DataSourceVPSVirtualMachine{}
-	_ datasource.DataSourceWithConfigure = &DataSourceVPSVirtualMachine{}
+	_ datasource.DataSource              = &VPSVirtualMachineDataSource{}
+	_ datasource.DataSourceWithConfigure = &VPSVirtualMachineDataSource{}
 )
 
-func NewDataSourceVPSVirtualMachine() datasource.DataSource {
-	return &DataSourceVPSVirtualMachine{}
+func NewVPSVirtualMachineDataSource() datasource.DataSource {
+	return &VPSVirtualMachineDataSource{}
 }
 
-// DataSourceVPSVirtualMachine defines the data source implementation.
-type DataSourceVPSVirtualMachine struct {
+// VPSVirtualMachineDataSource defines the data source implementation.
+type VPSVirtualMachineDataSource struct {
 	client *client.ClientWithResponses
 }
 
-// DataSourceVPSVirtualMachineModel describes the data source data model.
-type DataSourceVPSVirtualMachineModel struct {
+// VPSVirtualMachineDataSourceModel describes the data source data model.
+type VPSVirtualMachineDataSourceModel struct {
 	VPSVirtualMachineModel
 	Timeouts timeouts.Value `tfsdk:"timeouts"`
 }
 
-func (d *DataSourceVPSVirtualMachine) Metadata(ctx context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
+func (d *VPSVirtualMachineDataSource) Metadata(ctx context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_vps_virtual_machine"
 }
 
-func (d *DataSourceVPSVirtualMachine) Schema(ctx context.Context, req datasource.SchemaRequest, resp *datasource.SchemaResponse) {
+func (d *VPSVirtualMachineDataSource) Schema(ctx context.Context, req datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		Attributes: map[string]schema.Attribute{
 			"id": schema.Int64Attribute{
@@ -149,7 +149,7 @@ func (d *DataSourceVPSVirtualMachine) Schema(ctx context.Context, req datasource
 	}
 }
 
-func (d *DataSourceVPSVirtualMachine) Configure(ctx context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
+func (d *VPSVirtualMachineDataSource) Configure(ctx context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
 	if req.ProviderData == nil {
 		return
 	}
@@ -166,8 +166,8 @@ func (d *DataSourceVPSVirtualMachine) Configure(ctx context.Context, req datasou
 	d.client = c
 }
 
-func (d *DataSourceVPSVirtualMachine) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var data DataSourceVPSVirtualMachineModel
+func (d *VPSVirtualMachineDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	var data VPSVirtualMachineDataSourceModel
 	resp.Diagnostics.Append(req.Config.Get(ctx, &data)...)
 	if resp.Diagnostics.HasError() {
 		return
