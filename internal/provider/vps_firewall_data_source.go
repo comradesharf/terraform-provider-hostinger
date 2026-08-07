@@ -200,12 +200,12 @@ func (d *VPSFirewallDataSource) Read(ctx context.Context, req datasource.ReadReq
 		return
 	}
 
-	data.Merge(response.JSON200)
+	data.Merge(*response.JSON200)
 
 	if response.JSON200.Rules != nil {
 		data.Rules = make([]VPSFirewallRuleModel, len(*response.JSON200.Rules))
 		for i, rule := range *response.JSON200.Rules {
-			data.Rules[i].Merge(&rule)
+			data.Rules[i].Merge(rule)
 		}
 	}
 

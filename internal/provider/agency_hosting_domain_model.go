@@ -16,7 +16,7 @@ type AgencyHostingDomainModel struct {
 	CreatedAt  timetypes.RFC3339 `tfsdk:"created_at"`
 }
 
-func (m *AgencyHostingDomainModel) Merge(item *client.AgencyHostingV1DomainsDomainResource) {
+func (m *AgencyHostingDomainModel) Merge(item client.AgencyHostingV1DomainsDomainResource) {
 	m.FQDN = types.StringPointerValue(item.Fqdn)
 	m.WebsiteUID = types.StringPointerValue(item.WebsiteUid)
 	m.CreatedAt = timetypes.NewRFC3339TimePointerValue(item.CreatedAt)

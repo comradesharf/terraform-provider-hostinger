@@ -150,7 +150,7 @@ func (r *VPSFirewallResource) Create(ctx context.Context, req resource.CreateReq
 		return
 	}
 
-	state.Merge(response.JSON200)
+	state.Merge(*response.JSON200)
 
 	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 }
@@ -210,7 +210,7 @@ func (r *VPSFirewallResource) Read(ctx context.Context, req resource.ReadRequest
 		return
 	}
 
-	state.Merge(response.JSON200)
+	state.Merge(*response.JSON200)
 
 	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 }

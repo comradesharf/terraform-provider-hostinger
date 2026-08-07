@@ -160,7 +160,7 @@ func (d *AgencyHostingDomainsDataSource) Read(ctx context.Context, req datasourc
 
 		for _, item := range *response.JSON200.Data {
 			var m AgencyHostingDomainModel
-			m.Merge(&item)
+			m.Merge(item)
 			data.Domains = append(data.Domains, m)
 		}
 

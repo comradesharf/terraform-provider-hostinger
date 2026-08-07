@@ -210,11 +210,11 @@ func (d *VPSFirewallsDataSource) Read(ctx context.Context, req datasource.ReadRe
 				VPSFirewallModel
 				Rules []VPSFirewallRuleModel `tfsdk:"rules"`
 			}
-			d.Merge(&item)
+			d.Merge(item)
 
 			for _, rule := range *item.Rules {
 				var r VPSFirewallRuleModel
-				r.Merge(&rule)
+				r.Merge(rule)
 				d.Rules = append(d.Rules, r)
 			}
 

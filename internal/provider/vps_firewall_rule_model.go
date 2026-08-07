@@ -18,7 +18,7 @@ type VPSFirewallRuleModel struct {
 	SourceDetail types.String `tfsdk:"source_detail"`
 }
 
-func (data *VPSFirewallRuleModel) Merge(item *client.VPSV1FirewallFirewallRuleResource) {
+func (data *VPSFirewallRuleModel) Merge(item client.VPSV1FirewallFirewallRuleResource) {
 	data.ID = int64Value(item.Id)
 	data.Action = types.StringPointerValue((*string)(item.Action))
 	data.Protocol = types.StringPointerValue((*string)(item.Protocol))

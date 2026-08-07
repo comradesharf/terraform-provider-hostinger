@@ -184,7 +184,7 @@ func (r *VPSFirewallRuleResource) Create(ctx context.Context, req resource.Creat
 		return
 	}
 
-	state.Merge(response.JSON200)
+	state.Merge(*response.JSON200)
 
 	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 }
@@ -265,7 +265,7 @@ func (r *VPSFirewallRuleResource) Read(ctx context.Context, req resource.ReadReq
 		return
 	}
 
-	state.Merge(&rules[index])
+	state.Merge(rules[index])
 
 	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 }
@@ -337,7 +337,7 @@ func (r *VPSFirewallRuleResource) Update(ctx context.Context, req resource.Updat
 		return
 	}
 
-	plan.Merge(response.JSON200)
+	plan.Merge(*response.JSON200)
 
 	resp.Diagnostics.Append(resp.State.Set(ctx, &plan)...)
 }
