@@ -321,14 +321,14 @@ func (r *VPSFirewallRuleResource) Update(ctx context.Context, req resource.Updat
 	}
 	if response.StatusCode() != http.StatusOK {
 		resp.Diagnostics.AddError(
-			"Unable to Read VPS Firewalls",
+			"Unable to Update VPS Firewall Rule",
 			fmt.Sprintf("Unexpected status code: %d, response: %s", response.StatusCode(), string(response.Body)),
 		)
 		return
 	}
 	if response.JSON200 == nil {
 		resp.Diagnostics.AddError(
-			"Unable to Read VPS Firewalls",
+			"Unable to Update VPS Firewall Rule",
 			"Response body is nil",
 		)
 		return
