@@ -3,12 +3,12 @@
 page_title: "hostinger_vps_firewall_rule Resource - hostinger"
 subcategory: ""
 description: |-
-  Example resource
+  Manages a VPS firewall rule.
 ---
 
 # hostinger_vps_firewall_rule (Resource)
 
-Example resource
+Manages a VPS firewall rule.
 
 
 
