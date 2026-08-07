@@ -229,6 +229,10 @@ func (r *VPSFirewallRuleResource) Read(ctx context.Context, req resource.ReadReq
 		)
 		return
 	}
+	if response.StatusCode() == http.StatusNotFound {
+		resp.State.RemoveResource(ctx)
+		return
+	}
 	if response.StatusCode() != http.StatusOK {
 		resp.Diagnostics.AddError(
 			"Unable to Read VPS Firewalls",

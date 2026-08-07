@@ -195,6 +195,10 @@ func (r *VPSFirewallResource) Read(ctx context.Context, req resource.ReadRequest
 		)
 		return
 	}
+	if response.StatusCode() == http.StatusNotFound {
+		resp.State.RemoveResource(ctx)
+		return
+	}
 	if response.StatusCode() != http.StatusOK {
 		resp.Diagnostics.AddError(
 			"Unable to Read VPS Firewalls",
@@ -236,7 +240,7 @@ func (r *VPSFirewallResource) Delete(ctx context.Context, req resource.DeleteReq
 	if state.ID.IsUnknown() {
 		resp.Diagnostics.AddError(
 			"Unknown ID",
-			"ID is unknown, unable to read VPS firewall.",
+			"ID is unknown, unable to delete VPS firewall.",
 		)
 		return
 	}
@@ -244,7 +248,7 @@ func (r *VPSFirewallResource) Delete(ctx context.Context, req resource.DeleteReq
 	if state.ID.IsNull() || state.ID.ValueInt64() == 0 {
 		resp.Diagnostics.AddError(
 			"Null ID",
-			"ID is null or zero, unable to read VPS firewall.",
+			"ID is null or zero, unable to delete VPS firewall.",
 		)
 		return
 	}
