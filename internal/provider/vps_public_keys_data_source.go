@@ -7,45 +7,40 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"time"
 
 	"github.com/comradesharf/terraform-provider-hostinger/internal/client"
+	"github.com/hashicorp/terraform-plugin-framework-timeouts/datasource/timeouts"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
-	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
 // Ensure provider defined types fully satisfy framework interfaces.
 var (
-	_ datasource.DataSource              = &DataSourceVPSPublicKeys{}
-	_ datasource.DataSourceWithConfigure = &DataSourceVPSPublicKeys{}
+	_ datasource.DataSource              = &VPSPublicKeysDataSource{}
+	_ datasource.DataSourceWithConfigure = &VPSPublicKeysDataSource{}
 )
 
-func NewDataSourceVPSPublicKeys() datasource.DataSource {
-	return &DataSourceVPSPublicKeys{}
+func NewVPSPublicKeysDataSource() datasource.DataSource {
+	return &VPSPublicKeysDataSource{}
 }
 
-// DataSourceVPSPublicKeys defines the data source implementation.
-type DataSourceVPSPublicKeys struct {
+// VPSPublicKeysDataSource defines the data source implementation.
+type VPSPublicKeysDataSource struct {
 	client *client.ClientWithResponses
 }
 
-// VPSPublicKeysItemModel maps a single public key from the API response.
-type VPSPublicKeysItemModel struct {
-	ID   types.Int64  `tfsdk:"id"`
-	Name types.String `tfsdk:"name"`
-	Key  types.String `tfsdk:"key"`
+// VPSPublicKeysDataSourceModel describes the data source data model.
+type VPSPublicKeysDataSourceModel struct {
+	PublicKeys []VPSPublicKeysPublicKeyModel `tfsdk:"public_keys"`
+	Timeouts   timeouts.Value                `tfsdk:"timeouts"`
 }
 
-// DataSourceVPSPublicKeysModel describes the data source data model.
-type DataSourceVPSPublicKeysModel struct {
-	PublicKeys []VPSPublicKeysItemModel `tfsdk:"public_keys"`
-}
-
-func (d *DataSourceVPSPublicKeys) Metadata(ctx context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
+func (d *VPSPublicKeysDataSource) Metadata(ctx context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_vps_public_keys"
 }
 
-func (d *DataSourceVPSPublicKeys) Schema(ctx context.Context, req datasource.SchemaRequest, resp *datasource.SchemaResponse) {
+func (d *VPSPublicKeysDataSource) Schema(ctx context.Context, req datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		Attributes: map[string]schema.Attribute{
 			"public_keys": schema.ListNestedAttribute{
@@ -68,11 +63,12 @@ func (d *DataSourceVPSPublicKeys) Schema(ctx context.Context, req datasource.Sch
 					},
 				},
 			},
+			"timeouts": timeouts.Attributes(ctx),
 		},
 	}
 }
 
-func (d *DataSourceVPSPublicKeys) Configure(ctx context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
+func (d *VPSPublicKeysDataSource) Configure(ctx context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
 	if req.ProviderData == nil {
 		return
 	}
@@ -89,12 +85,21 @@ func (d *DataSourceVPSPublicKeys) Configure(ctx context.Context, req datasource.
 	d.client = c
 }
 
-func (d *DataSourceVPSPublicKeys) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var data DataSourceVPSPublicKeysModel
+func (d *VPSPublicKeysDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	var data VPSPublicKeysDataSourceModel
 	resp.Diagnostics.Append(req.Config.Get(ctx, &data)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
+
+	readTimeout, diags := data.Timeouts.Read(ctx, 20*time.Minute)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	ctx, cancel := context.WithTimeout(ctx, readTimeout)
+	defer cancel()
 
 	params := client.VPSGetPublicKeysV1Params{}
 
@@ -125,12 +130,13 @@ func (d *DataSourceVPSPublicKeys) Read(ctx context.Context, req datasource.ReadR
 			return
 		}
 
-		for _, item := range *response.JSON200.Data {
-			var d VPSPublicKeysItemModel
-			d.ID = int64Value(item.Id)
-			d.Name = types.StringPointerValue(item.Name)
-			d.Key = types.StringPointerValue(item.Key)
+		if response.JSON200.Data == nil || len(*response.JSON200.Data) == 0 {
+			break
+		}
 
+		for _, item := range *response.JSON200.Data {
+			var d VPSPublicKeysPublicKeyModel
+			d.Merge(item)
 			data.PublicKeys = append(data.PublicKeys, d)
 		}
 

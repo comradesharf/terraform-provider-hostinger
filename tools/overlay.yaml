@@ -5,3 +5,7 @@ overlay: 1.0.0
 info:
   title: Overlay
   version: 0.0.0
+actions:
+  - target: "$.components.schemas['AgencyHosting.V1.Websites.WebsiteOrderPlanResource'].properties.parameters"
+    update:
+      x-go-type-name: "AgencyHostingV1WebsitesWebsiteOrderPlanParametersResource"

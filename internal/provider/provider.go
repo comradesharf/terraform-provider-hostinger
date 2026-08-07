@@ -144,21 +144,24 @@ func (p *hostingerProvider) Configure(ctx context.Context, req provider.Configur
 }
 
 func (p *hostingerProvider) Resources(ctx context.Context) []func() resource.Resource {
-	return nil
+	return []func() resource.Resource{
+		NewVPSFirewallResource,
+		NewVPSFirewallRuleResource,
+	}
 }
 
 func (p *hostingerProvider) DataSources(ctx context.Context) []func() datasource.DataSource {
 	return []func() datasource.DataSource{
-		NewDataSourceBillingCatalogs,
-		NewDataSourceVPSVirtualMachines,
-		NewDataSourceVPSVirtualMachine,
-		NewDataSourceVPSPublicKeys,
-		NewDataSourceReachContacts,
-		NewDataSourceReachSegments,
-		NewDataSourceAgencyHostingWebsite,
-		NewDataSourceAgencyHostingDomains,
-		NewDataSourceVPSFirewalls,
-		NewDataSourceVPSFirewall,
+		NewBillingCatalogsDataSource,
+		NewVPSVirtualMachinesDataSource,
+		NewVPSVirtualMachineDataSource,
+		NewVPSPublicKeysDataSource,
+		NewReachContactsDataSource,
+		NewReachSegmentsDataSource,
+		NewAgencyHostingWebsiteDataSource,
+		NewAgencyHostingDomainsDataSource,
+		NewVPSFirewallsDataSource,
+		NewVPSFirewallDataSource,
 	}
 }
 

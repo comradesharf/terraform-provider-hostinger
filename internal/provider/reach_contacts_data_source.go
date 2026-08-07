@@ -7,8 +7,10 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"time"
 
 	"github.com/comradesharf/terraform-provider-hostinger/internal/client"
+	"github.com/hashicorp/terraform-plugin-framework-timeouts/datasource/timeouts"
 	"github.com/hashicorp/terraform-plugin-framework-timetypes/timetypes"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -20,43 +22,32 @@ import (
 
 // Ensure provider defined types fully satisfy framework interfaces.
 var (
-	_ datasource.DataSource              = &DataSourceReachContacts{}
-	_ datasource.DataSourceWithConfigure = &DataSourceReachContacts{}
+	_ datasource.DataSource              = &ReachContactsDataSource{}
+	_ datasource.DataSourceWithConfigure = &ReachContactsDataSource{}
 )
 
-func NewDataSourceReachContacts() datasource.DataSource {
-	return &DataSourceReachContacts{}
+func NewReachContactsDataSource() datasource.DataSource {
+	return &ReachContactsDataSource{}
 }
 
-// DataSourceReachContacts defines the data source implementation.
-type DataSourceReachContacts struct {
+// ReachContactsDataSource defines the data source implementation.
+type ReachContactsDataSource struct {
 	client *client.ClientWithResponses
 }
 
-// ReachContactsItemModel maps a single contact from the API response.
-type ReachContactsItemModel struct {
-	Uuid               types.String      `tfsdk:"uuid"`
-	Email              types.String      `tfsdk:"email"`
-	Name               types.String      `tfsdk:"name"`
-	Surname            types.String      `tfsdk:"surname"`
-	SubscriptionStatus types.String      `tfsdk:"subscription_status"`
-	SubscribedAt       timetypes.RFC3339 `tfsdk:"subscribed_at"`
-	Source             types.String      `tfsdk:"source"`
-	Note               types.String      `tfsdk:"note"`
+// ReachContactsDataSourceModel describes the data source data model.
+type ReachContactsDataSourceModel struct {
+	GroupUuid          types.String        `tfsdk:"group_uuid"`
+	SubscriptionStatus types.String        `tfsdk:"subscription_status"`
+	Contacts           []ReachContactModel `tfsdk:"contacts"`
+	Timeouts           timeouts.Value      `tfsdk:"timeouts"`
 }
 
-// DataSourceReachContactsModel describes the data source data model.
-type DataSourceReachContactsModel struct {
-	GroupUuid          types.String             `tfsdk:"group_uuid"`
-	SubscriptionStatus types.String             `tfsdk:"subscription_status"`
-	Contacts           []ReachContactsItemModel `tfsdk:"contacts"`
-}
-
-func (d *DataSourceReachContacts) Metadata(ctx context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
+func (d *ReachContactsDataSource) Metadata(ctx context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_reach_contacts"
 }
 
-func (d *DataSourceReachContacts) Schema(ctx context.Context, req datasource.SchemaRequest, resp *datasource.SchemaResponse) {
+func (d *ReachContactsDataSource) Schema(ctx context.Context, req datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "Lists email marketing contacts from the Hostinger Reach API.",
 		Attributes: map[string]schema.Attribute{
@@ -112,11 +103,12 @@ func (d *DataSourceReachContacts) Schema(ctx context.Context, req datasource.Sch
 					},
 				},
 			},
+			"timeouts": timeouts.Attributes(ctx),
 		},
 	}
 }
 
-func (d *DataSourceReachContacts) Configure(ctx context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
+func (d *ReachContactsDataSource) Configure(ctx context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
 	if req.ProviderData == nil {
 		return
 	}
@@ -133,8 +125,8 @@ func (d *DataSourceReachContacts) Configure(ctx context.Context, req datasource.
 	d.client = c
 }
 
-func (d *DataSourceReachContacts) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var data DataSourceReachContactsModel
+func (d *ReachContactsDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	var data ReachContactsDataSourceModel
 	resp.Diagnostics.Append(req.Config.Get(ctx, &data)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -167,8 +159,17 @@ func (d *DataSourceReachContacts) Read(ctx context.Context, req datasource.ReadR
 
 	if !data.SubscriptionStatus.IsNull() && data.SubscriptionStatus.ValueString() != "" {
 		params.SubscriptionStatus = (*client.ReachListContactsV1ParamsSubscriptionStatus)(data.SubscriptionStatus.ValueStringPointer())
-		ctx = tflog.SetField(ctx, "subscription_status", &params.SubscriptionStatus)
+		ctx = tflog.SetField(ctx, "subscription_status", *params.SubscriptionStatus)
 	}
+
+	readTimeout, diags := data.Timeouts.Read(ctx, 20*time.Minute)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	ctx, cancel := context.WithTimeout(ctx, readTimeout)
+	defer cancel()
 
 	page := 1
 	for {
@@ -197,22 +198,13 @@ func (d *DataSourceReachContacts) Read(ctx context.Context, req datasource.ReadR
 			return
 		}
 
-		contacts := response.JSON200.Data
-		if contacts == nil || len(*contacts) == 0 {
+		if response.JSON200.Data == nil || len(*response.JSON200.Data) == 0 {
 			break
 		}
 
-		for _, item := range *contacts {
-			var m ReachContactsItemModel
-			m.Uuid = types.StringPointerValue(item.Uuid)
-			m.Email = types.StringPointerValue(item.Email)
-			m.Name = types.StringPointerValue(item.Name)
-			m.Surname = types.StringPointerValue(item.Surname)
-			m.SubscriptionStatus = types.StringPointerValue((*string)(item.SubscriptionStatus))
-			m.Source = types.StringPointerValue((*string)(item.Source))
-			m.Note = types.StringPointerValue(item.Note)
-			m.SubscribedAt = timetypes.NewRFC3339TimePointerValue(item.SubscribedAt)
-
+		for _, item := range *response.JSON200.Data {
+			var m ReachContactModel
+			m.Merge(item)
 			data.Contacts = append(data.Contacts, m)
 		}
 

@@ -19,6 +19,10 @@ Reads details for a single Agency Plan website.
 
 - `uid` (String) Website UID.
 
+### Optional
+
+- `timeouts` (Attributes) (see [below for nested schema](#nestedatt--timeouts))
+
 ### Read-Only
 
 - `created_at` (String) Website creation timestamp.
@@ -36,6 +40,14 @@ Reads details for a single Agency Plan website.
 - `type` (String) Website type.
 - `user` (Attributes) (see [below for nested schema](#nestedatt--user))
 - `wordpress` (Attributes) (see [below for nested schema](#nestedatt--wordpress))
+
+<a id="nestedatt--timeouts"></a>
+### Nested Schema for `timeouts`
+
+Optional:
+
+- `read` (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+
 
 <a id="nestedatt--domains"></a>
 ### Nested Schema for `domains`

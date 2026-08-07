@@ -7,8 +7,10 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"time"
 
 	"github.com/comradesharf/terraform-provider-hostinger/internal/client"
+	"github.com/hashicorp/terraform-plugin-framework-timeouts/datasource/timeouts"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -19,49 +21,32 @@ import (
 
 // Ensure provider defined types fully satisfy framework interfaces.
 var (
-	_ datasource.DataSource              = &DataSourceBillingCatalogs{}
-	_ datasource.DataSourceWithConfigure = &DataSourceBillingCatalogs{}
+	_ datasource.DataSource              = &BillingCatalogsDataSource{}
+	_ datasource.DataSourceWithConfigure = &BillingCatalogsDataSource{}
 )
 
-func NewDataSourceBillingCatalogs() datasource.DataSource {
-	return &DataSourceBillingCatalogs{}
+func NewBillingCatalogsDataSource() datasource.DataSource {
+	return &BillingCatalogsDataSource{}
 }
 
-// DataSourceBillingCatalogs defines the data source implementation.
-type DataSourceBillingCatalogs struct {
+// BillingCatalogsDataSource defines the data source implementation.
+type BillingCatalogsDataSource struct {
 	client *client.ClientWithResponses
 }
 
-type BillingCatalogsPricesModel struct {
-	Currency         types.String `tfsdk:"currency"`
-	FirstPeriodPrice types.Int32  `tfsdk:"first_period_price"`
-	ID               types.String `tfsdk:"id"`
-	Name             types.String `tfsdk:"name"`
-	Period           types.Int32  `tfsdk:"period"`
-	PeriodUnit       types.String `tfsdk:"period_unit"`
-	Price            types.Int32  `tfsdk:"price"`
+// BillingCatalogsDataSourceModel describes the data source data model.
+type BillingCatalogsDataSourceModel struct {
+	BillingCatalogs []BillingCatalogModel `tfsdk:"billing_catalogs"`
+	Name            types.String          `tfsdk:"name"`
+	Category        types.String          `tfsdk:"category"`
+	Timeouts        timeouts.Value        `tfsdk:"timeouts"`
 }
 
-type BillingCatalogsModel struct {
-	ID       types.String                 `tfsdk:"id"`
-	Category types.String                 `tfsdk:"category"`
-	Name     types.String                 `tfsdk:"name"`
-	Metadata map[string]types.String      `tfsdk:"metadata"`
-	Prices   []BillingCatalogsPricesModel `tfsdk:"prices"`
-}
-
-// DataSourceBillingCatalogsModel describes the data source data model.
-type DataSourceBillingCatalogsModel struct {
-	BillingCatalogs []BillingCatalogsModel `tfsdk:"billing_catalogs"`
-	Name            types.String           `tfsdk:"name"`
-	Category        types.String           `tfsdk:"category"`
-}
-
-func (d *DataSourceBillingCatalogs) Metadata(ctx context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
+func (d *BillingCatalogsDataSource) Metadata(ctx context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_billing_catalogs"
 }
 
-func (d *DataSourceBillingCatalogs) Schema(ctx context.Context, req datasource.SchemaRequest, resp *datasource.SchemaResponse) {
+func (d *BillingCatalogsDataSource) Schema(ctx context.Context, req datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		Attributes: map[string]schema.Attribute{
 			"name": schema.StringAttribute{
@@ -122,11 +107,12 @@ func (d *DataSourceBillingCatalogs) Schema(ctx context.Context, req datasource.S
 					},
 				},
 			},
+			"timeouts": timeouts.Attributes(ctx),
 		},
 	}
 }
 
-func (d *DataSourceBillingCatalogs) Configure(ctx context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
+func (d *BillingCatalogsDataSource) Configure(ctx context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
 	if req.ProviderData == nil {
 		return
 	}
@@ -143,8 +129,8 @@ func (d *DataSourceBillingCatalogs) Configure(ctx context.Context, req datasourc
 	d.client = c
 }
 
-func (d *DataSourceBillingCatalogs) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var data DataSourceBillingCatalogsModel
+func (d *BillingCatalogsDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	var data BillingCatalogsDataSourceModel
 	resp.Diagnostics.Append(resp.State.Get(ctx, &data)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -180,6 +166,15 @@ func (d *DataSourceBillingCatalogs) Read(ctx context.Context, req datasource.Rea
 		ctx = tflog.SetField(ctx, "category", &params.Category)
 	}
 
+	readTimeout, diags := data.Timeouts.Read(ctx, 20*time.Minute)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	ctx, cancel := context.WithTimeout(ctx, readTimeout)
+	defer cancel()
+
 	response, err := d.client.BillingGetCatalogItemListV1WithResponse(ctx, &params)
 	if err != nil {
 		resp.Diagnostics.AddError(
@@ -204,35 +199,8 @@ func (d *DataSourceBillingCatalogs) Read(ctx context.Context, req datasource.Rea
 	}
 
 	for _, item := range *response.JSON200 {
-		var d BillingCatalogsModel
-		d.ID = types.StringPointerValue(item.Id)
-		d.Category = types.StringPointerValue(item.Category)
-		d.Name = types.StringPointerValue(item.Name)
-
-		if item.Metadata != nil {
-			d.Metadata = make(map[string]types.String, len(*item.Metadata))
-			for k, v := range *item.Metadata {
-				if s, ok := v.(string); ok {
-					d.Metadata[k] = types.StringValue(s)
-				}
-			}
-		}
-
-		if item.Prices != nil {
-			for _, price := range *item.Prices {
-				var p BillingCatalogsPricesModel
-				p.Currency = types.StringPointerValue(price.Currency)
-				p.FirstPeriodPrice = int32Value(price.FirstPeriodPrice)
-				p.ID = types.StringPointerValue(price.Id)
-				p.Name = types.StringPointerValue(price.Name)
-				p.Period = int32Value(price.Period)
-				p.PeriodUnit = types.StringPointerValue((*string)(price.PeriodUnit))
-				p.Price = int32Value(price.Price)
-
-				d.Prices = append(d.Prices, p)
-			}
-		}
-
+		var d BillingCatalogModel
+		d.Merge(item)
 		data.BillingCatalogs = append(data.BillingCatalogs, d)
 	}
 

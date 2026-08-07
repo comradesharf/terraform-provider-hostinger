@@ -7,9 +7,11 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"time"
 
 	"github.com/comradesharf/terraform-provider-hostinger/internal/client"
 	"github.com/hashicorp/terraform-plugin-framework-nettypes/iptypes"
+	"github.com/hashicorp/terraform-plugin-framework-timeouts/datasource/timeouts"
 	"github.com/hashicorp/terraform-plugin-framework-timetypes/timetypes"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -19,147 +21,30 @@ import (
 
 // Ensure provider defined types fully satisfy framework interfaces.
 var (
-	_ datasource.DataSource              = &DataSourceAgencyHostingWebsite{}
-	_ datasource.DataSourceWithConfigure = &DataSourceAgencyHostingWebsite{}
+	_ datasource.DataSource              = &AgencyHostingWebsiteDataSource{}
+	_ datasource.DataSourceWithConfigure = &AgencyHostingWebsiteDataSource{}
 )
 
-func NewDataSourceAgencyHostingWebsite() datasource.DataSource {
-	return &DataSourceAgencyHostingWebsite{}
+func NewAgencyHostingWebsiteDataSource() datasource.DataSource {
+	return &AgencyHostingWebsiteDataSource{}
 }
 
-// DataSourceAgencyHostingWebsite defines the data source implementation.
-type DataSourceAgencyHostingWebsite struct {
+// AgencyHostingWebsiteDataSource defines the data source implementation.
+type AgencyHostingWebsiteDataSource struct {
 	client *client.ClientWithResponses
 }
 
-type AgencyHostingWebsiteSSLCertModelItem struct {
-	Names     []types.String    `tfsdk:"names"`
-	ExpiresAt timetypes.RFC3339 `tfsdk:"expires_at"`
-	CreatedAt timetypes.RFC3339 `tfsdk:"created_at"`
+// AgencyHostingWebsiteDataSourceModel describes the data source data model.
+type AgencyHostingWebsiteDataSourceModel struct {
+	AgencyHostingWebsiteModel
+	Timeouts timeouts.Value `tfsdk:"timeouts"`
 }
 
-type AgencyHostingWebsiteCustomSSLCertModelItem struct {
-	IsExpired types.Bool        `tfsdk:"is_expired"`
-	ExpiresAt timetypes.RFC3339 `tfsdk:"expires_at"`
-	CreatedAt timetypes.RFC3339 `tfsdk:"created_at"`
-}
-
-type AgencyHostingWebsitePreviewDomainModelItem struct {
-	FQDN      types.String      `tfsdk:"fqdn"`
-	CreatedAt timetypes.RFC3339 `tfsdk:"created_at"`
-}
-
-type AgencyHostingWebsiteDomainModelItem struct {
-	FQDN          types.String                                `tfsdk:"fqdn"`
-	ParentFQDN    types.String                                `tfsdk:"parent_fqdn"`
-	IPv6          iptypes.IPv6Address                         `tfsdk:"ipv6"`
-	CreatedAt     timetypes.RFC3339                           `tfsdk:"created_at"`
-	Nameservers   []types.String                              `tfsdk:"nameservers"`
-	SSLCert       *AgencyHostingWebsiteSSLCertModelItem       `tfsdk:"ssl_cert"`
-	CustomSSLCert *AgencyHostingWebsiteCustomSSLCertModelItem `tfsdk:"custom_ssl_cert"`
-}
-
-type AgencyHostingWebsiteSettingsPHPModelItem struct {
-	Version types.String `tfsdk:"version"`
-	Workers types.Int32  `tfsdk:"workers"`
-}
-
-type AgencyHostingWebsiteSettingsModelItem struct {
-	PHP AgencyHostingWebsiteSettingsPHPModelItem `tfsdk:"php"`
-}
-
-type AgencyHostingWebsiteWordpressModelItem struct {
-	Domain         types.String      `tfsdk:"domain"`
-	Title          types.String      `tfsdk:"title"`
-	Language       types.String      `tfsdk:"language"`
-	IsConfigLocked types.Bool        `tfsdk:"is_config_locked"`
-	CreatedAt      timetypes.RFC3339 `tfsdk:"created_at"`
-}
-
-type AgencyHostingWebsiteRemoteAccessSSHModelItem struct {
-	Username          types.String `tfsdk:"username"`
-	Host              types.String `tfsdk:"host"`
-	Port              types.Int32  `tfsdk:"port"`
-	IsEnabled         types.Bool   `tfsdk:"is_enabled"`
-	IsPasswordEnabled types.Bool   `tfsdk:"is_password_enabled"`
-}
-
-type AgencyHostingWebsiteRemoteAccessSFTPModelItem struct {
-	Username  types.String `tfsdk:"username"`
-	Host      types.String `tfsdk:"host"`
-	Port      types.Int32  `tfsdk:"port"`
-	IsEnabled types.Bool   `tfsdk:"is_enabled"`
-}
-
-type AgencyHostingWebsiteRemoteAccessModelItem struct {
-	Mode types.String                                  `tfsdk:"mode"`
-	SSH  AgencyHostingWebsiteRemoteAccessSSHModelItem  `tfsdk:"ssh"`
-	SFTP AgencyHostingWebsiteRemoteAccessSFTPModelItem `tfsdk:"sftp"`
-}
-
-type AgencyHostingWebsiteServerModelItem struct {
-	Hostname    types.String `tfsdk:"hostname"`
-	CountryCode types.String `tfsdk:"country_code"`
-}
-
-type AgencyHostingWebsiteOrderPlanParametersModelItem struct {
-	DiskQuotaBytes         types.Int64 `tfsdk:"disk_quota_bytes"`
-	InodeQuota             types.Int64 `tfsdk:"inode_quota"`
-	CPUCores               types.Int32 `tfsdk:"cpu_cores"`
-	MemoryQuotaBytes       types.Int64 `tfsdk:"memory_quota_bytes"`
-	DiskIOPSQuota          types.Int64 `tfsdk:"disk_iops_quota"`
-	ProcessQuota           types.Int32 `tfsdk:"process_quota"`
-	WebsiteQuota           types.Int32 `tfsdk:"website_quota"`
-	MaxDatabasesPerWebsite types.Int32 `tfsdk:"max_databases_per_website"`
-	IsCDNAvailable         types.Bool  `tfsdk:"is_cdn_available"`
-}
-
-type AgencyHostingWebsiteOrderPlanModelItem struct {
-	Name       types.String                                     `tfsdk:"name"`
-	Parameters AgencyHostingWebsiteOrderPlanParametersModelItem `tfsdk:"parameters"`
-}
-
-type AgencyHostingWebsiteOrderModelItem struct {
-	ID        types.Int64                            `tfsdk:"id"`
-	Status    types.String                           `tfsdk:"status"`
-	CreatedAt timetypes.RFC3339                      `tfsdk:"created_at"`
-	Plan      AgencyHostingWebsiteOrderPlanModelItem `tfsdk:"plan"`
-}
-
-type AgencyHostingWebsiteUserModelItem struct {
-	Username types.String `tfsdk:"username"`
-	State    types.String `tfsdk:"state"`
-}
-
-type AgencyHostingWebsiteStagingRootModelItem struct {
-	UID types.String `tfsdk:"uid"`
-}
-
-// DataSourceAgencyHostingWebsiteModel describes the data source data model.
-type DataSourceAgencyHostingWebsiteModel struct {
-	UID           types.String                                `tfsdk:"uid"`
-	IPv4          iptypes.IPv4Address                         `tfsdk:"ipv4"`
-	Flavor        types.String                                `tfsdk:"flavor"`
-	Type          types.String                                `tfsdk:"type"`
-	Description   types.String                                `tfsdk:"description"`
-	State         types.String                                `tfsdk:"state"`
-	CreatedAt     timetypes.RFC3339                           `tfsdk:"created_at"`
-	Domains       []AgencyHostingWebsiteDomainModelItem       `tfsdk:"domains"`
-	PreviewDomain *AgencyHostingWebsitePreviewDomainModelItem `tfsdk:"preview_domain"`
-	Settings      *AgencyHostingWebsiteSettingsModelItem      `tfsdk:"settings"`
-	Wordpress     *AgencyHostingWebsiteWordpressModelItem     `tfsdk:"wordpress"`
-	RemoteAccess  *AgencyHostingWebsiteRemoteAccessModelItem  `tfsdk:"remote_access"`
-	Server        *AgencyHostingWebsiteServerModelItem        `tfsdk:"server"`
-	Order         *AgencyHostingWebsiteOrderModelItem         `tfsdk:"order"`
-	User          *AgencyHostingWebsiteUserModelItem          `tfsdk:"user"`
-	StagingRoot   *AgencyHostingWebsiteStagingRootModelItem   `tfsdk:"staging_root"`
-}
-
-func (d *DataSourceAgencyHostingWebsite) Metadata(ctx context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
+func (d *AgencyHostingWebsiteDataSource) Metadata(ctx context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_agency_hosting_website"
 }
 
-func (d *DataSourceAgencyHostingWebsite) Schema(ctx context.Context, req datasource.SchemaRequest, resp *datasource.SchemaResponse) {
+func (d *AgencyHostingWebsiteDataSource) Schema(ctx context.Context, req datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "Reads details for a single Agency Plan website.",
 		Attributes: map[string]schema.Attribute{
@@ -478,11 +363,12 @@ func (d *DataSourceAgencyHostingWebsite) Schema(ctx context.Context, req datasou
 					},
 				},
 			},
+			"timeouts": timeouts.Attributes(ctx),
 		},
 	}
 }
 
-func (d *DataSourceAgencyHostingWebsite) Configure(ctx context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
+func (d *AgencyHostingWebsiteDataSource) Configure(ctx context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
 	if req.ProviderData == nil {
 		return
 	}
@@ -499,8 +385,8 @@ func (d *DataSourceAgencyHostingWebsite) Configure(ctx context.Context, req data
 	d.client = c
 }
 
-func (d *DataSourceAgencyHostingWebsite) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var data DataSourceAgencyHostingWebsiteModel
+func (d *AgencyHostingWebsiteDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	var data AgencyHostingWebsiteDataSourceModel
 	resp.Diagnostics.Append(req.Config.Get(ctx, &data)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -523,6 +409,15 @@ func (d *DataSourceAgencyHostingWebsite) Read(ctx context.Context, req datasourc
 	}
 
 	ctx = tflog.SetField(ctx, "website_uid", data.UID.ValueString())
+
+	readTimeout, diags := data.Timeouts.Read(ctx, 20*time.Minute)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	ctx, cancel := context.WithTimeout(ctx, readTimeout)
+	defer cancel()
 
 	response, err := d.client.AgencyHostingGetAgencyPlanWebsiteDetailsV1WithResponse(ctx, data.UID.ValueString())
 	if err != nil {
@@ -548,181 +443,7 @@ func (d *DataSourceAgencyHostingWebsite) Read(ctx context.Context, req datasourc
 	}
 
 	item := response.JSON200
-
-	data.Flavor = types.StringPointerValue(item.Flavor)
-	data.IPv4 = iptypes.NewIPv4AddressPointerValue(item.Ipv4)
-	data.Flavor = types.StringPointerValue(item.Flavor)
-	data.Type = types.StringPointerValue(item.Type)
-	data.Description = types.StringPointerValue(item.Description)
-	data.State = types.StringPointerValue((*string)(item.State))
-	data.CreatedAt = timetypes.NewRFC3339TimePointerValue(item.CreatedAt)
-
-	if item.Domains != nil {
-		data.Domains = make([]AgencyHostingWebsiteDomainModelItem, len(*item.Domains))
-		for i, domain := range *item.Domains {
-			var d AgencyHostingWebsiteDomainModelItem
-			d.FQDN = types.StringPointerValue(domain.Fqdn)
-			d.ParentFQDN = types.StringPointerValue(domain.ParentFqdn)
-			d.IPv6 = iptypes.NewIPv6AddressPointerValue(domain.Ipv6)
-			d.CreatedAt = timetypes.NewRFC3339TimePointerValue(domain.CreatedAt)
-
-			if domain.Nameservers != nil {
-				d.Nameservers = make([]types.String, len(*domain.Nameservers))
-				for j, nameserver := range *domain.Nameservers {
-					d.Nameservers[j] = types.StringValue(nameserver)
-				}
-			}
-
-			if domain.SslCert != nil {
-				v, err := domain.SslCert.AsAgencyHostingV1WebsitesSslCertResource()
-				if err == nil {
-					var s AgencyHostingWebsiteSSLCertModelItem
-					s.CreatedAt = timetypes.NewRFC3339TimePointerValue(v.CreatedAt)
-					s.ExpiresAt = timetypes.NewRFC3339TimePointerValue(v.ExpiresAt)
-
-					if v.Names != nil {
-						s.Names = make([]types.String, len(*v.Names))
-						for j, name := range *v.Names {
-							s.Names[j] = types.StringValue(name)
-						}
-					}
-					d.SSLCert = &s
-				}
-			}
-
-			if domain.CustomSslCert != nil {
-				v, err := domain.CustomSslCert.AsAgencyHostingV1WebsitesCustomSslCertResource()
-				if err == nil {
-					var s AgencyHostingWebsiteCustomSSLCertModelItem
-					s.IsExpired = types.BoolPointerValue(v.IsExpired)
-					s.CreatedAt = timetypes.NewRFC3339TimePointerValue(v.CreatedAt)
-					s.ExpiresAt = timetypes.NewRFC3339TimePointerValue(v.ExpiresAt)
-					d.CustomSSLCert = &s
-				}
-			}
-
-			data.Domains[i] = d
-		}
-	}
-
-	if item.PreviewDomain != nil {
-		var d AgencyHostingWebsitePreviewDomainModelItem
-		v, err := item.PreviewDomain.AsAgencyHostingV1WebsitesWebsitePreviewDomainResource()
-		if err == nil {
-			d.FQDN = types.StringPointerValue(v.Fqdn)
-			d.CreatedAt = timetypes.NewRFC3339TimePointerValue(v.CreatedAt)
-		}
-		data.PreviewDomain = &d
-	}
-
-	if item.Settings != nil {
-		var d AgencyHostingWebsiteSettingsModelItem
-		v, err := item.Settings.Php.AsAgencyHostingV1WebsitesWebsitePhpSettingsResource()
-		if err == nil {
-			var p AgencyHostingWebsiteSettingsPHPModelItem
-			p.Version = types.StringPointerValue(v.Version)
-			p.Workers = int32Value(v.Workers)
-			d.PHP = p
-		}
-		data.Settings = &d
-	}
-
-	if item.Wordpress != nil {
-		var d AgencyHostingWebsiteWordpressModelItem
-		v, err := item.Wordpress.AsAgencyHostingV1WebsitesWordPressInstallResource()
-		if err == nil {
-			d.Domain = types.StringPointerValue(v.Domain)
-			d.Title = types.StringPointerValue(v.Title)
-			d.Language = types.StringPointerValue(v.Language)
-			d.IsConfigLocked = types.BoolPointerValue(v.IsConfigLocked)
-			d.CreatedAt = timetypes.NewRFC3339TimePointerValue(v.CreatedAt)
-		}
-		data.Wordpress = &d
-	}
-
-	if item.RemoteAccess != nil {
-		var d AgencyHostingWebsiteRemoteAccessModelItem
-		d.Mode = types.StringPointerValue(item.RemoteAccess.Mode)
-
-		if item.RemoteAccess.Ssh != nil {
-			var ssh AgencyHostingWebsiteRemoteAccessSSHModelItem
-			ssh.Username = types.StringPointerValue(item.RemoteAccess.Ssh.Username)
-			ssh.Host = types.StringPointerValue(item.RemoteAccess.Ssh.Host)
-			ssh.Port = int32Value(item.RemoteAccess.Ssh.Port)
-			ssh.IsEnabled = types.BoolPointerValue(item.RemoteAccess.Ssh.IsEnabled)
-			ssh.IsPasswordEnabled = types.BoolPointerValue(item.RemoteAccess.Ssh.IsPasswordEnabled)
-
-			d.SSH = ssh
-		}
-
-		if item.RemoteAccess.Sftp != nil {
-			var sftp AgencyHostingWebsiteRemoteAccessSFTPModelItem
-			sftp.Username = types.StringPointerValue(item.RemoteAccess.Sftp.Username)
-			sftp.Host = types.StringPointerValue(item.RemoteAccess.Sftp.Host)
-			sftp.Port = int32Value(item.RemoteAccess.Sftp.Port)
-			sftp.IsEnabled = types.BoolPointerValue(item.RemoteAccess.Sftp.IsEnabled)
-
-			d.SFTP = sftp
-		}
-
-		if item.Server != nil {
-			var s AgencyHostingWebsiteServerModelItem
-			s.Hostname = types.StringPointerValue(item.Server.Hostname)
-			s.CountryCode = types.StringPointerValue(item.Server.CountryCode)
-
-			data.Server = &s
-		}
-
-		if item.Order != nil {
-			var o AgencyHostingWebsiteOrderModelItem
-			o.ID = int64Value(item.Order.Id)
-			o.Status = types.StringPointerValue(item.Order.Status)
-			o.CreatedAt = timetypes.NewRFC3339TimePointerValue(item.Order.CreatedAt)
-
-			if item.Order.Plan != nil {
-				var p AgencyHostingWebsiteOrderPlanModelItem
-				p.Name = types.StringPointerValue(item.Order.Plan.Name)
-
-				if item.Order.Plan.Parameters != nil {
-					var pp AgencyHostingWebsiteOrderPlanParametersModelItem
-					pp.DiskQuotaBytes = int64Value(item.Order.Plan.Parameters.DiskQuotaBytes)
-					pp.InodeQuota = int64Value(item.Order.Plan.Parameters.InodeQuota)
-					pp.CPUCores = int32Value(item.Order.Plan.Parameters.CpuCores)
-					pp.MemoryQuotaBytes = int64Value(item.Order.Plan.Parameters.MemoryQuotaBytes)
-					pp.DiskIOPSQuota = int64Value(item.Order.Plan.Parameters.DiskIopsQuota)
-					pp.ProcessQuota = int32Value(item.Order.Plan.Parameters.ProcessQuota)
-					pp.WebsiteQuota = int32Value(item.Order.Plan.Parameters.WebsiteQuota)
-					pp.MaxDatabasesPerWebsite = int32Value(item.Order.Plan.Parameters.MaxDatabasesPerWebsite)
-					pp.IsCDNAvailable = types.BoolPointerValue(item.Order.Plan.Parameters.IsCdnAvailable)
-
-					p.Parameters = pp
-				}
-
-				o.Plan = p
-			}
-
-			data.Order = &o
-		}
-
-		if item.User != nil {
-			var u AgencyHostingWebsiteUserModelItem
-			u.Username = types.StringPointerValue(item.User.Username)
-			u.State = types.StringPointerValue(item.User.State)
-
-			data.User = &u
-		}
-
-		if item.StagingRoot != nil {
-			var s AgencyHostingWebsiteStagingRootModelItem
-			v, err := item.StagingRoot.AsAgencyHostingV1WebsitesWebsiteStagingRootResource()
-			if err == nil {
-				s.UID = types.StringPointerValue(v.Uid)
-			}
-			data.StagingRoot = &s
-		}
-
-		data.RemoteAccess = &d
-	}
+	data.Merge(*item)
 
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
