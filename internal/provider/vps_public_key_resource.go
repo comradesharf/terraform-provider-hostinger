@@ -14,6 +14,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework-timeouts/resource/timeouts"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
+	"github.com/hashicorp/terraform-plugin-framework/resource/identityschema"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/int64planmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
@@ -24,6 +25,7 @@ var (
 	_ resource.Resource                = &VPSPublicKeyResource{}
 	_ resource.ResourceWithConfigure   = &VPSPublicKeyResource{}
 	_ resource.ResourceWithImportState = &VPSPublicKeyResource{}
+	_ resource.ResourceWithIdentity    = &VPSPublicKeyResource{}
 )
 
 func NewVPSPublicKeyResource() resource.Resource {
@@ -35,12 +37,22 @@ type VPSPublicKeyResource struct {
 }
 
 type VPSPublicKeyResourceModel struct {
-	VPSPublicKeysPublicKeyModel
+	VPSPublicKeyModel
 	Timeouts timeouts.Value `tfsdk:"timeouts"`
 }
 
 func (r *VPSPublicKeyResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_vps_public_key"
+}
+
+func (r *VPSPublicKeyResource) IdentitySchema(ctx context.Context, req resource.IdentitySchemaRequest, resp *resource.IdentitySchemaResponse) {
+	resp.IdentitySchema = identityschema.Schema{
+		Attributes: map[string]identityschema.Attribute{
+			"id": identityschema.Int64Attribute{
+				RequiredForImport: true,
+			},
+		},
+	}
 }
 
 func (r *VPSPublicKeyResource) Schema(ctx context.Context, req resource.SchemaRequest, resp *resource.SchemaResponse) {
@@ -124,6 +136,13 @@ func (r *VPSPublicKeyResource) Create(ctx context.Context, req resource.CreateRe
 	}
 
 	state.Merge(*response.JSON200)
+
+	identity := VPSPublicKeyIdentity{ID: state.ID}
+	resp.Diagnostics.Append(resp.Identity.Set(ctx, &identity)...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
 	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 }
 
@@ -133,6 +152,13 @@ func (r *VPSPublicKeyResource) Read(ctx context.Context, req resource.ReadReques
 	if resp.Diagnostics.HasError() {
 		return
 	}
+
+	var identity VPSPublicKeyIdentity
+	resp.Diagnostics.Append(req.Identity.Get(ctx, &identity)...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
 	if state.ID.IsUnknown() || state.ID.IsNull() || state.ID.ValueInt64() == 0 {
 		resp.Diagnostics.AddError("Invalid Public Key ID", "The public key ID is unknown, null, or zero, so it cannot be read.")
 		return
@@ -186,6 +212,14 @@ func (r *VPSPublicKeyResource) Read(ctx context.Context, req resource.ReadReques
 	}
 
 	state.Merge(*found)
+
+	identity.ID = state.ID
+
+	resp.Diagnostics.Append(resp.Identity.Set(ctx, &identity)...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
 	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 }
 
@@ -195,6 +229,18 @@ func (r *VPSPublicKeyResource) Update(ctx context.Context, req resource.UpdateRe
 	if resp.Diagnostics.HasError() {
 		return
 	}
+
+	var identity VPSPublicKeyIdentity
+	resp.Diagnostics.Append(req.Identity.Get(ctx, &identity)...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	resp.Diagnostics.Append(resp.Identity.Set(ctx, &identity)...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
 	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 }
 
@@ -204,6 +250,7 @@ func (r *VPSPublicKeyResource) Delete(ctx context.Context, req resource.DeleteRe
 	if resp.Diagnostics.HasError() {
 		return
 	}
+
 	if state.ID.IsUnknown() || state.ID.IsNull() || state.ID.ValueInt64() == 0 {
 		resp.Diagnostics.AddError("Invalid Public Key ID", "The public key ID is unknown, null, or zero, so it cannot be deleted.")
 		return
@@ -229,5 +276,5 @@ func (r *VPSPublicKeyResource) Delete(ctx context.Context, req resource.DeleteRe
 }
 
 func (r *VPSPublicKeyResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
-	importStatePassthroughInt64ID(ctx, path.Root("id"), req, resp)
+	importStatePassthroughInt64Identity(ctx, path.Root("id"), path.Root("id"), req, resp)
 }

@@ -19,23 +19,23 @@ import (
 )
 
 var (
-	_ list.ListResource              = &VPSFirewallList{}
-	_ list.ListResourceWithConfigure = &VPSFirewallList{}
+	_ list.ListResource              = &VPSPublicKeyList{}
+	_ list.ListResourceWithConfigure = &VPSPublicKeyList{}
 )
 
-func NewVPSFirewallList() list.ListResource {
-	return &VPSFirewallList{}
+func NewVPSPublicKeyList() list.ListResource {
+	return &VPSPublicKeyList{}
 }
 
-// VPSFirewallList defines the list resource implementation.
-type VPSFirewallList struct {
+// VPSPublicKeyList defines the list resource implementation.
+type VPSPublicKeyList struct {
 	client *client.ClientWithResponses
 }
 
-type VPSFirewallListModel struct {
+type VPSPublicKeyListModel struct {
 }
 
-func (l *VPSFirewallList) Configure(ctx context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
+func (l *VPSPublicKeyList) Configure(ctx context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
 	if req.ProviderData == nil {
 		return
 	}
@@ -52,19 +52,19 @@ func (l *VPSFirewallList) Configure(ctx context.Context, req resource.ConfigureR
 	l.client = c
 }
 
-func (l *VPSFirewallList) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
-	resp.TypeName = req.ProviderTypeName + "_vps_firewall"
+func (l *VPSPublicKeyList) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+	resp.TypeName = req.ProviderTypeName + "_vps_public_key"
 }
 
-func (l *VPSFirewallList) ListResourceConfigSchema(ctx context.Context, req list.ListResourceSchemaRequest, resp *list.ListResourceSchemaResponse) {
+func (l *VPSPublicKeyList) ListResourceConfigSchema(ctx context.Context, req list.ListResourceSchemaRequest, resp *list.ListResourceSchemaResponse) {
 	resp.Schema = schema.Schema{
-		MarkdownDescription: "This resource provides a list of VPS firewalls.",
+		MarkdownDescription: "This resource provides a list of VPS public keys.",
 		Attributes:          map[string]schema.Attribute{},
 	}
 }
 
-func (l *VPSFirewallList) List(ctx context.Context, req list.ListRequest, stream *list.ListResultsStream) {
-	var data VPSFirewallListModel
+func (l *VPSPublicKeyList) List(ctx context.Context, req list.ListRequest, stream *list.ListResultsStream) {
+	var data VPSPublicKeyListModel
 	diags := req.Config.Get(ctx, &data)
 	if diags.HasError() {
 		stream.Results = list.ListResultsStreamDiagnostics(diags)
@@ -72,18 +72,18 @@ func (l *VPSFirewallList) List(ctx context.Context, req list.ListRequest, stream
 	}
 
 	stream.Results = func(push func(list.ListResult) bool) {
-		params := &client.VPSGetFirewallListV1Params{}
+		params := &client.VPSGetPublicKeysV1Params{}
 		page := 1
 
 		for {
 			params.Page = &page
 			ctx = tflog.SetField(ctx, "page", params.Page)
 
-			response, err := l.client.VPSGetFirewallListV1WithResponse(ctx, params)
+			response, err := l.client.VPSGetPublicKeysV1WithResponse(ctx, params)
 			if err != nil {
 				result := req.NewListResult(ctx)
 				result.Diagnostics.AddError(
-					"Unable to Read VPS Firewalls",
+					"Unable to Read VPS Public Keys",
 					fmt.Sprintf("Got error: %s", err),
 				)
 				push(result)
@@ -92,7 +92,7 @@ func (l *VPSFirewallList) List(ctx context.Context, req list.ListRequest, stream
 			if response.StatusCode() != http.StatusOK {
 				result := req.NewListResult(ctx)
 				result.Diagnostics.AddError(
-					"Unable to Read VPS Firewalls",
+					"Unable to Read VPS Public Keys",
 					fmt.Sprintf("Unexpected status code: %d, response: %s", response.StatusCode(), string(response.Body)),
 				)
 				push(result)
@@ -101,7 +101,7 @@ func (l *VPSFirewallList) List(ctx context.Context, req list.ListRequest, stream
 			if response.JSON200 == nil {
 				result := req.NewListResult(ctx)
 				result.Diagnostics.AddError(
-					"Unable to Read VPS Firewalls",
+					"Unable to Read VPS Public Keys",
 					"Response body is nil",
 				)
 				push(result)
@@ -112,13 +112,13 @@ func (l *VPSFirewallList) List(ctx context.Context, req list.ListRequest, stream
 			}
 
 			for _, item := range *response.JSON200.Data {
-				var d VPSFirewallResourceModel
+				var d VPSPublicKeyResourceModel
 				d.Merge(item)
 
 				result := req.NewListResult(ctx)
 				result.DisplayName = d.Name.ValueString()
 
-				identity := VPSFirewallIdentity{ID: d.ID}
+				identity := VPSPublicKeyIdentity{ID: d.ID}
 				result.Diagnostics.Append(result.Identity.Set(ctx, &identity)...)
 
 				if req.IncludeResource {

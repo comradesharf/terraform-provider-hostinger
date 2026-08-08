@@ -9,7 +9,6 @@ import (
 	"net/http"
 
 	"github.com/comradesharf/terraform-provider-hostinger/internal/client"
-	"github.com/hashicorp/terraform-plugin-framework-timeouts/list/timeouts"
 	resourcetimeouts "github.com/hashicorp/terraform-plugin-framework-timeouts/resource/timeouts"
 	"github.com/hashicorp/terraform-plugin-framework/attr"
 	"github.com/hashicorp/terraform-plugin-framework/list"
@@ -34,7 +33,6 @@ type VPSFirewallRuleList struct {
 }
 
 type VPSFirewallRuleListModel struct {
-	Timeouts *timeouts.Type `tfsdk:"timeouts"`
 }
 
 func (l *VPSFirewallRuleList) Configure(ctx context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
@@ -61,9 +59,7 @@ func (l *VPSFirewallRuleList) Metadata(ctx context.Context, req resource.Metadat
 func (l *VPSFirewallRuleList) ListResourceConfigSchema(ctx context.Context, req list.ListResourceSchemaRequest, resp *list.ListResourceSchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "This resource provides a list of VPS firewall rules.",
-		Attributes: map[string]schema.Attribute{
-			"timeouts": timeouts.Attributes(ctx),
-		},
+		Attributes:          map[string]schema.Attribute{},
 	}
 }
 

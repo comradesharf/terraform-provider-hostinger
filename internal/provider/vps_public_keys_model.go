@@ -8,14 +8,18 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
-// VPSPublicKeysPublicKeyModel maps a single public key from the API response.
-type VPSPublicKeysPublicKeyModel struct {
+type VPSPublicKeyIdentity struct {
+	ID types.Int64 `tfsdk:"id"`
+}
+
+// VPSPublicKeyModel maps a single public key from the API response.
+type VPSPublicKeyModel struct {
 	ID   types.Int64  `tfsdk:"id"`
 	Name types.String `tfsdk:"name"`
 	Key  types.String `tfsdk:"key"`
 }
 
-func (d *VPSPublicKeysPublicKeyModel) Merge(item client.VPSV1PublicKeyPublicKeyResource) {
+func (d *VPSPublicKeyModel) Merge(item client.VPSV1PublicKeyPublicKeyResource) {
 	d.ID = int64Value(item.Id)
 	d.Name = types.StringPointerValue(item.Name)
 	d.Key = types.StringPointerValue(item.Key)

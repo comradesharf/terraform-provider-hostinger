@@ -176,6 +176,7 @@ func (p *hostingerProvider) ListResources(ctx context.Context) []func() list.Lis
 	return []func() list.ListResource{
 		NewVPSFirewallList,
 		NewVPSFirewallRuleList,
+		NewVPSPublicKeyList,
 	}
 }
 

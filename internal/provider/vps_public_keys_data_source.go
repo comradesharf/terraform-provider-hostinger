@@ -32,8 +32,8 @@ type VPSPublicKeysDataSource struct {
 
 // VPSPublicKeysDataSourceModel describes the data source data model.
 type VPSPublicKeysDataSourceModel struct {
-	PublicKeys []VPSPublicKeysPublicKeyModel `tfsdk:"public_keys"`
-	Timeouts   timeouts.Value                `tfsdk:"timeouts"`
+	PublicKeys []VPSPublicKeyModel `tfsdk:"public_keys"`
+	Timeouts   timeouts.Value      `tfsdk:"timeouts"`
 }
 
 func (d *VPSPublicKeysDataSource) Metadata(ctx context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
@@ -135,7 +135,7 @@ func (d *VPSPublicKeysDataSource) Read(ctx context.Context, req datasource.ReadR
 		}
 
 		for _, item := range *response.JSON200.Data {
-			var d VPSPublicKeysPublicKeyModel
+			var d VPSPublicKeyModel
 			d.Merge(item)
 			data.PublicKeys = append(data.PublicKeys, d)
 		}
