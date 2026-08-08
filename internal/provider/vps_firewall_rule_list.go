@@ -20,24 +20,24 @@ import (
 )
 
 var (
-	_ list.ListResource              = &VPSFirewallList{}
-	_ list.ListResourceWithConfigure = &VPSFirewallList{}
+	_ list.ListResource              = &VPSFirewallRuleList{}
+	_ list.ListResourceWithConfigure = &VPSFirewallRuleList{}
 )
 
-func NewVPSFirewallList() list.ListResource {
-	return &VPSFirewallList{}
+func NewVPSFirewallRuleList() list.ListResource {
+	return &VPSFirewallRuleList{}
 }
 
-// VPSFirewallList defines the list resource implementation.
-type VPSFirewallList struct {
+// VPSFirewallRuleList defines the list resource implementation.
+type VPSFirewallRuleList struct {
 	client *client.ClientWithResponses
 }
 
-type VPSFirewallListModel struct {
+type VPSFirewallRuleListModel struct {
 	Timeouts *timeouts.Type `tfsdk:"timeouts"`
 }
 
-func (l *VPSFirewallList) Configure(ctx context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
+func (l *VPSFirewallRuleList) Configure(ctx context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
 	if req.ProviderData == nil {
 		return
 	}
@@ -54,21 +54,21 @@ func (l *VPSFirewallList) Configure(ctx context.Context, req resource.ConfigureR
 	l.client = c
 }
 
-func (l *VPSFirewallList) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
-	resp.TypeName = req.ProviderTypeName + "_vps_firewall"
+func (l *VPSFirewallRuleList) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+	resp.TypeName = req.ProviderTypeName + "_vps_firewall_rule"
 }
 
-func (l *VPSFirewallList) ListResourceConfigSchema(ctx context.Context, req list.ListResourceSchemaRequest, resp *list.ListResourceSchemaResponse) {
+func (l *VPSFirewallRuleList) ListResourceConfigSchema(ctx context.Context, req list.ListResourceSchemaRequest, resp *list.ListResourceSchemaResponse) {
 	resp.Schema = schema.Schema{
-		MarkdownDescription: "This resource provides a list of VPS firewalls.",
+		MarkdownDescription: "This resource provides a list of VPS firewall rules.",
 		Attributes: map[string]schema.Attribute{
 			"timeouts": timeouts.Attributes(ctx),
 		},
 	}
 }
 
-func (l *VPSFirewallList) List(ctx context.Context, req list.ListRequest, stream *list.ListResultsStream) {
-	var data VPSFirewallListModel
+func (l *VPSFirewallRuleList) List(ctx context.Context, req list.ListRequest, stream *list.ListResultsStream) {
+	var data VPSFirewallRuleListModel
 	diags := req.Config.Get(ctx, &data)
 	if diags.HasError() {
 		stream.Results = list.ListResultsStreamDiagnostics(diags)
@@ -116,30 +116,33 @@ func (l *VPSFirewallList) List(ctx context.Context, req list.ListRequest, stream
 			}
 
 			for _, item := range *response.JSON200.Data {
-				var d VPSFirewallResourceModel
-				d.Merge(item)
+				for _, rule := range *item.Rules {
+					var r VPSFirewallRuleResourceModel
+					r.Merge(rule)
+					r.FirewallID = int64Value(item.Id)
 
-				result := req.NewListResult(ctx)
-				result.DisplayName = d.Name.ValueString()
+					result := req.NewListResult(ctx)
+					result.DisplayName = fmt.Sprintf("%d/%d", item.Id, rule.Id)
 
-				identity := VPSFirewallIdentity{ID: d.ID}
-				result.Diagnostics.Append(result.Identity.Set(ctx, &identity)...)
+					identity := VPSFirewallRuleIdentity{ID: r.ID, FirewallID: r.FirewallID}
+					result.Diagnostics.Append(result.Identity.Set(ctx, &identity)...)
 
-				if req.IncludeResource {
-					d.Timeouts = resourcetimeouts.Value{
-						Object: types.ObjectNull(map[string]attr.Type{
-							"create": types.StringType,
-							"read":   types.StringType,
-							"update": types.StringType,
-							"delete": types.StringType,
-						}),
+					if req.IncludeResource {
+						r.Timeouts = resourcetimeouts.Value{
+							Object: types.ObjectNull(map[string]attr.Type{
+								"create": types.StringType,
+								"read":   types.StringType,
+								"update": types.StringType,
+								"delete": types.StringType,
+							}),
+						}
+
+						result.Diagnostics.Append(result.Resource.Set(ctx, &r)...)
 					}
 
-					result.Diagnostics.Append(result.Resource.Set(ctx, &d)...)
-				}
-
-				if !push(result) {
-					return
+					if !push(result) {
+						return
+					}
 				}
 			}
 

@@ -16,11 +16,11 @@ import (
 	"github.com/mock-server/mockserver-monorepo/mockserver-client-go/v7"
 )
 
-func TestAccVPSFirewallList(t *testing.T) {
+func TestAccVPSFirewallRuleList(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {
 			testAccPreCheck(t)
-			testAccVPSFirewallListPreCheck(t)
+			testAccVPSFirewallRuleListPreCheck(t)
 		},
 		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
 		Steps: []resource.TestStep{
@@ -28,31 +28,94 @@ func TestAccVPSFirewallList(t *testing.T) {
 				Config: ` `,
 			},
 			{
-				Config:         testAccVPSFirewallListConfig,
+				Config:         testAccVPSFirewallRuleListConfig,
 				Query:          true,
 				GenerateConfig: true,
 				QueryResultChecks: []querycheck.QueryResultCheck{
 					querycheck.ExpectResourceKnownValues(
-						"hostinger_vps_firewall.test",
+						"hostinger_vps_firewall_rule.test",
 						queryfilter.ByResourceIdentity(map[string]knownvalue.Check{
-							"id": knownvalue.Int64Exact(65224),
+							"id":          knownvalue.Int64Exact(24541),
+							"firewall_id": knownvalue.Int64Exact(65224),
 						}),
 						[]querycheck.KnownValueCheck{
 							{
-								tfjsonpath.New("name"),
-								knownvalue.StringExact("one"),
+								tfjsonpath.New("action"),
+								knownvalue.StringExact("accept"),
+							},
+							{
+								tfjsonpath.New("protocol"),
+								knownvalue.StringExact("TCP"),
+							},
+							{
+								tfjsonpath.New("port"),
+								knownvalue.StringExact("80"),
+							},
+							{
+								tfjsonpath.New("source"),
+								knownvalue.StringExact("custom"),
+							},
+							{
+								tfjsonpath.New("source_detail"),
+								knownvalue.StringExact("any"),
 							},
 						},
 					),
 					querycheck.ExpectResourceKnownValues(
-						"hostinger_vps_firewall.test",
+						"hostinger_vps_firewall_rule.test",
 						queryfilter.ByResourceIdentity(map[string]knownvalue.Check{
-							"id": knownvalue.Int64Exact(65225),
+							"id":          knownvalue.Int64Exact(24542),
+							"firewall_id": knownvalue.Int64Exact(65224),
 						}),
 						[]querycheck.KnownValueCheck{
 							{
-								tfjsonpath.New("name"),
-								knownvalue.StringExact("two"),
+								tfjsonpath.New("action"),
+								knownvalue.StringExact("accept"),
+							},
+							{
+								tfjsonpath.New("protocol"),
+								knownvalue.StringExact("TCP"),
+							},
+							{
+								tfjsonpath.New("port"),
+								knownvalue.StringExact("8080"),
+							},
+							{
+								tfjsonpath.New("source"),
+								knownvalue.StringExact("custom"),
+							},
+							{
+								tfjsonpath.New("source_detail"),
+								knownvalue.StringExact("any"),
+							},
+						},
+					),
+					querycheck.ExpectResourceKnownValues(
+						"hostinger_vps_firewall_rule.test",
+						queryfilter.ByResourceIdentity(map[string]knownvalue.Check{
+							"id":          knownvalue.Int64Exact(24552),
+							"firewall_id": knownvalue.Int64Exact(65225),
+						}),
+						[]querycheck.KnownValueCheck{
+							{
+								tfjsonpath.New("action"),
+								knownvalue.StringExact("accept"),
+							},
+							{
+								tfjsonpath.New("protocol"),
+								knownvalue.StringExact("TCP"),
+							},
+							{
+								tfjsonpath.New("port"),
+								knownvalue.StringExact("443"),
+							},
+							{
+								tfjsonpath.New("source"),
+								knownvalue.StringExact("custom"),
+							},
+							{
+								tfjsonpath.New("source_detail"),
+								knownvalue.StringExact("any"),
 							},
 						},
 					),
@@ -62,7 +125,7 @@ func TestAccVPSFirewallList(t *testing.T) {
 	})
 }
 
-func testAccVPSFirewallListPreCheck(t *testing.T) {
+func testAccVPSFirewallRuleListPreCheck(t *testing.T) {
 	client := newMockServerClient()
 
 	if err := client.Clear(nil, mockserver.ClearAll); err != nil {
@@ -88,7 +151,24 @@ func testAccVPSFirewallListPreCheck(t *testing.T) {
             "id": 65224,
             "name": "one",
             "is_synced": false,
-            "rules": [],
+            "rules": [
+              {
+                "id": 24541,
+                "action": "accept",
+                "protocol": "TCP",
+                "port": "80",
+                "source": "custom",
+                "source_detail": "any"
+              },
+              {
+                "id": 24542,
+                "action": "accept",
+                "protocol": "TCP",
+                "port": "8080",
+                "source": "custom",
+                "source_detail": "any"
+              }
+            ],
             "created_at": "2021-09-01T12:00:00Z",
             "updated_at": "2021-09-01T12:00:00Z"
           }
@@ -117,7 +197,16 @@ func testAccVPSFirewallListPreCheck(t *testing.T) {
             "id": 65225,
             "name": "two",
             "is_synced": false,
-            "rules": [],
+            "rules": [
+              {
+                "id": 24552,
+                "action": "accept",
+                "protocol": "TCP",
+                "port": "443",
+                "source": "custom",
+                "source_detail": "any"
+              }
+            ],
             "created_at": "2021-09-01T12:00:00Z",
             "updated_at": "2021-09-01T12:00:00Z"
           }
@@ -148,8 +237,8 @@ func testAccVPSFirewallListPreCheck(t *testing.T) {
 
 }
 
-const testAccVPSFirewallListConfig = `
-list "hostinger_vps_firewall" "test" {
+const testAccVPSFirewallRuleListConfig = `
+list "hostinger_vps_firewall_rule" "test" {
 	provider = hostinger
 	include_resource = true
 }

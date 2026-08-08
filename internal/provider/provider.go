@@ -175,6 +175,7 @@ func (p *hostingerProvider) DataSources(ctx context.Context) []func() datasource
 func (p *hostingerProvider) ListResources(ctx context.Context) []func() list.ListResource {
 	return []func() list.ListResource{
 		NewVPSFirewallList,
+		NewVPSFirewallRuleList,
 	}
 }
 
