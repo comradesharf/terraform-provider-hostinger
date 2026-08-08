@@ -6,6 +6,8 @@ project {
   copyright_year = 2021
 
   header_ignore = [
+    "test-e2e/**",
+
     # internal catalog metadata (prose)
     "META.d/**/*.yaml",
 

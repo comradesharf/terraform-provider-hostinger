@@ -15,6 +15,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
+	"github.com/hashicorp/terraform-plugin-framework/resource/identityschema"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/int64planmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
@@ -27,6 +28,7 @@ import (
 var (
 	_ resource.Resource                = &VPSFirewallResource{}
 	_ resource.ResourceWithImportState = &VPSFirewallResource{}
+	_ resource.ResourceWithIdentity    = &VPSFirewallResource{}
 )
 
 func NewVPSFirewallResource() resource.Resource {
@@ -84,6 +86,17 @@ func (r *VPSFirewallResource) Schema(ctx context.Context, req resource.SchemaReq
 				MarkdownDescription: "Timestamp when the firewall was updated (RFC3339).",
 			},
 			"timeouts": timeouts.AttributesAll(ctx),
+		},
+	}
+}
+
+func (r *VPSFirewallResource) IdentitySchema(ctx context.Context, req resource.IdentitySchemaRequest, resp *resource.IdentitySchemaResponse) {
+	resp.IdentitySchema = identityschema.Schema{
+		Attributes: map[string]identityschema.Attribute{
+			"id": identityschema.Int64Attribute{
+				RequiredForImport: true,
+				Description:       "The unique identifier for the firewall.",
+			},
 		},
 	}
 }
@@ -153,11 +166,20 @@ func (r *VPSFirewallResource) Create(ctx context.Context, req resource.CreateReq
 	state.Merge(*response.JSON200)
 
 	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
+
+	identity := VPSFirewallIdentity{ID: state.ID}
+	resp.Diagnostics.Append(resp.Identity.Set(ctx, &identity)...)
 }
 
 func (r *VPSFirewallResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
 	var state VPSFirewallResourceModel
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	var identity VPSFirewallIdentity
+	resp.Diagnostics.Append(req.Identity.Get(ctx, &identity)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
@@ -215,19 +237,31 @@ func (r *VPSFirewallResource) Read(ctx context.Context, req resource.ReadRequest
 	}
 
 	state.Merge(*response.JSON200)
-
 	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
+
+	identity.ID = state.ID
+	resp.Diagnostics.Append(resp.Identity.Set(ctx, &identity)...)
 }
 
 func (r *VPSFirewallResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	var plan, state VPSFirewallResourceModel
-	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
+	var state VPSFirewallResourceModel
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
+	var identity VPSFirewallIdentity
+	resp.Diagnostics.Append(req.Identity.Get(ctx, &identity)...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
 	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	resp.Diagnostics.Append(resp.Identity.Set(ctx, &identity)...)
 }
 
 func (r *VPSFirewallResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
@@ -280,5 +314,5 @@ func (r *VPSFirewallResource) Delete(ctx context.Context, req resource.DeleteReq
 }
 
 func (r *VPSFirewallResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
-	importStatePassthroughInt64ID(ctx, path.Root("id"), req, resp)
+	importStatePassthroughInt64Identity(ctx, path.Root("id"), path.Root("id"), req, resp)
 }

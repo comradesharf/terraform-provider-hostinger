@@ -17,7 +17,6 @@ import (
 )
 
 func TestAccVPSFirewallResource(t *testing.T) {
-
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {
 			testAccPreCheck(t)
@@ -59,6 +58,16 @@ func TestAccVPSFirewallResource(t *testing.T) {
 				ResourceName:      "hostinger_vps_firewall.test",
 				ImportState:       true,
 				ImportStateVerify: true,
+			},
+			{
+				ResourceName:    "hostinger_vps_firewall.test",
+				ImportState:     true,
+				ImportStateKind: resource.ImportBlockWithResourceIdentity,
+			},
+			{
+				ResourceName:    "hostinger_vps_firewall.test",
+				ImportState:     true,
+				ImportStateKind: resource.ImportBlockWithID,
 			},
 			{
 				Config: testAccVPSFirewallResourceConfig("two"),
@@ -144,7 +153,7 @@ func testAccVPSFirewallResourcePreCheck(t *testing.T) {
       }
     },
     "times": {
-      "remainingTimes": 3
+      "remainingTimes": 5
     }
   },
   {
