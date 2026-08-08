@@ -43,7 +43,7 @@ func (l *VPSPublicKeyList) Configure(ctx context.Context, req resource.Configure
 	c, ok := req.ProviderData.(*client.ClientWithResponses)
 	if !ok {
 		resp.Diagnostics.AddError(
-			"Unexpected Data Source Configure Type",
+			"Unexpected List Resource Configure Type",
 			fmt.Sprintf("Expected *client.ClientWithResponses, got: %T. Please report this issue to the provider developers.", req.ProviderData),
 		)
 		return
