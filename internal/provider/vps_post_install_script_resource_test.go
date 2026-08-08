@@ -60,6 +60,16 @@ func TestAccVPSPostInstallScriptResource(t *testing.T) {
 				ImportStateVerify: true,
 			},
 			{
+				ResourceName:    "hostinger_vps_post_install_script.test",
+				ImportState:     true,
+				ImportStateKind: resource.ImportBlockWithResourceIdentity,
+			},
+			{
+				ResourceName:    "hostinger_vps_post_install_script.test",
+				ImportState:     true,
+				ImportStateKind: resource.ImportBlockWithID,
+			},
+			{
 				Config: testAccVPSPostInstallScriptResourceConfig("bootstrap-updated", "#!/bin/sh\napt-get update\napt-get install -y nginx"),
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
@@ -139,7 +149,7 @@ func testAccVPSPostInstallScriptResourcePreCheck(t *testing.T) {
       }
     },
     "times": {
-      "remainingTimes": 3
+      "remainingTimes": 5
     }
   },
   {
