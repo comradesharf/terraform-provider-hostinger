@@ -8,6 +8,11 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
+type VPSFirewallRuleIdentity struct {
+	ID         types.Int64 `tfsdk:"id"`
+	FirewallID types.Int64 `tfsdk:"firewall_id"`
+}
+
 // VPSFirewallRuleModel maps a single firewall rule from the API response.
 type VPSFirewallRuleModel struct {
 	ID           types.Int64  `tfsdk:"id"`

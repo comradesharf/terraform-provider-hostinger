@@ -17,7 +17,6 @@ import (
 )
 
 func TestAccVPSFirewallRuleResource(t *testing.T) {
-
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {
 			testAccPreCheck(t)
@@ -70,6 +69,17 @@ func TestAccVPSFirewallRuleResource(t *testing.T) {
 				ImportState:       true,
 				ImportStateId:     "65224/24541",
 				ImportStateVerify: true,
+			},
+			{
+				ResourceName:    "hostinger_vps_firewall_rule.test",
+				ImportState:     true,
+				ImportStateKind: resource.ImportBlockWithResourceIdentity,
+			},
+			{
+				ResourceName:    "hostinger_vps_firewall_rule.test",
+				ImportState:     true,
+				ImportStateId:   "65224/24541",
+				ImportStateKind: resource.ImportBlockWithID,
 			},
 			{
 				Config: testAccVPSFirewallRuleResourceConfig("test1", "UDP"),
@@ -234,7 +244,7 @@ func testAccVPSFirewallRuleResourcePreCheck(t *testing.T) {
       }
     },
     "times": {
-      "remainingTimes": 5
+      "remainingTimes": 9
     }
   },
   {

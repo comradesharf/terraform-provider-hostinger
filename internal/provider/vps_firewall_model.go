@@ -15,7 +15,7 @@ type VPSFirewallIdentity struct {
 
 // VPSFirewallModel maps a single firewall from the API response.
 type VPSFirewallModel struct {
-	VPSFirewallIdentity
+	ID        types.Int64       `tfsdk:"id"`
 	Name      types.String      `tfsdk:"name"`
 	IsSynced  types.Bool        `tfsdk:"is_synced"`
 	CreatedAt timetypes.RFC3339 `tfsdk:"created_at"`

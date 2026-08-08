@@ -72,8 +72,8 @@ func importStatePassthroughInt64Identity(ctx context.Context, stateAttrPath path
 		return
 	}
 
-	// If the import is using the import identifier, (either via the "terraform import" CLI command, or a config block with the "id" attribute set)
-	// pass through the ID to the designated state attribute.
+	var identityAttrVal types.Int64
+
 	if req.ID != "" {
 		v, err := strconv.ParseInt(req.ID, 10, 64)
 		if err != nil {
@@ -84,19 +84,13 @@ func importStatePassthroughInt64Identity(ctx context.Context, stateAttrPath path
 			return
 		}
 
-		resp.Diagnostics.Append(resp.State.SetAttribute(ctx, stateAttrPath, v)...)
-		if resp.Diagnostics.HasError() {
-			return
-		}
+		identityAttrVal = types.Int64Value(v)
 
-		resp.Diagnostics.Append(resp.Identity.SetAttribute(ctx, identityAttrPath, v)...)
-		return
+		resp.Diagnostics.Append(resp.Identity.SetAttribute(ctx, identityAttrPath, &identityAttrVal)...)
+	} else {
+		resp.Diagnostics.Append(req.Identity.GetAttribute(ctx, identityAttrPath, &identityAttrVal)...)
 	}
 
-	// The import isn't using the import identifier, so it must be using identity. Grab the designated
-	// identity attribute string and set it to state.
-	var identityAttrVal types.Int64
-	resp.Diagnostics.Append(req.Identity.GetAttribute(ctx, identityAttrPath, &identityAttrVal)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}

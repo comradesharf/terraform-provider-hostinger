@@ -27,6 +27,7 @@ import (
 // Ensure provider defined types fully satisfy framework interfaces.
 var (
 	_ resource.Resource                = &VPSFirewallResource{}
+	_ resource.ResourceWithConfigure   = &VPSFirewallResource{}
 	_ resource.ResourceWithImportState = &VPSFirewallResource{}
 	_ resource.ResourceWithIdentity    = &VPSFirewallResource{}
 )
@@ -165,10 +166,13 @@ func (r *VPSFirewallResource) Create(ctx context.Context, req resource.CreateReq
 
 	state.Merge(*response.JSON200)
 
-	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
-
 	identity := VPSFirewallIdentity{ID: state.ID}
 	resp.Diagnostics.Append(resp.Identity.Set(ctx, &identity)...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 }
 
 func (r *VPSFirewallResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
@@ -237,10 +241,14 @@ func (r *VPSFirewallResource) Read(ctx context.Context, req resource.ReadRequest
 	}
 
 	state.Merge(*response.JSON200)
-	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 
 	identity.ID = state.ID
 	resp.Diagnostics.Append(resp.Identity.Set(ctx, &identity)...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 }
 
 func (r *VPSFirewallResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
@@ -256,12 +264,12 @@ func (r *VPSFirewallResource) Update(ctx context.Context, req resource.UpdateReq
 		return
 	}
 
-	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
+	resp.Diagnostics.Append(resp.Identity.Set(ctx, &identity)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
-	resp.Diagnostics.Append(resp.Identity.Set(ctx, &identity)...)
+	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 }
 
 func (r *VPSFirewallResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
