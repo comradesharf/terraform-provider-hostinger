@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 interface:
   display_name: "Create Terraform List Resource"
   short_description: "Generate Hostinger list resource implementations"
