@@ -15,6 +15,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
+	"github.com/hashicorp/terraform-plugin-framework/resource/identityschema"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/int64planmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
@@ -25,6 +26,7 @@ var (
 	_ resource.Resource                = &VPSPostInstallScriptResource{}
 	_ resource.ResourceWithConfigure   = &VPSPostInstallScriptResource{}
 	_ resource.ResourceWithImportState = &VPSPostInstallScriptResource{}
+	_ resource.ResourceWithIdentity    = &VPSPostInstallScriptResource{}
 )
 
 func NewVPSPostInstallScriptResource() resource.Resource {
@@ -42,6 +44,16 @@ type VPSPostInstallScriptResourceModel struct {
 
 func (r *VPSPostInstallScriptResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_vps_post_install_script"
+}
+
+func (r *VPSPostInstallScriptResource) IdentitySchema(ctx context.Context, req resource.IdentitySchemaRequest, resp *resource.IdentitySchemaResponse) {
+	resp.IdentitySchema = identityschema.Schema{
+		Attributes: map[string]identityschema.Attribute{
+			"id": identityschema.Int64Attribute{
+				RequiredForImport: true,
+			},
+		},
+	}
 }
 
 func (r *VPSPostInstallScriptResource) Schema(ctx context.Context, req resource.SchemaRequest, resp *resource.SchemaResponse) {
@@ -135,6 +147,13 @@ func (r *VPSPostInstallScriptResource) Create(ctx context.Context, req resource.
 	}
 
 	state.Merge(*response.JSON200)
+
+	identity := VPSPostInstallScriptIdentity{ID: state.ID}
+	resp.Diagnostics.Append(resp.Identity.Set(ctx, &identity)...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
 	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 }
 
@@ -144,6 +163,13 @@ func (r *VPSPostInstallScriptResource) Read(ctx context.Context, req resource.Re
 	if resp.Diagnostics.HasError() {
 		return
 	}
+
+	var identity VPSPostInstallScriptIdentity
+	resp.Diagnostics.Append(req.Identity.Get(ctx, &identity)...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
 	if state.ID.IsUnknown() || state.ID.IsNull() || state.ID.ValueInt64() == 0 {
 		resp.Diagnostics.AddError("Invalid Post-install Script ID", "The post-install script ID is unknown, null, or zero, so it cannot be read.")
 		return
@@ -177,6 +203,14 @@ func (r *VPSPostInstallScriptResource) Read(ctx context.Context, req resource.Re
 	}
 
 	state.Merge(*response.JSON200)
+
+	identity.ID = state.ID
+
+	resp.Diagnostics.Append(resp.Identity.Set(ctx, &identity)...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
 	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 }
 
@@ -187,6 +221,13 @@ func (r *VPSPostInstallScriptResource) Update(ctx context.Context, req resource.
 	if resp.Diagnostics.HasError() {
 		return
 	}
+
+	var identity VPSPostInstallScriptIdentity
+	resp.Diagnostics.Append(req.Identity.Get(ctx, &identity)...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
 	if state.ID.IsUnknown() || state.ID.IsNull() || state.ID.ValueInt64() == 0 {
 		resp.Diagnostics.AddError("Invalid Post-install Script ID", "The post-install script ID is unknown, null, or zero, so it cannot be updated.")
 		return
@@ -219,6 +260,14 @@ func (r *VPSPostInstallScriptResource) Update(ctx context.Context, req resource.
 	}
 
 	plan.Merge(*response.JSON200)
+
+	identity.ID = plan.ID
+
+	resp.Diagnostics.Append(resp.Identity.Set(ctx, &identity)...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
 	resp.Diagnostics.Append(resp.State.Set(ctx, &plan)...)
 }
 
@@ -253,5 +302,5 @@ func (r *VPSPostInstallScriptResource) Delete(ctx context.Context, req resource.
 }
 
 func (r *VPSPostInstallScriptResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
-	importStatePassthroughInt64ID(ctx, path.Root("id"), req, resp)
+	importStatePassthroughInt64Identity(ctx, path.Root("id"), path.Root("id"), req, resp)
 }

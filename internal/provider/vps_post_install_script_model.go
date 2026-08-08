@@ -9,6 +9,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
+type VPSPostInstallScriptIdentity struct {
+	ID types.Int64 `tfsdk:"id"`
+}
+
 // VPSPostInstallScriptModel maps a single VPS post-install script from the API response.
 type VPSPostInstallScriptModel struct {
 	ID        types.Int64       `tfsdk:"id"`

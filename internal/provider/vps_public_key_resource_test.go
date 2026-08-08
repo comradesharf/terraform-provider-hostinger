@@ -50,6 +50,16 @@ func TestAccVPSPublicKeyResource(t *testing.T) {
 				ImportStateVerify: true,
 			},
 			{
+				ResourceName:    "hostinger_vps_public_key.test",
+				ImportState:     true,
+				ImportStateKind: resource.ImportBlockWithResourceIdentity,
+			},
+			{
+				ResourceName:    "hostinger_vps_public_key.test",
+				ImportState:     true,
+				ImportStateKind: resource.ImportBlockWithID,
+			},
+			{
 				Config: testAccVPSPublicKeyResourceConfig("test2", "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDone"),
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
@@ -124,7 +134,7 @@ func testAccVPSPublicKeyResourcePreCheck(t *testing.T) {
       }
     },
     "times": {
-      "remainingTimes": 3
+      "remainingTimes": 5
     }
   },
   {
