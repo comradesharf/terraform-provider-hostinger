@@ -16,66 +16,86 @@ import (
 	"github.com/mock-server/mockserver-monorepo/mockserver-client-go/v7"
 )
 
-func TestAccVPSPublicKeyResource(t *testing.T) {
+func TestAccVPSPostInstallScriptResource(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {
 			testAccPreCheck(t)
-			testAccVPSPublicKeyResourcePreCheck(t)
+			testAccVPSPostInstallScriptResourcePreCheck(t)
 		},
 		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
 		Steps: []resource.TestStep{
 			{
-				Config: testAccVPSPublicKeyResourceConfig("test1", "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDone"),
+				Config: testAccVPSPostInstallScriptResourceConfig("bootstrap", "#!/bin/sh\napt-get update"),
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
-						"hostinger_vps_public_key.test",
+						"hostinger_vps_post_install_script.test",
 						tfjsonpath.New("id"),
-						knownvalue.Int64Exact(325),
+						knownvalue.Int64Exact(781),
 					),
 					statecheck.ExpectKnownValue(
-						"hostinger_vps_public_key.test",
+						"hostinger_vps_post_install_script.test",
 						tfjsonpath.New("name"),
-						knownvalue.StringExact("test1"),
+						knownvalue.StringExact("bootstrap"),
 					),
 					statecheck.ExpectKnownValue(
-						"hostinger_vps_public_key.test",
-						tfjsonpath.New("key"),
-						knownvalue.StringExact("ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDone"),
+						"hostinger_vps_post_install_script.test",
+						tfjsonpath.New("content"),
+						knownvalue.StringExact("#!/bin/sh\napt-get update"),
+					),
+					statecheck.ExpectKnownValue(
+						"hostinger_vps_post_install_script.test",
+						tfjsonpath.New("created_at"),
+						knownvalue.StringExact("2021-09-01T12:00:00Z"),
+					),
+					statecheck.ExpectKnownValue(
+						"hostinger_vps_post_install_script.test",
+						tfjsonpath.New("updated_at"),
+						knownvalue.StringExact("2021-09-01T12:00:00Z"),
 					),
 				},
 			},
 			{
-				ResourceName:      "hostinger_vps_public_key.test",
+				ResourceName:      "hostinger_vps_post_install_script.test",
 				ImportState:       true,
 				ImportStateVerify: true,
 			},
 			{
-				ResourceName:    "hostinger_vps_public_key.test",
+				ResourceName:    "hostinger_vps_post_install_script.test",
 				ImportState:     true,
 				ImportStateKind: resource.ImportBlockWithResourceIdentity,
 			},
 			{
-				ResourceName:    "hostinger_vps_public_key.test",
+				ResourceName:    "hostinger_vps_post_install_script.test",
 				ImportState:     true,
 				ImportStateKind: resource.ImportBlockWithID,
 			},
 			{
-				Config: testAccVPSPublicKeyResourceConfig("test2", "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDone"),
+				Config: testAccVPSPostInstallScriptResourceConfig("bootstrap-updated", "#!/bin/sh\napt-get update\napt-get install -y nginx"),
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
-						"hostinger_vps_public_key.test",
+						"hostinger_vps_post_install_script.test",
 						tfjsonpath.New("id"),
-						knownvalue.Int64Exact(326),
+						knownvalue.Int64Exact(781),
 					),
 					statecheck.ExpectKnownValue(
-						"hostinger_vps_public_key.test",
+						"hostinger_vps_post_install_script.test",
 						tfjsonpath.New("name"),
-						knownvalue.StringExact("test2"),
+						knownvalue.StringExact("bootstrap-updated"),
 					),
 					statecheck.ExpectKnownValue(
-						"hostinger_vps_public_key.test",
-						tfjsonpath.New("key"),
-						knownvalue.StringExact("ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDone"),
+						"hostinger_vps_post_install_script.test",
+						tfjsonpath.New("content"),
+						knownvalue.StringExact("#!/bin/sh\napt-get update\napt-get install -y nginx"),
+					),
+					statecheck.ExpectKnownValue(
+						"hostinger_vps_post_install_script.test",
+						tfjsonpath.New("created_at"),
+						knownvalue.StringExact("2021-09-01T12:00:00Z"),
+					),
+					statecheck.ExpectKnownValue(
+						"hostinger_vps_post_install_script.test",
+						tfjsonpath.New("updated_at"),
+						knownvalue.StringExact("2021-09-01T12:30:00Z"),
 					),
 				},
 			},
@@ -83,7 +103,7 @@ func TestAccVPSPublicKeyResource(t *testing.T) {
 	})
 }
 
-func testAccVPSPublicKeyResourcePreCheck(t *testing.T) {
+func testAccVPSPostInstallScriptResourcePreCheck(t *testing.T) {
 	client := newMockServerClient()
 	if err := client.Clear(nil, mockserver.ClearAll); err != nil {
 		t.Fatalf("failed to clear mock server: %v", err)
@@ -97,14 +117,16 @@ func testAccVPSPublicKeyResourcePreCheck(t *testing.T) {
   {
     "httpRequest": {
       "specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
-      "operationId": "VPS_createPublicKeyV1"
+      "operationId": "VPS_createPostInstallScriptV1"
     },
     "httpResponse": {
       "statusCode": 200,
       "body": {
-        "id": 325,
-        "name": "test1",
-        "key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDone"
+        "id": 781,
+        "name": "bootstrap",
+        "content": "#!/bin/sh\napt-get update",
+        "created_at": "2021-09-01T12:00:00Z",
+        "updated_at": "2021-09-01T12:00:00Z"
       }
     },
     "times": {
@@ -114,23 +136,16 @@ func testAccVPSPublicKeyResourcePreCheck(t *testing.T) {
   {
     "httpRequest": {
       "specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
-      "operationId": "VPS_getPublicKeysV1"
+      "operationId": "VPS_getPostInstallScriptV1"
     },
     "httpResponse": {
       "statusCode": 200,
       "body": {
-        "data": [
-          {
-            "id": 325,
-            "name": "test1",
-            "key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDone"
-          }
-        ],
-        "meta": {
-          "total": 1,
-          "current_page": 1,
-          "per_page": 1
-        }
+        "id": 781,
+        "name": "bootstrap",
+        "content": "#!/bin/sh\napt-get update",
+        "created_at": "2021-09-01T12:00:00Z",
+        "updated_at": "2021-09-01T12:00:00Z"
       }
     },
     "times": {
@@ -140,12 +155,16 @@ func testAccVPSPublicKeyResourcePreCheck(t *testing.T) {
   {
     "httpRequest": {
       "specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
-      "operationId": "VPS_deletePublicKeyV1"
+      "operationId": "VPS_updatePostInstallScriptV1"
     },
     "httpResponse": {
       "statusCode": 200,
       "body": {
-        "message": "Request accepted"
+        "id": 781,
+        "name": "bootstrap-updated",
+        "content": "#!/bin/sh\napt-get update\napt-get install -y nginx",
+        "created_at": "2021-09-01T12:00:00Z",
+        "updated_at": "2021-09-01T12:30:00Z"
       }
     },
     "times": {
@@ -155,14 +174,16 @@ func testAccVPSPublicKeyResourcePreCheck(t *testing.T) {
   {
     "httpRequest": {
       "specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
-      "operationId": "VPS_createPublicKeyV1"
+      "operationId": "VPS_getPostInstallScriptV1"
     },
     "httpResponse": {
       "statusCode": 200,
       "body": {
-        "id": 326,
-        "name": "test2",
-        "key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDone"
+        "id": 781,
+        "name": "bootstrap-updated",
+        "content": "#!/bin/sh\napt-get update\napt-get install -y nginx",
+        "created_at": "2021-09-01T12:00:00Z",
+        "updated_at": "2021-09-01T12:30:00Z"
       }
     },
     "times": {
@@ -172,33 +193,7 @@ func testAccVPSPublicKeyResourcePreCheck(t *testing.T) {
   {
     "httpRequest": {
       "specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
-      "operationId": "VPS_getPublicKeysV1"
-    },
-    "httpResponse": {
-      "statusCode": 200,
-      "body": {
-        "data": [
-          {
-            "id": 326,
-            "name": "test2",
-            "key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDone"
-          }
-        ],
-        "meta": {
-          "total": 1,
-          "current_page": 1,
-          "per_page": 1
-        }
-      }
-    },
-    "times": {
-      "remainingTimes": 3
-    }
-  },
-  {
-    "httpRequest": {
-      "specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
-      "operationId": "VPS_deletePublicKeyV1"
+      "operationId": "VPS_deletePostInstallScriptV1"
     },
     "httpResponse": {
       "statusCode": 200,
@@ -226,11 +221,11 @@ func testAccVPSPublicKeyResourcePreCheck(t *testing.T) {
 	}
 }
 
-func testAccVPSPublicKeyResourceConfig(name, key string) string {
+func testAccVPSPostInstallScriptResourceConfig(name, content string) string {
 	return fmt.Sprintf(`
-resource "hostinger_vps_public_key" "test" {
-  name = %[1]q
-  key  = %[2]q
+resource "hostinger_vps_post_install_script" "test" {
+  name    = %[1]q
+  content = %[2]q
 }
-`, name, key)
+`, name, content)
 }

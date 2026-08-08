@@ -9,6 +9,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
+type VPSFirewallIdentity struct {
+	ID types.Int64 `tfsdk:"id"`
+}
+
 // VPSFirewallModel maps a single firewall from the API response.
 type VPSFirewallModel struct {
 	ID        types.Int64       `tfsdk:"id"`

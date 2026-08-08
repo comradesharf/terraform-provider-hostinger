@@ -64,6 +64,8 @@ type VPSVirtualMachinesDataSourceModel struct {
 
 Its schema exposes `virtual_machines` as a computed `schema.ListNestedAttribute`, with nested computed attributes for primitive fields, nested lists, nested objects, custom IP types, and RFC3339 timestamps. The read method calls the list endpoint without params and appends each mapped item to the result slice.
 
+For paginated collection endpoints, initialize the page parameter, append each page through the reusable item model, and stop when the response has no data or `current_page * per_page >= total`. Check for a nil `JSON200` before dereferencing it and preserve the API's null/empty behavior.
+
 ### 3. Register in the provider
 
 Add the constructor to the `DataSources` slice in `internal/provider/provider.go`:
@@ -82,10 +84,11 @@ func (p *hostingerProvider) DataSources(ctx context.Context) []func() datasource
 Create `internal/provider/<name>_data_source_test.go` following the [test template](./assets/data_source_test.go.tmpl).
 
 Key rules:
-- Use `resource.Test` with `TF_ACC=1`
+- Use `resource.Test` with the repository provider factory; enable the acceptance run externally with `TF_ACC=1`
 - Reference the data source as `data.hostinger_<name>.test`
 - Use `statecheck.ExpectKnownValue` with typed `knownvalue.*` checkers
 - Add a `const testAcc<PascalName>DataSourceConfig` HCL string with the minimal filter config, or an empty data block when the endpoint has no filters
+- For local MockServer-backed tests, clear/freeze the server in a resource-specific precheck, match generated `operationId` values, and provide one expectation for every paginated request
 
 ### 5. Generate documentation
 

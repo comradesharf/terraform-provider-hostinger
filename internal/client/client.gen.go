@@ -1636,6 +1636,222 @@ func (e ReachV1ContactsProfileContactUpdateResourceSubscriptionStatus) Valid() b
 	}
 }
 
+// Defines values for ReachV1ContactsSegmentsProfileStoreRequestConditionsOperator.
+const (
+	ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorBounced           ReachV1ContactsSegmentsProfileStoreRequestConditionsOperator = "bounced"
+	ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorClicked           ReachV1ContactsSegmentsProfileStoreRequestConditionsOperator = "clicked"
+	ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorContains          ReachV1ContactsSegmentsProfileStoreRequestConditionsOperator = "contains"
+	ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorDelivered         ReachV1ContactsSegmentsProfileStoreRequestConditionsOperator = "delivered"
+	ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorDropped           ReachV1ContactsSegmentsProfileStoreRequestConditionsOperator = "dropped"
+	ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorEquals            ReachV1ContactsSegmentsProfileStoreRequestConditionsOperator = "equals"
+	ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorExists            ReachV1ContactsSegmentsProfileStoreRequestConditionsOperator = "exists"
+	ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorGte               ReachV1ContactsSegmentsProfileStoreRequestConditionsOperator = "gte"
+	ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorLte               ReachV1ContactsSegmentsProfileStoreRequestConditionsOperator = "lte"
+	ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorNotBounced        ReachV1ContactsSegmentsProfileStoreRequestConditionsOperator = "not_bounced"
+	ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorNotClicked        ReachV1ContactsSegmentsProfileStoreRequestConditionsOperator = "not_clicked"
+	ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorNotContains       ReachV1ContactsSegmentsProfileStoreRequestConditionsOperator = "not_contains"
+	ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorNotDelivered      ReachV1ContactsSegmentsProfileStoreRequestConditionsOperator = "not_delivered"
+	ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorNotDropped        ReachV1ContactsSegmentsProfileStoreRequestConditionsOperator = "not_dropped"
+	ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorNotEquals         ReachV1ContactsSegmentsProfileStoreRequestConditionsOperator = "not_equals"
+	ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorNotOpened         ReachV1ContactsSegmentsProfileStoreRequestConditionsOperator = "not_opened"
+	ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorNotProcessed      ReachV1ContactsSegmentsProfileStoreRequestConditionsOperator = "not_processed"
+	ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorNotSoftBounced    ReachV1ContactsSegmentsProfileStoreRequestConditionsOperator = "not_soft_bounced"
+	ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorNotUnsubscribed   ReachV1ContactsSegmentsProfileStoreRequestConditionsOperator = "not_unsubscribed"
+	ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorNotWithinLastDays ReachV1ContactsSegmentsProfileStoreRequestConditionsOperator = "not_within_last_days"
+	ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorOlderThanDays     ReachV1ContactsSegmentsProfileStoreRequestConditionsOperator = "older_than_days"
+	ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorOpened            ReachV1ContactsSegmentsProfileStoreRequestConditionsOperator = "opened"
+	ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorProcessed         ReachV1ContactsSegmentsProfileStoreRequestConditionsOperator = "processed"
+	ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorSoftBounced       ReachV1ContactsSegmentsProfileStoreRequestConditionsOperator = "soft_bounced"
+	ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorUnsubscribed      ReachV1ContactsSegmentsProfileStoreRequestConditionsOperator = "unsubscribed"
+	ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorWithinLastDays    ReachV1ContactsSegmentsProfileStoreRequestConditionsOperator = "within_last_days"
+)
+
+// Valid indicates whether the value is a known member of the ReachV1ContactsSegmentsProfileStoreRequestConditionsOperator enum.
+func (e ReachV1ContactsSegmentsProfileStoreRequestConditionsOperator) Valid() bool {
+	switch e {
+	case ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorBounced:
+		return true
+	case ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorClicked:
+		return true
+	case ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorContains:
+		return true
+	case ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorDelivered:
+		return true
+	case ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorDropped:
+		return true
+	case ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorEquals:
+		return true
+	case ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorExists:
+		return true
+	case ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorGte:
+		return true
+	case ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorLte:
+		return true
+	case ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorNotBounced:
+		return true
+	case ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorNotClicked:
+		return true
+	case ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorNotContains:
+		return true
+	case ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorNotDelivered:
+		return true
+	case ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorNotDropped:
+		return true
+	case ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorNotEquals:
+		return true
+	case ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorNotOpened:
+		return true
+	case ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorNotProcessed:
+		return true
+	case ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorNotSoftBounced:
+		return true
+	case ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorNotUnsubscribed:
+		return true
+	case ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorNotWithinLastDays:
+		return true
+	case ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorOlderThanDays:
+		return true
+	case ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorOpened:
+		return true
+	case ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorProcessed:
+		return true
+	case ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorSoftBounced:
+		return true
+	case ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorUnsubscribed:
+		return true
+	case ReachV1ContactsSegmentsProfileStoreRequestConditionsOperatorWithinLastDays:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ReachV1ContactsSegmentsProfileStoreRequestLogic.
+const (
+	ReachV1ContactsSegmentsProfileStoreRequestLogicAND ReachV1ContactsSegmentsProfileStoreRequestLogic = "AND"
+	ReachV1ContactsSegmentsProfileStoreRequestLogicOR  ReachV1ContactsSegmentsProfileStoreRequestLogic = "OR"
+)
+
+// Valid indicates whether the value is a known member of the ReachV1ContactsSegmentsProfileStoreRequestLogic enum.
+func (e ReachV1ContactsSegmentsProfileStoreRequestLogic) Valid() bool {
+	switch e {
+	case ReachV1ContactsSegmentsProfileStoreRequestLogicAND:
+		return true
+	case ReachV1ContactsSegmentsProfileStoreRequestLogicOR:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperator.
+const (
+	ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorBounced           ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperator = "bounced"
+	ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorClicked           ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperator = "clicked"
+	ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorContains          ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperator = "contains"
+	ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorDelivered         ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperator = "delivered"
+	ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorDropped           ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperator = "dropped"
+	ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorEquals            ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperator = "equals"
+	ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorExists            ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperator = "exists"
+	ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorGte               ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperator = "gte"
+	ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorLte               ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperator = "lte"
+	ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorNotBounced        ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperator = "not_bounced"
+	ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorNotClicked        ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperator = "not_clicked"
+	ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorNotContains       ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperator = "not_contains"
+	ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorNotDelivered      ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperator = "not_delivered"
+	ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorNotDropped        ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperator = "not_dropped"
+	ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorNotEquals         ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperator = "not_equals"
+	ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorNotOpened         ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperator = "not_opened"
+	ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorNotProcessed      ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperator = "not_processed"
+	ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorNotSoftBounced    ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperator = "not_soft_bounced"
+	ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorNotUnsubscribed   ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperator = "not_unsubscribed"
+	ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorNotWithinLastDays ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperator = "not_within_last_days"
+	ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorOlderThanDays     ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperator = "older_than_days"
+	ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorOpened            ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperator = "opened"
+	ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorProcessed         ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperator = "processed"
+	ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorSoftBounced       ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperator = "soft_bounced"
+	ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorUnsubscribed      ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperator = "unsubscribed"
+	ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorWithinLastDays    ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperator = "within_last_days"
+)
+
+// Valid indicates whether the value is a known member of the ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperator enum.
+func (e ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperator) Valid() bool {
+	switch e {
+	case ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorBounced:
+		return true
+	case ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorClicked:
+		return true
+	case ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorContains:
+		return true
+	case ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorDelivered:
+		return true
+	case ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorDropped:
+		return true
+	case ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorEquals:
+		return true
+	case ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorExists:
+		return true
+	case ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorGte:
+		return true
+	case ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorLte:
+		return true
+	case ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorNotBounced:
+		return true
+	case ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorNotClicked:
+		return true
+	case ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorNotContains:
+		return true
+	case ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorNotDelivered:
+		return true
+	case ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorNotDropped:
+		return true
+	case ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorNotEquals:
+		return true
+	case ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorNotOpened:
+		return true
+	case ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorNotProcessed:
+		return true
+	case ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorNotSoftBounced:
+		return true
+	case ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorNotUnsubscribed:
+		return true
+	case ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorNotWithinLastDays:
+		return true
+	case ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorOlderThanDays:
+		return true
+	case ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorOpened:
+		return true
+	case ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorProcessed:
+		return true
+	case ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorSoftBounced:
+		return true
+	case ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorUnsubscribed:
+		return true
+	case ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperatorWithinLastDays:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ReachV1ContactsSegmentsProfileUpdateRequestLogic.
+const (
+	ReachV1ContactsSegmentsProfileUpdateRequestLogicAND ReachV1ContactsSegmentsProfileUpdateRequestLogic = "AND"
+	ReachV1ContactsSegmentsProfileUpdateRequestLogicOR  ReachV1ContactsSegmentsProfileUpdateRequestLogic = "OR"
+)
+
+// Valid indicates whether the value is a known member of the ReachV1ContactsSegmentsProfileUpdateRequestLogic enum.
+func (e ReachV1ContactsSegmentsProfileUpdateRequestLogic) Valid() bool {
+	switch e {
+	case ReachV1ContactsSegmentsProfileUpdateRequestLogicAND:
+		return true
+	case ReachV1ContactsSegmentsProfileUpdateRequestLogicOR:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for ReachV1ContactsSegmentsSegmentationContactResourceSource.
 const (
 	ReachV1ContactsSegmentsSegmentationContactResourceSourceApi      ReachV1ContactsSegmentsSegmentationContactResourceSource = "api"
@@ -1784,11 +2000,13 @@ const (
 	ReachV1ContactsSegmentsStoreRequestConditionsOperatorNotEquals         ReachV1ContactsSegmentsStoreRequestConditionsOperator = "not_equals"
 	ReachV1ContactsSegmentsStoreRequestConditionsOperatorNotOpened         ReachV1ContactsSegmentsStoreRequestConditionsOperator = "not_opened"
 	ReachV1ContactsSegmentsStoreRequestConditionsOperatorNotProcessed      ReachV1ContactsSegmentsStoreRequestConditionsOperator = "not_processed"
+	ReachV1ContactsSegmentsStoreRequestConditionsOperatorNotSoftBounced    ReachV1ContactsSegmentsStoreRequestConditionsOperator = "not_soft_bounced"
 	ReachV1ContactsSegmentsStoreRequestConditionsOperatorNotUnsubscribed   ReachV1ContactsSegmentsStoreRequestConditionsOperator = "not_unsubscribed"
 	ReachV1ContactsSegmentsStoreRequestConditionsOperatorNotWithinLastDays ReachV1ContactsSegmentsStoreRequestConditionsOperator = "not_within_last_days"
 	ReachV1ContactsSegmentsStoreRequestConditionsOperatorOlderThanDays     ReachV1ContactsSegmentsStoreRequestConditionsOperator = "older_than_days"
 	ReachV1ContactsSegmentsStoreRequestConditionsOperatorOpened            ReachV1ContactsSegmentsStoreRequestConditionsOperator = "opened"
 	ReachV1ContactsSegmentsStoreRequestConditionsOperatorProcessed         ReachV1ContactsSegmentsStoreRequestConditionsOperator = "processed"
+	ReachV1ContactsSegmentsStoreRequestConditionsOperatorSoftBounced       ReachV1ContactsSegmentsStoreRequestConditionsOperator = "soft_bounced"
 	ReachV1ContactsSegmentsStoreRequestConditionsOperatorUnsubscribed      ReachV1ContactsSegmentsStoreRequestConditionsOperator = "unsubscribed"
 	ReachV1ContactsSegmentsStoreRequestConditionsOperatorWithinLastDays    ReachV1ContactsSegmentsStoreRequestConditionsOperator = "within_last_days"
 )
@@ -1830,6 +2048,8 @@ func (e ReachV1ContactsSegmentsStoreRequestConditionsOperator) Valid() bool {
 		return true
 	case ReachV1ContactsSegmentsStoreRequestConditionsOperatorNotProcessed:
 		return true
+	case ReachV1ContactsSegmentsStoreRequestConditionsOperatorNotSoftBounced:
+		return true
 	case ReachV1ContactsSegmentsStoreRequestConditionsOperatorNotUnsubscribed:
 		return true
 	case ReachV1ContactsSegmentsStoreRequestConditionsOperatorNotWithinLastDays:
@@ -1839,6 +2059,8 @@ func (e ReachV1ContactsSegmentsStoreRequestConditionsOperator) Valid() bool {
 	case ReachV1ContactsSegmentsStoreRequestConditionsOperatorOpened:
 		return true
 	case ReachV1ContactsSegmentsStoreRequestConditionsOperatorProcessed:
+		return true
+	case ReachV1ContactsSegmentsStoreRequestConditionsOperatorSoftBounced:
 		return true
 	case ReachV1ContactsSegmentsStoreRequestConditionsOperatorUnsubscribed:
 		return true
@@ -2518,6 +2740,24 @@ func (e Category) Valid() bool {
 	}
 }
 
+// Defines values for CountType.
+const (
+	CountTypeAll        CountType = "all"
+	CountTypeSubscribed CountType = "subscribed"
+)
+
+// Valid indicates whether the value is a known member of the CountType enum.
+func (e CountType) Valid() bool {
+	switch e {
+	case CountTypeAll:
+		return true
+	case CountTypeSubscribed:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for MailAccessLogProtocol.
 const (
 	MailAccessLogProtocolImap MailAccessLogProtocol = "imap"
@@ -2829,19 +3069,19 @@ func (e HostingListOrdersV1ParamsStatuses) Valid() bool {
 
 // Defines values for HostingListWordPressInstallationsV1ParamsOwnership.
 const (
-	All     HostingListWordPressInstallationsV1ParamsOwnership = "all"
-	Managed HostingListWordPressInstallationsV1ParamsOwnership = "managed"
-	Owned   HostingListWordPressInstallationsV1ParamsOwnership = "owned"
+	HostingListWordPressInstallationsV1ParamsOwnershipAll     HostingListWordPressInstallationsV1ParamsOwnership = "all"
+	HostingListWordPressInstallationsV1ParamsOwnershipManaged HostingListWordPressInstallationsV1ParamsOwnership = "managed"
+	HostingListWordPressInstallationsV1ParamsOwnershipOwned   HostingListWordPressInstallationsV1ParamsOwnership = "owned"
 )
 
 // Valid indicates whether the value is a known member of the HostingListWordPressInstallationsV1ParamsOwnership enum.
 func (e HostingListWordPressInstallationsV1ParamsOwnership) Valid() bool {
 	switch e {
-	case All:
+	case HostingListWordPressInstallationsV1ParamsOwnershipAll:
 		return true
-	case Managed:
+	case HostingListWordPressInstallationsV1ParamsOwnershipManaged:
 		return true
-	case Owned:
+	case HostingListWordPressInstallationsV1ParamsOwnershipOwned:
 		return true
 	default:
 		return false
@@ -3084,22 +3324,40 @@ func (e ReachListContactsV1ParamsSubscriptionStatus) Valid() bool {
 
 // Defines values for ReachListProfileContactsV1ParamsSubscriptionStatus.
 const (
-	ReachListProfileContactsV1ParamsSubscriptionStatusConfirmed    ReachListProfileContactsV1ParamsSubscriptionStatus = "confirmed"
-	ReachListProfileContactsV1ParamsSubscriptionStatusPending      ReachListProfileContactsV1ParamsSubscriptionStatus = "pending"
-	ReachListProfileContactsV1ParamsSubscriptionStatusSubscribed   ReachListProfileContactsV1ParamsSubscriptionStatus = "subscribed"
-	ReachListProfileContactsV1ParamsSubscriptionStatusUnsubscribed ReachListProfileContactsV1ParamsSubscriptionStatus = "unsubscribed"
+	Confirmed    ReachListProfileContactsV1ParamsSubscriptionStatus = "confirmed"
+	Pending      ReachListProfileContactsV1ParamsSubscriptionStatus = "pending"
+	Subscribed   ReachListProfileContactsV1ParamsSubscriptionStatus = "subscribed"
+	Unsubscribed ReachListProfileContactsV1ParamsSubscriptionStatus = "unsubscribed"
 )
 
 // Valid indicates whether the value is a known member of the ReachListProfileContactsV1ParamsSubscriptionStatus enum.
 func (e ReachListProfileContactsV1ParamsSubscriptionStatus) Valid() bool {
 	switch e {
-	case ReachListProfileContactsV1ParamsSubscriptionStatusConfirmed:
+	case Confirmed:
 		return true
-	case ReachListProfileContactsV1ParamsSubscriptionStatusPending:
+	case Pending:
 		return true
-	case ReachListProfileContactsV1ParamsSubscriptionStatusSubscribed:
+	case Subscribed:
 		return true
-	case ReachListProfileContactsV1ParamsSubscriptionStatusUnsubscribed:
+	case Unsubscribed:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ReachListProfileSegmentsV1ParamsCountType.
+const (
+	ReachListProfileSegmentsV1ParamsCountTypeAll        ReachListProfileSegmentsV1ParamsCountType = "all"
+	ReachListProfileSegmentsV1ParamsCountTypeSubscribed ReachListProfileSegmentsV1ParamsCountType = "subscribed"
+)
+
+// Valid indicates whether the value is a known member of the ReachListProfileSegmentsV1ParamsCountType enum.
+func (e ReachListProfileSegmentsV1ParamsCountType) Valid() bool {
+	switch e {
+	case ReachListProfileSegmentsV1ParamsCountTypeAll:
+		return true
+	case ReachListProfileSegmentsV1ParamsCountTypeSubscribed:
 		return true
 	default:
 		return false
@@ -6387,6 +6645,91 @@ type ReachV1ContactsSegmentsContactSegmentResource struct {
 	Uuid      *string    `json:"uuid,omitempty"`
 }
 
+// ReachV1ContactsSegmentsProfileStoreRequest Create a segment from a set of conditions
+type ReachV1ContactsSegmentsProfileStoreRequest struct {
+	// Conditions Conditions a contact must satisfy to fall into the segment
+	Conditions []struct {
+		// Attribute A built-in contact attribute, or `cf:{fieldUuid}` to target a custom
+		// contact field. Custom fields are addressed by field UUID; their slug
+		// is not accepted.
+		//
+		// Built-in attributes: `email`, `note`, `domain`, `source`,
+		// `opt_in_method`, `subscription_status`, `subscribed_at`,
+		// `unsubscribed_at`, `created_at`, `tag`, `campaigns`, `processed`,
+		// `opened`, `clicked`, `delivered`, `bounced`, `soft_bounced`,
+		// `dropped`.
+		//
+		// Which operators are accepted depends on the attribute.
+		Attribute string                                                       `json:"attribute"`
+		Operator  ReachV1ContactsSegmentsProfileStoreRequestConditionsOperator `json:"operator"`
+
+		// Value Always a string, including for numeric and date comparisons
+		Value string `json:"value"`
+	} `json:"conditions"`
+
+	// Logic How to combine multiple conditions
+	Logic ReachV1ContactsSegmentsProfileStoreRequestLogic `json:"logic"`
+	Name  string                                          `json:"name"`
+}
+
+// ReachV1ContactsSegmentsProfileStoreRequestConditionsOperator defines model for ReachV1ContactsSegmentsProfileStoreRequest.Conditions.Operator.
+type ReachV1ContactsSegmentsProfileStoreRequestConditionsOperator string
+
+// ReachV1ContactsSegmentsProfileStoreRequestLogic How to combine multiple conditions
+type ReachV1ContactsSegmentsProfileStoreRequestLogic string
+
+// ReachV1ContactsSegmentsProfileUpdateRequest Rename a segment and/or replace the conditions that define it
+type ReachV1ContactsSegmentsProfileUpdateRequest struct {
+	// Conditions Replaces the existing conditions entirely. Omit to keep the current ones.
+	Conditions *[]struct {
+		// Attribute A built-in contact attribute, or `cf:{fieldUuid}` to target a custom
+		// contact field. Custom fields are addressed by field UUID; their slug
+		// is not accepted.
+		//
+		// Built-in attributes: `email`, `note`, `domain`, `source`,
+		// `opt_in_method`, `subscription_status`, `subscribed_at`,
+		// `unsubscribed_at`, `created_at`, `tag`, `campaigns`, `processed`,
+		// `opened`, `clicked`, `delivered`, `bounced`, `soft_bounced`,
+		// `dropped`.
+		//
+		// Which operators are accepted depends on the attribute.
+		Attribute string                                                        `json:"attribute"`
+		Operator  ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperator `json:"operator"`
+
+		// Value Always a string, including for numeric and date comparisons
+		Value string `json:"value"`
+	} `json:"conditions,omitempty"`
+
+	// Logic How to combine multiple conditions. Required when conditions are given.
+	Logic *ReachV1ContactsSegmentsProfileUpdateRequestLogic `json:"logic,omitempty"`
+	Name  string                                            `json:"name"`
+}
+
+// ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperator defines model for ReachV1ContactsSegmentsProfileUpdateRequest.Conditions.Operator.
+type ReachV1ContactsSegmentsProfileUpdateRequestConditionsOperator string
+
+// ReachV1ContactsSegmentsProfileUpdateRequestLogic How to combine multiple conditions. Required when conditions are given.
+type ReachV1ContactsSegmentsProfileUpdateRequestLogic string
+
+// ReachV1ContactsSegmentsSegmentContactsCountResource defines model for Reach.V1.Contacts.Segments.SegmentContactsCountResource.
+type ReachV1ContactsSegmentsSegmentContactsCountResource struct {
+	// Count Contacts currently matching the segment conditions
+	Count *int `json:"count,omitempty"`
+}
+
+// ReachV1ContactsSegmentsSegmentListItemCollection Array of [`Reach.V1.Contacts.Segments.SegmentListItemResource`](#model/reachv1contactssegmentssegmentlistitemresource)
+type ReachV1ContactsSegmentsSegmentListItemCollection = []ReachV1ContactsSegmentsSegmentListItemResource
+
+// ReachV1ContactsSegmentsSegmentListItemResource defines model for Reach.V1.Contacts.Segments.SegmentListItemResource.
+type ReachV1ContactsSegmentsSegmentListItemResource struct {
+	// ContactsCount Contacts currently matching the segment conditions
+	ContactsCount *int       `json:"contacts_count,omitempty"`
+	CreatedAt     *time.Time `json:"created_at,omitempty"`
+	Name          *string    `json:"name,omitempty"`
+	UpdatedAt     *time.Time `json:"updated_at,omitempty"`
+	Uuid          *string    `json:"uuid,omitempty"`
+}
+
 // ReachV1ContactsSegmentsSegmentResource defines model for Reach.V1.Contacts.Segments.SegmentResource.
 type ReachV1ContactsSegmentsSegmentResource struct {
 	CreatedAt *time.Time     `json:"created_at,omitempty"`
@@ -7785,6 +8128,9 @@ type Category string
 // ContactUuid defines model for contactUuid.
 type ContactUuid = openapi_types.UUID
 
+// CountType defines model for count_type.
+type CountType string
+
 // CronJobUidPath defines model for cron_job_uid_path.
 type CronJobUidPath = string
 
@@ -8604,6 +8950,21 @@ type ReachListProfileContactsV1Params struct {
 // ReachListProfileContactsV1ParamsSubscriptionStatus defines parameters for ReachListProfileContactsV1.
 type ReachListProfileContactsV1ParamsSubscriptionStatus string
 
+// ReachListProfileSegmentsV1Params defines parameters for ReachListProfileSegmentsV1.
+type ReachListProfileSegmentsV1Params struct {
+	// CountType Which matching contacts to count for each segment
+	CountType *ReachListProfileSegmentsV1ParamsCountType `form:"count_type,omitempty" json:"count_type,omitempty"`
+
+	// Page Page number
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PerPage Number of items per page
+	PerPage *PerPage `form:"per_page,omitempty" json:"per_page,omitempty"`
+}
+
+// ReachListProfileSegmentsV1ParamsCountType defines parameters for ReachListProfileSegmentsV1.
+type ReachListProfileSegmentsV1ParamsCountType string
+
 // ReachListProfileSegmentContactsV1Params defines parameters for ReachListProfileSegmentContactsV1.
 type ReachListProfileSegmentContactsV1Params struct {
 	// Page Page number
@@ -8912,6 +9273,12 @@ type ReachUpdateAContactFieldV1JSONRequestBody = ReachV1ContactsFieldsUpdateRequ
 
 // ReachUpdateAContactV1JSONRequestBody defines body for ReachUpdateAContactV1 for application/json ContentType.
 type ReachUpdateAContactV1JSONRequestBody = ReachV1ContactsUpdateRequest
+
+// ReachCreateAProfileSegmentV1JSONRequestBody defines body for ReachCreateAProfileSegmentV1 for application/json ContentType.
+type ReachCreateAProfileSegmentV1JSONRequestBody = ReachV1ContactsSegmentsProfileStoreRequest
+
+// ReachUpdateAProfileSegmentV1JSONRequestBody defines body for ReachUpdateAProfileSegmentV1 for application/json ContentType.
+type ReachUpdateAProfileSegmentV1JSONRequestBody = ReachV1ContactsSegmentsProfileUpdateRequest
 
 // ReachCreateOrFindTagsV1JSONRequestBody defines body for ReachCreateOrFindTagsV1 for application/json ContentType.
 type ReachCreateOrFindTagsV1JSONRequestBody = ReachV1ContactsTagsStoreRequest
@@ -10770,8 +11137,30 @@ type ClientInterface interface {
 	// ReachGetProfileDomainDNSStatusV1 request
 	ReachGetProfileDomainDNSStatusV1(ctx context.Context, profileUuid ProfileUuid, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ReachListProfileSegmentsV1 request
+	ReachListProfileSegmentsV1(ctx context.Context, profileUuid ProfileUuid, params *ReachListProfileSegmentsV1Params, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ReachCreateAProfileSegmentV1WithBody request with any body
+	ReachCreateAProfileSegmentV1WithBody(ctx context.Context, profileUuid ProfileUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ReachCreateAProfileSegmentV1(ctx context.Context, profileUuid ProfileUuid, body ReachCreateAProfileSegmentV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ReachDeleteAProfileSegmentV1 request
+	ReachDeleteAProfileSegmentV1(ctx context.Context, profileUuid ProfileUuid, segmentUuid SegmentUuid, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ReachGetProfileSegmentDetailsV1 request
+	ReachGetProfileSegmentDetailsV1(ctx context.Context, profileUuid ProfileUuid, segmentUuid SegmentUuid, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ReachUpdateAProfileSegmentV1WithBody request with any body
+	ReachUpdateAProfileSegmentV1WithBody(ctx context.Context, profileUuid ProfileUuid, segmentUuid SegmentUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ReachUpdateAProfileSegmentV1(ctx context.Context, profileUuid ProfileUuid, segmentUuid SegmentUuid, body ReachUpdateAProfileSegmentV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ReachListProfileSegmentContactsV1 request
 	ReachListProfileSegmentContactsV1(ctx context.Context, profileUuid ProfileUuid, segmentUuid SegmentUuid, params *ReachListProfileSegmentContactsV1Params, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ReachCountProfileSegmentContactsV1 request
+	ReachCountProfileSegmentContactsV1(ctx context.Context, profileUuid ProfileUuid, segmentUuid SegmentUuid, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ReachListProfileTagsV1 request
 	ReachListProfileTagsV1(ctx context.Context, profileUuid ProfileUuid, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -14717,8 +15106,104 @@ func (c *Client) ReachGetProfileDomainDNSStatusV1(ctx context.Context, profileUu
 	return c.Client.Do(req)
 }
 
+func (c *Client) ReachListProfileSegmentsV1(ctx context.Context, profileUuid ProfileUuid, params *ReachListProfileSegmentsV1Params, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReachListProfileSegmentsV1Request(c.Server, profileUuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ReachCreateAProfileSegmentV1WithBody(ctx context.Context, profileUuid ProfileUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReachCreateAProfileSegmentV1RequestWithBody(c.Server, profileUuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ReachCreateAProfileSegmentV1(ctx context.Context, profileUuid ProfileUuid, body ReachCreateAProfileSegmentV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReachCreateAProfileSegmentV1Request(c.Server, profileUuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ReachDeleteAProfileSegmentV1(ctx context.Context, profileUuid ProfileUuid, segmentUuid SegmentUuid, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReachDeleteAProfileSegmentV1Request(c.Server, profileUuid, segmentUuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ReachGetProfileSegmentDetailsV1(ctx context.Context, profileUuid ProfileUuid, segmentUuid SegmentUuid, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReachGetProfileSegmentDetailsV1Request(c.Server, profileUuid, segmentUuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ReachUpdateAProfileSegmentV1WithBody(ctx context.Context, profileUuid ProfileUuid, segmentUuid SegmentUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReachUpdateAProfileSegmentV1RequestWithBody(c.Server, profileUuid, segmentUuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ReachUpdateAProfileSegmentV1(ctx context.Context, profileUuid ProfileUuid, segmentUuid SegmentUuid, body ReachUpdateAProfileSegmentV1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReachUpdateAProfileSegmentV1Request(c.Server, profileUuid, segmentUuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) ReachListProfileSegmentContactsV1(ctx context.Context, profileUuid ProfileUuid, segmentUuid SegmentUuid, params *ReachListProfileSegmentContactsV1Params, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewReachListProfileSegmentContactsV1Request(c.Server, profileUuid, segmentUuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ReachCountProfileSegmentContactsV1(ctx context.Context, profileUuid ProfileUuid, segmentUuid SegmentUuid, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReachCountProfileSegmentContactsV1Request(c.Server, profileUuid, segmentUuid)
 	if err != nil {
 		return nil, err
 	}
@@ -26917,6 +27402,274 @@ func NewReachGetProfileDomainDNSStatusV1Request(server string, profileUuid Profi
 	return req, nil
 }
 
+// NewReachListProfileSegmentsV1Request generates requests for ReachListProfileSegmentsV1
+func NewReachListProfileSegmentsV1Request(server string, profileUuid ProfileUuid, params *ReachListProfileSegmentsV1Params) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "profileUuid", profileUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/reach/v1/profiles/%s/segmentation/segments", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.CountType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "count_type", *params.CountType, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PerPage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "per_page", *params.PerPage, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewReachCreateAProfileSegmentV1Request calls the generic ReachCreateAProfileSegmentV1 builder with application/json body
+func NewReachCreateAProfileSegmentV1Request(server string, profileUuid ProfileUuid, body ReachCreateAProfileSegmentV1JSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewReachCreateAProfileSegmentV1RequestWithBody(server, profileUuid, "application/json", bodyReader)
+}
+
+// NewReachCreateAProfileSegmentV1RequestWithBody generates requests for ReachCreateAProfileSegmentV1 with any type of body
+func NewReachCreateAProfileSegmentV1RequestWithBody(server string, profileUuid ProfileUuid, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "profileUuid", profileUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/reach/v1/profiles/%s/segmentation/segments", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewReachDeleteAProfileSegmentV1Request generates requests for ReachDeleteAProfileSegmentV1
+func NewReachDeleteAProfileSegmentV1Request(server string, profileUuid ProfileUuid, segmentUuid SegmentUuid) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "profileUuid", profileUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "segmentUuid", segmentUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/reach/v1/profiles/%s/segmentation/segments/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewReachGetProfileSegmentDetailsV1Request generates requests for ReachGetProfileSegmentDetailsV1
+func NewReachGetProfileSegmentDetailsV1Request(server string, profileUuid ProfileUuid, segmentUuid SegmentUuid) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "profileUuid", profileUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "segmentUuid", segmentUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/reach/v1/profiles/%s/segmentation/segments/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewReachUpdateAProfileSegmentV1Request calls the generic ReachUpdateAProfileSegmentV1 builder with application/json body
+func NewReachUpdateAProfileSegmentV1Request(server string, profileUuid ProfileUuid, segmentUuid SegmentUuid, body ReachUpdateAProfileSegmentV1JSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewReachUpdateAProfileSegmentV1RequestWithBody(server, profileUuid, segmentUuid, "application/json", bodyReader)
+}
+
+// NewReachUpdateAProfileSegmentV1RequestWithBody generates requests for ReachUpdateAProfileSegmentV1 with any type of body
+func NewReachUpdateAProfileSegmentV1RequestWithBody(server string, profileUuid ProfileUuid, segmentUuid SegmentUuid, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "profileUuid", profileUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "segmentUuid", segmentUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/reach/v1/profiles/%s/segmentation/segments/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPut, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewReachListProfileSegmentContactsV1Request generates requests for ReachListProfileSegmentContactsV1
 func NewReachListProfileSegmentContactsV1Request(server string, profileUuid ProfileUuid, segmentUuid SegmentUuid, params *ReachListProfileSegmentContactsV1Params) (*http.Request, error) {
 	var err error
@@ -26987,6 +27740,47 @@ func NewReachListProfileSegmentContactsV1Request(server string, profileUuid Prof
 			rawQueryFragments = append(rawQueryFragments, encoded)
 		}
 		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewReachCountProfileSegmentContactsV1Request generates requests for ReachCountProfileSegmentContactsV1
+func NewReachCountProfileSegmentContactsV1Request(server string, profileUuid ProfileUuid, segmentUuid SegmentUuid) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "profileUuid", profileUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "segmentUuid", segmentUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/reach/v1/profiles/%s/segmentation/segments/%s/count", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
 	}
 
 	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
@@ -31040,8 +31834,30 @@ type ClientWithResponsesInterface interface {
 	// ReachGetProfileDomainDNSStatusV1WithResponse request
 	ReachGetProfileDomainDNSStatusV1WithResponse(ctx context.Context, profileUuid ProfileUuid, reqEditors ...RequestEditorFn) (*ReachGetProfileDomainDNSStatusV1Response, error)
 
+	// ReachListProfileSegmentsV1WithResponse request
+	ReachListProfileSegmentsV1WithResponse(ctx context.Context, profileUuid ProfileUuid, params *ReachListProfileSegmentsV1Params, reqEditors ...RequestEditorFn) (*ReachListProfileSegmentsV1Response, error)
+
+	// ReachCreateAProfileSegmentV1WithBodyWithResponse request with any body
+	ReachCreateAProfileSegmentV1WithBodyWithResponse(ctx context.Context, profileUuid ProfileUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReachCreateAProfileSegmentV1Response, error)
+
+	ReachCreateAProfileSegmentV1WithResponse(ctx context.Context, profileUuid ProfileUuid, body ReachCreateAProfileSegmentV1JSONRequestBody, reqEditors ...RequestEditorFn) (*ReachCreateAProfileSegmentV1Response, error)
+
+	// ReachDeleteAProfileSegmentV1WithResponse request
+	ReachDeleteAProfileSegmentV1WithResponse(ctx context.Context, profileUuid ProfileUuid, segmentUuid SegmentUuid, reqEditors ...RequestEditorFn) (*ReachDeleteAProfileSegmentV1Response, error)
+
+	// ReachGetProfileSegmentDetailsV1WithResponse request
+	ReachGetProfileSegmentDetailsV1WithResponse(ctx context.Context, profileUuid ProfileUuid, segmentUuid SegmentUuid, reqEditors ...RequestEditorFn) (*ReachGetProfileSegmentDetailsV1Response, error)
+
+	// ReachUpdateAProfileSegmentV1WithBodyWithResponse request with any body
+	ReachUpdateAProfileSegmentV1WithBodyWithResponse(ctx context.Context, profileUuid ProfileUuid, segmentUuid SegmentUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReachUpdateAProfileSegmentV1Response, error)
+
+	ReachUpdateAProfileSegmentV1WithResponse(ctx context.Context, profileUuid ProfileUuid, segmentUuid SegmentUuid, body ReachUpdateAProfileSegmentV1JSONRequestBody, reqEditors ...RequestEditorFn) (*ReachUpdateAProfileSegmentV1Response, error)
+
 	// ReachListProfileSegmentContactsV1WithResponse request
 	ReachListProfileSegmentContactsV1WithResponse(ctx context.Context, profileUuid ProfileUuid, segmentUuid SegmentUuid, params *ReachListProfileSegmentContactsV1Params, reqEditors ...RequestEditorFn) (*ReachListProfileSegmentContactsV1Response, error)
+
+	// ReachCountProfileSegmentContactsV1WithResponse request
+	ReachCountProfileSegmentContactsV1WithResponse(ctx context.Context, profileUuid ProfileUuid, segmentUuid SegmentUuid, reqEditors ...RequestEditorFn) (*ReachCountProfileSegmentContactsV1Response, error)
 
 	// ReachListProfileTagsV1WithResponse request
 	ReachListProfileTagsV1WithResponse(ctx context.Context, profileUuid ProfileUuid, reqEditors ...RequestEditorFn) (*ReachListProfileTagsV1Response, error)
@@ -38712,6 +39528,172 @@ func (r ReachGetProfileDomainDNSStatusV1Response) ContentType() string {
 	return ""
 }
 
+type ReachListProfileSegmentsV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		// Data Array of [`Reach.V1.Contacts.Segments.SegmentListItemResource`](#model/reachv1contactssegmentssegmentlistitemresource)
+		Data *ReachV1ContactsSegmentsSegmentListItemCollection `json:"data,omitempty"`
+		Meta *CommonSchemaPaginationMetaSchema                 `json:"meta,omitempty"`
+	}
+	JSON401 *CommonResponseUnauthorizedResponse
+	JSON500 *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r ReachListProfileSegmentsV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ReachListProfileSegmentsV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ReachListProfileSegmentsV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ReachCreateAProfileSegmentV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ReachV1ContactsSegmentsSegmentResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON422      *CommonResponseUnprocessableContentResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r ReachCreateAProfileSegmentV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ReachCreateAProfileSegmentV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ReachCreateAProfileSegmentV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ReachDeleteAProfileSegmentV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CommonSuccessEmptyResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r ReachDeleteAProfileSegmentV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ReachDeleteAProfileSegmentV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ReachDeleteAProfileSegmentV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ReachGetProfileSegmentDetailsV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ReachV1ContactsSegmentsSegmentResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r ReachGetProfileSegmentDetailsV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ReachGetProfileSegmentDetailsV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ReachGetProfileSegmentDetailsV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ReachUpdateAProfileSegmentV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ReachV1ContactsSegmentsSegmentResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON422      *CommonResponseUnprocessableContentResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r ReachUpdateAProfileSegmentV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ReachUpdateAProfileSegmentV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ReachUpdateAProfileSegmentV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type ReachListProfileSegmentContactsV1Response struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -38742,6 +39724,38 @@ func (r ReachListProfileSegmentContactsV1Response) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r ReachListProfileSegmentContactsV1Response) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ReachCountProfileSegmentContactsV1Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ReachV1ContactsSegmentsSegmentContactsCountResource
+	JSON401      *CommonResponseUnauthorizedResponse
+	JSON500      *CommonResponseErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r ReachCountProfileSegmentContactsV1Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ReachCountProfileSegmentContactsV1Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ReachCountProfileSegmentContactsV1Response) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -43886,6 +44900,67 @@ func (c *ClientWithResponses) ReachGetProfileDomainDNSStatusV1WithResponse(ctx c
 	return ParseReachGetProfileDomainDNSStatusV1Response(rsp)
 }
 
+// ReachListProfileSegmentsV1WithResponse request returning *ReachListProfileSegmentsV1Response
+func (c *ClientWithResponses) ReachListProfileSegmentsV1WithResponse(ctx context.Context, profileUuid ProfileUuid, params *ReachListProfileSegmentsV1Params, reqEditors ...RequestEditorFn) (*ReachListProfileSegmentsV1Response, error) {
+	rsp, err := c.ReachListProfileSegmentsV1(ctx, profileUuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReachListProfileSegmentsV1Response(rsp)
+}
+
+// ReachCreateAProfileSegmentV1WithBodyWithResponse request with arbitrary body returning *ReachCreateAProfileSegmentV1Response
+func (c *ClientWithResponses) ReachCreateAProfileSegmentV1WithBodyWithResponse(ctx context.Context, profileUuid ProfileUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReachCreateAProfileSegmentV1Response, error) {
+	rsp, err := c.ReachCreateAProfileSegmentV1WithBody(ctx, profileUuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReachCreateAProfileSegmentV1Response(rsp)
+}
+
+func (c *ClientWithResponses) ReachCreateAProfileSegmentV1WithResponse(ctx context.Context, profileUuid ProfileUuid, body ReachCreateAProfileSegmentV1JSONRequestBody, reqEditors ...RequestEditorFn) (*ReachCreateAProfileSegmentV1Response, error) {
+	rsp, err := c.ReachCreateAProfileSegmentV1(ctx, profileUuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReachCreateAProfileSegmentV1Response(rsp)
+}
+
+// ReachDeleteAProfileSegmentV1WithResponse request returning *ReachDeleteAProfileSegmentV1Response
+func (c *ClientWithResponses) ReachDeleteAProfileSegmentV1WithResponse(ctx context.Context, profileUuid ProfileUuid, segmentUuid SegmentUuid, reqEditors ...RequestEditorFn) (*ReachDeleteAProfileSegmentV1Response, error) {
+	rsp, err := c.ReachDeleteAProfileSegmentV1(ctx, profileUuid, segmentUuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReachDeleteAProfileSegmentV1Response(rsp)
+}
+
+// ReachGetProfileSegmentDetailsV1WithResponse request returning *ReachGetProfileSegmentDetailsV1Response
+func (c *ClientWithResponses) ReachGetProfileSegmentDetailsV1WithResponse(ctx context.Context, profileUuid ProfileUuid, segmentUuid SegmentUuid, reqEditors ...RequestEditorFn) (*ReachGetProfileSegmentDetailsV1Response, error) {
+	rsp, err := c.ReachGetProfileSegmentDetailsV1(ctx, profileUuid, segmentUuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReachGetProfileSegmentDetailsV1Response(rsp)
+}
+
+// ReachUpdateAProfileSegmentV1WithBodyWithResponse request with arbitrary body returning *ReachUpdateAProfileSegmentV1Response
+func (c *ClientWithResponses) ReachUpdateAProfileSegmentV1WithBodyWithResponse(ctx context.Context, profileUuid ProfileUuid, segmentUuid SegmentUuid, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReachUpdateAProfileSegmentV1Response, error) {
+	rsp, err := c.ReachUpdateAProfileSegmentV1WithBody(ctx, profileUuid, segmentUuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReachUpdateAProfileSegmentV1Response(rsp)
+}
+
+func (c *ClientWithResponses) ReachUpdateAProfileSegmentV1WithResponse(ctx context.Context, profileUuid ProfileUuid, segmentUuid SegmentUuid, body ReachUpdateAProfileSegmentV1JSONRequestBody, reqEditors ...RequestEditorFn) (*ReachUpdateAProfileSegmentV1Response, error) {
+	rsp, err := c.ReachUpdateAProfileSegmentV1(ctx, profileUuid, segmentUuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReachUpdateAProfileSegmentV1Response(rsp)
+}
+
 // ReachListProfileSegmentContactsV1WithResponse request returning *ReachListProfileSegmentContactsV1Response
 func (c *ClientWithResponses) ReachListProfileSegmentContactsV1WithResponse(ctx context.Context, profileUuid ProfileUuid, segmentUuid SegmentUuid, params *ReachListProfileSegmentContactsV1Params, reqEditors ...RequestEditorFn) (*ReachListProfileSegmentContactsV1Response, error) {
 	rsp, err := c.ReachListProfileSegmentContactsV1(ctx, profileUuid, segmentUuid, params, reqEditors...)
@@ -43893,6 +44968,15 @@ func (c *ClientWithResponses) ReachListProfileSegmentContactsV1WithResponse(ctx 
 		return nil, err
 	}
 	return ParseReachListProfileSegmentContactsV1Response(rsp)
+}
+
+// ReachCountProfileSegmentContactsV1WithResponse request returning *ReachCountProfileSegmentContactsV1Response
+func (c *ClientWithResponses) ReachCountProfileSegmentContactsV1WithResponse(ctx context.Context, profileUuid ProfileUuid, segmentUuid SegmentUuid, reqEditors ...RequestEditorFn) (*ReachCountProfileSegmentContactsV1Response, error) {
+	rsp, err := c.ReachCountProfileSegmentContactsV1(ctx, profileUuid, segmentUuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReachCountProfileSegmentContactsV1Response(rsp)
 }
 
 // ReachListProfileTagsV1WithResponse request returning *ReachListProfileTagsV1Response
@@ -54901,6 +55985,224 @@ func ParseReachGetProfileDomainDNSStatusV1Response(rsp *http.Response) (*ReachGe
 	return response, nil
 }
 
+// ParseReachListProfileSegmentsV1Response parses an HTTP response from a ReachListProfileSegmentsV1WithResponse call
+func ParseReachListProfileSegmentsV1Response(rsp *http.Response) (*ReachListProfileSegmentsV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ReachListProfileSegmentsV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			// Data Array of [`Reach.V1.Contacts.Segments.SegmentListItemResource`](#model/reachv1contactssegmentssegmentlistitemresource)
+			Data *ReachV1ContactsSegmentsSegmentListItemCollection `json:"data,omitempty"`
+			Meta *CommonSchemaPaginationMetaSchema                 `json:"meta,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseReachCreateAProfileSegmentV1Response parses an HTTP response from a ReachCreateAProfileSegmentV1WithResponse call
+func ParseReachCreateAProfileSegmentV1Response(rsp *http.Response) (*ReachCreateAProfileSegmentV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ReachCreateAProfileSegmentV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ReachV1ContactsSegmentsSegmentResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseUnprocessableContentResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseReachDeleteAProfileSegmentV1Response parses an HTTP response from a ReachDeleteAProfileSegmentV1WithResponse call
+func ParseReachDeleteAProfileSegmentV1Response(rsp *http.Response) (*ReachDeleteAProfileSegmentV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ReachDeleteAProfileSegmentV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CommonSuccessEmptyResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseReachGetProfileSegmentDetailsV1Response parses an HTTP response from a ReachGetProfileSegmentDetailsV1WithResponse call
+func ParseReachGetProfileSegmentDetailsV1Response(rsp *http.Response) (*ReachGetProfileSegmentDetailsV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ReachGetProfileSegmentDetailsV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ReachV1ContactsSegmentsSegmentResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseReachUpdateAProfileSegmentV1Response parses an HTTP response from a ReachUpdateAProfileSegmentV1WithResponse call
+func ParseReachUpdateAProfileSegmentV1Response(rsp *http.Response) (*ReachUpdateAProfileSegmentV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ReachUpdateAProfileSegmentV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ReachV1ContactsSegmentsSegmentResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest CommonResponseUnprocessableContentResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseReachListProfileSegmentContactsV1Response parses an HTTP response from a ReachListProfileSegmentContactsV1WithResponse call
 func ParseReachListProfileSegmentContactsV1Response(rsp *http.Response) (*ReachListProfileSegmentContactsV1Response, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -54921,6 +56223,46 @@ func ParseReachListProfileSegmentContactsV1Response(rsp *http.Response) (*ReachL
 			Data *ReachV1ContactsSegmentsSegmentationContactCollection `json:"data,omitempty"`
 			Meta *CommonSchemaPaginationMetaSchema                     `json:"meta,omitempty"`
 		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest CommonResponseUnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest CommonResponseErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseReachCountProfileSegmentContactsV1Response parses an HTTP response from a ReachCountProfileSegmentContactsV1WithResponse call
+func ParseReachCountProfileSegmentContactsV1Response(rsp *http.Response) (*ReachCountProfileSegmentContactsV1Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ReachCountProfileSegmentContactsV1Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ReachV1ContactsSegmentsSegmentContactsCountResource
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}

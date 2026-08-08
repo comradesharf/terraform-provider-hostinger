@@ -40,10 +40,12 @@ Use the [model-creation skill](../model-creation/SKILL.md) for nested response m
 Create `internal/provider/<name>_resource.go` with:
 
 - `resource.Resource`, `resource.ResourceWithConfigure`, and `resource.ResourceWithImportState` assertions when applicable
+- `resource.ResourceWithIdentity` and `IdentitySchema` when the resource supports Terraform resource identity imports
 - `New<PascalName>Resource() resource.Resource`
 - A client field of type `*client.ClientWithResponses`
 - A resource model embedding or containing the reusable API model and a `Timeouts timeouts.Value` field tagged `tfsdk:"timeouts"`
 - `Metadata` setting `req.ProviderTypeName + "_<name>"`
+- `IdentitySchema` declaring the attributes required for import when identity support is implemented
 - `Configure` accepting only `*client.ClientWithResponses` and reporting an unexpected type through diagnostics
 - `Schema` with descriptions, framework types, validators, and plan modifiers
 - `"timeouts": timeouts.AttributesAll(ctx)` and a default operation timeout of `20*time.Minute`
@@ -60,8 +62,9 @@ Schema rules:
 Lifecycle rules:
 
 - `Create` reads `req.Config`, resolves `state.Timeouts.Create(ctx, 20*time.Minute)`, builds the generated request body, calls the client, checks transport errors, expected status, and nil `JSON200`, merges the response, and writes state
+- `Create`, `Read`, and `Update` set or preserve resource identity alongside Terraform state when `ResourceWithIdentity` is implemented
 - `Read` reads state, validates IDs before calling the API, resolves the read timeout, removes the resource on a documented not-found response, merges the matching API object, and writes state
-- `Update` reads `req.Plan`, validates IDs, resolves the update timeout, sends only mutable fields, merges the response, and writes state. Fields marked `RequiresReplace` must not be updated
+- `Update` reads `req.Plan`, validates IDs, resolves the update timeout, sends only mutable fields, merges the response, and writes state. Fields marked `RequiresReplace` must not be updated; for resources with no mutable fields, preserve state and identity
 - `Delete` reads state, validates IDs, resolves the delete timeout, calls the delete endpoint, and accepts the documented success status
 - Use `context.WithTimeout` and `defer cancel()` for every API operation
 - Use `tflog.SetField` for useful non-sensitive identifiers; never log credentials or sensitive values
@@ -70,7 +73,7 @@ For collection responses, locate the item by its API ID before merging. If the i
 
 ### 4. Implement import
 
-Add `ImportState` when the resource requires an import workflow. For a single numeric ID, use the repository helper or framework passthrough pattern. For a composite ID, parse and validate every component before setting state attributes. The firewall-rule canonical format is `firewall_id/rule_id`; reject empty, malformed, or non-numeric parts with a diagnostic and stop before setting partial state.
+Add `ImportState` when the resource requires an import workflow. For a single numeric ID with identity support, use `importStatePassthroughInt64Identity`; otherwise use the framework passthrough pattern. For a composite ID, parse and validate every component before setting state or identity attributes. The firewall-rule canonical format is `firewall_id/rule_id`; reject empty, malformed, or non-numeric parts with a diagnostic and stop before setting partial state.
 
 ### 5. Register the resource
 
@@ -94,6 +97,8 @@ Create `internal/provider/<name>_resource_test.go` following the existing accept
 - Cover create, read/refresh, update, replacement behavior, import, and destroy where supported
 - Assert IDs, parent IDs, inputs, and computed response fields with typed `knownvalue.*` checks
 - For mock-server tests, match generated operation IDs and provide enough response repetitions for every refresh/read
+- When identity is supported, include legacy import plus `resource.ImportBlockWithResourceIdentity` and `resource.ImportBlockWithID` steps
+- Give each create/read/update/delete phase the response payload and `remainingTimes` it needs; replacement tests commonly need distinct create and read expectations for the new object
 - Add invalid import IDs and validation tests when parsing or schema validation has meaningful branches
 
 Start with `go test ./internal/provider` for unit/package tests. Run `TF_ACC=1 ... go test` only when acceptance infrastructure and credentials are available.
@@ -124,5 +129,6 @@ Confirm `docs/resources/<name>.md` reflects the final schema. Do not hand-edit g
 ## References
 
 - Canonical resource: [`vps_firewall_rule_resource.go`](../../../internal/provider/vps_firewall_rule_resource.go)
+- Canonical acceptance test: [`vps_firewall_rule_resource_test.go`](../../../internal/provider/vps_firewall_rule_resource_test.go)
 - Canonical resource model: [`vps_firewall_rule_model.go`](../../../internal/provider/vps_firewall_rule_model.go)
 - [Model creation skill](../model-creation/SKILL.md)

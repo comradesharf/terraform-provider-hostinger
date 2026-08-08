@@ -1,0 +1,7 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
+interface:
+  display_name: "Create Terraform List Resource"
+  short_description: "Generate Hostinger list resource implementations"
+  default_prompt: "Use $create-terraform-list-resource to implement a paginated Terraform list resource in this provider."

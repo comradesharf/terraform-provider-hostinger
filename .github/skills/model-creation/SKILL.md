@@ -21,6 +21,7 @@ Creates a reusable API response model for the Hostinger provider. Model files de
 - Inspect the complete response shape, including pointers, slices, maps, enums, and `oneOf` wrapper types
 - Inspect neighboring model files for naming and conversion patterns
 - Decide whether the model is a reusable item model or a provider-specific wrapper model
+- Identify whether resources need a separate `<PascalName>Identity` model for Terraform resource identity import
 
 ## Procedure
 
@@ -53,6 +54,7 @@ Key rules:
 
 - Name the primary model `<PascalName>Model`, for example `VPSVirtualMachineModel`
 - Name nested models with the primary model prefix, for example `VPSVirtualMachineTemplateModel`
+- Keep identity structs beside the related model, with `types.*` fields and `tfsdk` tags matching the identity schema
 - Add `tfsdk:"<snake_case>"` to every model field
 - Import the generated `internal/client` package and only the framework type packages required by the fields
 - Add `func (m *<PascalName>Model) Merge(item client.<GeneratedResponseType>)`
@@ -111,10 +113,12 @@ For generated `oneOf` fields, call the generated `As<Type>()` method, check the 
 ### 5. Connect the model
 
 - Data source and resource models should embed or contain the reusable model instead of duplicating its fields
+- Resource models may embed the reusable response model while a sibling identity model carries import-only identifiers
 - Their schemas must mirror the model’s `tfsdk` tags and framework custom types
 - A list data source model should contain a slice such as `[]VPSVirtualMachineModel`
 - A single-item data source model may embed the reusable model and add only lookup fields and `timeouts`
 - Keep `timeouts.Value` on the data source/resource model, not on the reusable API response model
+- Keep identity fields separate from the reusable API response model when they are only needed to drive import and lifecycle state
 
 ## Verification
 
