@@ -152,6 +152,7 @@ func (p *hostingerProvider) Resources(ctx context.Context) []func() resource.Res
 		NewVPSFirewallRuleResource,
 		NewVPSPostInstallScriptResource,
 		NewVPSPublicKeyResource,
+		NewVPSVirtualMachineResource,
 	}
 }
 

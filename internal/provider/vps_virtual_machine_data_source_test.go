@@ -24,7 +24,7 @@ func TestAccVPSVirtualMachineDataSource(t *testing.T) {
 		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
 		Steps: []resource.TestStep{
 			{
-				Config: testAccDataSourceVPSVirtualMachineConfig,
+				Config: testAccVPSVirtualMachineDataSourceConfig,
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
 						"data.hostinger_vps_virtual_machine.test",
@@ -109,11 +109,11 @@ func TestAccVPSVirtualMachineDataSource(t *testing.T) {
 					),
 					statecheck.ExpectKnownValue(
 						"data.hostinger_vps_virtual_machine.test",
-						tfjsonpath.New("ipv4"),
+						tfjsonpath.New("ipv6"),
 						knownvalue.ListExact([]knownvalue.Check{
 							knownvalue.ObjectExact(map[string]knownvalue.Check{
-								"id":      knownvalue.Int64Exact(52347),
-								"address": knownvalue.StringExact("213.211.223.15"),
+								"id":      knownvalue.Int64Exact(52348),
+								"address": knownvalue.StringExact("2a00:1450:4001:81b::200e"),
 								"ptr":     knownvalue.StringExact("something.domain.tld"),
 							}),
 						}),
@@ -139,7 +139,7 @@ func TestAccVPSVirtualMachineDataSource(t *testing.T) {
 	})
 }
 
-const testAccDataSourceVPSVirtualMachineConfig = `
+const testAccVPSVirtualMachineDataSourceConfig = `
 data "hostinger_vps_virtual_machine" "test" {
 	id = 17923
 }
@@ -189,8 +189,8 @@ func testAccVPSVirtualMachineDataSourcePreCheck(t *testing.T) {
         ],
         "ipv6": [
           {
-            "id": 52347,
-            "address": "213.211.223.15",
+            "id": 52348,
+            "address": "2a00:1450:4001:81b::200e",
             "ptr": "something.domain.tld"
           }
         ],
