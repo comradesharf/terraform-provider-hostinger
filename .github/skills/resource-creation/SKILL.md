@@ -62,12 +62,15 @@ Schema rules:
 Lifecycle rules:
 
 - `Create` reads `req.Config`, resolves `state.Timeouts.Create(ctx, 20*time.Minute)`, builds the generated request body, calls the client, checks transport errors, expected status, and nil `JSON200`, merges the response, and writes state
+- When a create, update, or delete endpoint returns an asynchronous action resource, inspect the generated response for its action ID and the matching `*ActionDetailsV1WithResponse` operation. Add an optional write-only `wait_for_action` boolean that defaults to waiting (`null` and `unknown` must be treated as `true`); when enabled, poll the action details until the generated action state is `success` or `error`, using the lifecycle context timeout and a bounded polling interval. Report missing action IDs or states, non-success HTTP responses, action errors, and context timeouts as diagnostics. When `wait_for_action = false`, return after validating the mutation response without polling.
 - `Create`, `Read`, and `Update` set or preserve resource identity alongside Terraform state when `ResourceWithIdentity` is implemented
 - `Read` reads state, validates IDs before calling the API, resolves the read timeout, removes the resource on a documented not-found response, merges the matching API object, and writes state
 - `Update` reads `req.Plan`, validates IDs, resolves the update timeout, sends only mutable fields, merges the response, and writes state. Fields marked `RequiresReplace` must not be updated; for resources with no mutable fields, preserve state and identity
 - `Delete` reads state, validates IDs, resolves the delete timeout, calls the delete endpoint, and accepts the documented success status
 - Use `context.WithTimeout` and `defer cancel()` for every API operation
 - Use `tflog.SetField` for useful non-sensitive identifiers; never log credentials or sensitive values
+
+For asynchronous actions, capture the action ID before entering the polling loop so later action-detail responses cannot replace the identifier being polled. Prefer the generated action-state constants from `internal/client/client.gen.go` over raw strings when they are available. Apply the same wait behavior consistently to every lifecycle operation that starts an action, using the operation-specific timeout (`Create`, `Update`, or `Delete`).
 
 For collection responses, locate the item by its API ID before merging. If the item or parent is absent, call `resp.State.RemoveResource(ctx)` rather than persisting stale state.
 
@@ -96,6 +99,7 @@ Create `internal/provider/<name>_resource_test.go` following the existing accept
 - Gate setup with `testAccPreCheck` and a resource-specific mock/API precheck
 - Cover create, read/refresh, update, replacement behavior, import, and destroy where supported
 - Assert IDs, parent IDs, inputs, and computed response fields with typed `knownvalue.*` checks
+- For resources with `wait_for_action`, test both the default/`true` path and the `false` path. Mock the mutation response with an action ID, and cover at least successful polling plus the relevant action-error or timeout diagnostic path.
 - For mock-server tests, match generated operation IDs and provide enough response repetitions for every refresh/read
 - When identity is supported, include legacy import plus `resource.ImportBlockWithResourceIdentity` and `resource.ImportBlockWithID` steps
 - Give each create/read/update/delete phase the response payload and `remainingTimes` it needs; replacement tests commonly need distinct create and read expectations for the new object
