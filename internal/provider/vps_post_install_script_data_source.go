@@ -79,18 +79,18 @@ func (d *VPSPostInstallScriptDataSource) Configure(ctx context.Context, req data
 }
 
 func (d *VPSPostInstallScriptDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var data VPSPostInstallScriptDataSourceModel
-	resp.Diagnostics.Append(req.Config.Get(ctx, &data)...)
+	var config VPSPostInstallScriptDataSourceModel
+	resp.Diagnostics.Append(req.Config.Get(ctx, &config)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
-	if data.ID.IsUnknown() || data.ID.IsNull() || data.ID.ValueInt64() == 0 {
+	if config.ID.IsUnknown() || config.ID.IsNull() || config.ID.ValueInt64() == 0 {
 		resp.Diagnostics.AddError("Invalid Post-install Script ID", "ID is unknown, null, or zero, so the post-install script cannot be read.")
 		return
 	}
 
-	readTimeout, diags := data.Timeouts.Read(ctx, 20*time.Minute)
+	readTimeout, diags := config.Timeouts.Read(ctx, 20*time.Minute)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -99,7 +99,7 @@ func (d *VPSPostInstallScriptDataSource) Read(ctx context.Context, req datasourc
 	ctx, cancel := context.WithTimeout(ctx, readTimeout)
 	defer cancel()
 
-	response, err := d.client.VPSGetPostInstallScriptV1WithResponse(ctx, client.PostInstallScriptId(data.ID.ValueInt64()))
+	response, err := d.client.VPSGetPostInstallScriptV1WithResponse(ctx, client.PostInstallScriptId(config.ID.ValueInt64()))
 	if err != nil {
 		resp.Diagnostics.AddError("Unable to Read VPS Post-install Script", fmt.Sprintf("Got error: %s", err))
 		return
@@ -113,7 +113,7 @@ func (d *VPSPostInstallScriptDataSource) Read(ctx context.Context, req datasourc
 		return
 	}
 
-	data.Merge(*response.JSON200)
+	config.Merge(*response.JSON200)
 
-	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
+	resp.Diagnostics.Append(resp.State.Set(ctx, &config)...)
 }

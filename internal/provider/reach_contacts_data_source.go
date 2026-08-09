@@ -126,20 +126,20 @@ func (d *ReachContactsDataSource) Configure(ctx context.Context, req datasource.
 }
 
 func (d *ReachContactsDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var data ReachContactsDataSourceModel
-	resp.Diagnostics.Append(req.Config.Get(ctx, &data)...)
+	var config ReachContactsDataSourceModel
+	resp.Diagnostics.Append(req.Config.Get(ctx, &config)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
-	if data.GroupUuid.IsUnknown() {
+	if config.GroupUuid.IsUnknown() {
 		resp.Diagnostics.AddError(
 			"Unknown Group UUID",
 			"The 'group_uuid' attribute cannot be unknown.",
 		)
 	}
 
-	if data.SubscriptionStatus.IsUnknown() {
+	if config.SubscriptionStatus.IsUnknown() {
 		resp.Diagnostics.AddError(
 			"Unknown Subscription Status",
 			"The 'subscription_status' attribute cannot be unknown.",
@@ -152,17 +152,17 @@ func (d *ReachContactsDataSource) Read(ctx context.Context, req datasource.ReadR
 
 	params := client.ReachListContactsV1Params{}
 
-	if !data.GroupUuid.IsNull() && data.GroupUuid.ValueString() != "" {
-		params.GroupUuid = data.GroupUuid.ValueStringPointer()
+	if !config.GroupUuid.IsNull() && config.GroupUuid.ValueString() != "" {
+		params.GroupUuid = config.GroupUuid.ValueStringPointer()
 		ctx = tflog.SetField(ctx, "group_uuid", *params.GroupUuid)
 	}
 
-	if !data.SubscriptionStatus.IsNull() && data.SubscriptionStatus.ValueString() != "" {
-		params.SubscriptionStatus = (*client.ReachListContactsV1ParamsSubscriptionStatus)(data.SubscriptionStatus.ValueStringPointer())
+	if !config.SubscriptionStatus.IsNull() && config.SubscriptionStatus.ValueString() != "" {
+		params.SubscriptionStatus = (*client.ReachListContactsV1ParamsSubscriptionStatus)(config.SubscriptionStatus.ValueStringPointer())
 		ctx = tflog.SetField(ctx, "subscription_status", *params.SubscriptionStatus)
 	}
 
-	readTimeout, diags := data.Timeouts.Read(ctx, 20*time.Minute)
+	readTimeout, diags := config.Timeouts.Read(ctx, 20*time.Minute)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -205,7 +205,7 @@ func (d *ReachContactsDataSource) Read(ctx context.Context, req datasource.ReadR
 		for _, item := range *response.JSON200.Data {
 			var m ReachContactModel
 			m.Merge(item)
-			data.Contacts = append(data.Contacts, m)
+			config.Contacts = append(config.Contacts, m)
 		}
 
 		meta := response.JSON200.Meta
@@ -219,5 +219,5 @@ func (d *ReachContactsDataSource) Read(ctx context.Context, req datasource.ReadR
 		page++
 	}
 
-	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
+	resp.Diagnostics.Append(resp.State.Set(ctx, &config)...)
 }

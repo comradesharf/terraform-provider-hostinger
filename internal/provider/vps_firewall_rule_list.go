@@ -64,8 +64,8 @@ func (l *VPSFirewallRuleList) ListResourceConfigSchema(ctx context.Context, req 
 }
 
 func (l *VPSFirewallRuleList) List(ctx context.Context, req list.ListRequest, stream *list.ListResultsStream) {
-	var data VPSFirewallRuleListModel
-	diags := req.Config.Get(ctx, &data)
+	var config VPSFirewallRuleListModel
+	diags := req.Config.Get(ctx, &config)
 	if diags.HasError() {
 		stream.Results = list.ListResultsStreamDiagnostics(diags)
 		return

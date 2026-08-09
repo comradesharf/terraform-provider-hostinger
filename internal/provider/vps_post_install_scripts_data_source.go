@@ -90,13 +90,13 @@ func (d *VPSPostInstallScriptsDataSource) Configure(ctx context.Context, req dat
 }
 
 func (d *VPSPostInstallScriptsDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var data VPSPostInstallScriptsDataSourceModel
-	resp.Diagnostics.Append(req.Config.Get(ctx, &data)...)
+	var config VPSPostInstallScriptsDataSourceModel
+	resp.Diagnostics.Append(req.Config.Get(ctx, &config)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
-	readTimeout, diags := data.Timeouts.Read(ctx, 20*time.Minute)
+	readTimeout, diags := config.Timeouts.Read(ctx, 20*time.Minute)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -133,7 +133,7 @@ func (d *VPSPostInstallScriptsDataSource) Read(ctx context.Context, req datasour
 		for _, item := range *response.JSON200.Data {
 			var script VPSPostInstallScriptModel
 			script.Merge(item)
-			data.Scripts = append(data.Scripts, script)
+			config.Scripts = append(config.Scripts, script)
 		}
 		meta := response.JSON200.Meta
 		if meta == nil || meta.CurrentPage == nil || meta.PerPage == nil || meta.Total == nil {
@@ -145,5 +145,5 @@ func (d *VPSPostInstallScriptsDataSource) Read(ctx context.Context, req datasour
 		}
 		page++
 	}
-	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
+	resp.Diagnostics.Append(resp.State.Set(ctx, &config)...)
 }

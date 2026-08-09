@@ -157,13 +157,13 @@ func (d *VPSFirewallsDataSource) Configure(ctx context.Context, req datasource.C
 }
 
 func (d *VPSFirewallsDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var data VPSFirewallsDataSourceModel
-	resp.Diagnostics.Append(req.Config.Get(ctx, &data)...)
+	var config VPSFirewallsDataSourceModel
+	resp.Diagnostics.Append(req.Config.Get(ctx, &config)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
-	readTimeout, diags := data.Timeouts.Read(ctx, 20*time.Minute)
+	readTimeout, diags := config.Timeouts.Read(ctx, 20*time.Minute)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -218,7 +218,7 @@ func (d *VPSFirewallsDataSource) Read(ctx context.Context, req datasource.ReadRe
 				d.Rules = append(d.Rules, r)
 			}
 
-			data.Firewalls = append(data.Firewalls, d)
+			config.Firewalls = append(config.Firewalls, d)
 		}
 
 		meta := response.JSON200.Meta
@@ -232,5 +232,5 @@ func (d *VPSFirewallsDataSource) Read(ctx context.Context, req datasource.ReadRe
 		page++
 	}
 
-	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
+	resp.Diagnostics.Append(resp.State.Set(ctx, &config)...)
 }

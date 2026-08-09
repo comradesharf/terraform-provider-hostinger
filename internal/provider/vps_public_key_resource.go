@@ -103,13 +103,13 @@ func (r *VPSPublicKeyResource) Configure(ctx context.Context, req resource.Confi
 }
 
 func (r *VPSPublicKeyResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	var state VPSPublicKeyResourceModel
-	resp.Diagnostics.Append(req.Config.Get(ctx, &state)...)
+	var plan VPSPublicKeyResourceModel
+	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
-	createTimeout, diags := state.Timeouts.Create(ctx, 20*time.Minute)
+	createTimeout, diags := plan.Timeouts.Create(ctx, 20*time.Minute)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -119,8 +119,8 @@ func (r *VPSPublicKeyResource) Create(ctx context.Context, req resource.CreateRe
 	defer cancel()
 
 	response, err := r.client.VPSCreatePublicKeyV1WithResponse(ctx, client.VPSCreatePublicKeyV1JSONRequestBody{
-		Name: state.Name.ValueString(),
-		Key:  state.Key.ValueString(),
+		Name: plan.Name.ValueString(),
+		Key:  plan.Key.ValueString(),
 	})
 	if err != nil {
 		resp.Diagnostics.AddError("Unable to Create VPS Public Key", fmt.Sprintf("Got error: %s", err))
@@ -135,15 +135,15 @@ func (r *VPSPublicKeyResource) Create(ctx context.Context, req resource.CreateRe
 		return
 	}
 
-	state.Merge(*response.JSON200)
+	plan.Merge(*response.JSON200)
 
-	identity := VPSPublicKeyIdentity{ID: state.ID}
+	identity := VPSPublicKeyIdentity{ID: plan.ID}
 	resp.Diagnostics.Append(resp.Identity.Set(ctx, &identity)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
-	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
+	resp.Diagnostics.Append(resp.State.Set(ctx, &plan)...)
 }
 
 func (r *VPSPublicKeyResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {

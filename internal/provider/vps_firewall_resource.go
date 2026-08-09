@@ -120,13 +120,13 @@ func (r *VPSFirewallResource) Configure(ctx context.Context, req resource.Config
 }
 
 func (r *VPSFirewallResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	var state VPSFirewallResourceModel
-	resp.Diagnostics.Append(req.Config.Get(ctx, &state)...)
+	var plan VPSFirewallResourceModel
+	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
-	createTimeout, diags := state.Timeouts.Create(ctx, 20*time.Minute)
+	createTimeout, diags := plan.Timeouts.Create(ctx, 20*time.Minute)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -135,10 +135,10 @@ func (r *VPSFirewallResource) Create(ctx context.Context, req resource.CreateReq
 	ctx, cancel := context.WithTimeout(ctx, createTimeout)
 	defer cancel()
 
-	ctx = tflog.SetField(ctx, "name", state.Name.ValueString())
+	ctx = tflog.SetField(ctx, "name", plan.Name.ValueString())
 
 	p := client.VPSCreateNewFirewallV1JSONRequestBody{
-		Name: state.Name.ValueString(),
+		Name: plan.Name.ValueString(),
 	}
 
 	response, err := r.client.VPSCreateNewFirewallV1WithResponse(ctx, p)
@@ -164,15 +164,15 @@ func (r *VPSFirewallResource) Create(ctx context.Context, req resource.CreateReq
 		return
 	}
 
-	state.Merge(*response.JSON200)
+	plan.Merge(*response.JSON200)
 
-	identity := VPSFirewallIdentity{ID: state.ID}
+	identity := VPSFirewallIdentity{ID: plan.ID}
 	resp.Diagnostics.Append(resp.Identity.Set(ctx, &identity)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
-	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
+	resp.Diagnostics.Append(resp.State.Set(ctx, &plan)...)
 }
 
 func (r *VPSFirewallResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {

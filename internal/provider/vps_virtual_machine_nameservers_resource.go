@@ -72,7 +72,6 @@ func (r *VPSVirtualMachineNameserversResource) Schema(ctx context.Context, req r
 			"wait_for_action": schema.BoolAttribute{
 				Optional:            true,
 				MarkdownDescription: "Whether to wait for the action to complete before returning. Defaults to true.",
-				WriteOnly:           true,
 			},
 			"timeouts": timeouts.AttributesAll(ctx),
 		},
@@ -97,13 +96,13 @@ func (r *VPSVirtualMachineNameserversResource) Configure(ctx context.Context, re
 }
 
 func (r *VPSVirtualMachineNameserversResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	var state VPSVirtualMachineNameserversResourceModel
-	resp.Diagnostics.Append(req.Config.Get(ctx, &state)...)
+	var plan VPSVirtualMachineNameserversResourceModel
+	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
-	createTimeout, diags := state.Timeouts.Create(ctx, 20*time.Minute)
+	createTimeout, diags := plan.Timeouts.Create(ctx, 20*time.Minute)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -113,11 +112,11 @@ func (r *VPSVirtualMachineNameserversResource) Create(ctx context.Context, req r
 	defer cancel()
 
 	params := client.VPSSetNameserversV1JSONRequestBody{
-		Ns1: state.NS1.ValueString(),
-		Ns2: state.NS2.ValueStringPointer(),
+		Ns1: plan.NS1.ValueString(),
+		Ns2: plan.NS2.ValueStringPointer(),
 	}
 
-	response, err := r.client.VPSSetNameserversV1WithResponse(ctx, client.VirtualMachineId(state.VirtualMachineID.ValueInt64()), params)
+	response, err := r.client.VPSSetNameserversV1WithResponse(ctx, client.VirtualMachineId(plan.VirtualMachineID.ValueInt64()), params)
 	if err != nil {
 		resp.Diagnostics.AddError("Unable to Set VPS Nameservers", fmt.Sprintf("Got error: %s", err))
 		return
@@ -135,12 +134,12 @@ func (r *VPSVirtualMachineNameserversResource) Create(ctx context.Context, req r
 		return
 	}
 
-	if state.WaitForAction.IsNull() || state.WaitForAction.IsUnknown() || state.WaitForAction.ValueBool() {
+	if plan.WaitForAction.IsNull() || plan.WaitForAction.IsUnknown() || plan.WaitForAction.ValueBool() {
 	poll:
 		for {
 			response, err := r.client.VPSGetActionDetailsV1WithResponse(
 				ctx,
-				client.VirtualMachineId(state.VirtualMachineID.ValueInt64()),
+				client.VirtualMachineId(plan.VirtualMachineID.ValueInt64()),
 				*response.JSON200.Id,
 			)
 			if err != nil {
@@ -182,7 +181,7 @@ func (r *VPSVirtualMachineNameserversResource) Create(ctx context.Context, req r
 		}
 	}
 
-	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
+	resp.Diagnostics.Append(resp.State.Set(ctx, &plan)...)
 }
 
 func (r *VPSVirtualMachineNameserversResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
@@ -234,30 +233,30 @@ func (r *VPSVirtualMachineNameserversResource) Read(ctx context.Context, req res
 }
 
 func (r *VPSVirtualMachineNameserversResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	var state, config VPSVirtualMachineNameserversResourceModel
+	var state, plan VPSVirtualMachineNameserversResourceModel
 
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
-	resp.Diagnostics.Append(req.Plan.Get(ctx, &config)...)
+	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
-	if state.VirtualMachineID.IsUnknown() || state.VirtualMachineID.IsNull() || state.VirtualMachineID.ValueInt64() == 0 {
+	if plan.VirtualMachineID.IsUnknown() || plan.VirtualMachineID.IsNull() || plan.VirtualMachineID.ValueInt64() == 0 {
 		resp.Diagnostics.AddError("Invalid VPS Virtual Machine ID", "The VPS virtual machine ID is unknown, null, or zero, so it cannot be updated.")
 		return
 	}
 
-	if config.NS2.Equal(state.NS2) && config.NS1.Equal(state.NS1) {
+	if plan.NS2.Equal(state.NS2) && plan.NS1.Equal(state.NS1) {
 		resp.Diagnostics.AddWarning("No Changes Detected", "The nameservers are already set to the specified values. No update is necessary.")
-		resp.Diagnostics.Append(resp.State.Set(ctx, &config)...)
+		resp.Diagnostics.Append(resp.State.Set(ctx, &plan)...)
 		return
 	}
 
-	updateTimeout, diags := config.Timeouts.Update(ctx, 20*time.Minute)
+	updateTimeout, diags := plan.Timeouts.Update(ctx, 20*time.Minute)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -267,8 +266,8 @@ func (r *VPSVirtualMachineNameserversResource) Update(ctx context.Context, req r
 	defer cancel()
 
 	param := client.VPSSetNameserversV1JSONRequestBody{
-		Ns1: config.NS1.ValueString(),
-		Ns2: config.NS2.ValueStringPointer(),
+		Ns1: plan.NS1.ValueString(),
+		Ns2: plan.NS2.ValueStringPointer(),
 	}
 	response, err := r.client.VPSSetNameserversV1WithResponse(ctx, client.VirtualMachineId(state.VirtualMachineID.ValueInt64()), param)
 	if err != nil {
@@ -291,8 +290,8 @@ func (r *VPSVirtualMachineNameserversResource) Update(ctx context.Context, req r
 		resp.Diagnostics.AddError("Unable to Update VPS Virtual Machine Nameservers", "Response body does not contain an action ID")
 		return
 	}
-	actionID := *response.JSON200.Id
-	if config.WaitForAction.IsNull() || config.WaitForAction.IsUnknown() || config.WaitForAction.ValueBool() {
+
+	if plan.WaitForAction.IsNull() || plan.WaitForAction.IsUnknown() || plan.WaitForAction.ValueBool() {
 	poll:
 		for {
 			response, err := r.client.VPSGetActionDetailsV1WithResponse(
@@ -326,7 +325,7 @@ func (r *VPSVirtualMachineNameserversResource) Update(ctx context.Context, req r
 			default:
 				select {
 				case <-ctx.Done():
-				resp.Diagnostics.AddError("Unable to Update VPS Virtual Machine Nameservers", "The action to set the VPS nameservers timed out")
+					resp.Diagnostics.AddError("Unable to Update VPS Virtual Machine Nameservers", "The action to set the VPS nameservers timed out")
 					return
 				case <-time.After(2 * time.Second):
 					// continue polling
@@ -339,7 +338,7 @@ func (r *VPSVirtualMachineNameserversResource) Update(ctx context.Context, req r
 		}
 	}
 
-	resp.Diagnostics.Append(resp.State.Set(ctx, &config)...)
+	resp.Diagnostics.Append(resp.State.Set(ctx, &plan)...)
 }
 
 // Delete resets the nameservers for the VPS virtual machine.

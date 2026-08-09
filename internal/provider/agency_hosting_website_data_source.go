@@ -386,13 +386,13 @@ func (d *AgencyHostingWebsiteDataSource) Configure(ctx context.Context, req data
 }
 
 func (d *AgencyHostingWebsiteDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var data AgencyHostingWebsiteDataSourceModel
-	resp.Diagnostics.Append(req.Config.Get(ctx, &data)...)
+	var config AgencyHostingWebsiteDataSourceModel
+	resp.Diagnostics.Append(req.Config.Get(ctx, &config)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
-	if data.UID.IsUnknown() {
+	if config.UID.IsUnknown() {
 		resp.Diagnostics.AddError(
 			"Unknown Website UID",
 			"The 'uid' attribute cannot be unknown.",
@@ -400,7 +400,7 @@ func (d *AgencyHostingWebsiteDataSource) Read(ctx context.Context, req datasourc
 		return
 	}
 
-	if data.UID.IsNull() || data.UID.ValueString() == "" {
+	if config.UID.IsNull() || config.UID.ValueString() == "" {
 		resp.Diagnostics.AddError(
 			"Missing Website UID",
 			"The 'uid' attribute must be a non-empty string.",
@@ -408,9 +408,9 @@ func (d *AgencyHostingWebsiteDataSource) Read(ctx context.Context, req datasourc
 		return
 	}
 
-	ctx = tflog.SetField(ctx, "website_uid", data.UID.ValueString())
+	ctx = tflog.SetField(ctx, "website_uid", config.UID.ValueString())
 
-	readTimeout, diags := data.Timeouts.Read(ctx, 20*time.Minute)
+	readTimeout, diags := config.Timeouts.Read(ctx, 20*time.Minute)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -419,7 +419,7 @@ func (d *AgencyHostingWebsiteDataSource) Read(ctx context.Context, req datasourc
 	ctx, cancel := context.WithTimeout(ctx, readTimeout)
 	defer cancel()
 
-	response, err := d.client.AgencyHostingGetAgencyPlanWebsiteDetailsV1WithResponse(ctx, data.UID.ValueString())
+	response, err := d.client.AgencyHostingGetAgencyPlanWebsiteDetailsV1WithResponse(ctx, config.UID.ValueString())
 	if err != nil {
 		resp.Diagnostics.AddError(
 			"Unable to Read Agency Hosting Website",
@@ -443,7 +443,7 @@ func (d *AgencyHostingWebsiteDataSource) Read(ctx context.Context, req datasourc
 	}
 
 	item := response.JSON200
-	data.Merge(*item)
+	config.Merge(*item)
 
-	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
+	resp.Diagnostics.Append(resp.State.Set(ctx, &config)...)
 }

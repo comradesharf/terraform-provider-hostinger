@@ -86,13 +86,13 @@ func (d *VPSPublicKeysDataSource) Configure(ctx context.Context, req datasource.
 }
 
 func (d *VPSPublicKeysDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var data VPSPublicKeysDataSourceModel
-	resp.Diagnostics.Append(req.Config.Get(ctx, &data)...)
+	var config VPSPublicKeysDataSourceModel
+	resp.Diagnostics.Append(req.Config.Get(ctx, &config)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
-	readTimeout, diags := data.Timeouts.Read(ctx, 20*time.Minute)
+	readTimeout, diags := config.Timeouts.Read(ctx, 20*time.Minute)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -137,7 +137,7 @@ func (d *VPSPublicKeysDataSource) Read(ctx context.Context, req datasource.ReadR
 		for _, item := range *response.JSON200.Data {
 			var d VPSPublicKeyModel
 			d.Merge(item)
-			data.PublicKeys = append(data.PublicKeys, d)
+			config.PublicKeys = append(config.PublicKeys, d)
 		}
 
 		meta := response.JSON200.Meta
@@ -151,5 +151,5 @@ func (d *VPSPublicKeysDataSource) Read(ctx context.Context, req datasource.ReadR
 		page++
 	}
 
-	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
+	resp.Diagnostics.Append(resp.State.Set(ctx, &config)...)
 }
