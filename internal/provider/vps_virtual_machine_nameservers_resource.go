@@ -60,9 +60,6 @@ func (r *VPSVirtualMachineNameserversResource) Schema(ctx context.Context, req r
 				Required:            true,
 				CustomType:          iptypes.IPAddressType{},
 				MarkdownDescription: "The primary nameserver IP address for the VPS virtual machine.",
-				Validators: []validator.String{
-					stringvalidator.LengthAtLeast(7),
-				},
 			},
 			"ns2": schema.StringAttribute{
 				Optional:            true,
@@ -164,9 +161,9 @@ func (r *VPSVirtualMachineNameserversResource) Create(ctx context.Context, req r
 			}
 
 			switch *response.JSON200.State {
-			case "success":
+			case client.VPSV1ActionActionResourceStateSuccess:
 				break poll
-			case "error":
+			case client.VPSV1ActionActionResourceStateError:
 				resp.Diagnostics.AddError("Unable to Set VPS Nameservers", "The action to set the VPS nameservers failed")
 				break poll
 			default:
@@ -195,14 +192,7 @@ func (r *VPSVirtualMachineNameserversResource) Read(ctx context.Context, req res
 		return
 	}
 
-	if state.NS1.IsUnknown() || state.NS1.IsNull() || state.NS1.ValueString() == "" {
-		resp.Diagnostics.AddError("Invalid VPS Virtual Machine Nameserver 1", "The VPS virtual machine nameserver 1 is unknown, null, or empty, so it cannot be read.")
-	}
-
-	if state.NS2.IsUnknown() || state.NS2.IsNull() || state.NS2.ValueString() == "" {
-		resp.Diagnostics.AddError("Invalid VPS Virtual Machine Nameserver 2", "The VPS virtual machine nameserver 2 is unknown, null, or empty, so it cannot be read.")
-	}
-
+	// Nameserver values are refreshed from the API; only the virtual machine ID is required here.
 	if state.VirtualMachineID.IsUnknown() || state.VirtualMachineID.IsNull() || state.VirtualMachineID.ValueInt64() == 0 {
 		resp.Diagnostics.AddError("Invalid VPS Virtual Machine ID", "The VPS virtual machine ID is unknown, null, or zero, so it cannot be read.")
 	}
@@ -251,7 +241,7 @@ func (r *VPSVirtualMachineNameserversResource) Update(ctx context.Context, req r
 		return
 	}
 
-	resp.Diagnostics.Append(req.Config.Get(ctx, &config)...)
+	resp.Diagnostics.Append(req.Plan.Get(ctx, &config)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
@@ -267,7 +257,7 @@ func (r *VPSVirtualMachineNameserversResource) Update(ctx context.Context, req r
 		return
 	}
 
-	updateTimeout, diags := state.Timeouts.Update(ctx, 20*time.Minute)
+	updateTimeout, diags := config.Timeouts.Update(ctx, 20*time.Minute)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -293,7 +283,15 @@ func (r *VPSVirtualMachineNameserversResource) Update(ctx context.Context, req r
 		resp.Diagnostics.AddError("Unable to Update VPS Virtual Machine Nameservers", fmt.Sprintf("Unexpected status code: %d, response: %s", response.StatusCode(), string(response.Body)))
 		return
 	}
-
+	if response.JSON200 == nil {
+		resp.Diagnostics.AddError("Unable to Update VPS Virtual Machine Nameservers", "Response body is nil")
+		return
+	}
+	if response.JSON200.Id == nil {
+		resp.Diagnostics.AddError("Unable to Update VPS Virtual Machine Nameservers", "Response body does not contain an action ID")
+		return
+	}
+	actionID := *response.JSON200.Id
 	if config.WaitForAction.IsNull() || config.WaitForAction.IsUnknown() || config.WaitForAction.ValueBool() {
 	poll:
 		for {
@@ -328,7 +326,7 @@ func (r *VPSVirtualMachineNameserversResource) Update(ctx context.Context, req r
 			default:
 				select {
 				case <-ctx.Done():
-					resp.Diagnostics.AddError("Unable to Set VPS Nameservers", "The action to set the VPS nameservers timed out")
+				resp.Diagnostics.AddError("Unable to Update VPS Virtual Machine Nameservers", "The action to set the VPS nameservers timed out")
 					return
 				case <-time.After(2 * time.Second):
 					// continue polling
@@ -344,7 +342,7 @@ func (r *VPSVirtualMachineNameserversResource) Update(ctx context.Context, req r
 	resp.Diagnostics.Append(resp.State.Set(ctx, &config)...)
 }
 
-// Delete disables auto-renewal for the VPS virtual machine subscription, effectively scheduling it for deletion at the end of the current billing cycle.
+// Delete resets the nameservers for the VPS virtual machine.
 func (r *VPSVirtualMachineNameserversResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
 	var state VPSVirtualMachineNameserversResourceModel
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
@@ -377,7 +375,10 @@ func (r *VPSVirtualMachineNameserversResource) Delete(ctx context.Context, req r
 		resp.Diagnostics.AddError("Unable to reset VPS Virtual Machine Nameservers", fmt.Sprintf("Got error: %s", err))
 		return
 	}
-	if response.StatusCode() != http.StatusOK && response.StatusCode() != http.StatusNotFound {
+	if response.StatusCode() == http.StatusNotFound {
+		return
+	}
+	if response.StatusCode() != http.StatusOK {
 		resp.Diagnostics.AddError("Unable to reset VPS Virtual Machine Nameservers", fmt.Sprintf("Unexpected status code: %d, response: %s", response.StatusCode(), string(response.Body)))
 		return
 	}
