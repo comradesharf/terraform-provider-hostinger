@@ -63,8 +63,8 @@ func (l *VPSPostInstallScriptList) ListResourceConfigSchema(ctx context.Context,
 }
 
 func (l *VPSPostInstallScriptList) List(ctx context.Context, req list.ListRequest, stream *list.ListResultsStream) {
-	var data VPSPostInstallScriptListModel
-	diags := req.Config.Get(ctx, &data)
+	var config VPSPostInstallScriptListModel
+	diags := req.Config.Get(ctx, &config)
 	if diags.HasError() {
 		stream.Results = list.ListResultsStreamDiagnostics(diags)
 		return

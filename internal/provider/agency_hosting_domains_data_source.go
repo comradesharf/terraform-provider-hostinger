@@ -97,17 +97,17 @@ func (d *AgencyHostingDomainsDataSource) Configure(ctx context.Context, req data
 }
 
 func (d *AgencyHostingDomainsDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var data AgencyHostingDomainsDataSourceModel
-	resp.Diagnostics.Append(req.Config.Get(ctx, &data)...)
+	var config AgencyHostingDomainsDataSourceModel
+	resp.Diagnostics.Append(req.Config.Get(ctx, &config)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
 	params := client.AgencyHostingListAgencyPlanDomainsV1Params{}
 
-	if len(data.WebsiteUIDs) > 0 {
-		uids := make([]client.WebsiteUid, len(data.WebsiteUIDs))
-		for i, uid := range data.WebsiteUIDs {
+	if len(config.WebsiteUIDs) > 0 {
+		uids := make([]client.WebsiteUid, len(config.WebsiteUIDs))
+		for i, uid := range config.WebsiteUIDs {
 			uids[i] = uid.ValueString()
 		}
 		params.WebsiteUuids = &uids
@@ -118,7 +118,7 @@ func (d *AgencyHostingDomainsDataSource) Read(ctx context.Context, req datasourc
 		return
 	}
 
-	readTimeout, diags := data.Timeouts.Read(ctx, 20*time.Minute)
+	readTimeout, diags := config.Timeouts.Read(ctx, 20*time.Minute)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -161,7 +161,7 @@ func (d *AgencyHostingDomainsDataSource) Read(ctx context.Context, req datasourc
 		for _, item := range *response.JSON200.Data {
 			var m AgencyHostingDomainModel
 			m.Merge(item)
-			data.Domains = append(data.Domains, m)
+			config.Domains = append(config.Domains, m)
 		}
 
 		meta := response.JSON200.Meta
@@ -175,5 +175,5 @@ func (d *AgencyHostingDomainsDataSource) Read(ctx context.Context, req datasourc
 		page++
 	}
 
-	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
+	resp.Diagnostics.Append(resp.State.Set(ctx, &config)...)
 }

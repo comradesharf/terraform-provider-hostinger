@@ -10,6 +10,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
+type VPSVirtualMachineIdentity struct {
+	ID types.Int64 `tfsdk:"id"`
+}
+
 type VPSVirtualMachineIPAddressModel struct {
 	ID      types.Int64       `tfsdk:"id"`
 	Address iptypes.IPAddress `tfsdk:"address"`

@@ -130,20 +130,20 @@ func (d *BillingCatalogsDataSource) Configure(ctx context.Context, req datasourc
 }
 
 func (d *BillingCatalogsDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var data BillingCatalogsDataSourceModel
-	resp.Diagnostics.Append(resp.State.Get(ctx, &data)...)
+	var config BillingCatalogsDataSourceModel
+	resp.Diagnostics.Append(req.Config.Get(ctx, &config)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
-	if data.Name.IsUnknown() {
+	if config.Name.IsUnknown() {
 		resp.Diagnostics.AddError(
 			"Unknown Name",
 			"The 'name' attribute cannot be unknown",
 		)
 	}
 
-	if data.Category.IsUnknown() {
+	if config.Category.IsUnknown() {
 		resp.Diagnostics.AddError(
 			"Unknown Category",
 			"The 'category' attribute cannot be unknown",
@@ -156,17 +156,17 @@ func (d *BillingCatalogsDataSource) Read(ctx context.Context, req datasource.Rea
 
 	params := client.BillingGetCatalogItemListV1Params{}
 
-	if !data.Name.IsNull() && data.Name.ValueString() != "" {
-		params.Name = data.Name.ValueStringPointer()
+	if !config.Name.IsNull() && config.Name.ValueString() != "" {
+		params.Name = config.Name.ValueStringPointer()
 		ctx = tflog.SetField(ctx, "name", *params.Name)
 	}
 
-	if !data.Category.IsNull() && data.Category.ValueString() != "" {
-		params.Category = (*client.BillingGetCatalogItemListV1ParamsCategory)(data.Category.ValueStringPointer())
+	if !config.Category.IsNull() && config.Category.ValueString() != "" {
+		params.Category = (*client.BillingGetCatalogItemListV1ParamsCategory)(config.Category.ValueStringPointer())
 		ctx = tflog.SetField(ctx, "category", &params.Category)
 	}
 
-	readTimeout, diags := data.Timeouts.Read(ctx, 20*time.Minute)
+	readTimeout, diags := config.Timeouts.Read(ctx, 20*time.Minute)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -201,8 +201,8 @@ func (d *BillingCatalogsDataSource) Read(ctx context.Context, req datasource.Rea
 	for _, item := range *response.JSON200 {
 		var d BillingCatalogModel
 		d.Merge(item)
-		data.BillingCatalogs = append(data.BillingCatalogs, d)
+		config.BillingCatalogs = append(config.BillingCatalogs, d)
 	}
 
-	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
+	resp.Diagnostics.Append(resp.State.Set(ctx, &config)...)
 }

@@ -146,13 +146,13 @@ func (d *VPSFirewallDataSource) Configure(ctx context.Context, req datasource.Co
 }
 
 func (d *VPSFirewallDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var data VPSFirewallDataSourceModel
-	resp.Diagnostics.Append(req.Config.Get(ctx, &data)...)
+	var config VPSFirewallDataSourceModel
+	resp.Diagnostics.Append(req.Config.Get(ctx, &config)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
-	if data.ID.IsUnknown() {
+	if config.ID.IsUnknown() {
 		resp.Diagnostics.AddError(
 			"Unknown ID",
 			"ID is unknown, unable to read VPS virtual machine.",
@@ -160,7 +160,7 @@ func (d *VPSFirewallDataSource) Read(ctx context.Context, req datasource.ReadReq
 		return
 	}
 
-	if data.ID.IsNull() || data.ID.ValueInt64() == 0 {
+	if config.ID.IsNull() || config.ID.ValueInt64() == 0 {
 		resp.Diagnostics.AddError(
 			"Null ID",
 			"ID is null or zero, unable to read VPS virtual machine.",
@@ -168,7 +168,7 @@ func (d *VPSFirewallDataSource) Read(ctx context.Context, req datasource.ReadReq
 		return
 	}
 
-	readTimeout, diags := data.Timeouts.Read(ctx, 20*time.Minute)
+	readTimeout, diags := config.Timeouts.Read(ctx, 20*time.Minute)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -177,7 +177,7 @@ func (d *VPSFirewallDataSource) Read(ctx context.Context, req datasource.ReadReq
 	ctx, cancel := context.WithTimeout(ctx, readTimeout)
 	defer cancel()
 
-	response, err := d.client.VPSGetFirewallDetailsV1WithResponse(ctx, client.FirewallId(data.ID.ValueInt64()))
+	response, err := d.client.VPSGetFirewallDetailsV1WithResponse(ctx, client.FirewallId(config.ID.ValueInt64()))
 	if err != nil {
 		resp.Diagnostics.AddError(
 			"Unable to Read VPS Firewalls",
@@ -200,14 +200,14 @@ func (d *VPSFirewallDataSource) Read(ctx context.Context, req datasource.ReadReq
 		return
 	}
 
-	data.Merge(*response.JSON200)
+	config.Merge(*response.JSON200)
 
 	if response.JSON200.Rules != nil {
-		data.Rules = make([]VPSFirewallRuleModel, len(*response.JSON200.Rules))
+		config.Rules = make([]VPSFirewallRuleModel, len(*response.JSON200.Rules))
 		for i, rule := range *response.JSON200.Rules {
-			data.Rules[i].Merge(rule)
+			config.Rules[i].Merge(rule)
 		}
 	}
 
-	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
+	resp.Diagnostics.Append(resp.State.Set(ctx, &config)...)
 }

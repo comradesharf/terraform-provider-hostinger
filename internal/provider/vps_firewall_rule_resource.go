@@ -156,13 +156,13 @@ func (r *VPSFirewallRuleResource) Configure(ctx context.Context, req resource.Co
 }
 
 func (r *VPSFirewallRuleResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	var state VPSFirewallRuleResourceModel
-	resp.Diagnostics.Append(req.Config.Get(ctx, &state)...)
+	var plan VPSFirewallRuleResourceModel
+	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
-	createTimeout, diags := state.Timeouts.Create(ctx, 20*time.Minute)
+	createTimeout, diags := plan.Timeouts.Create(ctx, 20*time.Minute)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -172,13 +172,13 @@ func (r *VPSFirewallRuleResource) Create(ctx context.Context, req resource.Creat
 	defer cancel()
 
 	p := client.VPSCreateFirewallRuleV1JSONRequestBody{
-		Protocol:     client.VPSV1FirewallRulesStoreRequestProtocol(state.Protocol.ValueString()),
-		Port:         state.Port.ValueString(),
-		Source:       client.VPSV1FirewallRulesStoreRequestSource(state.Source.ValueString()),
-		SourceDetail: state.SourceDetail.ValueString(),
+		Protocol:     client.VPSV1FirewallRulesStoreRequestProtocol(plan.Protocol.ValueString()),
+		Port:         plan.Port.ValueString(),
+		Source:       client.VPSV1FirewallRulesStoreRequestSource(plan.Source.ValueString()),
+		SourceDetail: plan.SourceDetail.ValueString(),
 	}
 
-	response, err := r.client.VPSCreateFirewallRuleV1WithResponse(ctx, client.FirewallId(state.FirewallID.ValueInt64()), p)
+	response, err := r.client.VPSCreateFirewallRuleV1WithResponse(ctx, client.FirewallId(plan.FirewallID.ValueInt64()), p)
 	if err != nil {
 		resp.Diagnostics.AddError(
 			"Unable to Create VPS Firewall Rule",
@@ -201,15 +201,15 @@ func (r *VPSFirewallRuleResource) Create(ctx context.Context, req resource.Creat
 		return
 	}
 
-	state.Merge(*response.JSON200)
+	plan.Merge(*response.JSON200)
 
-	identity := VPSFirewallRuleIdentity{ID: state.ID, FirewallID: state.FirewallID}
+	identity := VPSFirewallRuleIdentity{ID: plan.ID, FirewallID: plan.FirewallID}
 	resp.Diagnostics.Append(resp.Identity.Set(ctx, &identity)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
-	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
+	resp.Diagnostics.Append(resp.State.Set(ctx, &plan)...)
 }
 
 func (r *VPSFirewallRuleResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
