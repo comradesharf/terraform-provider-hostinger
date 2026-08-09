@@ -65,12 +65,12 @@ func TestAccVPSVirtualMachineNameserversResource(t *testing.T) {
 				},
 			},
 			{
-				Config: testAccVPSVirtualMachineNameserversResourceConfig(false, 17923, "2.2.2.2", "9.9.9.9"),
+				Config: testAccVPSVirtualMachineNameserversResourceConfig(true, 17924, "2.2.2.2", "9.9.9.9"),
 				ConfigStateChecks: []statecheck.StateCheck{
 					statecheck.ExpectKnownValue(
 						"hostinger_vps_virtual_machine_nameservers.test",
 						tfjsonpath.New("virtual_machine_id"),
-						knownvalue.Int64Exact(17923),
+						knownvalue.Int64Exact(17924),
 					),
 					statecheck.ExpectKnownValue(
 						"hostinger_vps_virtual_machine_nameservers.test",
@@ -81,6 +81,26 @@ func TestAccVPSVirtualMachineNameserversResource(t *testing.T) {
 						"hostinger_vps_virtual_machine_nameservers.test",
 						tfjsonpath.New("ns2"),
 						knownvalue.StringExact("9.9.9.9"),
+					),
+				},
+			},
+			{
+				Config: testAccVPSVirtualMachineNameserversResourceConfig(true, 17924, "1.1.1.1", "8.8.8.8"),
+				ConfigStateChecks: []statecheck.StateCheck{
+					statecheck.ExpectKnownValue(
+						"hostinger_vps_virtual_machine_nameservers.test",
+						tfjsonpath.New("virtual_machine_id"),
+						knownvalue.Int64Exact(17924),
+					),
+					statecheck.ExpectKnownValue(
+						"hostinger_vps_virtual_machine_nameservers.test",
+						tfjsonpath.New("ns1"),
+						knownvalue.StringExact("1.1.1.1"),
+					),
+					statecheck.ExpectKnownValue(
+						"hostinger_vps_virtual_machine_nameservers.test",
+						tfjsonpath.New("ns2"),
+						knownvalue.StringExact("8.8.8.8"),
 					),
 				},
 			},
@@ -244,7 +264,7 @@ func testAccVPSVirtualMachineNameserversResourcePreCheck(t *testing.T) {
       }
     },
     "times": {
-      "remainingTimes": 3
+      "remainingTimes": 2
     }
   },
   {
@@ -259,11 +279,330 @@ func testAccVPSVirtualMachineNameserversResourcePreCheck(t *testing.T) {
         "name": "action_name",
         "created_at": "2024-09-05T07:25:36Z",
         "updated_at": "2024-09-05T07:25:36Z",
-        "state": "success"
+        "state": "created"
       }
     },
     "times": {
       "remainingTimes": 1
+    }
+  },
+  {
+    "httpRequest": {
+      "specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+      "operationId": "VPS_getActionDetailsV1"
+    },
+    "httpResponses": [
+      {
+        "statusCode": 200,
+        "body": {
+          "id": 8123712,
+          "name": "action_name",
+          "created_at": "2024-09-05T07:25:36Z",
+          "updated_at": "2024-09-05T07:25:36Z",
+          "state": "created"
+        }
+      },
+      {
+        "statusCode": 200,
+        "body": {
+          "id": 8123712,
+          "name": "action_name",
+          "created_at": "2024-09-05T07:25:36Z",
+          "updated_at": "2024-09-05T07:25:36Z",
+          "state": "created"
+        }
+      },
+      {
+        "statusCode": 200,
+        "body": {
+          "id": 8123712,
+          "name": "action_name",
+          "created_at": "2024-09-05T07:25:36Z",
+          "updated_at": "2024-09-05T07:25:36Z",
+          "state": "success"
+        }
+      }
+    ],
+    "times": {
+      "remainingTimes": 3
+    }
+  },
+  {
+    "httpRequest": {
+      "specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+      "operationId": "VPS_setNameserversV1"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": {
+        "id": 8123713,
+        "name": "action_name",
+        "created_at": "2024-09-05T07:25:36Z",
+        "updated_at": "2024-09-05T07:25:36Z",
+        "state": "created"
+      }
+    },
+    "times": {
+      "remainingTimes": 1
+    }
+  },
+  {
+    "httpRequest": {
+      "specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+      "operationId": "VPS_getActionDetailsV1"
+    },
+    "httpResponses": [
+      {
+        "statusCode": 200,
+        "body": {
+          "id": 8123713,
+          "name": "action_name",
+          "created_at": "2024-09-05T07:25:36Z",
+          "updated_at": "2024-09-05T07:25:36Z",
+          "state": "created"
+        }
+      },
+      {
+        "statusCode": 200,
+        "body": {
+          "id": 8123713,
+          "name": "action_name",
+          "created_at": "2024-09-05T07:25:36Z",
+          "updated_at": "2024-09-05T07:25:36Z",
+          "state": "created"
+        }
+      },
+      {
+        "statusCode": 200,
+        "body": {
+          "id": 8123713,
+          "name": "action_name",
+          "created_at": "2024-09-05T07:25:36Z",
+          "updated_at": "2024-09-05T07:25:36Z",
+          "state": "success"
+        }
+      }
+    ],
+    "times": {
+      "remainingTimes": 3
+    }
+  },
+  {
+    "httpRequest": {
+      "specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+      "operationId": "VPS_getVirtualMachineDetailsV1"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": {
+        "id": 17924,
+        "firewall_group_id": 260,
+        "subscription_id": "Azz353Uhl1xC54pR0",
+        "data_center_id": 521,
+        "plan": "KVM 4",
+        "hostname": "srv17923.hstgr.cloud",
+        "state": "running",
+        "actions_lock": "unlocked",
+        "cpus": 4,
+        "memory": 8192,
+        "disk": 51200,
+        "bandwidth": 1073741824,
+        "ns1": "2.2.2.2",
+        "ns2": "9.9.9.9",
+        "ipv4": [
+          {
+            "id": 52347,
+            "address": "213.211.223.15",
+            "ptr": "something.domain.tld"
+          }
+        ],
+        "ipv6": [
+          {
+            "id": 52348,
+            "address": "2a00:1450:4001:81b::200e",
+            "ptr": "something.domain.tld"
+          }
+        ],
+        "template": {
+          "id": 6523,
+          "name": "Ubuntu 20.04 LTS",
+          "description": "Ubuntu 20.04 LTS",
+          "documentation": "https://docs.ubuntu.com"
+        },
+        "created_at": "2024-09-05T07:25:36Z"
+      }
+    },
+    "times": {
+      "remainingTimes": 2
+    }
+  },
+  {
+    "httpRequest": {
+      "specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+      "operationId": "VPS_setNameserversV1"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": {
+        "id": 8123714,
+        "name": "action_name",
+        "created_at": "2024-09-05T07:25:36Z",
+        "updated_at": "2024-09-05T07:25:36Z",
+        "state": "created"
+      }
+    },
+    "times": {
+      "remainingTimes": 1
+    }
+  },
+  {
+    "httpRequest": {
+      "specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+      "operationId": "VPS_getActionDetailsV1"
+    },
+    "httpResponses": [
+      {
+        "statusCode": 200,
+        "body": {
+          "id": 8123714,
+          "name": "action_name",
+          "created_at": "2024-09-05T07:25:36Z",
+          "updated_at": "2024-09-05T07:25:36Z",
+          "state": "created"
+        }
+      },
+      {
+        "statusCode": 200,
+        "body": {
+          "id": 8123714,
+          "name": "action_name",
+          "created_at": "2024-09-05T07:25:36Z",
+          "updated_at": "2024-09-05T07:25:36Z",
+          "state": "created"
+        }
+      },
+      {
+        "statusCode": 200,
+        "body": {
+          "id": 8123714,
+          "name": "action_name",
+          "created_at": "2024-09-05T07:25:36Z",
+          "updated_at": "2024-09-05T07:25:36Z",
+          "state": "success"
+        }
+      }
+    ],
+    "times": {
+      "remainingTimes": 3
+    }
+  },
+  {
+    "httpRequest": {
+      "specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+      "operationId": "VPS_getVirtualMachineDetailsV1"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": {
+        "id": 17924,
+        "firewall_group_id": 260,
+        "subscription_id": "Azz353Uhl1xC54pR0",
+        "data_center_id": 521,
+        "plan": "KVM 4",
+        "hostname": "srv17923.hstgr.cloud",
+        "state": "running",
+        "actions_lock": "unlocked",
+        "cpus": 4,
+        "memory": 8192,
+        "disk": 51200,
+        "bandwidth": 1073741824,
+        "ns1": "1.1.1.1",
+        "ns2": "8.8.8.8",
+        "ipv4": [
+          {
+            "id": 52347,
+            "address": "213.211.223.15",
+            "ptr": "something.domain.tld"
+          }
+        ],
+        "ipv6": [
+          {
+            "id": 52348,
+            "address": "2a00:1450:4001:81b::200e",
+            "ptr": "something.domain.tld"
+          }
+        ],
+        "template": {
+          "id": 6523,
+          "name": "Ubuntu 20.04 LTS",
+          "description": "Ubuntu 20.04 LTS",
+          "documentation": "https://docs.ubuntu.com"
+        },
+        "created_at": "2024-09-05T07:25:36Z"
+      }
+    },
+    "times": {
+      "remainingTimes": 2
+    }
+  },
+  {
+    "httpRequest": {
+      "specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+      "operationId": "VPS_setNameserversV1"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": {
+        "id": 8123715,
+        "name": "action_name",
+        "created_at": "2024-09-05T07:25:36Z",
+        "updated_at": "2024-09-05T07:25:36Z",
+        "state": "created"
+      }
+    },
+    "times": {
+      "remainingTimes": 1
+    }
+  },
+  {
+    "httpRequest": {
+      "specUrlOrPayload": "https://raw.githubusercontent.com/hostinger/api/refs/heads/main/openapi.json",
+      "operationId": "VPS_getActionDetailsV1"
+    },
+    "httpResponses": [
+      {
+        "statusCode": 200,
+        "body": {
+          "id": 8123715,
+          "name": "action_name",
+          "created_at": "2024-09-05T07:25:36Z",
+          "updated_at": "2024-09-05T07:25:36Z",
+          "state": "created"
+        }
+      },
+      {
+        "statusCode": 200,
+        "body": {
+          "id": 8123715,
+          "name": "action_name",
+          "created_at": "2024-09-05T07:25:36Z",
+          "updated_at": "2024-09-05T07:25:36Z",
+          "state": "created"
+        }
+      },
+      {
+        "statusCode": 200,
+        "body": {
+          "id": 8123715,
+          "name": "action_name",
+          "created_at": "2024-09-05T07:25:36Z",
+          "updated_at": "2024-09-05T07:25:36Z",
+          "state": "success"
+        }
+      }
+    ],
+    "times": {
+      "remainingTimes": 3
     }
   }
 ]

@@ -294,7 +294,7 @@ func (r *VPSVirtualMachineNameserversResource) Update(ctx context.Context, req r
 		return
 	}
 
-	if state.WaitForAction.IsNull() || state.WaitForAction.IsUnknown() || state.WaitForAction.ValueBool() {
+	if config.WaitForAction.IsNull() || config.WaitForAction.IsUnknown() || config.WaitForAction.ValueBool() {
 	poll:
 		for {
 			response, err := r.client.VPSGetActionDetailsV1WithResponse(
@@ -379,5 +379,62 @@ func (r *VPSVirtualMachineNameserversResource) Delete(ctx context.Context, req r
 	}
 	if response.StatusCode() != http.StatusOK && response.StatusCode() != http.StatusNotFound {
 		resp.Diagnostics.AddError("Unable to reset VPS Virtual Machine Nameservers", fmt.Sprintf("Unexpected status code: %d, response: %s", response.StatusCode(), string(response.Body)))
+		return
+	}
+	if response.JSON200 == nil {
+		resp.Diagnostics.AddError("Unable to reset VPS Virtual Machine Nameservers", "Response body is nil")
+		return
+	}
+	if response.JSON200.Id == nil {
+		resp.Diagnostics.AddError("Unable to reset VPS Virtual Machine Nameservers", "Response body does not contain an action ID")
+		return
+	}
+
+	if state.WaitForAction.IsNull() || state.WaitForAction.IsUnknown() || state.WaitForAction.ValueBool() {
+
+	poll:
+		for {
+			response, err := r.client.VPSGetActionDetailsV1WithResponse(
+				ctx,
+				client.VirtualMachineId(state.VirtualMachineID.ValueInt64()),
+				*response.JSON200.Id,
+			)
+			if err != nil {
+				resp.Diagnostics.AddError("Unable to Get VPS Actions", fmt.Sprintf("Got error: %s", err))
+				return
+			}
+			if response.StatusCode() != http.StatusOK {
+				resp.Diagnostics.AddError("Unable to Get VPS Actions", fmt.Sprintf("Unexpected status code: %d, response: %s", response.StatusCode(), string(response.Body)))
+				return
+			}
+			if response.JSON200 == nil {
+				resp.Diagnostics.AddError("Unable to Get VPS Actions", "Response body is nil")
+				return
+			}
+			if response.JSON200.State == nil {
+				resp.Diagnostics.AddError("Unable to Get VPS Actions", "Response body does not contain an action state")
+				return
+			}
+
+			switch *response.JSON200.State {
+			case "success":
+				break poll
+			case "error":
+				resp.Diagnostics.AddError("Unable to Reset VPS Nameservers", "The action to reset the VPS nameservers failed")
+				break poll
+			default:
+				select {
+				case <-ctx.Done():
+					resp.Diagnostics.AddError("Unable to Reset VPS Nameservers", "The action to reset the VPS nameservers timed out")
+					return
+				case <-time.After(2 * time.Second):
+					// continue polling
+				}
+			}
+		}
+
+		if resp.Diagnostics.HasError() {
+			return
+		}
 	}
 }
