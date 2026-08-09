@@ -61,12 +61,12 @@ Schema rules:
 
 Lifecycle rules:
 
-- `Create` reads `req.Config`, resolves `state.Timeouts.Create(ctx, 20*time.Minute)`, builds the generated request body, calls the client, checks transport errors, expected status, and nil `JSON200`, merges the response, and writes state
+- `Create` reads `req.Plan`, resolves `plan.Timeouts.Create(ctx, 20*time.Minute)`, builds the generated request body, calls the client, checks transport errors, expected status, and nil `JSON200`, merges the response, and writes state
 - When a create, update, or delete endpoint returns an asynchronous action resource, inspect the generated response for its action ID and the matching `*ActionDetailsV1WithResponse` operation. Add an optional write-only `wait_for_action` boolean that defaults to waiting (`null` and `unknown` must be treated as `true`); when enabled, poll the action details until the generated action state is `success` or `error`, using the lifecycle context timeout and a bounded polling interval. Report missing action IDs or states, non-success HTTP responses, action errors, and context timeouts as diagnostics. When `wait_for_action = false`, return after validating the mutation response without polling.
 - `Create`, `Read`, and `Update` set or preserve resource identity alongside Terraform state when `ResourceWithIdentity` is implemented
-- `Read` reads state, validates IDs before calling the API, resolves the read timeout, removes the resource on a documented not-found response, merges the matching API object, and writes state
-- `Update` reads `req.Plan`, validates IDs, resolves the update timeout, sends only mutable fields, merges the response, and writes state. Fields marked `RequiresReplace` must not be updated; for resources with no mutable fields, preserve state and identity
-- `Delete` reads state, validates IDs, resolves the delete timeout, calls the delete endpoint, and accepts the documented success status
+- `Read` reads `req.State`, validates IDs before calling the API, resolves the read timeout, removes the resource on a documented not-found response, merges the matching API object, and writes state
+- `Update` reads both `req.Plan` and `req.State`: use the plan for desired mutable values and the state for existing lifecycle values, validates IDs, resolves the update timeout, sends only mutable fields, merges the response, and writes state. Fields marked `RequiresReplace` must not be updated; for resources with no mutable fields, preserve state and identity
+- `Delete` reads `req.State`, validates IDs, resolves the delete timeout, calls the delete endpoint, and accepts the documented success status
 - Use `context.WithTimeout` and `defer cancel()` for every API operation
 - Use `tflog.SetField` for useful non-sensitive identifiers; never log credentials or sensitive values
 
