@@ -1,0 +1,7 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
+interface:
+  display_name: "Create Terraform Action"
+  short_description: "Generate Hostinger Terraform action implementations"
+  default_prompt: "Use $create-terraform-action to implement a Hostinger Terraform action with tests and documentation."
