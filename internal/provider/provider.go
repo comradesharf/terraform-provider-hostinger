@@ -191,7 +191,7 @@ func (p *hostingerProvider) Actions(ctx context.Context) []func() action.Action 
 	return []func() action.Action{
 		NewVPSFirewallActivateAction,
 		NewVPSFirewallSyncAction,
-		NewVPSFirewallDeactiveAction,
+		NewVPSFirewallDeactivateAction,
 		NewVPSPublicKeysAttachAction,
 		NewVPSVirtualMachineStartAction,
 		NewVPSVirtualMachineStopAction,
