@@ -192,6 +192,7 @@ func (p *hostingerProvider) Actions(ctx context.Context) []func() action.Action 
 		NewVPSFirewallActivateAction,
 		NewVPSFirewallSyncAction,
 		NewVPSFirewallDeactiveAction,
+		NewVPSPublicKeysAttachAction,
 	}
 }
 
