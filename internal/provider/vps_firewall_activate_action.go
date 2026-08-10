@@ -45,7 +45,7 @@ func (a *VPSFirewallActivateAction) Configure(ctx context.Context, req action.Co
 	c, ok := req.ProviderData.(*client.ClientWithResponses)
 	if !ok {
 		resp.Diagnostics.AddError(
-			"Unexpected Data Source Configure Type",
+			"Unexpected Action Configure Type",
 			fmt.Sprintf("Expected *client.ClientWithResponses, got: %T. Please report this issue to the provider developers.", req.ProviderData),
 		)
 		return
@@ -86,10 +86,10 @@ func (a *VPSFirewallActivateAction) Invoke(ctx context.Context, req action.Invok
 		return
 	}
 
-	if config.FirewallID.IsNull() || config.FirewallID.IsUnknown() {
+	if config.FirewallID.IsNull() || config.FirewallID.IsUnknown() || config.FirewallID.ValueInt64() <= 0 {
 		resp.Diagnostics.AddError(
 			"Invalid Firewall ID",
-			"The firewall_id attribute is required and must be a valid integer.",
+			"The firewall_id attribute is required and must be a positive integer.",
 		)
 	}
 
@@ -171,8 +171,8 @@ func (a *VPSFirewallActivateAction) Invoke(ctx context.Context, req action.Invok
 			case client.VPSV1ActionActionResourceStateSuccess:
 				break poll
 			case client.VPSV1ActionActionResourceStateError:
-				resp.Diagnostics.AddError("Unable to Set VPS Nameservers", "The action to set the VPS nameservers failed")
-				break poll
+				resp.Diagnostics.AddError("Unable to Activate VPS Firewall", "The firewall activation action failed")
+				return
 			default:
 				select {
 				case <-ctx.Done():
