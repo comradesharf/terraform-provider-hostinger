@@ -18,26 +18,25 @@ import (
 )
 
 var (
-	_ action.Action              = &VPSFirewallDeactiveAction{}
-	_ action.ActionWithConfigure = &VPSFirewallDeactiveAction{}
+	_ action.Action              = &VPSVirtualMachineStartAction{}
+	_ action.ActionWithConfigure = &VPSVirtualMachineStartAction{}
 )
 
-func NewVPSFirewallDeactiveAction() action.Action {
-	return &VPSFirewallDeactiveAction{}
+func NewVPSVirtualMachineStartAction() action.Action {
+	return &VPSVirtualMachineStartAction{}
 }
 
-type VPSFirewallDeactiveAction struct {
+type VPSVirtualMachineStartAction struct {
 	client *client.ClientWithResponses
 }
 
-type VPSFirewallDeactiveActionModel struct {
+type VPSVirtualMachineStartActionModel struct {
 	Timeouts         timeouts.Value `tfsdk:"timeouts"`
-	FirewallID       types.Int64    `tfsdk:"firewall_id"`
 	VirtualMachineID types.Int64    `tfsdk:"virtual_machine_id"`
 	WaitForAction    types.Bool     `tfsdk:"wait_for_action"`
 }
 
-func (a *VPSFirewallDeactiveAction) Configure(ctx context.Context, req action.ConfigureRequest, resp *action.ConfigureResponse) {
+func (a *VPSVirtualMachineStartAction) Configure(ctx context.Context, req action.ConfigureRequest, resp *action.ConfigureResponse) {
 	if req.ProviderData == nil {
 		return
 	}
@@ -54,17 +53,13 @@ func (a *VPSFirewallDeactiveAction) Configure(ctx context.Context, req action.Co
 	a.client = c
 }
 
-func (a *VPSFirewallDeactiveAction) Schema(ctx context.Context, req action.SchemaRequest, resp *action.SchemaResponse) {
+func (a *VPSVirtualMachineStartAction) Schema(ctx context.Context, req action.SchemaRequest, resp *action.SchemaResponse) {
 	resp.Schema = schema.Schema{
-		MarkdownDescription: "Deactivates a VPS firewall.",
+		MarkdownDescription: "Starts a VPS virtual machine.",
 		Attributes: map[string]schema.Attribute{
-			"firewall_id": schema.Int64Attribute{
-				Required:            true,
-				MarkdownDescription: "The ID of the firewall to deactivate.",
-			},
 			"virtual_machine_id": schema.Int64Attribute{
 				Required:            true,
-				MarkdownDescription: "The ID of the virtual machine to disassociate from the firewall.",
+				MarkdownDescription: "The ID of the virtual machine to start.",
 			},
 			"wait_for_action": schema.BoolAttribute{
 				Optional:            true,
@@ -75,32 +70,19 @@ func (a *VPSFirewallDeactiveAction) Schema(ctx context.Context, req action.Schem
 	}
 }
 
-func (a *VPSFirewallDeactiveAction) Metadata(ctx context.Context, req action.MetadataRequest, resp *action.MetadataResponse) {
-	resp.TypeName = req.ProviderTypeName + "_vps_firewall_deactive"
+func (a *VPSVirtualMachineStartAction) Metadata(ctx context.Context, req action.MetadataRequest, resp *action.MetadataResponse) {
+	resp.TypeName = req.ProviderTypeName + "_vps_virtual_machine_start"
 }
 
-func (a *VPSFirewallDeactiveAction) Invoke(ctx context.Context, req action.InvokeRequest, resp *action.InvokeResponse) {
-	var config VPSFirewallDeactiveActionModel
+func (a *VPSVirtualMachineStartAction) Invoke(ctx context.Context, req action.InvokeRequest, resp *action.InvokeResponse) {
+	var config VPSVirtualMachineStartActionModel
 	resp.Diagnostics.Append(req.Config.Get(ctx, &config)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
-	if config.FirewallID.IsNull() || config.FirewallID.IsUnknown() || config.FirewallID.ValueInt64() <= 0 {
-		resp.Diagnostics.AddError(
-			"Invalid Firewall ID",
-			"The firewall_id attribute is required and must be a positive integer.",
-		)
-	}
-
 	if config.VirtualMachineID.IsNull() || config.VirtualMachineID.IsUnknown() || config.VirtualMachineID.ValueInt64() <= 0 {
-		resp.Diagnostics.AddError(
-			"Invalid Virtual Machine ID",
-			"The virtual_machine_id attribute is required and must be a positive integer.",
-		)
-	}
-
-	if resp.Diagnostics.HasError() {
+		resp.Diagnostics.AddError("Invalid Virtual Machine ID", "The virtual_machine_id attribute is required and must be a positive integer.")
 		return
 	}
 
@@ -110,46 +92,28 @@ func (a *VPSFirewallDeactiveAction) Invoke(ctx context.Context, req action.Invok
 		return
 	}
 
-	ctx = tflog.SetField(ctx, "firewall_id", config.FirewallID.ValueInt64())
-
+	ctx = tflog.SetField(ctx, "virtual_machine_id", config.VirtualMachineID.ValueInt64())
 	ctx, cancel := context.WithTimeout(ctx, invokeTimeout)
 	defer cancel()
 
-	response, err := a.client.VPSDeactivateFirewallV1WithResponse(
-		ctx,
-		client.FirewallId(config.FirewallID.ValueInt64()),
-		client.VirtualMachineId(config.VirtualMachineID.ValueInt64()),
-	)
+	response, err := a.client.VPSStartVirtualMachineV1WithResponse(ctx, client.VirtualMachineId(config.VirtualMachineID.ValueInt64()))
 	if err != nil {
-		resp.Diagnostics.AddError(
-			"Unable to Deactivate VPS Firewall",
-			fmt.Sprintf("Got error: %s", err),
-		)
+		resp.Diagnostics.AddError("Unable to Start VPS Virtual Machine", fmt.Sprintf("Got error: %s", err))
 		return
 	}
 	if response.StatusCode() != http.StatusOK {
-		resp.Diagnostics.AddError(
-			"Unable to Deactivate VPS Firewall",
-			fmt.Sprintf("Unexpected status code: %d, response: %s", response.StatusCode(), string(response.Body)),
-		)
+		resp.Diagnostics.AddError("Unable to Start VPS Virtual Machine", fmt.Sprintf("Unexpected status code: %d, response: %s", response.StatusCode(), string(response.Body)))
 		return
 	}
 	if response.JSON200 == nil || response.JSON200.Id == nil {
-		resp.Diagnostics.AddError(
-			"Unable to Deactivate VPS Firewall",
-			"Response body is nil or missing ID",
-		)
+		resp.Diagnostics.AddError("Unable to Start VPS Virtual Machine", "Response body is nil or missing ID")
 		return
 	}
 
 	if config.WaitForAction.IsNull() || config.WaitForAction.IsUnknown() || config.WaitForAction.ValueBool() {
 	poll:
 		for {
-			response, err := a.client.VPSGetActionDetailsV1WithResponse(
-				ctx,
-				client.VirtualMachineId(config.VirtualMachineID.ValueInt64()),
-				*response.JSON200.Id,
-			)
+			response, err := a.client.VPSGetActionDetailsV1WithResponse(ctx, client.VirtualMachineId(config.VirtualMachineID.ValueInt64()), *response.JSON200.Id)
 			if err != nil {
 				resp.Diagnostics.AddError("Unable to Get VPS Actions", fmt.Sprintf("Got error: %s", err))
 				return
@@ -171,17 +135,15 @@ func (a *VPSFirewallDeactiveAction) Invoke(ctx context.Context, req action.Invok
 			case client.VPSV1ActionActionResourceStateSuccess:
 				break poll
 			case client.VPSV1ActionActionResourceStateError:
-				resp.Diagnostics.AddError("Unable to Deactivate VPS Firewall", "The firewall deactivation action failed")
+				resp.Diagnostics.AddError("Unable to Start VPS Virtual Machine", "The virtual machine start action failed")
 				return
 			default:
 				select {
 				case <-ctx.Done():
-					resp.Diagnostics.AddError("Unable to Deactivate VPS Firewall", "The firewall deactivation action timed out")
+					resp.Diagnostics.AddError("Unable to Start VPS Virtual Machine", "The virtual machine start action timed out")
 					return
 				case <-time.After(2 * time.Second):
-					resp.SendProgress(action.InvokeProgressEvent{
-						Message: "Waiting for action to complete...",
-					})
+					resp.SendProgress(action.InvokeProgressEvent{Message: "Waiting for action to complete..."})
 				}
 			}
 		}
