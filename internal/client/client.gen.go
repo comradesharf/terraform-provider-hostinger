@@ -3640,23 +3640,6 @@ type AgencyHostingV1WebsitesSslCertResource struct {
 	Names *[]string `json:"names,omitempty"`
 }
 
-// AgencyHostingV1WebsitesWebsiteDeletionResource defines model for AgencyHosting.V1.Websites.WebsiteDeletionResource.
-type AgencyHostingV1WebsitesWebsiteDeletionResource struct {
-	DeletedAt *time.Time `json:"deleted_at,omitempty"`
-
-	// IsCleanupScheduled Whether background cleanup has been scheduled
-	IsCleanupScheduled *bool `json:"is_cleanup_scheduled,omitempty"`
-
-	// Message Human-readable result message
-	Message *string `json:"message,omitempty"`
-
-	// Status Deletion status
-	Status *string `json:"status,omitempty"`
-
-	// WebsiteUid Deleted website UID
-	WebsiteUid *string `json:"website_uid,omitempty"`
-}
-
 // AgencyHostingV1WebsitesWebsiteDomainDetailsCollection Array of [`AgencyHosting.V1.Websites.WebsiteDomainDetailsResource`](#model/agencyhostingv1websiteswebsitedomaindetailsresource)
 type AgencyHostingV1WebsitesWebsiteDomainDetailsCollection = []AgencyHostingV1WebsitesWebsiteDomainDetailsResource
 
@@ -32303,7 +32286,7 @@ func (r AgencyHostingGetAgencyPlanWebsiteSetupStatusV1Response) ContentType() st
 type AgencyHostingDeleteAgencyPlanWebsiteV1Response struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *AgencyHostingV1WebsitesWebsiteDeletionResource
+	JSON200      *CommonSuccessEmptyResource
 	JSON401      *CommonResponseUnauthorizedResponse
 	JSON500      *CommonResponseErrorResponse
 }
@@ -46068,7 +46051,7 @@ func ParseAgencyHostingDeleteAgencyPlanWebsiteV1Response(rsp *http.Response) (*A
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest AgencyHostingV1WebsitesWebsiteDeletionResource
+		var dest CommonSuccessEmptyResource
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
