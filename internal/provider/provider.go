@@ -190,6 +190,7 @@ func (p *hostingerProvider) ListResources(ctx context.Context) []func() list.Lis
 func (p *hostingerProvider) Actions(ctx context.Context) []func() action.Action {
 	return []func() action.Action{
 		NewVPSFirewallActivateAction,
+		NewVPSFirewallDeactiveAction,
 	}
 }
 
