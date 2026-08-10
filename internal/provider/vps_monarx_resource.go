@@ -237,7 +237,7 @@ func (r *VPSMonarxResource) Delete(ctx context.Context, req resource.DeleteReque
 		resp.Diagnostics.AddError("Unable to Uninstall Monarx", fmt.Sprintf("Got error: %s", err))
 		return
 	}
-	if response.StatusCode() == http.StatusNotFound {
+	if response.StatusCode() == http.StatusUnprocessableEntity || response.StatusCode() == http.StatusNotFound {
 		return
 	}
 	if response.StatusCode() != http.StatusOK || response.JSON200 == nil || response.JSON200.Id == nil || *response.JSON200.Id <= 0 {
