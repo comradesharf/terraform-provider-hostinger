@@ -1,0 +1,1 @@
+terraform apply -invoke=action.hostinger_vps_public_keys_attach.example

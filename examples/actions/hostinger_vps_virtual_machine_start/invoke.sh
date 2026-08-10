@@ -1,0 +1,1 @@
+terraform apply -invoke=action.hostinger_vps_virtual_machine_start.example

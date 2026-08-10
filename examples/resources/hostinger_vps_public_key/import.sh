@@ -1,0 +1,1 @@
+terraform import hostinger_vps_public_key.example 12345

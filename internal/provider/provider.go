@@ -47,6 +47,7 @@ func (p *hostingerProvider) Metadata(ctx context.Context, req provider.MetadataR
 
 func (p *hostingerProvider) Schema(ctx context.Context, req provider.SchemaRequest, resp *provider.SchemaResponse) {
 	resp.Schema = schema.Schema{
+		MarkdownDescription: "The Hostinger provider is used to interact with resources supported by\nHostinger. The provider needs to be configured with the proper credentials\nbefore it can be used.\n",
 		Attributes: map[string]schema.Attribute{
 			"api_token": schema.StringAttribute{
 				MarkdownDescription: "The API token used to authenticate with the Hostinger API.",
