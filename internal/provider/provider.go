@@ -195,6 +195,7 @@ func (p *hostingerProvider) Actions(ctx context.Context) []func() action.Action 
 		NewVPSPublicKeysAttachAction,
 		NewVPSVirtualMachineStartAction,
 		NewVPSVirtualMachineStopAction,
+		NewVPSVirtualMachineRestartAction,
 	}
 }
 
