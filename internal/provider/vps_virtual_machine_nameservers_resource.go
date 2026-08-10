@@ -214,7 +214,7 @@ func (r *VPSVirtualMachineNameserversResource) Read(ctx context.Context, req res
 		resp.Diagnostics.AddError("Unable to Read VPS Virtual Machine", fmt.Sprintf("Got error: %s", err))
 		return
 	}
-	if response.StatusCode() == http.StatusNotFound {
+	if response.StatusCode() == http.StatusUnprocessableEntity || response.StatusCode() == http.StatusNotFound {
 		resp.State.RemoveResource(ctx)
 		return
 	}
@@ -274,7 +274,7 @@ func (r *VPSVirtualMachineNameserversResource) Update(ctx context.Context, req r
 		resp.Diagnostics.AddError("Unable to Update VPS Virtual Machine Nameservers", fmt.Sprintf("Got error: %s", err))
 		return
 	}
-	if response.StatusCode() == http.StatusNotFound {
+	if response.StatusCode() == http.StatusUnprocessableEntity || response.StatusCode() == http.StatusNotFound {
 		resp.State.RemoveResource(ctx)
 		return
 	}

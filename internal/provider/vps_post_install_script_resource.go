@@ -189,7 +189,7 @@ func (r *VPSPostInstallScriptResource) Read(ctx context.Context, req resource.Re
 		resp.Diagnostics.AddError("Unable to Read VPS Post-install Script", fmt.Sprintf("Got error: %s", err))
 		return
 	}
-	if response.StatusCode() == http.StatusNotFound {
+	if response.StatusCode() == http.StatusUnprocessableEntity || response.StatusCode() == http.StatusNotFound {
 		resp.State.RemoveResource(ctx)
 		return
 	}
