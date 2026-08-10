@@ -1,0 +1,1 @@
+terraform import hostinger_vps_firewall.example 65224
