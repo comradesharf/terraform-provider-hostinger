@@ -182,6 +182,9 @@ func (r *VPSPublicKeyResource) Read(ctx context.Context, req resource.ReadReques
 			resp.Diagnostics.AddError("Unable to Read VPS Public Keys", fmt.Sprintf("Got error: %s", err))
 			return
 		}
+		if response.StatusCode() == http.StatusUnprocessableEntity || response.StatusCode() == http.StatusNotFound {
+			break
+		}
 		if response.StatusCode() != http.StatusOK {
 			resp.Diagnostics.AddError("Unable to Read VPS Public Keys", fmt.Sprintf("Unexpected status code: %d, response: %s", response.StatusCode(), string(response.Body)))
 			return
