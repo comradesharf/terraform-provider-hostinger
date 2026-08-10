@@ -112,12 +112,12 @@ resource "terraform_data" "test" {
 	lifecycle {
 		action_trigger {
 			events = [after_create]
-			actions = [action.hostinger_vps_firewall_deactive.test]
+			actions = [action.hostinger_vps_firewall_deactivate.test]
 		}
 	}
 }
 
-action "hostinger_vps_firewall_deactive" "test" {
+action "hostinger_vps_firewall_deactivate" "test" {
 	config {
 		firewall_id        = 65224
 		virtual_machine_id = 12345
