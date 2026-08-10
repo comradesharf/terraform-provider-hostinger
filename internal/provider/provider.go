@@ -177,6 +177,7 @@ func (p *hostingerProvider) DataSources(ctx context.Context) []func() datasource
 		NewVPSPostInstallScriptDataSource,
 		NewVPSTemplatesDataSource,
 		NewVPSDataCentersDataSource,
+		NewVPSTemplateDataSource,
 	}
 }
 
