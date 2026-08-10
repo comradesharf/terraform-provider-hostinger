@@ -188,6 +188,7 @@ func (a *VPSVirtualMachineRecreateAction) Invoke(ctx context.Context, req action
 					resp.Diagnostics.AddError("Unable to Recreate VPS Virtual Machine", fmt.Sprintf("The virtual machine recreation action timed out: %s", ctx.Err()))
 					return
 				case <-time.After(2 * time.Second):
+					resp.SendProgress(action.InvokeProgressEvent{Message: "Waiting for action to complete..."})
 				}
 			}
 		}

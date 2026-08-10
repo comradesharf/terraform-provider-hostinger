@@ -13,11 +13,11 @@ import (
 	"github.com/mock-server/mockserver-monorepo/mockserver-client-go/v7"
 )
 
-func TestAccVPSFirewallDeactiveAction(t *testing.T) {
+func TestAccVPSFirewallDeactivateAction(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {
 			testAccPreCheck(t)
-			testAccVPSFirewallDeactiveActionPreCheck(t)
+			testAccVPSFirewallDeactivateActionPreCheck(t)
 		},
 		TerraformVersionChecks: []tfversion.TerraformVersionCheck{
 			tfversion.SkipBelow(tfversion.Version1_14_0),
@@ -25,7 +25,7 @@ func TestAccVPSFirewallDeactiveAction(t *testing.T) {
 		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
 		Steps: []resource.TestStep{
 			{
-				Config: testAccVPSFirewallDeactiveActionConfig,
+				Config: testAccVPSFirewallDeactivateActionConfig,
 				PostApplyFunc: func() {
 					client := newMockServerClient()
 
@@ -42,7 +42,7 @@ func TestAccVPSFirewallDeactiveAction(t *testing.T) {
 	})
 }
 
-func testAccVPSFirewallDeactiveActionPreCheck(t *testing.T) {
+func testAccVPSFirewallDeactivateActionPreCheck(t *testing.T) {
 	client := newMockServerClient()
 
 	if err := client.Clear(nil, mockserver.ClearAll); err != nil {
@@ -107,7 +107,7 @@ func testAccVPSFirewallDeactiveActionPreCheck(t *testing.T) {
 	}
 }
 
-const testAccVPSFirewallDeactiveActionConfig = `
+const testAccVPSFirewallDeactivateActionConfig = `
 resource "terraform_data" "test" {
 	lifecycle {
 		action_trigger {

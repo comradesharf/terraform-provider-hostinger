@@ -18,26 +18,26 @@ import (
 )
 
 var (
-	_ action.Action              = &VPSFirewallDeactiveAction{}
-	_ action.ActionWithConfigure = &VPSFirewallDeactiveAction{}
+	_ action.Action              = &VPSFirewallDeactivateAction{}
+	_ action.ActionWithConfigure = &VPSFirewallDeactivateAction{}
 )
 
-func NewVPSFirewallDeactiveAction() action.Action {
-	return &VPSFirewallDeactiveAction{}
+func NewVPSFirewallDeactivateAction() action.Action {
+	return &VPSFirewallDeactivateAction{}
 }
 
-type VPSFirewallDeactiveAction struct {
+type VPSFirewallDeactivateAction struct {
 	client *client.ClientWithResponses
 }
 
-type VPSFirewallDeactiveActionModel struct {
+type VPSFirewallDeactivateActionModel struct {
 	Timeouts         timeouts.Value `tfsdk:"timeouts"`
 	FirewallID       types.Int64    `tfsdk:"firewall_id"`
 	VirtualMachineID types.Int64    `tfsdk:"virtual_machine_id"`
 	WaitForAction    types.Bool     `tfsdk:"wait_for_action"`
 }
 
-func (a *VPSFirewallDeactiveAction) Configure(ctx context.Context, req action.ConfigureRequest, resp *action.ConfigureResponse) {
+func (a *VPSFirewallDeactivateAction) Configure(ctx context.Context, req action.ConfigureRequest, resp *action.ConfigureResponse) {
 	if req.ProviderData == nil {
 		return
 	}
@@ -54,7 +54,7 @@ func (a *VPSFirewallDeactiveAction) Configure(ctx context.Context, req action.Co
 	a.client = c
 }
 
-func (a *VPSFirewallDeactiveAction) Schema(ctx context.Context, req action.SchemaRequest, resp *action.SchemaResponse) {
+func (a *VPSFirewallDeactivateAction) Schema(ctx context.Context, req action.SchemaRequest, resp *action.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "Deactivates a VPS firewall.",
 		Attributes: map[string]schema.Attribute{
@@ -75,12 +75,12 @@ func (a *VPSFirewallDeactiveAction) Schema(ctx context.Context, req action.Schem
 	}
 }
 
-func (a *VPSFirewallDeactiveAction) Metadata(ctx context.Context, req action.MetadataRequest, resp *action.MetadataResponse) {
-	resp.TypeName = req.ProviderTypeName + "_vps_firewall_deactive"
+func (a *VPSFirewallDeactivateAction) Metadata(ctx context.Context, req action.MetadataRequest, resp *action.MetadataResponse) {
+	resp.TypeName = req.ProviderTypeName + "_vps_firewall_deactivate"
 }
 
-func (a *VPSFirewallDeactiveAction) Invoke(ctx context.Context, req action.InvokeRequest, resp *action.InvokeResponse) {
-	var config VPSFirewallDeactiveActionModel
+func (a *VPSFirewallDeactivateAction) Invoke(ctx context.Context, req action.InvokeRequest, resp *action.InvokeResponse) {
+	var config VPSFirewallDeactivateActionModel
 	resp.Diagnostics.Append(req.Config.Get(ctx, &config)...)
 	if resp.Diagnostics.HasError() {
 		return
